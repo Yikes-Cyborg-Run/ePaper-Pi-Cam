@@ -17,7 +17,6 @@ PIC_UP_PIN_2=18
 
 # BUZZ_PIN=18
 
-
 CLEAR_SCREEN_PIN= 19
 TAKE_PIC_PIN_2=21
 LED_R=20
@@ -41,9 +40,10 @@ GPIO.setwarnings(False) # ?
 epd = epd2in7_V2.EPD()
 epd.init()
 epd.Clear()
+
 # Display options
 white_balance=["auto", "tungsten", "fluorescent", "indoor", "daylight", "cloudy"]
-image_folder = 'photos/'
+image_folder = '/home/pi/camapp/photos/'
 home_dir = os.environ['HOME'] #set the location of home directory
 cam = Camera()
 cam.greyscale = True # make it black and white
@@ -134,7 +134,7 @@ try:
 			timestamp=datetime.datetime.now().strftime('%Y-%m-%d_%H-%M-%S') # Get the current timestamp
 			filename=f'{timestamp}.jpg' # Construct the filename
 #			cam.annotate(filename, 'plain-small', 'white', 1, 2, [5,170]) # add a timestamp to photo
-			cam.take_photo(f"{home_dir}/Desktop/camapp/photos/" timestamp ".jpg") #save the image to your desktop
+			cam.take_photo("home/pi/camapp/photos/" timestamp ".jpg") #save the image to your desktop
 			img_path=os.path.join(image_folder, filename)
 			image=Image.open(img_path)
 #			image=image.convert('1')  # Convert to black and white

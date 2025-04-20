@@ -1,8 +1,10 @@
 # epaperpicam
 Take photos with Raspberry Pi and show them on a WaveShare ePaper display.
 Buttons to loop through past photos.
-* option to delete -- in progress....
-
+* option to delete -- in progress....     +-+++
+*
+Use PiOS64bit lite with RPiZero2w
+ 
 ## Picamera Docs
 https://projects.raspberrypi.org/en/projects/getting-started-with-picamera/0
 

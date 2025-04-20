@@ -53,7 +53,7 @@ cam.brightness=0 # can be -1.0 - 1.0
 cam.preview_size=(264, 176)
 cam.whitebalance=white_balance[4]
 
-cam.start_preview()
+# cam.start_preview()
 
 # Build an array of the current files 
 photo_array=[]

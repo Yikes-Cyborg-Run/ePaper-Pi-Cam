@@ -80,7 +80,7 @@ image = Image.new('1', (epd.height, epd.width), 255)
 draw = ImageDraw.Draw(image)
 
 # Load a font and draw some text
-font = ImageFont.truetype('/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf', 24)
+font = ImageFont.truetype('/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf', 18)
 draw.text((10, 10), 'Ready to Take Photo', font=font, fill=0)
 
 # Display the image

@@ -20,7 +20,8 @@ sudo apt update && sudo apt -y full-upgrade
 sudo apt install git
 ```
 
-### Install picamera
+### Install picamzero
+This project uses the picamzero module to take photos.
 ```
 sudo apt install python3-picamzero
 ```

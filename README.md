@@ -70,3 +70,5 @@ edit the part "epd2in7_V2" to match the name of your display.
 - [x] Buttons to navigate through past photos.
 - [ ] Button to delete single images
 - [ ] Button to delete ALL images
+- [ ] Settings window to change indoor/outdoor brightness, whitebalance, etc.
+- [ ] Possibly add a bright LED for Flash?

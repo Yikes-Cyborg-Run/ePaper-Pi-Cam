@@ -23,7 +23,7 @@ https://docs.github.com/en/get-started/writing-on-github/getting-started-with-wr
 Take photos with Raspberry Pi and show them on a WaveShare ePaper display.
 Buttons to loop through past photos.
 
-### Install the Raspberry Pi Operating System
+## Install the Raspberry Pi Operating System
 **Flash the OS with Raspberry Pi Imager**  
 [Download it here](https://www.raspberrypi.com/software/)
 1) Select Raspberry Pi Zero 2W from boards selection list.  
@@ -58,7 +58,8 @@ edit the part "epd2in7_V2" to match the name of your display.
 **Picamzero Documents**  
 [Getting Started](https://raspberrypifoundation.github.io/picamera-zero/)
 [Picamera Project Docs](https://projects.raspberrypi.org/en/projects/getting-started-with-picamera/0)  
-[Using Picamera2 Functions with Picamzero](https://raspberrypifoundation.github.io/picamera-zero/picamera2/)
+[Using Picamera2 Functions with Picamzero](https://raspberrypifoundation.github.io/picamera-zero/picamera2/)  
+[Picamzero API Documentation](https://raspberrypifoundation.github.io/picamera-zero/api_docs/)
 
 ### Other Resources ###
 [How to Run a Script on Startup for Raspberry Pi - by Sam Westby Tech](https://www.youtube.com/watch?v=Gl9HS7-H0mI)

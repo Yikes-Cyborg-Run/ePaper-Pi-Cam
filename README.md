@@ -47,8 +47,9 @@ sudo apt install python3-picamzero
 > [!IMPORTANT]
 > * This project makes use of ePaper displays manufactured by WaveShare.  
 > * Installing this project will install drivers for ALL WaveShare displays and save them into the directory "waveshare_epd".  
-> * To use a particular display, you will need to edit the line in "mainprog.py" that looks like this:  
-> ``` from waveshare_epd import epd2in7_V2 ``` edit the part "epd2in7_V2" to match the name of your display.
+> * To use a particular display, you will need to edit the line near the top of "mainprog.py" that looks like this:  
+> ``` from waveshare_epd import epd2in7_V2 ```  
+edit the part "epd2in7_V2" to match the name of your display.
 
 ### Extra Resources
 [Picamera Docs](https://projects.raspberrypi.org/en/projects/getting-started-with-picamera/0)

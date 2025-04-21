@@ -5,8 +5,8 @@ Buttons to loop through past photos.
 *
 
 ### Install Pi OS
-***Flash the OS with Raspberry Pi Imager***  
-Download: https://www.raspberrypi.com/software/
+**Flash the OS with Raspberry Pi Imager**  
+[Download it here](https://www.raspberrypi.com/software/)
 
 Select Raspberry Pi Zero 2W from boards selection list.  
 Select PiOS64bit lite  
@@ -27,10 +27,8 @@ sudo apt install git
 sudo apt install python3-picamzero
 ```
 
-#### Picamera Docs
-https://projects.raspberrypi.org/en/projects/getting-started-with-picamera/0
+#### Extra Resources
+[Picamera Docs](https://projects.raspberrypi.org/en/projects/getting-started-with-picamera/0)
 
-
-#### Run on Startup:
-https://www.youtube.com/watch?v=Gl9HS7-H0mI
+[Run Python script on Startup](https://www.youtube.com/watch?v=Gl9HS7-H0mI)
 

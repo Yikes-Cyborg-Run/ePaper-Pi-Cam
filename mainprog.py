@@ -40,7 +40,6 @@ epd.init()
 epd.Clear()
 
 # Display options
-white_balance=["auto", "tungsten", "fluorescent", "indoor", "daylight", "cloudy"]
 image_folder='/home/pi/camapp/photos/'
 home_dir=os.environ['HOME'] # set the location of home directory
 cam = Camera()
@@ -48,6 +47,7 @@ cam.greyscale=True # make the photo black and white
 cam.still_size=(264, 176) # resolution of the display
 cam.brightness=0 # can be -1.0 - 1.0
 cam.preview_size=(264, 176)
+white_balance=["auto", "tungsten", "fluorescent", "indoor", "daylight", "cloudy"]
 cam.whitebalance=white_balance[4]
 
 # cam.start_preview()

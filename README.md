@@ -32,6 +32,7 @@ Connect the e-ink display's CS pin to the Pi's GPIO 24 (CE0).
 Connect the e-ink display's DC pin to the Pi's GPIO 25.  
 Connect the e-ink display's RST pin to the Pi's GPIO 17.  
 Connect the e-ink display's BUSY pin to the Pi's GPIO 18.   
+https://www.youtube.com/watch?v=F67mUc8StcU
 
 ## Install the Raspberry Pi Operating System
 **Flash the OS with Raspberry Pi Imager**  

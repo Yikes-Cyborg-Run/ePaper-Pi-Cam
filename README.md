@@ -15,7 +15,9 @@ Select the drive where your SD card is stored
 
 
 ### Update Pi
-''' sudo apt update && sudo apt -y full-upgrade '''
+```
+sudo apt update && sudo apt -y full-upgrade
+```
 
 ### Install git
 sudo apt install git

@@ -11,17 +11,15 @@ GPIO.setmode(GPIO.BCM)
 TAKE_PIC_PIN=5
 PIC_UP_PIN=6
 PIC_DOWN_PIN=13
-
-PIC_UP_PIN_2=18
+# PIC_UP_PIN_2=18
 # PIC_DOWN_PIN_2=23
-
 # BUZZ_PIN=18
 
 CLEAR_SCREEN_PIN= 19
 TAKE_PIC_PIN_2=21
-LED_R=20
 LED_G=16
 LED_Y=12
+LED_R=20
 
 # Set up the button pin as an input with a pull-up resistor
 GPIO.setup(TAKE_PIC_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
@@ -48,7 +46,6 @@ home_dir=os.environ['HOME'] # set the location of home directory
 cam = Camera()
 cam.greyscale=True # make the photo black and white
 cam.still_size=(264, 176) # resolution of the display
-#cam.still_size=(132, 88) # resolution of the display
 cam.brightness=0 # can be -1.0 - 1.0
 cam.preview_size=(264, 176)
 cam.whitebalance=white_balance[4]

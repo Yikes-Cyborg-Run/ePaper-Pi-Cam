@@ -20,20 +20,20 @@
 Take photos with Raspberry Pi and show them on a WaveShare ePaper display.
 Buttons to loop through past photos.
 
-### Install Pi OS
+### Install the Raspberry Pi Operating System
 **Flash the OS with Raspberry Pi Imager**  
 [Download it here](https://www.raspberrypi.com/software/)
-
-Select Raspberry Pi Zero 2W from boards selection list.  
-Select PiOS64bit lite  
-Select the drive where your SD card is stored
+1) Select Raspberry Pi Zero 2W from boards selection list.  
+2) Select PiOS64bit lite  
+3) Select the drive where your SD card is stored
 
 ### Update Pi
 ```
 sudo apt update && sudo apt -y full-upgrade
 ```
 
-### Install Git
+### Install Git  
+OS Lite does not include Git, so you will need to install it for this project.
 ```
 sudo apt install git
 ```
@@ -44,7 +44,7 @@ This project makes use of the picamzero module to take photos.
 sudo apt install python3-picamzero
 ```
 
-> [!IMPORTANT]
+> [!WARNING]
 > * This project makes use of ePaper displays manufactured by WaveShare.  
 > * Installing this project will install drivers for ALL WaveShare displays and save them into the directory "waveshare_epd".  
 > * To use a particular display, you will need to edit the line near the top of "mainprog.py" that looks like this:  

@@ -23,6 +23,16 @@ https://docs.github.com/en/get-started/writing-on-github/getting-started-with-wr
 Take photos with Raspberry Pi and show them on a WaveShare ePaper display.
 Buttons to loop through past photos.
 
+# Wire up hardware
+Connect the e-ink display's VCC pin to the 3.3V pin on the Pi.  
+Connect the e-ink display's GND pin to the GND pin on the Pi.  
+Connect the e-ink display's DIN pin to the Pi's GPIO 19 (MOSI).  
+Connect the e-ink display's CLK pin to the Pi's GPIO 23 (SCLK).  
+Connect the e-ink display's CS pin to the Pi's GPIO 24 (CE0).  
+Connect the e-ink display's DC pin to the Pi's GPIO 25.  
+Connect the e-ink display's RST pin to the Pi's GPIO 17.  
+Connect the e-ink display's BUSY pin to the Pi's GPIO 18.   
+
 ## Install the Raspberry Pi Operating System
 **Flash the OS with Raspberry Pi Imager**  
 [Download it here](https://www.raspberrypi.com/software/)

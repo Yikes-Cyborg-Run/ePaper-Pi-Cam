@@ -37,18 +37,18 @@ GPIO.setup(LED_R,GPIO.OUT)
 GPIO.setwarnings(False) # ?
 
 # Initialize the display
-epd = epd2in7_V2.EPD()
+epd=epd2in7_V2.EPD()
 epd.init()
 epd.Clear()
 
 # Display options
 white_balance=["auto", "tungsten", "fluorescent", "indoor", "daylight", "cloudy"]
-image_folder = '/home/pi/camapp/photos/'
-home_dir = os.environ['HOME'] #set the location of home directory
+image_folder='/home/pi/camapp/photos/'
+home_dir=os.environ['HOME'] # set the location of home directory
 cam = Camera()
-cam.greyscale = True # make it black and white
-cam.still_size = (264, 176) # resolution of the display
-#cam.still_size = (132, 88) # resolution of the display
+cam.greyscale=True # make the photo black and white
+cam.still_size=(264, 176) # resolution of the display
+#cam.still_size=(132, 88) # resolution of the display
 cam.brightness=0 # can be -1.0 - 1.0
 cam.preview_size=(264, 176)
 cam.whitebalance=white_balance[4]

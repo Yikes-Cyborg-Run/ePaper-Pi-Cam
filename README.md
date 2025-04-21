@@ -1,4 +1,7 @@
 <!--
+
+https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax
+
 > [!NOTE]
 > Useful information that users should know, even when skimming content.
 
@@ -51,18 +54,18 @@ sudo apt install python3-picamzero
 > ``` from waveshare_epd import epd2in7_V2 ```  
 edit the part "epd2in7_V2" to match the name of your display.
 
-### Extra Resources
-[Picamera Docs](https://projects.raspberrypi.org/en/projects/getting-started-with-picamera/0)
+### Project Resources
+**Picamzero Documents**  
+[Getting Started](https://raspberrypifoundation.github.io/picamera-zero/)
+[Picamera Project Docs](https://projects.raspberrypi.org/en/projects/getting-started-with-picamera/0)  
+[Using Picamera2 Functions with Picamzero](https://raspberrypifoundation.github.io/picamera-zero/picamera2/)
 
-[Run Python script on Startup](https://www.youtube.com/watch?v=Gl9HS7-H0mI)
+### Other Resources ###
+[How to Run a Script on Startup for Raspberry Pi - by Sam Westby Tech](https://www.youtube.com/watch?v=Gl9HS7-H0mI)
 
-[Install Git](https://github.com/git-guides/install-git)
+[How to Install Git](https://github.com/git-guides/install-git)
 
 ### To-Do
 - [x] Buttons to navigate through past photos.
 - [ ] Button to delete single images
 - [ ] Button to delete ALL images
-
-> [!NOTE]
-> Useful information that users should know, even when skimming content.
-

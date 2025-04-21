@@ -5,11 +5,11 @@ Buttons to loop through past photos.
 *
 
 ### Install Pi OS
-Flash the OS with Raspberry Pi Imager
+***Flash the OS with Raspberry Pi Imager***  
 Download: https://www.raspberrypi.com/software/
 
-Select Raspberry Pi Zero 2W from boards selection list.
-Select PiOS64bit lite
+Select Raspberry Pi Zero 2W from boards selection list.  
+Select PiOS64bit lite  
 Select the drive where your SD card is stored
 
 ### Update Pi

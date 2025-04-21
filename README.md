@@ -12,18 +12,20 @@ Select Raspberry Pi Zero 2W from boards selection list.
 Select PiOS64bit lite
 Select the drive where your SD card is stored
 
-
-
 ### Update Pi
 ```
 sudo apt update && sudo apt -y full-upgrade
 ```
 
 ### Install git
+```
 sudo apt install git
+```
 
 ### Install picamera
+```
 sudo apt install python3-picamzero
+```
 
 #### Picamera Docs
 https://projects.raspberrypi.org/en/projects/getting-started-with-picamera/0

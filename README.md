@@ -4,11 +4,15 @@ Buttons to loop through past photos.
 * option to delete -- in progress....     +-+++
 *
 Use PiOS64bit lite with RPiZero2w
+
+###Install picamera
+sudo apt update
+sudo apt install python3-picamzero
  
-## Picamera Docs
+#### Picamera Docs
 https://projects.raspberrypi.org/en/projects/getting-started-with-picamera/0
 
 
-## Run on Startup:
+#### Run on Startup:
 https://www.youtube.com/watch?v=Gl9HS7-H0mI
 

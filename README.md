@@ -15,7 +15,7 @@ Select the drive where your SD card is stored
 sudo apt update && sudo apt -y full-upgrade
 ```
 
-### Install git
+### Install Git
 ```
 sudo apt install git
 ```
@@ -30,6 +30,8 @@ sudo apt install python3-picamzero
 [Picamera Docs](https://projects.raspberrypi.org/en/projects/getting-started-with-picamera/0)
 
 [Run Python script on Startup](https://www.youtube.com/watch?v=Gl9HS7-H0mI)
+
+[Install Git](https://github.com/git-guides/install-git)
 
 ### To-Do
 - [x] Buttons to navigate through past photos.

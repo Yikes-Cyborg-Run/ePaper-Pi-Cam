@@ -47,7 +47,7 @@ This project makes use of the picamzero module to take photos.
 sudo apt install python3-picamzero
 ```
 
-> [!WARNING]
+> [!IMPORTANT]
 > * This project makes use of ePaper displays manufactured by WaveShare.  
 > * Installing this project will install drivers for ALL WaveShare displays and save them into the directory "waveshare_epd".  
 > * To use a particular display, you will need to edit the line near the top of "mainprog.py" that looks like this:  

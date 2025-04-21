@@ -106,7 +106,7 @@ try:
 			GPIO.output(LED_R, GPIO.LOW)
 			GPIO.output(LED_G, GPIO.LOW)
 			GPIO.output(LED_Y, GPIO.HIGH)
-			photo_increment =1
+			photo_increment+=1					# !!!!!!! CHECK FOR THE PLUS SIGN here!
 			if photo_increment>max_photo_increment:
 				photo_increment=0
 			display_photo(photo_array, photo_increment)
@@ -121,8 +121,8 @@ try:
 
 		elif clear_screen_state==False:
 			epd.Clear() 
-			image = Image.new('1', (epd.height, epd.width), 255)
-			draw = ImageDraw.Draw(image)
+			image=Image.new('1', (epd.height, epd.width), 255)
+			draw=ImageDraw.Draw(image)
 			draw.text((10, 10), 'Ready', font=font, fill=0)
 			epd.display(epd.getbuffer(image)) # Display the image
 
@@ -134,10 +134,10 @@ try:
 			timestamp=datetime.datetime.now().strftime('%Y-%m-%d_%H-%M-%S') # Get the current timestamp
 			filename=f'{timestamp}.jpg' # Construct the filename
 #			cam.annotate(filename, 'plain-small', 'white', 1, 2, [5,170]) # add a timestamp to photo
-			cam.take_photo("home/pi/camapp/photos/" timestamp ".jpg") #save the image to your desktop
+			cam.take_photo("home/pi/camapp/photos/"+timestamp+".jpg") #save the image to your desktop  !!!!!!! CHECK FOR PLUS SIGN HERE!!!!!!!
 			img_path=os.path.join(image_folder, filename)
 			image=Image.open(img_path)
-#			image=image.convert('1')  # Convert to black and white
+#			image=image.convert('1')  # Convert to black and white (already B&W as default
 			image=image.resize((epd.height, epd.width))
 			epd.display(epd.getbuffer(image)) # Display the final image
 			GPIO.output(LED_R, GPIO.LOW)

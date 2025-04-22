@@ -34,6 +34,7 @@ Buttons to loop through past photos.
 | DC | 25 |
 | RST | 17 |
 | BUSY | 24 |
+[Circut Designer diagram](https://app.cirkitdesigner.com/project/d28ef6a1-0fe4-4ffe-82af-59cbab05e6b5)
 
 ## Install the Raspberry Pi Operating System
 **Flash the OS with Raspberry Pi Imager**  

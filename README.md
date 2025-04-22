@@ -75,6 +75,8 @@ edit the part "epd2in7_V2" to match the name of your display.
 ### Other Resources ###
 [How to Run a Script on Startup for Raspberry Pi - by Sam Westby Tech](https://www.youtube.com/watch?v=Gl9HS7-H0mI)
 
+[Waveshare ePaper setup -- complete massive walk-through](https://peppe8o.com/epaper-eink-raspberry-pi/)
+
 [How to Install Git](https://github.com/git-guides/install-git)
 
 ### To-Do

@@ -81,6 +81,8 @@ edit the part "epd2in7_V2" to match the name of your display.
 
 [Waveshare ePaper setup -- complete massive walk-through](https://peppe8o.com/epaper-eink-raspberry-pi/)
 
+[Waveshare 2.7" with buttons -- Walkthrough with Drawing examples](https://dev.to/ranewallin/getting-started-with-the-waveshare-2-7-epaper-hat-on-raspberry-pi-41m8)
+
 [How to Install Git](https://github.com/git-guides/install-git)
 
 ### To-Do

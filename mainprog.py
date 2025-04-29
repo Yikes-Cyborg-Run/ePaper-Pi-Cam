@@ -34,7 +34,6 @@ epd.Clear()
 # Display options
 white_balance=["auto", "tungsten", "fluorescent", "indoor", "daylight", "cloudy"]
 home_dir=os.environ['HOME'] # set home dir
-# image_folder=home_dir+"/camapp/photos/"
 image_folder="/home/pi/camapp/photos/"
 # home_dir=os.environ['HOME'] #set the location of home directory
 cam=Camera()
@@ -42,13 +41,12 @@ cam.greyscale=True # make it black and white
 # cam.flip_camera(hflip=True)
 # cam.flip_camera(vflip=False)
 # Resolution sizes
-#cam.still_size = (264, 176) # resolution of the display
-#cam.still_size = (132, 88) # resolution of the display
+# cam.still_size = (264, 176) # resolution of the display
+# cam.still_size = (132, 88) # resolution of the display
 cam.still_size=(300,300) #resolution of the display
 cam.brightness=0 # can be -1.0 - 1.0
 cam.preview_size=(264, 176)
 cam.whitebalance=white_balance[4]
-
 # cam.start_preview()
 
 # Build an array of the current files
@@ -59,7 +57,6 @@ for filename in os.listdir(image_folder):
 	if filename.lower().endswith((".png", ".jpg", ".jpeg", ".bmp", ".gif")):
 		img_path=str(os.path.join("/home/pi/camapp/photos/", filename))
 		photo_array.append(img_path)
-#		photo_array.append(os.path.join("/photos", filename))
 		photo_name_array.append(img_path)
 photo_increment=0
 max_photo_increment=len(photo_array)
@@ -72,12 +69,14 @@ for photo_name in photo_name_array:
 
 def display_photo(photo_array, key):
 #	epd.Clear()
+	print("Loading File....")
 	filename=photo_array[key]
 	print(filename)
 	image=Image.open(filename)
+	image=image.resize((epd.height, epd.width))
 	draw=ImageDraw.Draw(image)
 	font=ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", 12)
-	draw.text((5, 160), filename, font=font, fill=1)
+	draw.text((5, 280), filename, font=font, fill=1)
 	epd.display(epd.getbuffer(image))
 
 # Create a new image with a white background
@@ -89,7 +88,7 @@ font=ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", 18)
 draw.text((20, 50), "Ready to take photo", font=font, fill=0)
 draw.text((20, 100), "Image Dir: "+image_folder, font=font, fill=0)
 draw.text((20, 150), "Num Photos: "+str(max_photo_increment), font=font, fill=0)
-draw.text((20, 200), "Photo List: \n"+photo_name_list, fill=0)
+# draw.text((20, 200), "Photo List: \n"+photo_name_list, fill=0)
 
 # Display the image
 epd.display(epd.getbuffer(image))

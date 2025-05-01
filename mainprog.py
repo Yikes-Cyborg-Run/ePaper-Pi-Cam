@@ -89,6 +89,7 @@ white_balance=config["white_balance"]
 display_rotation=config["display_rotation"]
 auto_scroll_duration=config["auto_scroll_duration"]
 timestamp_photo=config["timestamp_photo"]
+brightness=config["brightness"]
 
 # Define the GPIO pin for the button
 PHOTO_PIN=5

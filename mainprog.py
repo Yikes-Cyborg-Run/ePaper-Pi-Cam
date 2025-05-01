@@ -134,9 +134,8 @@ cam.greyscale=True # make the photo black & white
 # cam.flip_camera(hflip=True)
 # cam.flip_camera(vflip=False)
 # cam.still_size = (264, 176) # resolution of the display
-# cam.still_size = (132, 88) # resolution of the display
-cam.still_size=(300,300) #r esolution of the display
-cam.brightness=0 # can be -1.0 - 1.0
+cam.still_size=(300,300) # resolution of the display
+cam.brightness=brightness # can be -1.0 - 1.0
 cam.preview_size=(264, 176) # Don't need preview, keeping it for debugging purposes
 cam.whitebalance=white_balance
 # cam.start_preview()

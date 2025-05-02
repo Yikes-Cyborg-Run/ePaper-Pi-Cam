@@ -39,17 +39,17 @@ Buttons to loop through past photos.
 **Camera Buttons** 
 | Button Function | Pi GPIO Pin |
 |------------|------------|  
-| Take Photo | x |  
-| Menu | x |
-| Up Selection | x |
-| Down Selection | x | 
+| Take Photo/Select | 5 |  
+| Open Menu/Cancel | 14 |
+| Up Selection | 6 |
+| Down Selection | 13 | 
 
 **Camera LEDs** 
 | LED | Pi GPIO Pin |
 |------------|------------|  
-| Green | x |  
-| Yellow | x |
-| Red |  |
+| Green | 20 |  
+| Yellow | 16 |
+| Red | 12 |
 
 
 

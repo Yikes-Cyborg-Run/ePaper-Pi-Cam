@@ -94,11 +94,12 @@ edit the part "epd2in7_V2" to match the name of your display.
 [Picamzero API Documentation](https://raspberrypifoundation.github.io/picamera-zero/api_docs/)
 [ePaper Tutorials](https://dev.to/ranewallin/getting-started-with-the-waveshare-2-7-epaper-hat-on-raspberry-pi-41m8)
 [Waveshare screen rotation -- MAYBE](https://www.waveshare.com/wiki/4.3inch_DSI_LCD)
-
 [More Waveshare info - Python Screen rotation / partial refresh options](https://www.waveshare.com/wiki/E-Paper_API_Analysis#Python)
 
 ### Other Resources ###
 [How to Run a Script on Startup for Raspberry Pi - by Sam Westby Tech](https://www.youtube.com/watch?v=Gl9HS7-H0mI)
+
+[Setup headless pi for ssh - by Sam Westby Tech](https://www.youtube.com/watch?v=9fEnvDgxwbI)
 
 [Waveshare ePaper setup -- complete massive walk-through](https://peppe8o.com/epaper-eink-raspberry-pi/)
 

@@ -60,7 +60,9 @@ Buttons to loop through past photos.
 1) Select Raspberry Pi Zero 2W from boards selection list.  
 2) Select PiOS64bit lite  
 3) Select the drive where your SD card is stored
+4) Select "Next"
 
+5) 
 Go to Advnced settings, add your wifi info. Suggest keeping login info default for now. 
 
 

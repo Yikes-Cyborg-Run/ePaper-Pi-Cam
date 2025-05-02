@@ -60,11 +60,15 @@ Buttons to loop through past photos.
 1) Select Raspberry Pi Zero 2W from boards selection list.  
 2) Select PiOS64bit lite  
 3) Select the drive where your SD card is stored
-4) Select "Next"
-![Image](https://github.com/user-attachments/assets/4973a321-0e3e-4c67-99c8-3fd343964e59)
-5) 
-Go to Advnced settings, add your wifi info. Suggest keeping login info default for now. 
-![picam1]([https://github.com/ ](https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/readmeImg/1-edit.png "Logo Title Text 1")
+4) Select "Next"  
+
+**Apply Custom Settings**  
+Configure some custom settings so you can ssh into your Pi headless, ect.  
+![Image](https://github.com/user-attachments/assets/4973a321-0e3e-4c67-99c8-3fd343964e59)  
+
+5) Go to Advnced settings, add your wifi info  
+6) Suggest keeping login info default for now
+7) 
 
 ### Update Pi
 ```

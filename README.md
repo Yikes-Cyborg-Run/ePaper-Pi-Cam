@@ -52,7 +52,6 @@ Buttons to loop through past photos.
 | Red | 12 |
 
 
-
 [Circut Designer diagram](https://app.cirkitdesigner.com/project/d28ef6a1-0fe4-4ffe-82af-59cbab05e6b5)
 
 ## Install the Raspberry Pi Operating System
@@ -61,6 +60,9 @@ Buttons to loop through past photos.
 1) Select Raspberry Pi Zero 2W from boards selection list.  
 2) Select PiOS64bit lite  
 3) Select the drive where your SD card is stored
+
+Go to Advnced settings, add your wifi info. Suggest keeping login info default for now. 
+
 
 ### Update Pi
 ```

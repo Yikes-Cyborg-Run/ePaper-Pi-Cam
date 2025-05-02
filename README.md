@@ -24,7 +24,8 @@ Take photos with Raspberry Pi and show them on a WaveShare ePaper display.
 Buttons to loop through past photos.
 
 # Wire up hardware
-| ePaper Pin | R Pi GPIO Pin |
+**ePaper Display** 
+| ePaper Pin | Pi GPIO Pin |
 |------------|------------|  
 | VCC | 3.3V |  
 | GND | GND |
@@ -33,7 +34,25 @@ Buttons to loop through past photos.
 | CS | 8 (CE0) |
 | DC | 25 |
 | RST | 17 |
-| BUSY | 24 |
+| BUSY | 24 | 
+
+**Camera Buttons** 
+| Button Function | Pi GPIO Pin |
+|------------|------------|  
+| Take Photo | x |  
+| Menu | x |
+| Up Selection | x |
+| Down Selection | x | 
+
+**Camera LEDs** 
+| LED | Pi GPIO Pin |
+|------------|------------|  
+| Green | x |  
+| Yellow | x |
+| Red |  |
+
+
+
 [Circut Designer diagram](https://app.cirkitdesigner.com/project/d28ef6a1-0fe4-4ffe-82af-59cbab05e6b5)
 
 ## Install the Raspberry Pi Operating System

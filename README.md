@@ -64,7 +64,7 @@ Buttons to loop through past photos.
 
 5) 
 Go to Advnced settings, add your wifi info. Suggest keeping login info default for now. 
-![picam1](https://github.com/ "Logo Title Text 1")
+![picam1]([https://github.com/ ](https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/readmeImg/1-edit.png "Logo Title Text 1")
 
 ### Update Pi
 ```

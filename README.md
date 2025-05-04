@@ -91,8 +91,9 @@ sudo apt install python3-picamzero
 ```
 Use command line to take a test photo after picamzero has been installed.  
 ```
-rpicam-still -o ~/Desktop/image.jpg
+rpicam-still -o image.jpg
 ```
+The terminal will create an image. After it is done, use the "ls" command to verify that a file was created.
 
 > [!IMPORTANT]
 > * This project makes use of ePaper displays manufactured by WaveShare.  

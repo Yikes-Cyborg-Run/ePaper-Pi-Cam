@@ -64,11 +64,12 @@ Buttons to loop through past photos.
 
 **Apply Custom Settings**  
 Configure some custom settings so you can ssh into your Pi headless, ect.  
-![Image](https://github.com/user-attachments/assets/4973a321-0e3e-4c67-99c8-3fd343964e59)  
+
+<img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/readmeImg/1-edit.png' width='400'>
 
 5) Go to Advnced settings, add your wifi info  
 6) Suggest keeping login info default for now
-7) 
+<img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/readmeImg/general.png' width='400'>
 
 ### Update Pi
 ```

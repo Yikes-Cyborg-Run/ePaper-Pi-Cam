@@ -89,6 +89,10 @@ This project makes use of the picamzero module to take photos.
 ```
 sudo apt install python3-picamzero
 ```
+Use command line to take a test photo after picamzero has been installed.  
+```
+rpicam-still -o ~/Desktop/image.jpg
+```
 
 > [!IMPORTANT]
 > * This project makes use of ePaper displays manufactured by WaveShare.  

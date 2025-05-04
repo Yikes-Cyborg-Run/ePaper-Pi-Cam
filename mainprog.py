@@ -12,31 +12,38 @@ def save_config(config):
             file.write(f"{key}={value}\n")
 
 def load_config():
-    config={}
-    if os.path.exists("config.txt"):
-        with open("config.txt", 'r') as file:
-            for line in file:
-                if "=" in line:
-                    key, value=line.strip().split("=", 1)
-                    config[key]=value
-    return config
+	config={}
+	if os.path.exists("config.txt"):
+		with open("config.txt", 'r') as file:
+			for line in file:
+				if "=" in line:
+					key, value=line.strip().split("=", 1)
+					config[key]=value
+	else:
+		print("No config file")
+	return config
 
 def menu(title, highlight, menu_array):
+	global config_font
+	show=str(highlight)
 	highlight=menu_array[highlight]
-	print("Building menu, selected - "+highlight)
+	print("Building menu, selected - "+show+" - "+highlight)
 	image=Image.new("1", (epd.height, epd.width), 255) 	# Create a new image with a white background
 	draw=ImageDraw.Draw(image)
 	y=100 # will increment to place menu items vertically
 	# Load font and loop thorugh menu array
-	font=ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", 18)
+	font=ImageFont.truetype("/home/pi/epaperpicam/Fonts/"+config_font, 18)
 	draw.text((20,50),title,font=font,fill=0)
 	for item in menu_array:
 		if item==highlight:
-			item="→ "+item
-			if item=="→ Camera":
-				item=item+" - take photo..."
-		draw.text((20,y),item+"\n",font=font,fill=0)
-		y+=30 # add so that the y position increments as menu items are added
+			show="- "+item
+			if item=="Camera":
+				show="- Camera - take photo..."
+		else:
+			show=item
+		if item!="Menu":
+			draw.text((20,y),show+"\n",font=font,fill=0)
+			y+=30 # add so that the y position increments as menu items are added
 	epd.display(epd.getbuffer(image))
 	return True
 
@@ -66,10 +73,10 @@ def purge_photo_dir(image_folder):
 def LED(green,yellow,red):
 	if green==1: GPIO.output(LED_G, GPIO.HIGH)
 	else: GPIO.output(LED_G, GPIO.LOW)
-	if yellow==1: GPIO.output(LED_G, GPIO.HIGH)
-	else: GPIO.output(LED_G, GPIO.LOW)
-	if red==1: GPIO.output(LED_G, GPIO.HIGH)
-	else: GPIO.output(LED_G, GPIO.LOW)
+	if yellow==1: GPIO.output(LED_Y, GPIO.HIGH)
+	else: GPIO.output(LED_Y, GPIO.LOW)
+	if red==1: GPIO.output(LED_R, GPIO.HIGH)
+	else: GPIO.output(LED_R, GPIO.LOW)
 
 def draw_text(x,y,size,txt):
 	font=ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", size)
@@ -85,6 +92,7 @@ print("Loaded settings:")
 for key, value in config.items():
     print(f"{key}: {value}")
 
+config_font=config["font"]
 white_balance=config["white_balance"]
 display_rotation=config["display_rotation"]
 auto_scroll_duration=config["auto_scroll_duration"]
@@ -119,23 +127,24 @@ selection="Menu"
 highlight=0
 menu_made=False
 options_menu_made=False
+check_delete=False
 
 # Initialize the display
 epd=epd4in2_V2.EPD()
 epd.init()
-# epd.Clear()
 
 # ePaper display and Camera options
 # white_balance=["auto", "tungsten", "fluorescent", "indoor", "daylight", "cloudy"]
 home_dir=os.environ['HOME'] # set home dir
-image_folder="/home/pi/camapp/photos/" # where photos will be saved
+image_folder="/home/pi/epaperpicam/photos/" # where photos will be saved
 cam=Camera() # Start camera
 cam.greyscale=True # make the photo black & white
 # cam.flip_camera(hflip=True)
 # cam.flip_camera(vflip=False)
 # cam.still_size = (264, 176) # resolution of the display
 cam.still_size=(300,300) # resolution of the display
-cam.brightness=brightness # can be -1.0 - 1.0
+cam.brightness=int(brightness) # can be -1.0 - 1.0
+# cam.brightness=0
 cam.preview_size=(264, 176) # Don't need preview, keeping it for debugging purposes
 cam.whitebalance=white_balance
 # cam.start_preview()
@@ -144,13 +153,12 @@ cam.whitebalance=white_balance
 print("Building photo filename list")
 photo_array=[]
 photo_name_array=[]
-photo_increment=0
+list_increment=0
 for filename in os.listdir(image_folder):
 	if filename.lower().endswith((".png", ".jpg", ".jpeg", ".bmp", ".gif")):
 		img_path=str(os.path.join(image_folder, filename))
 		photo_array.append(img_path)
 		photo_name_array.append(img_path)
-		photo_increment+=1
 num_photos=len(photo_array)
 num_photos-=1
 
@@ -186,18 +194,19 @@ try:
 
 		# Make the menu and navigation
 		if selection=="Menu":
+			list_made=False # for the manual tabbing of photos
 			if menu_made==False:
-				menu_made=menu("MENU - Photos: "+len(photo_array), highlight, main_menu_array)
+				menu_made=menu("MENU - Photos: "+str(len(photo_array)), highlight, main_menu_array)
 			if up_state==False:
 				highlight+=1
-				menu_made=menu("MENU - Photos: "+len(photo_array), highlight, main_menu_array)
-				if highlight>len(main_menu_array):
+				if highlight>5:
 					highlight=0
+				menu_made=menu("MENU - Photos: "+str(len(photo_array)), highlight, main_menu_array)
 			elif down_state==False:
 				highlight-=1
-				menu_made=menu("MENU - Photos: "+len(photo_array), highlight, main_menu_array)
 				if highlight<0:
-					highlight=len(main_menu_array)
+					highlight=5
+				menu_made=menu("MENU - Photos: "+str(len(photo_array)), highlight, main_menu_array)
 			elif photo_state==False:
 				selection=main_menu_array[highlight]
 				highlight=0
@@ -209,7 +218,8 @@ try:
 				LED(0,0,1)
 				timestamp=datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S") # Get the current timestamp
 				filename=f"{timestamp}.jpg" # Construct the filename
-	#			cam.annotate(filename, 'plain-small', 'white', 1, 2, [5,170]) # add a timestamp to photo
+				if timestamp_photo==True:
+					cam.annotate(timestamp, 'plain-small', 'white', 1, 2, [5,170]) # add a timestamp to photo
 				cam.take_photo(image_folder+filename)
 				img_path=os.path.join(image_folder, filename)
 				image=Image.open(img_path)
@@ -222,30 +232,37 @@ try:
 
 		# Manually tab through photos
 		elif selection=="List":
+			LED(0,1,0)
+			if list_made==False:
+				print("Increment: "+str(list_increment))
+				display_photo(photo_array, list_increment)
+				list_made=True
 			if up_state==False:
-				LED(0,1,0)
-				photo_increment+=1
-				if photo_increment>num_photos:
-					photo_increment=0
-				display_photo(photo_array, photo_increment)
-				print("Photo increment = "+str(photo_increment))
+				print("Up - Increment: "+str(list_increment))
+				LED(1,0,0)
+				list_increment+=1
+				if list_increment>num_photos:
+					list_increment=0
+				display_photo(photo_array, list_increment)
+				print("Photo increment = "+str(list_increment))
 			elif down_state==False:
-				LED(0,1,0)
-				photo_increment-=1
-				if photo_increment<0:
-					photo_increment=num_photos
-				display_photo(photo_array, photo_increment)
-				print("Photo increment = "+str(photo_increment))
+				print("Up - Increment: "+str(list_increment))
+				LED(1,0,0)
+				list_increment-=1
+				if list_increment<0:
+					list_increment=num_photos
+				display_photo(photo_array, list_increment)
+				print("Photo increment = "+str(list_increment))
 
 		# Auto-scroll through photos every 30 seconds
 		elif selection=="Auto Scroll":
 			print("Start photo display")
-			display_photo(photo_array,photo_increment)
-			print("Displayed")
-			time.sleep(3000)
-			photo_increment+=1
-			if photo_increment>len(photo_array):
-				photo_increment=0
+			display_photo(photo_array,list_increment)
+			print("Increment: "+str(list_increment))
+			time.sleep(5)
+			list_increment+=1
+			if list_increment>=int(len(photo_array)):
+				list_increment=0
 
 		# Options Menu
 		elif selection=="Camera Options":
@@ -268,33 +285,42 @@ try:
 
 		# Ask to confirm purging all photos
 		elif selection=="Delete":
-			if check_delete!=True:
-				print("Confirm purging of all "+len(photo_array)+"photos.")
+			if check_delete==False:
+				print("Confirm purging of all "+str(len(photo_array))+"photos.")
 				LED(0,1,0)
 				image=Image.new("1", (epd.height, epd.width), 255) 	# Create a new image with a white background
 				draw=ImageDraw.Draw(image)
 				font=ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", 18)
-				draw.text((20,50),"Are you SURE you want to \n delete all "+str(num_photos+1)+"?",font=font,fill=0)
-				draw.text((20,80),"Press Menu button to cancel.",font=font,fill=0)
-				draw.text((20,110),"Press Photo button to confirm.",font=font,fill=0)
+				draw.text((20,50),"Are you SURE you want to \n delete all "+str(num_photos+1)+" photos on file?",font=font,fill=0)
+				draw.text((20,120),"Press Menu button to cancel.",font=font,fill=0)
+				draw.text((20,170),"Press Photo button to confirm.",font=font,fill=0)
+				epd.display(epd.getbuffer(image))
 				check_delete=True
+				time.sleep(3) # slows button press so it doesnt automatically jump to confirmed
 			# pressing photo btn will confirm
-			if photo_state==False:
+			elif check_delete==True and photo_state==False:
+				print("Deleting...")
 				selection="Delete Confirmed"
-			elif menu_state==False:
+				check_delete=False
+				LED(0,0,0)
+			elif check_delete==True and menu_state==False:
+				print("Back to main menu")
 				selection="Menu"
+				check_delete=False
+				LED(1,0,0)
 
 		# PURGE ALL PHOTOS!
-		elif selection=="Delete Confirmed":
+		elif check_delete==False and selection=="Delete Confirmed":
 			print("Purging all photos")	
 			LED(0,0,1)
 			purge_photo_dir(image_folder)
 			LED(1,0,0)
-			photo_increment=0
+			list_increment=0
 			epd.Clear()
 			selection="Menu"
 			menu_made=False
 			check_delete=False
+			photo_array=[]
 
 		elif selection=="SAVE CONFIG":
 			# Load existing config

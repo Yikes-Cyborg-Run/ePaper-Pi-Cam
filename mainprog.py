@@ -1,7 +1,8 @@
 import RPi.GPIO as GPIO
 import time, datetime, os
 from picamzero import Camera
-from waveshare_epd import epd4in2_V2 # epd2in7_V2  -- is for the GPIO HAT
+from waveshare_epd import epd2in7_V2 #   -- is for the GPIO HAT
+#from waveshare_epd import epd4in2_V2 # epd2in7_V2  -- is for the GPIO HAT
 from PIL import Image,ImageDraw,ImageFont
 
 print("Initializing")
@@ -29,11 +30,15 @@ def menu(title, highlight, menu_array):
 	highlight=menu_array[highlight]
 	print("Building menu, selected - "+show+" - "+highlight)
 	image=Image.new("1", (epd.height, epd.width), 255) 	# Create a new image with a white background
+#	image=image.transpose(Image.ROTATE_180)
+
 	draw=ImageDraw.Draw(image)
-	y=100 # will increment to place menu items vertically
+#	draw=draw.transpose(Image.ROTATE_180)
+	y=25 # will increment to place menu items vertically
 	# Load font and loop thorugh menu array
-	font=ImageFont.truetype("/home/pi/epaperpicam/Fonts/"+config_font, 18)
-	draw.text((20,50),title,font=font,fill=0)
+	# font=ImageFont.truetype("/home/pi/ePaper-Pi-Cam/Fonts/"+config_font, 18)
+	font=ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", 14)
+	draw.text((20,5),title,font=font,fill=0)
 	for item in menu_array:
 		if item==highlight:
 			show="- "+item
@@ -43,7 +48,7 @@ def menu(title, highlight, menu_array):
 			show=item
 		if item!="Menu":
 			draw.text((20,y),show+"\n",font=font,fill=0)
-			y+=30 # add so that the y position increments as menu items are added
+			y+=25 # add so that the y position increments as menu items are added
 	epd.display(epd.getbuffer(image))
 	return True
 
@@ -92,7 +97,7 @@ print("Loaded settings:")
 for key, value in config.items():
     print(f"{key}: {value}")
 
-config_font=config["font"]
+# config_font="home/pi/ePaper-Pi-Cam/"+config["font"]
 white_balance=config["white_balance"]
 display_rotation=config["display_rotation"]
 auto_scroll_duration=config["auto_scroll_duration"]
@@ -101,9 +106,9 @@ brightness=config["brightness"]
 
 # Define the GPIO pin for the button
 PHOTO_PIN=5
-MENU_PIN=14
-UP_PIN=6
-DOWN_PIN=13
+MENU_PIN=19
+UP_PIN=13
+DOWN_PIN=6
 LED_R=20
 LED_G=16
 LED_Y=12
@@ -121,7 +126,7 @@ GPIO.setup(LED_R,GPIO.OUT)
 
 # Main Menu & Options Menu control variables
 main_menu_array=["Menu", "Camera", "List", "Auto Scroll", "Camera Options", "Delete"]
-options_menu_array=["White Balance", "Display Rotation", "Auto Scroll Duration", "Camera Options", "Delete"]
+options_menu_array=["Font Selection", "Display Rotation", "Auto Scroll Duration", "White Balance", "Delete ALL Photos"]
 white_balance_array=["auto", "tungsten", "fluorescent", "indoor", "daylight", "cloudy"]
 selection="Menu"
 highlight=0
@@ -130,22 +135,23 @@ options_menu_made=False
 check_delete=False
 
 # Initialize the display
-epd=epd4in2_V2.EPD()
+# epd=epd4in2_V2.EPD()
+epd=epd2in7_V2.EPD()
 epd.init()
 
 # ePaper display and Camera options
 # white_balance=["auto", "tungsten", "fluorescent", "indoor", "daylight", "cloudy"]
 home_dir=os.environ['HOME'] # set home dir
-image_folder="/home/pi/epaperpicam/photos/" # where photos will be saved
+image_folder="/home/pi/ePaper-Pi-Cam/photos/" # where photos will be saved
 cam=Camera() # Start camera
 cam.greyscale=True # make the photo black & white
 # cam.flip_camera(hflip=True)
 # cam.flip_camera(vflip=False)
-# cam.still_size = (264, 176) # resolution of the display
-cam.still_size=(300,300) # resolution of the display
+cam.still_size = (264, 176) # resolution of the 2.7 GPIO display
+# cam.still_size=(300,300) # resolution of the 4.2 display
 cam.brightness=int(brightness) # can be -1.0 - 1.0
 # cam.brightness=0
-cam.preview_size=(264, 176) # Don't need preview, keeping it for debugging purposes
+# cam.preview_size=(264, 176) # Don't need preview, keeping it for debugging purposes
 cam.whitebalance=white_balance
 # cam.start_preview()
 

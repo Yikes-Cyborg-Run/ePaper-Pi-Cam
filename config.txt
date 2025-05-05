@@ -1,5 +1,5 @@
 white_balance=auto
 display_rotation=180
-auto_scroll_duration=30
+autoscroll_duration=30
 timestamp_photo=False
 brightness=0

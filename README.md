@@ -18,13 +18,12 @@ https://docs.github.com/en/get-started/writing-on-github/getting-started-with-wr
 > Advises about risks or negative outcomes of certain actions.
 
 -->
-
-<h1>ePaper-Pi-Cam</h1>
+# ePaper-Pi-Cam #
 Take photos with Raspberry Pi and show them on a WaveShare ePaper display.
 Buttons to loop through past photos.
 
-# Wire up hardware
-## Setup Waveshare ePaper Display  
+## Wire up hardware ##  
+**Setup Waveshare ePaper Display**  
 *→ If you are using the Waveshare 2.7-inch GPIO hat, all you need to do is seat the hat on your Pi.*  
 *→ If you're using a different/wired Waveshare display, refer to the wiring diagram and table below.*
 <br>
@@ -84,7 +83,7 @@ Buttons to loop through past photos.
 4) Select "Next"  
 
 **Apply Custom Settings**  
-Configure some custom settings so you can ssh into your Pi headless, ect.  
+You need to configure some custom settings so you can access WiFi and SSH into your Pi headless.  
 
 <img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/edit_custom_settings.png' width='500'>
 

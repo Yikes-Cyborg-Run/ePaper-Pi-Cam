@@ -72,7 +72,7 @@ Buttons to loop through past photos.
 
 <br><br>
 
-**Connect Camera LEDs (optional)**  
+**Optional Camera LEDs**  
 • The addition of LEDs to the camera is optional but adds a little bit of flare to the camera's functionality.  
 • If you are using the Waveshare 2.7-inch GPIO hat, you'll need to use a breakout board or some kind of prototype board to connect the LEDs.  
 [Example of Breakout Board](https://www.amazon.com/dp/B0DMNJ17PD?ref=ppx_yo2ov_dt_b_fed_asin_title)  
@@ -83,6 +83,13 @@ Buttons to loop through past photos.
 | Green | 16 |  
 | Yellow | 12 |
 | Red | 20 |
+
+**Connect the Camera**  
+• For this project, I used the official Raspberry Pi Camera module.  
+• Others may work, but you may need to install specific device drivers.  
+• Before connecting the camera (or anything for that matter) power off your Pi.
+• Pay close attention to how you connect the ribbon cable to both your Pi and your camera.
+• Be careful 
 
 
 ## Install the Raspberry Pi Operating System

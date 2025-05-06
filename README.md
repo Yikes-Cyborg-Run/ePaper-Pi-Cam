@@ -30,7 +30,8 @@ https://docs.github.com/en/get-started/writing-on-github/getting-started-with-wr
 > Advises about risks or negative outcomes of certain actions.
 
 -->
-# ePaper-Pi-Cam #
+<img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/title.jpg' align='left'>  
+<br><br>
 Take photos with Raspberry Pi and show them on a WaveShare ePaper display.
 Buttons to loop through past photos.
 

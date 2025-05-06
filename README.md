@@ -23,9 +23,13 @@ https://docs.github.com/en/get-started/writing-on-github/getting-started-with-wr
 Take photos with Raspberry Pi and show them on a WaveShare ePaper display.
 Buttons to loop through past photos.
 
-# Wire up hardware
+## Wire up hardware
+*→ If you are using the Waveshare 2.7-inch GPIO hat, all you need to do is seat the hat on your Pi.*  
+*→ If you're using a different Waveshare display, refer to the diagram and table below.*
+
 **ePaper Display** 
-| ePaper Pin | Pi GPIO Pin |
+<img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/waveshare_Pi02W_setup.jpg' align='left' width='600'>
+| ePaper Pin | Pi GPIO Pin | 
 |------------|------------|  
 | VCC | 3.3V |  
 | GND | GND |
@@ -35,6 +39,7 @@ Buttons to loop through past photos.
 | DC | 25 |
 | RST | 17 |
 | BUSY | 24 | 
+<br><br>
 
 **Camera Buttons** 
 | Button Function | Pi GPIO Pin |

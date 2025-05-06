@@ -137,8 +137,11 @@ Deleting photos is also an option.
 ping pi -n 1
 ```
 • The terminal will attempt to verify the status of your Pi and return its IP address.  
-• Write down the IP address, you will use this to SSH into your Pi.
+<br>
 <img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/ping_pi.png' width='500' align='left'>
+<br><br><br><br>
+
+• Write down the IP address, you will use this to SSH into your Pi.
 
 ### Update Pi
 • After flashing, it is always recommended to update and upgrade  the OS.  

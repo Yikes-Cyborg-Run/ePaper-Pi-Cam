@@ -95,10 +95,10 @@ Buttons to loop through past photos.
 • For the operating system, select "OTHER" -- from the resulting list, select PiOS64bit lite.  
 <img src='' align='left' width='400'>  
 <br>  
-• Select the drive where your SD card is stored  
+• Select the drive where your SD card is stored.  
 <img src='' align='left' width='400'>  
 <br>  
-• Select "Next"  
+• Select "Next".  
 
 **Apply Custom Settings**  
 *→ You need to configure a few custom settings so you can access WiFi and SSH into your Pi.*  
@@ -121,14 +121,15 @@ Buttons to loop through past photos.
 > * It is essential that USB cable you connect to your Pi is a **DATA** cable.  
 > * Some cables are strictly for charging and will not transfer data.  
 
-• Open the terminal from your computer and enter  
+• Open the terminal from your computer and enter:  
 ```
 ping pi@local
 ```
-
+• The terminal will attempt to verify the status of your Pi and return its IP address.  
+• Write down the IP address, you will use this to SSH into your Pi.
 
 ### Update Pi
-• After flashing, it is always recommended to update and upgrade  the OS  
+• After flashing, it is always recommended to update and upgrade  the OS.  
 ```
 sudo apt update && sudo apt -y full-upgrade
 ```
@@ -168,6 +169,9 @@ rpicam-still -o image.jpg
 > * To use a particular display, you will need to edit the line near the top of "mainprog.py" that looks like this:  
 > ``` from waveshare_epd import epd2in7_V2 ```  
 edit the part "epd2in7_V2" to match the name of your display.
+
+
+
 
 ### Project Resources
 **Picamzero Documents**  

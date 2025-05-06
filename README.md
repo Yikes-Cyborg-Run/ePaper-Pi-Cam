@@ -25,7 +25,7 @@ Buttons to loop through past photos.
 
 ## Wire up hardware
 *→ If you are using the Waveshare 2.7-inch GPIO hat, all you need to do is seat the hat on your Pi.*  
-*→ If you're using a different Waveshare display, refer to the diagram and table below.*
+*→ If you're using a different Waveshare display, refer to the wiring diagram and table below.*
 
 **ePaper Display** 
 <img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/waveshare_Pi02W_setup.jpg' align='left' width='600'>  
@@ -45,7 +45,7 @@ Buttons to loop through past photos.
 
 **Camera Buttons**  
 *→ If you are using the Waveshare 2.7-inch GPIO hat, all you need to do is seat the hat on your Pi.*  
-*→ If you're using a different Waveshare display, refer to the diagram and table below.*  
+*→ If you're using a different Waveshare display, refer to the wiring diagram and table below.*  
 
 <img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/Waveshare_2in7_GPIOhat_pins.jpg' align='left' width='400'>  
 

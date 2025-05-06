@@ -57,7 +57,12 @@ Buttons to loop through past photos.
 | Down Selection | 13 | 
 <br><br>
 
-**Camera LEDs** 
+**Camera LEDs**  
+*→ The addition of LEDs to the camera is optional but adds a little bit of flare to the camera's functionality.*  
+*→ If you are using the Waveshare 2.7-inch GPIO hat, You'll need to use a breakout board or some kind of prototype board.*  
+[Example of Breakout Board](https://www.amazon.com/dp/B0DMNJ17PD?ref=ppx_yo2ov_dt_b_fed_asin_title)  
+[Example of Prototype Board](https://www.amazon.com/dp/B08C2XSTK2?ref=ppx_yo2ov_dt_b_fed_asin_title&th=1)  
+*→ Refer to the wiring table below if you are adding LEDs to your camera.*
 | LED | Pi GPIO Pin |
 |------------|------------|  
 | Green | 20 |  

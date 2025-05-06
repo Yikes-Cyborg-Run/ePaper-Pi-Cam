@@ -121,7 +121,11 @@ Buttons to loop through past photos.
 > * It is essential that USB cable you connect to your Pi is a **DATA** cable.  
 > * Some cables are strictly for charging and will not transfer data.  
 
-• Open the terminal from your computer.  
+• Open the terminal from your computer and enter  
+```
+ping pi@local
+```
+
 
 ### Update Pi
 • After flashing, it is always recommended to update and upgrade  the OS  
@@ -135,6 +139,16 @@ sudo apt update && sudo apt -y full-upgrade
 sudo apt install git
 ```
 
+
+**Open Pi Configuration to enable SPI**  
+• SPI must be enabled to use the ePaper display.  
+• To asccess the Pi config menu, do:
+'''
+sudo raspi-config
+'''
+
+
+
 ### Install picamzero
 • This project makes use of the picamzero module to take photos.
 ```
@@ -145,13 +159,6 @@ sudo apt install python3-picamzero
 rpicam-still -o image.jpg
 ```
 • The terminal will create an image. After it is done, use the "ls" command to verify that a file was created.
-
-**Open Pi Configuration to enable SPI**
-• SPI must be enabled to use the ePaper display.  
-• To asccess the Pi config menu, do:
-'''
-sudo raspi-config
-'''
 
 
 

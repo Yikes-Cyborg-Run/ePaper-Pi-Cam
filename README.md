@@ -19,7 +19,7 @@ https://docs.github.com/en/get-started/writing-on-github/getting-started-with-wr
 
 -->
 
-# ePaper-Pi-Cam
+<h1>ePaper-Pi-Cam</h1>
 Take photos with Raspberry Pi and show them on a WaveShare ePaper display.
 Buttons to loop through past photos.
 

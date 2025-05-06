@@ -23,8 +23,8 @@ https://docs.github.com/en/get-started/writing-on-github/getting-started-with-wr
 Take photos with Raspberry Pi and show them on a WaveShare ePaper display.
 Buttons to loop through past photos.
 
-## Wire up hardware
-**Setup Waveshare ePaper Display**  
+# Wire up hardware
+## Setup Waveshare ePaper Display  
 *→ If you are using the Waveshare 2.7-inch GPIO hat, all you need to do is seat the hat on your Pi.*  
 *→ If you're using a different/wired Waveshare display, refer to the wiring diagram and table below.*
 <br>

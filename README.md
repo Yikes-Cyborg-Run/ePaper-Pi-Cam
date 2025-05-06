@@ -31,7 +31,8 @@ Buttons to loop through past photos.
 
 
 <img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/waveshare_Pi02W_setup.jpg' align='left' width='600'>  
- 
+<br>  
+
 | ePaper Pin | Pi GPIO Pin | 
 |------------|------------|  
 | VCC | 3.3V |  
@@ -50,13 +51,15 @@ Buttons to loop through past photos.
 *→ If you're using a different Waveshare display, refer to the wiring diagram and table below.*  
 
 <img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/Waveshare_2in7_GPIOhat_pins.jpg' align='left' width='400'>  
+<br>  
 
 | Button Function | Pi GPIO Pin |
 |------------|------------|  
 | Take Photo/Select | 5 |  
 | Open Menu/Cancel | 14 |
 | Up Selection | 6 |
-| Down Selection | 13 | 
+| Down Selection | 13 |  
+
 <br><br>
 
 **Camera LEDs**  
@@ -71,8 +74,6 @@ Buttons to loop through past photos.
 | Yellow | 16 |
 | Red | 12 |
 
-
-[Circut Designer diagram](https://app.cirkitdesigner.com/project/d28ef6a1-0fe4-4ffe-82af-59cbab05e6b5)
 
 ## Install the Raspberry Pi Operating System
 **Flash the OS with Raspberry Pi Imager**  

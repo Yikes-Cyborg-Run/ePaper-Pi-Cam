@@ -1,5 +1,17 @@
 <!--
 
+
+$${\color{red}Red}$$	$${\color{red}Red}$$
+$${\color{green}Green}$$	$${\color{green}Green}$$
+$${\color{lightgreen}Light \space Green}$$	$${\color{lightgreen}Light \space Green}$$
+$${\color{blue}Blue}$$	$${\color{blue}Blue}$$
+$${\color{lightblue}Light \space Blue}$$	$${\color{lightblue}Light \space Blue}$$
+$${\color{black}Black}$$	$${\color{black}Black}$$
+$${\color{white}White}$$
+
+
+
+
 https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax
 
 > [!NOTE]
@@ -45,7 +57,7 @@ Buttons to loop through past photos.
 
  <br><br>
 
-**Camera Buttons**  
+**Connect Camera Buttons**  
 *→ If you are using the Waveshare 2.7-inch GPIO hat, all you need to do is seat the hat on your Pi.*  
 *→ If you're using a different Waveshare display, refer to the wiring diagram and table below.*  
 
@@ -61,9 +73,9 @@ Buttons to loop through past photos.
 
 <br><br>
 
-**Camera LEDs**  
+**Connect Camera LEDs (optional)**  
 *→ The addition of LEDs to the camera is optional but adds a little bit of flare to the camera's functionality.*  
-*→ If you are using the Waveshare 2.7-inch GPIO hat, you'll need to use a breakout board or some kind of prototype board.*  
+*→ If you are using the Waveshare 2.7-inch GPIO hat, you'll need to use a breakout board or some kind of prototype board to connect the LEDs.*  
 [Example of Breakout Board](https://www.amazon.com/dp/B0DMNJ17PD?ref=ppx_yo2ov_dt_b_fed_asin_title)  
 [Example of Prototype Board](https://www.amazon.com/dp/B08C2XSTK2?ref=ppx_yo2ov_dt_b_fed_asin_title&th=1)  
 *→ Refer to the wiring table below if you are adding LEDs to your camera.*
@@ -76,46 +88,57 @@ Buttons to loop through past photos.
 
 ## Install the Raspberry Pi Operating System
 **Flash the OS with Raspberry Pi Imager**  
-[Download Raspberry Pi Imager here](https://www.raspberrypi.com/software/)
-1) Select Raspberry Pi Zero 2W from boards selection list.  
-2) Select PiOS64bit lite  
-3) Select the drive where your SD card is stored
-4) Select "Next"  
+[Download Raspberry Pi Imager here](https://www.raspberrypi.com/software/)  
+• To start, select Raspberry Pi Zero 2W from boards selection list.  
+<img src='' align='left' width='400'>  
+<br>  
+• For the operating system, select "OTHER" -- from the resulting list, select PiOS64bit lite.  
+<img src='' align='left' width='400'>  
+<br>  
+• Select the drive where your SD card is stored  
+<img src='' align='left' width='400'>  
+<br>  
+• Select "Next"  
 
 **Apply Custom Settings**  
-You need to configure some custom settings so you can access WiFi and SSH into your Pi headless.  
+*→ You need to configure a few custom settings so you can access WiFi and SSH into your Pi.*  
+• Click on the "EDIT SETTINGS" button.  
 
-<img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/edit_custom_settings.png' width='500'>
+<img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/edit_custom_settings.png' width='500'>  
 
-5) Go to Advanced settings
-6) Keep the username as pi and also suggest keeping default password as raspberry for now. You can change the password later, but the username needs to stay as pi.
-7) Add your wifi SSID and password into the text boxes and click "SAVE"
- 
+• Keep the username as "pi" and keep the default password as raspberry for now.  
+• You can change the password later, but the username **MUST** stay as "pi".  
+• Under "Configure Wireless LAN", enter your WiFi SSID and WiFi password into the text boxes  
+• Click "SAVE" to continue  
+
 <img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/general_settings.png' width='400'>
 
 ### Update Pi
+• After flashing, it is always recommended to update and upgrade  the OS  
 ```
 sudo apt update && sudo apt -y full-upgrade
 ```
 
 ### Install Git  
-OS Lite does not include Git, so you will need to install it for this project.
+• OS Lite does not include Git, so you will need to install it for this project.
 ```
 sudo apt install git
 ```
 
 ### Install picamzero
-This project makes use of the picamzero module to take photos.
+• This project makes use of the picamzero module to take photos.
 ```
 sudo apt install python3-picamzero
 ```
-Use command line to take a test photo after picamzero has been installed.  
+• Use command line to take a test photo after picamzero has been installed.  
 ```
 rpicam-still -o image.jpg
 ```
-The terminal will create an image. After it is done, use the "ls" command to verify that a file was created.
+• The terminal will create an image. After it is done, use the "ls" command to verify that a file was created.
 
-**Open Pi Configuration to enable SPI**  
+**Open Pi Configuration to enable SPI**
+• SPI must be enabled to use the ePaper display.  
+• To asccess the Pi config menu, do:
 '''
 sudo raspi-config
 '''

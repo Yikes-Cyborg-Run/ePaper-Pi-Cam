@@ -31,9 +31,11 @@ https://docs.github.com/en/get-started/writing-on-github/getting-started-with-wr
 
 -->
 <img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/title.jpg' align='left'>  
-<br><br>
-Take photos with Raspberry Pi and show them on a WaveShare ePaper display.
-Buttons to loop through past photos.
+<br><br>  
+This project lets you take photos with Raspberry Pi and then show them on a WaveShare ePaper display.  
+Included are options to auto-scroll through your photos, or you can use buttons to tab through them manually.  
+There are several different camera configuration options that can be customized by editing the config.txt file.  
+Deleting photos is also an option.  
 
 ## Wire up hardware ##  
 **Setup Waveshare ePaper Display**  

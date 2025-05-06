@@ -87,10 +87,12 @@ Buttons to loop through past photos.
 **Connect the Camera**  
 • For this project, I used the official Raspberry Pi Camera module.  
 • Others may work, but you may need to install specific device drivers.  
-• Before connecting the camera (or anything for that matter) power off your Pi.
-• Pay close attention to how you connect the ribbon cable to both your Pi and your camera.
-• Be careful 
+• Before connecting the camera (or anything for that matter) power off your Pi.  
+• Pay close attention to how you connect the ribbon cable to both your Pi and your camera.  
+• The copper for both ends of the ribbon cable should face as shown below.  
 
+<img src='' align='left' width='400' alt='connect camera'>  
+<br>  
 
 ## Install the Raspberry Pi Operating System
 **Flash the OS with Raspberry Pi Imager**  

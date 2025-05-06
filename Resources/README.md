@@ -1,4 +1,7 @@
-# ePaper Pi-Cam Notes
+# ePaper Pi-Cam Notes  
+
+<img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/Claude.jpg' width='400'>
+
 [Typewriter Fonts](https://www.dafont.com/theme.php?cat=113)
 
 [Dingbat Alien Fonts](https://www.dafont.com/theme.php?cat=701)

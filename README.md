@@ -77,13 +77,13 @@ Buttons to loop through past photos.
 **Apply Custom Settings**  
 Configure some custom settings so you can ssh into your Pi headless, ect.  
 
-<img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/readmeImg/1-edit.png' width='400'>
+<img src='' width='400'>
 
 5) Go to Advanced settings
 6) Keep the username as pi and also suggest keeping default password as raspberry for now. You can change the password later, but the username needs to stay as pi.
 7) Add your wifi SSID and password into the text boxes and click "SAVE"
  
-<img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/readmeImg/general.png' width='400'>
+<img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/general_settings.png' width='400'>
 
 ### Update Pi
 ```

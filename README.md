@@ -70,9 +70,9 @@ Buttons to loop through past photos.
 *→ Refer to the wiring table below if you are adding LEDs to your camera.*
 | LED | Pi GPIO Pin |
 |------------|------------|  
-| Green | 20 |  
-| Yellow | 16 |
-| Red | 12 |
+| Green | 16 |  
+| Yellow | 12 |
+| Red | 20 |
 
 
 ## Install the Raspberry Pi Operating System

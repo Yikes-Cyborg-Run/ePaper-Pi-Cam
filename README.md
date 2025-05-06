@@ -56,9 +56,9 @@ Buttons to loop through past photos.
 | Button Function | Pi GPIO Pin |
 |------------|------------|  
 | Take Photo/Select | 5 |  
-| Open Menu/Cancel | 14 |
-| Up Selection | 6 |
-| Down Selection | 13 |  
+| Up Selection | 13 |
+| Down Selection | 6 |
+| Open Menu/Cancel | 19 |  
 
 <br><br>
 

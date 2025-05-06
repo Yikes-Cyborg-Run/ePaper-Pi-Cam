@@ -36,10 +36,9 @@ Buttons to loop through past photos.
 
 ## Wire up hardware ##  
 **Setup Waveshare ePaper Display**  
-*→ If you are using the Waveshare 2.7-inch GPIO hat, all you need to do is seat the hat on your Pi.*  
-*→ If you're using a different/wired Waveshare display, refer to the wiring diagram and table below.*
+• If you are using the Waveshare 2.7-inch GPIO hat, all you need to do is seat the hat on your Pi.  
+• If you're using a different/wired Waveshare display, refer to the wiring diagram and table below.
 <br>
-
 
 <img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/waveshare_Pi02W_setup.jpg' align='left' width='550'>  
 <br>  
@@ -58,8 +57,8 @@ Buttons to loop through past photos.
  <br><br>
 
 **Connect Camera Buttons**  
-*→ If you are using the Waveshare 2.7-inch GPIO hat, all you need to do is seat the hat on your Pi.*  
-*→ If you're using a different Waveshare display, refer to the wiring diagram and table below.*  
+• If you are using the Waveshare 2.7-inch GPIO hat, all you need to do is seat the hat on your Pi.  
+• If you're using a different Waveshare display, refer to the wiring diagram and table below.  
 
 <img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/Waveshare_2in7_GPIOhat_pins.jpg' align='left' width='400'>  
 <br>  
@@ -74,11 +73,11 @@ Buttons to loop through past photos.
 <br><br>
 
 **Connect Camera LEDs (optional)**  
-*→ The addition of LEDs to the camera is optional but adds a little bit of flare to the camera's functionality.*  
-*→ If you are using the Waveshare 2.7-inch GPIO hat, you'll need to use a breakout board or some kind of prototype board to connect the LEDs.*  
+• The addition of LEDs to the camera is optional but adds a little bit of flare to the camera's functionality.  
+• If you are using the Waveshare 2.7-inch GPIO hat, you'll need to use a breakout board or some kind of prototype board to connect the LEDs.  
 [Example of Breakout Board](https://www.amazon.com/dp/B0DMNJ17PD?ref=ppx_yo2ov_dt_b_fed_asin_title)  
 [Example of Prototype Board](https://www.amazon.com/dp/B08C2XSTK2?ref=ppx_yo2ov_dt_b_fed_asin_title&th=1)  
-*→ Refer to the wiring table below if you are adding LEDs to your camera.*
+• Refer to the wiring table below if you are adding LEDs to your camera.
 | LED | Pi GPIO Pin |
 |------------|------------|  
 | Green | 16 |  

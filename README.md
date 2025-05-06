@@ -106,12 +106,22 @@ Buttons to loop through past photos.
 
 <img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/edit_custom_settings.png' width='500'>  
 
-• Keep the username as "pi" and keep the default password as raspberry for now.  
+• Keep the username as "pi" and keep the default password as "raspberry" for now.  
 • You can change the password later, but the username **MUST** stay as "pi".  
-• Under "Configure Wireless LAN", enter your WiFi SSID and WiFi password into the text boxes  
+• Under "Configure Wireless LAN", enter your WiFi SSID and WiFi password.  
 • Click "SAVE" to continue  
 
 <img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/general_settings.png' width='400'>
+<br>
+
+### Get Pi's IP address  
+• To create an SSH session, you need to determine your Pi's IP address.
+• Connect your Pi to your computer via a USB cable.
+> [!IMPORTANT]
+> * It is essential that USB cable you connect to your Pi is a **DATA** cable.  
+> * Some cables are strictly for charging and will not transfer data.  
+
+• Open the terminal from your computer.  
 
 ### Update Pi
 • After flashing, it is always recommended to update and upgrade  the OS  

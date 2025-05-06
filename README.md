@@ -28,7 +28,7 @@ Buttons to loop through past photos.
 *→ If you're using a different Waveshare display, refer to the diagram and table below.*
 
 **ePaper Display** 
-<img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/waveshare_Pi02W_setup.jpg' align='left' width='600'>  
+<img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/waveshare_Pi02W_setup.jpg' align='left' width='600'>  
  
 | ePaper Pin | Pi GPIO Pin | 
 |------------|------------|  
@@ -43,11 +43,11 @@ Buttons to loop through past photos.
 
  <br><br>
 
-**Camera Buttons** 
+**Camera Buttons**  
 *→ If you are using the Waveshare 2.7-inch GPIO hat, all you need to do is seat the hat on your Pi.*  
 *→ If you're using a different Waveshare display, refer to the diagram and table below.*  
 
-<img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/waveshare_Pi02W_setup.jpg' align='left' width='600'>  
+<img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/Waveshare_2in7_GPIOhat_pins.jpg' align='left' width='400'>  
 
 | Button Function | Pi GPIO Pin |
 |------------|------------|  
@@ -55,6 +55,7 @@ Buttons to loop through past photos.
 | Open Menu/Cancel | 14 |
 | Up Selection | 6 |
 | Down Selection | 13 | 
+<br><br>
 
 **Camera LEDs** 
 | LED | Pi GPIO Pin |

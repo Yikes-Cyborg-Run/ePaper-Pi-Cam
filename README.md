@@ -126,11 +126,13 @@ Deleting photos is also an option.
 • Keep the username as "pi" and keep the default password as "raspberry" for now.  
 • You can change the password later, but the username **MUST** stay as "pi".  
 • Under "Configure Wireless LAN", enter your WiFi SSID and WiFi password.  
-• Click "SAVE" to continue  
-
+<br>
 <img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/general_settings.png' width='400'>
 <br>
-
+• Keep the SERVICES settings to enable SSH as they are.  
+<img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/setup_ssh.jpg' width='500'>  
+<br>
+• Click "SAVE" to continue  
 ### Get Pi's IP address  
 • To create an SSH session, you need to determine your Pi's IP address.
 • Connect your Pi to your computer via a USB cable.

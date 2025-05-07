@@ -104,10 +104,14 @@ Deleting photos is also an option.
 • To start, select Raspberry Pi Zero 2W from the device selection list.  
 <br>
 <img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/select_board.jpg' align='left' width='400'>  
-<br>  
-• For the operating system, select "OTHER" -- from the resulting list, select PiOS64bit lite.  
-<img src='' align='left' width='400'>  
-<br>  
+<br><br><br><br><br><br><br>  
+• For the operating system, select "OTHER" -- from the resulting list. 
+<br>
+<img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/os_other.jpg' align='left' width='300'>  
+<br>
+• Then select PiOS64bit lite.  
+<br>
+<img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/OS_lite64.png' align='left' width='300'>  
 • Select the drive where your SD card is stored.  
 <img src='' align='left' width='400'>  
 <br>  

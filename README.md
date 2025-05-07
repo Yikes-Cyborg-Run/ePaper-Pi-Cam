@@ -113,7 +113,7 @@ Deleting photos is also an option.
 <img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/OS_lite64.png' align='left' width='300'>  
 <br><br><br><br>
 • Now select the drive where your SD card is stored.  
-<img src='' align='left' width='400'>  
+<img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/storage.jpg' align='left' width='400'>  
 <br>  
 • Select "Next".  
 
@@ -129,10 +129,10 @@ Deleting photos is also an option.
 <br>
 <img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/general_settings.png' width='400'>
 <br>
-• Keep the SERVICES settings to enable SSH as they are.  
+• Keep the SERVICES settings to enable SSH as they are and click "SAVE" to continue.  
 <img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/setup_ssh.jpg' width='500'>  
 <br>
-• Click "SAVE" to continue  
+  
 ### Get Pi's IP address  
 • To create an SSH session, you need to determine your Pi's IP address.
 • Connect your Pi to your computer via a USB cable.

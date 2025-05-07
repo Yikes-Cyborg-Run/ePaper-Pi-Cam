@@ -100,8 +100,10 @@ Deleting photos is also an option.
 ## Install the Raspberry Pi Operating System
 **Flash the OS with Raspberry Pi Imager**  
 [Download Raspberry Pi Imager here](https://www.raspberrypi.com/software/)  
-• To start, select Raspberry Pi Zero 2W from boards selection list.  
-<img src='' align='left' width='400'>  
+<br>
+• To start, select Raspberry Pi Zero 2W from the device selection list.  
+<br>
+<img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/select_board.jpg' align='left' width='400'>  
 <br>  
 • For the operating system, select "OTHER" -- from the resulting list, select PiOS64bit lite.  
 <img src='' align='left' width='400'>  

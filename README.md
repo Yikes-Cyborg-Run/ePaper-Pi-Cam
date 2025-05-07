@@ -103,11 +103,11 @@ Deleting photos is also an option.
 <br>
 • To start, select Raspberry Pi Zero 2W from the device selection list.  
 <img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/select_board.jpg' align='left' width='400'>  
-<br><br><br><br>
-• For the operating system, select "OTHER" -- from the resulting list. 
+<br><br><br><br>  
+• For the operating system, select "Raspberry Pi OS (other)".  
 <br>
 <img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/os_other.jpg' align='left' width='300'>  
-<br>
+<br><br><br><br>  
 • Then select PiOS64bit lite.  
 <br>
 <img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/OS_lite64.png' align='left' width='300'>  

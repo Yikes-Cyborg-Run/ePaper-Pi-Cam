@@ -134,6 +134,8 @@ Deleting photos is also an option.
 <img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/setup_ssh.jpg' width='500'>  
 <br>
 • Click "YES", and then double check the disc you'll be writing to. All data will be erased.  
+• Click "CONTINUE" to begin writing the OS.  
+• Once Imager has finished, you can eject the card and insert it into your Pi.  
 <br>
   
 ### Get Pi's IP address  

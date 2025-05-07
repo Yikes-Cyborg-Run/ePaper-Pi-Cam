@@ -103,7 +103,7 @@ Deleting photos is also an option.
 <br>
 • To start, select Raspberry Pi Zero 2W from the device selection list.  
 <img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/select_board.jpg' align='left' width='400'>  
-<br><br><br><br>  
+<br><br><br><br>
 • For the operating system, select "Raspberry Pi OS (other)".  
 <br>
 <img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/os_other.jpg' align='left' width='300'>  
@@ -113,11 +113,12 @@ Deleting photos is also an option.
 <img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/OS_lite64.png' align='left' width='300'>  
 <br><br><br><br>
 • Now select the drive where your SD card is stored.  
+<br>
 <img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/storage.jpg' align='left' width='400'>  
 <br>  
-• Select "Next".  
+• Click "NEXT".  
 
-**Apply Custom Settings**  
+**Use OS Customization?**  
 *→ You need to configure a few custom settings so you can access WiFi and SSH into your Pi.*  
 • Click on the "EDIT SETTINGS" button.  
 
@@ -137,6 +138,7 @@ Deleting photos is also an option.
 • Click "CONTINUE" to begin writing the OS.  
 • Once Imager has finished, you can eject the card and insert it into your Pi.  
 <br>
+<img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/OS_write_complete.png' width='500'>  
   
 ### Get Pi's IP address  
 • To create an SSH session, you need to determine your Pi's IP address.

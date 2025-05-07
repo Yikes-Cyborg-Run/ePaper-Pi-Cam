@@ -125,12 +125,15 @@ Deleting photos is also an option.
 
 • Keep the username as "pi" and keep the default password as "raspberry" for now.  
 • You can change the password later, but the username **MUST** stay as "pi".  
-• Under "Configure Wireless LAN", enter your WiFi SSID and WiFi password.  
+• Under "Configure Wireless LAN", enter your WiFi SSID, WiFi password and select your country.  
 <br>
 <img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/general_settings.png' width='400'>
-<br>
+<br>  
 • Keep the SERVICES settings to enable SSH as they are and click "SAVE" to continue.  
+<br>
 <img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/setup_ssh.jpg' width='500'>  
+<br>
+• Click "YES", and then double check the disc you'll be writing to. All data will be erased.  
 <br>
   
 ### Get Pi's IP address  

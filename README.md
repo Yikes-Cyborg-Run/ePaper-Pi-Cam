@@ -139,9 +139,18 @@ ping pi -n 1
 • The terminal will attempt to verify the status of your Pi and return its IP address.  
 <br>
 <img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/ping_pi.png' width='500' align='left'>
-<br><br><br><br>
+<br><br><br><br><br><br><br>
 
-• Write down the IP address, you will use this to SSH into your Pi.
+• Write down the IP address, you will use this to SSH into your Pi.  
+<br>
+
+### SSH into Pi  
+• Once you have the IP, you can SSH into your pi to complete the installation.  
+• Replace the IP below with your IP.  
+• Enter your password and press Enter.  
+<br>
+<img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/ssh_IP_pw.png' width='500' align='left'>  
+<br>
 
 ### Update Pi
 • After flashing, it is always recommended to update and upgrade  the OS.  
@@ -154,7 +163,6 @@ sudo apt update && sudo apt -y full-upgrade
 ```
 sudo apt install git
 ```
-
 
 **Open Pi Configuration to enable SPI**  
 • SPI must be enabled to use the ePaper display.  
@@ -184,6 +192,8 @@ rpicam-still -o image.jpg
 > * To use a particular display, you will need to edit the line near the top of "mainprog.py" that looks like this:  
 > ``` from waveshare_epd import epd2in7_V2 ```  
 edit the part "epd2in7_V2" to match the name of your display.
+
+
 
 
 

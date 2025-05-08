@@ -142,8 +142,39 @@ def master_menu(menu_made, selection, highlight, array_to_use, config, config_ke
 		result=[{"selection":selection}, {"highlight":highlight}, {"menu_made":menu_made}, {"config_key_to_save":config_key}, {"config_value_to_save": new_value}]
 		return result
 
-# Load existing config
+# This code runs only in python 3.10 or above versions
+def nts(argument):
+	match argument:
+		case 0: 
+			return "Menu"
+		case 1:
+			return "Camera"
+		case 2:
+			return "List"
+		case 3:
+			return "Auto Scroll"
+		case 4:
+			return "Options"
+		case 5:
+			return "Delete Check"
+		case 6:
+			return "Delete Confirmed"
+		case default:
+			return "Menu"
 
+def up_increment(limit):
+	menu_increment+=1
+	if(menu_increment>=limit):
+		menu_increment=0
+	return menu_increment
+
+def down_increment(limit):
+	menu_increment-=1
+	if(menu_increment<=0):
+		menu_increment=limit
+	return menu_increment
+
+# Load existing config
 config=load_config()
 log("Loading config:", 1)
 for key, value in config.items():
@@ -156,10 +187,10 @@ timestamp_photo=config["timestamp_photo"]
 brightness=config["brightness"]
 
 # Define the GPIO pin for the button
-photo_btn=Button(5, bounce_time = 0.3) # used to take photo or select a menu item
-menu_btn=Button(19, bounce_time = 0.3) # opens the menu
-up_btn=Button(13, bounce_time = 0.3)# menu selection up
-down_btn=Button(6, bounce_time = 0.3)# menu selection down
+photo_btn=Button(5, bounce_time=0.3) # used to take photo or select a menu item
+menu_btn=Button(19, bounce_time=0.3) # opens the menu
+up_btn=Button(13, bounce_time=0.3)# menu selection up
+down_btn=Button(6, bounce_time=0.3)# menu selection down
 LED_g=LED(20)
 LED_y=LED(16)
 LED_r=LED(12)
@@ -217,38 +248,34 @@ draw=ImageDraw.Draw(image)
 LED(1,0,0)
 log("Script Started", 1)
 
+def menu_selected(menu_array, current_increment):
+	up_btn.when_pressed=up_increment(len(menu_array))
+	down_btn.when_pressed=down_increment(len(menu_array))
+	new_increment=nts(menu_num)
+	if new_increment!=current_increment:
+		menu_made=menu("MENU - Photos: "+str(len(photo_array)), highlight, main_menu_array)
+	selection="Menu"
+	return selection
+
 try:
 	while True:
 		# Read the button conditions
-#		photo_state=GPIO.input(PHOTO_PIN)
-#		menu_state=GPIO.input(MENU_PIN)
-#		up_state=GPIO.input(UP_PIN)
-#		down_state=GPIO.input(DOWN_PIN)
+		photo_btn.when_pressed=photo_pressed
+		menu_btn.when_pressed=menu_pressed
+
+		selection=nts(menu_num)
 
 		# If not on menu page and menu btn is pressed, change selection to show menu
-		if selection!="Menu" and menu_state==False:
+		if selection!="Menu":
+			menu_btn.when_pressed=menu_selected(menu_array, 1)
 			selection="Menu"
 			log("Opening Main Menu", 1)
 
 		# Make the menu and navigation
 		if selection=="Menu":
-			list_made=False # for the manual tabbing of photos
-			if menu_made==False:
-				menu_made=menu("MENU - Photos: "+str(len(photo_array)), highlight, main_menu_array)
-			if up_state==False:
-				highlight+=1
-				if highlight>int(len(main_menu_array)-1):
-					highlight=0
-				menu_made=menu("MENU - Photos: "+str(len(photo_array)), highlight, main_menu_array)
-			elif down_state==False:
-				highlight-=1
-				if highlight<0:
-					highlight=int(len(main_menu_array)-1)
-				menu_made=menu("MENU - Photos: "+str(len(photo_array)), highlight, main_menu_array)
-			elif photo_state==False:
-				selection=main_menu_array[highlight]
-				highlight=0
-				menu_made=False
+			up_btn.when_pressed=up_increment(len(menu_array))
+			down_btn.when_pressed=down_increment(len(menu_array))
+			photo_btn.when_pressed=select_menu_item(menu_increment)
 
 		# Options Menu
 		elif selection=="Camera Options":
@@ -332,59 +359,6 @@ try:
 			selection=menu_vars["selection"]
 			highlight=menu_vars["highlight"]
 			menu_made=menu_vars["menu_made"]
-
-		# Ask to confirm purging all photos
-		elif selection=="Delete":
-			if check_delete==False:
-				log("Confirm purging of all "+str(len(photo_array))+"photos.",1)
-				LED(0,1,0)
-				image=Image.new("1", (epd.height, epd.width), 255) 	# Create a new image with a white background
-				draw=ImageDraw.Draw(image)
-				font=ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", 14)
-				draw.text((20,5),"Are you SURE you want to \n delete all "+str(len(photo_array))+" photos on file?",font=font,fill=0)
-				draw.text((20,50),"Press Menu button to cancel.",font=font,fill=0)
-				draw.text((20,100),"Press Photo button to confirm.",font=font,fill=0)
-				epd.display(epd.getbuffer(image))
-				check_delete=True
-				log("checking delete confirmation....",1)
-				time.sleep(1) # slows button press so it doesnt automatically jump to confirmed
-			# pressing photo btn will confirm
-			elif check_delete==True and photo_state==False:
-				log("Deleting...",1)
-				selection="Delete Confirmed"
-				check_delete=False
-				LED(0,0,0)
-			elif check_delete==True and menu_state==False:
-				log("Returning to main menu",1)
-				selection="Menu"
-				check_delete=False
-				LED(1,0,0)
-
-		# PURGE ALL PHOTOS!
-		elif check_delete==False and selection=="Delete Confirmed":
-			log("Purging all photos",1)	
-			LED(0,0,1)
-			purge_photo_dir(image_folder)
-			LED(1,0,0)
-			list_increment=0
-			epd.Clear()
-			selection="Menu"
-			menu_made=False
-			check_delete=False
-			photo_array=[]
-
-		elif selection=="SAVE CONFIG":
-			# Get existing config that may have been edited while running the script
-			config={"white_balance": white_balance, "display_rotation": display_rotation, "auto_scroll_duration":auto_scroll_duration, "timestamp_photo":timestamp_photo}
-			# Save updated config
-			save_config(config)
-			log("Config saved.", 1)
-
-			#Reload and display
-			config=load_config()
-			log("Reloaded settings:",1)
-			for key, value in config.items():
-				log(f"{key}: {value}", 1)
 
 		time.sleep(0.3) # ??????? will this debounce?
 except KeyboardInterrupt:

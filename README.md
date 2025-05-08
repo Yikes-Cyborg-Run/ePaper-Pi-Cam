@@ -187,14 +187,18 @@ sudo apt update && sudo apt -y full-upgrade
 sudo apt install git
 ```
 
+### Install gpiozero  
+• OS Lite does not include gpiozero, so you will need to install it for this project.
+```
+sudo apt install python3-gpiozero
+```
+
 **Open Pi Configuration to enable SPI**  
 • SPI must be enabled to use the ePaper display.  
 • To asccess the Pi config menu, do:
 '''
 sudo raspi-config
 '''
-
-
 
 ### Install picamzero
 • This project makes use of the picamzero module to take photos.
@@ -206,8 +210,6 @@ sudo apt install python3-picamzero
 rpicam-still -o image.jpg
 ```
 • The terminal will create an image. After it is done, use the "ls" command to verify that a file was created.
-
-
 
 > [!IMPORTANT]
 > * This project makes use of ePaper displays manufactured by WaveShare.  

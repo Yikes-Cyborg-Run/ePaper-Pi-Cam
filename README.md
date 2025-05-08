@@ -243,6 +243,7 @@ edit the part "epd2in7_V2" to match the name of your display.
 [Headless Pi Setup Documentation](https://www.raspberrypi.com/documentation/computers/configuration.html#setting-up-a-headless-raspberry-pi)  
 [How to Install Git](https://github.com/git-guides/install-git)  
 [Raspberry Pi Official Camera Module Documentation](https://www.raspberrypi.com/documentation/accessories/camera.html)
+[Install gpiozero](https://gpiozero.readthedocs.io/en/stable/installing.html)
 
 ### To-Do
 - [x] Buttons to navigate through past photos.

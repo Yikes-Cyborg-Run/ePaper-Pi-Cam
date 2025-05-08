@@ -1,6 +1,4 @@
 <!--
-
-
 $${\color{red}Red}$$	$${\color{red}Red}$$
 $${\color{green}Green}$$	$${\color{green}Green}$$
 $${\color{lightgreen}Light \space Green}$$	$${\color{lightgreen}Light \space Green}$$
@@ -8,9 +6,6 @@ $${\color{blue}Blue}$$	$${\color{blue}Blue}$$
 $${\color{lightblue}Light \space Blue}$$	$${\color{lightblue}Light \space Blue}$$
 $${\color{black}Black}$$	$${\color{black}Black}$$
 $${\color{white}White}$$
-
-
-
 
 https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax
 
@@ -31,11 +26,24 @@ https://docs.github.com/en/get-started/writing-on-github/getting-started-with-wr
 
 -->
 <img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/title.jpg' align='left'>  
-<br><br>  
-This project lets you take photos with Raspberry Pi and then show them on a WaveShare ePaper display.  
+<br>  
+
+## Take photos with Raspberry Pi and then show them on an ePaper display. ##  
+
+
 Included are options to auto-scroll through your photos, or you can use buttons to tab through them manually.  
 There are several different camera configuration options that can be customized by editing the config.txt file.  
+You can set the display to autoscroll through photos you've taken, and also set the camera to take time lapse photos if you like.
 Deleting photos is also an option.  
+<br>
+**Hardware used in this project:**
+1) Raspberry Pi Zero2 W
+2) Waveshare 2.7-inch ePaper Hat (with built in GPIO buttons)
+3) Official Raspberry Pi Camera Module V2
+4) 3x LEDs of different colors plus 3x 220Ω resistors
+5) Micro USB data cable → **$${\color{red}MAKE \space SURE \space IT'S \space A \space DATA \space CABLE!}$$**
+
+ 
 
 ## Wire up hardware ##  
 **Setup Waveshare ePaper Display**  

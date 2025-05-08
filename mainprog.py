@@ -4,6 +4,8 @@ from picamzero import Camera
 from waveshare_epd import epd2in7_V2 #   -- is for the GPIO HAT
 #from waveshare_epd import epd4in2_V2 # epd2in7_V2  -- is for the GPIO HAT
 from PIL import Image,ImageDraw,ImageFont
+import logging
+
 #	font=ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", 12)
 
 print("Initializing")
@@ -143,7 +145,7 @@ brightness=0
 PHOTO_PIN=5 # used to take photo or select a menu item
 MENU_PIN=19 # opens the menu
 UP_PIN=13 # menu selection up
-DOWN_PIN=6 # menu selection DOWN
+DOWN_PIN=6 # menu selection down
 LED_R=20
 LED_G=16
 LED_Y=12
@@ -256,7 +258,6 @@ try:
 				print("Init options menu")
 				highlight=0
 				menu_made=menu(selection, highlight, options_menu_array)
-				sleep(3)
 			if up_state==False:
 				print("up")
 				highlight+=1
@@ -387,7 +388,7 @@ try:
 				print(f"{key}: {value}")	
 
 
-
+		time.sleep(0.3)
 except KeyboardInterrupt:
     GPIO.cleanup() # Clean up GPIO
 

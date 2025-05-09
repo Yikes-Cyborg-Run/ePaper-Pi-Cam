@@ -1,30 +1,3 @@
-<!--
-$${\color{red}Red}$$	$${\color{red}Red}$$
-$${\color{green}Green}$$	$${\color{green}Green}$$
-$${\color{lightgreen}Light \space Green}$$	$${\color{lightgreen}Light \space Green}$$
-$${\color{blue}Blue}$$	$${\color{blue}Blue}$$
-$${\color{lightblue}Light \space Blue}$$	$${\color{lightblue}Light \space Blue}$$
-$${\color{black}Black}$$	$${\color{black}Black}$$
-$${\color{white}White}$$
-
-https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax
-
-> [!NOTE]
-> Useful information that users should know, even when skimming content.
-
-> [!TIP]
-> Helpful advice for doing things better or more easily.
-
-> [!IMPORTANT]
-> Key information users need to know to achieve their goal.
-
-> [!WARNING]
-> Urgent info that needs immediate user attention to avoid problems.
-
-> [!CAUTION]
-> Advises about risks or negative outcomes of certain actions.
-
--->
 <img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/title.jpg' align='left'>  
 <br>  
 
@@ -38,12 +11,11 @@ Deleting photos is also an option.
 <br>
 **Hardware used in this project:**
 1) Raspberry Pi Zero2 W
-2) Waveshare 2.7-inch ePaper Hat (with built in GPIO buttons)
+2) Waveshare 2.7-inch ePaper Hat (with built-in GPIO buttons)
 3) Official Raspberry Pi Camera Module V2
 4) 3x LEDs of different colors plus 3x 220Ω resistors
 5) Micro USB data cable → **$${\color{red}MAKE \space SURE \space IT'S \space A \space DATA \space CABLE!}$$**
 
- 
 
 ## Wire up hardware ##  
 **Setup Waveshare ePaper Display**  

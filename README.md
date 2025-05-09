@@ -181,6 +181,18 @@ ping pi -n 1
 sudo apt update && sudo apt -y full-upgrade
 ```
 
+
+### Install picamzero
+• This project makes use of the picamzero module to take photos.
+```
+sudo apt install python3-picamzero
+```
+• Use command line to take a test photo after picamzero has been installed.  
+```
+rpicam-still -o image.jpg
+```
+• The terminal will create an image. After it is done, use the "ls" command to verify that a file was created.
+
 ### Install Git  
 • OS Lite does not include Git, so you will need to install it for this project.
 ```
@@ -193,23 +205,30 @@ sudo apt install git
 sudo apt install python3-gpiozero
 ```
 
-**Open Pi Configuration to enable SPI**  
-• SPI must be enabled to use the ePaper display.  
-• To asccess the Pi config menu, do:
-'''
+### Enable SPI ###
+• SPI (Serial Peripheral Interface) must be enabled to use the ePaper display.  
+• To asccess the Pi config menu:
+```
 sudo raspi-config
-'''
+```
+• Use the arrow keys to select option 5 "Interfacing Options"  
 
-### Install picamzero
-• This project makes use of the picamzero module to take photos.
-```
-sudo apt install python3-picamzero
-```
-• Use command line to take a test photo after picamzero has been installed.  
-```
-rpicam-still -o image.jpg
-```
-• The terminal will create an image. After it is done, use the "ls" command to verify that a file was created.
+<img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/SPI_1.jpg' width='400' align='left'>  
+<br><br><br><br><br><br><br><br>  
+
+• Then select P4 "SPI"  
+
+<img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/SPI_2.jpg' width='400' align='left'>  
+<br><br><br><br><br><br><br><br>  
+
+• Select "Yes" to enable SPI  
+
+<img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/SPI_3.jpg' width='400' align='left'>  
+<br><br><br><br><br><br><br><br>  
+
+<img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/SPI_4.jpg' width='400' align='left'>  
+
+
 
 > [!IMPORTANT]
 > * This project makes use of ePaper displays manufactured by WaveShare.  

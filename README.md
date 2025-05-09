@@ -149,7 +149,7 @@ Deleting photos is also an option.
 <img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/OS_write_complete.png' width='500'>  
   
 ### Get Pi's IP address  
-• To create an SSH session, you need to determine your Pi's IP address.
+• To create an SSH session, you need to determine your Pi's IP address.  
 • Connect your Pi to your computer via a USB cable.
 > [!IMPORTANT]
 > * It is essential that USB cable you connect to your Pi is a **DATA** cable.  
@@ -190,8 +190,9 @@ sudo apt install python3-picamzero
 ```
 rpicam-still -o image.jpg
 ```
-• The terminal will create an image. After it is done, use the "ls" command to verify that a file was created.
+• The terminal will create an image. After it's done, use the "ls" command to verify that a file was created.
 
+<!--
 ### Install Git  
 • OS Lite does not include Git, so you will need to install it for this project.
 ```
@@ -203,6 +204,7 @@ sudo apt install git
 ```
 sudo apt install python3-gpiozero
 ```
+-->
 
 ### Enable SPI ###
 • SPI (Serial Peripheral Interface) must be enabled to use the ePaper display.  

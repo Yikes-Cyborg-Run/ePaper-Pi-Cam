@@ -1,5 +1,5 @@
-import RPi.GPIO as GPIO
 from gpiozero import LED, Button
+import RPi.GPIO as GPIO
 import time, datetime, os, logging
 from datetime import datetime, date
 from picamzero import Camera
@@ -14,13 +14,8 @@ with open(log_path, "w") as file:
     file.write('####### '+todays_date+' #######\n')
     file.close()
 
-log=logging.getLogger("__name__")
+logger=logging.getLogger(log_path)
 logging.basicConfig(filename=log_path, encoding='utf-8', level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s', datefmt='%I:%M:%S %p',)
-
-def debounce(btn):
-	time.sleep(0.2)
-	while btn==False:
-		time.sleep(0.2)
 
 def log(msg, err_type):
 	global logger
@@ -62,24 +57,23 @@ def menu(title, highlight, menu_array):
 #	draw=draw.transpose(Image.ROTATE_180)
 	y=40 # will increment to place menu items vertically
 	# Load font and loop thorugh menu array
-	font=ImageFont.truetype(str(config_font), 18)
+	font=ImageFont.truetype(config_font, 24)
 	draw.text((20,10),title,font=font,fill=0)
-	font=ImageFont.truetype(str(config_font), 16)
+	font=ImageFont.truetype(config_font, 18)
 	for item in menu_array:
 		# log(item,1)
 		if item==highlight:
-			show="- "+item
-			if item=="Camera":
-				show="- Camera - push photo button..."
-			elif item=="List":
-				show="- List - "+str(len(photo_array))+" photos..."
+			show="> "+item
+			if item=="List":
+				show="> List - "+str(len(photo_array))+" photos..."
+			elif item=="Autoscroll":
+				show="> Autoscroll - "+str(len(photo_array))+" photos..."
 		else:
 			show=item
 		if item!="Menu":
 			draw.text((20,y),show+"\n",font=font,fill=0)
 			y+=25 # add so that the y position increments as menu items are added
 	epd.display(epd.getbuffer(image))
-	log("menu_made=True", 1)
 	return True
 
 def display_photo(photo_array, key):
@@ -94,7 +88,7 @@ def display_photo(photo_array, key):
 	epd.display(epd.getbuffer(image))
 
 def purge_photo_dir(image_folder):
-	log("Attempting to purge all photos...")
+	log("Attempting to purge all photos...",1)
 	for filename in os.listdir(image_folder):
 		file_path=os.path.join(image_folder, filename)
 		try:
@@ -188,6 +182,7 @@ selection="Menu"
 highlight=0
 menu_made=False
 check_delete=False
+camera_prompt=False
 
 # Initialize the display
 # epd=epd4in2_V2.EPD()
@@ -241,29 +236,27 @@ try:
 
 		# If not on menu page and menu btn is pressed, change selection to show menu
 		if selection!="Menu" and menu_state==False:
-			debounce(menu_state)
 			selection="Menu"
 			log("Opening Main Menu", 1)
 
 		# Make the menu and navigation
 		if selection=="Menu":
 			list_made=False # for the manual tabbing of photos
+			check_delete=False # for checking delete vs canceling
+			camera_prompt=False
 			if menu_made==False:
 				menu_made=menu("MENU - Photos: "+str(len(photo_array)), highlight, main_menu_array)
 			if up_state==False:
-				debounce(up_state)
 				highlight+=1
 				if highlight>int(len(main_menu_array)-1):
 					highlight=0
 				menu_made=menu("MENU - Photos: "+str(len(photo_array)), highlight, main_menu_array)
 			elif down_state==False:
-				debounce(down_state)
 				highlight-=1
 				if highlight<0:
 					highlight=int(len(main_menu_array)-1)
 				menu_made=menu("MENU - Photos: "+str(len(photo_array)), highlight, main_menu_array)
 			elif photo_state==False:
-				debounce(photo_state)
 				selection=main_menu_array[highlight]
 				highlight=0
 				menu_made=False
@@ -271,26 +264,22 @@ try:
 		# Options Menu
 		elif selection=="Camera Options":
 			if menu_made==False:
-				debounce(menu_state)
 				log("Init options menu", 1)
 				highlight=0
 				menu_made=menu(selection, highlight, options_menu_array)
 			if up_state==False:
-				debounce(up_state)
 				log("up", 1)
 				highlight+=1
 				if highlight>int(len(options_menu_array)):
 					highlight=0
 				menu_made=menu(selection, highlight, options_menu_array)
 			elif down_state==False:
-				debounce(down_state)
 				log("down", 1)
 				highlight-=1
 				if highlight<0:
 					highlight=int(len(options_menu_array))
 				menu_made=menu(selection, highlight, options_menu_array)
 			elif photo_state==False:
-				debounce(photo_state)
 				log("photo btn / select", 1)
 				selection=options_menu_array[highlight]
 				highlight=0
@@ -298,39 +287,46 @@ try:
 
 		# If the take photo button is pressed (LOW)
 		elif selection=="Camera":
-			if photo_state==False:
-				debounce(photo_state)
-				LED(0,0,1)
-				timestamp=datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S") # Get the current timestamp
-				filename=f"{timestamp}.jpg" # Construct the filename
-				if timestamp_photo==True:
-					cam.annotate(timestamp, 'plain-small', 'white', 1, 2, [5,170]) # add a timestamp to photo
-				cam.take_photo(image_folder+filename)
-				img_path=os.path.join(image_folder, filename)
-				image=Image.open(img_path)
-				image=image.resize((epd.height, epd.width))
-				epd.display(epd.getbuffer(image)) # Display the final image
-				LED(1,0,0)
-				photo_array.append(img_path)
+			if camera_prompt==False:
+				log("Confirming purge of all "+str(len(photo_array))+" photos.",1)
+				LED(0,1,0)
+				image=Image.new("1", (epd.height, epd.width), 255) 	# Create a new image with a white background
+				draw=ImageDraw.Draw(image)
+				font=ImageFont.truetype(config_font, 22)
+				draw.text((20,50),"Ready to take photos.",font=font,fill=0)
+				draw.text((20,100),"Push photo button.",font=font,fill=0)
+				epd.display(epd.getbuffer(image))
+				camera_prompt=True
+			else:
+				if photo_state==False:
+					LED(0,0,1)
+					timestamp=datetime.now().strftime("%Y-%m-%d_%H-%M-%S") # Get the current timestamp
+					filename=f"{timestamp}.jpg" # Construct the filename
+					if timestamp_photo==True:
+						cam.annotate(timestamp, 'plain-small', 'white', 1, 2, [5,170]) # add a timestamp to photo
+					cam.take_photo(image_folder+filename)
+					img_path=os.path.join(image_folder, filename)
+					image=Image.open(img_path)
+					image=image.resize((epd.height, epd.width))
+					epd.display(epd.getbuffer(image)) # Display the final image
+					LED(1,0,0)
+					photo_array.append(img_path)
 
 		# Manually tab through photos
 		elif selection=="List":
 			LED(0,1,0)
 			log("Started manual list",1)
 			if list_made==False:
-				debounce(menu_state)
 				list_made=True
 				LED(1,0,0)
 				display_photo(photo_array, list_increment)
 			if up_state==False:
-				debounce(up_state)
 				list_increment+=1
 				if list_increment>int(len(photo_array)-1):
 					list_increment=0
 				LED(1,0,0)
 				display_photo(photo_array, list_increment)
 			elif down_state==False:
-				debounce(down_state)
 				list_increment-=1
 				if list_increment<0:
 					list_increment=int(len(photo_array)-1)
@@ -339,24 +335,20 @@ try:
 
 		# Auto-scroll through photos every 30 seconds
 		elif selection=="Auto Scroll":
-			debounce(menu_state)
-			log("Started Auto Scroll", 1)
-			display_photo(photo_array,list_increment)
 			log("Auto Scroll Increment: "+str(list_increment), 1)
+			display_photo(photo_array,list_increment)
 			time.sleep(5)
 			list_increment+=1
 			if list_increment>=int(len(photo_array)):
 				list_increment=0
 
 		elif selection=="Auto Scroll Duration":
-			debounce(menu_state)
 			menu_vars=master_menu(menu_made, "Auto Scroll Duration", highlight, auto_scroll_array, config, "autoscroll_duration", "Camera Options")
 			selection=menu_vars["selection"]
 			highlight=menu_vars["highlight"]
 			menu_made=menu_vars["menu_made"]
 
 		elif selection=="Timestamp Photo":
-			debounce(menu_state)
 			menu_vars=master_menu(menu_made, "Timestamp Photo", highlight, timestamp_array, config, "timestamp_photo", "Camera Options")
 			selection=menu_vars["selection"]
 			highlight=menu_vars["highlight"]
@@ -364,37 +356,29 @@ try:
 
 		# Ask to confirm purging all photos
 		elif selection=="Delete":
-			debounce(menu_state)
 			if check_delete==False:
-				log("Confirm purging of all "+str(len(photo_array))+"photos.",1)
+				log("Confirming purge of all "+str(len(photo_array))+" photos.",1)
 				LED(0,1,0)
 				image=Image.new("1", (epd.height, epd.width), 255) 	# Create a new image with a white background
 				draw=ImageDraw.Draw(image)
 				font=ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", 14)
-				draw.text((20,5),"Are you SURE you want to \n delete all "+str(len(photo_array))+" photos on file?",font=font,fill=0)
+				draw.text((20,5),"Are you SURE you want to \n delete all "+str(len(photo_array))+"photos on file?",font=font,fill=0)
 				draw.text((20,50),"Press Menu button to cancel.",font=font,fill=0)
 				draw.text((20,100),"Press Photo button to confirm.",font=font,fill=0)
 				epd.display(epd.getbuffer(image))
 				check_delete=True
-				log("checking delete confirmation....",1)
-			# pressing photo btn will confirm
-			elif check_delete==True and photo_state==False:
-				debounce(photo_state)
-				log("Deleting...",1)
-				selection="Delete Confirmed"
-				check_delete=False
-				LED(0,0,0)
-			elif check_delete==True and menu_state==False:
-				debounce(menu_state)
-				log("Returning to main menu",1)
-				selection="Menu"
-				check_delete=False
-				LED(1,0,0)
+			else:
+					# pressing photo btn will confirm
+					if photo_state==False:
+						selection="Delete Confirmed"
+						LED(0,0,0)
+					elif menu_state==False:
+						selection="Menu"
+						LED(1,0,0)
 
 		# PURGE ALL PHOTOS!
-		elif check_delete==False and selection=="Delete Confirmed":
-			debounce(photo_state)
-			log("Purging all photos",1)	
+		elif check_delete==True and selection=="Delete Confirmed":
+			log("Purging all photos....",1)	
 			LED(0,0,1)
 			purge_photo_dir(image_folder)
 			LED(1,0,0)
@@ -404,9 +388,9 @@ try:
 			menu_made=False
 			check_delete=False
 			photo_array=[]
+			log("Purge complete.",1)	
 
 		elif selection=="SAVE CONFIG":
-			debounce(photo_state)
 			# Get existing config that may have been edited while running the script
 			config={"white_balance": white_balance, "display_rotation": display_rotation, "auto_scroll_duration":auto_scroll_duration, "timestamp_photo":timestamp_photo}
 			# Save updated config
@@ -418,7 +402,7 @@ try:
 			for key, value in config.items():
 				log(f"{key}: {value}", 1)
 
-#		time.sleep(0.3) # ??????? will this debounce?
+#		time.sleep(1) # ??????? will this debounce?
 except KeyboardInterrupt:
     GPIO.cleanup() # Clean up GPIO
 

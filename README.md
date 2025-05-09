@@ -160,12 +160,10 @@ Deleting photos is also an option.
 ping pi -n 1
 ```
 • The terminal will attempt to verify the status of your Pi and return its IP address.  
-<br>
+• Write down the IP address, you will use this to SSH into your Pi.  
+
 <img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/ping_pi.png' width='500' align='left'>
 <br><br><br><br><br><br><br>
-
-• Write down the IP address, you will use this to SSH into your Pi.  
-<br>
 
 ### SSH into Pi  
 • Once you have the IP, you can SSH into your pi to complete the installation.  
@@ -173,7 +171,7 @@ ping pi -n 1
 • Enter your password and press Enter.  
 <br>
 <img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/ssh_IP_pw.png' width='500' align='left'>  
-<br>
+<br><br>
 
 ### Update Pi
 • After flashing, it is always recommended to update and upgrade  the OS.  
@@ -183,11 +181,12 @@ sudo apt update && sudo apt -y full-upgrade
 
 
 ### Install picamzero
-• This project makes use of the picamzero module to take photos.
+• This project makes use of the picamzero module to take photos.  
+• Install the module:
 ```
 sudo apt install python3-picamzero
 ```
-• Use command line to take a test photo after picamzero has been installed.  
+• Use the terminal to take a test photo after picamzero has been installed.  
 ```
 rpicam-still -o image.jpg
 ```
@@ -211,23 +210,25 @@ sudo apt install python3-gpiozero
 ```
 sudo raspi-config
 ```
-• Use the arrow keys to select option 5 "Interfacing Options"  
+• Use the arrow keys to select option 5 "Interfacing Options".  
 
 <img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/SPI_1.jpg' width='400' align='left'>  
 <br><br><br><br><br><br><br><br>  
 
-• Then select P4 "SPI"  
+• Then select P4 "SPI".  
 
 <img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/SPI_2.jpg' width='400' align='left'>  
 <br><br><br><br><br><br><br><br>  
 
-• Select "Yes" to enable SPI  
+• Select "Yes" to enable SPI.  
 
 <img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/SPI_3.jpg' width='400' align='left'>  
-<br><br><br><br><br><br><br><br>  
+<br><br><br><br><br><br><br><br><br><br><br>  
 
+• Select "Yes" to reboot your Pi and apply config changes.  
+<br>
 <img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/SPI_4.jpg' width='400' align='left'>  
-
+<br><br><br><br><br><br><br><br><br><br><br>  
 
 
 > [!IMPORTANT]

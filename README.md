@@ -171,8 +171,9 @@ sudo apt install git
 ```
 
 ### Install gpiozero  
-• This project uses the gpiozero module to interface with buttons and LEDs.
-• OS Lite does not include gpiozero, so you will need to install it for this project.
+• This project uses the gpiozero module to interface with buttons and LEDs.  
+• gpiozero is a library that simplifies interacting with GPIO (General Purpose Input/Output) pins the  Pi.  
+• OS Lite does not include gpiozero, so you will need to install it for this project.  
 [gpiozero info, docs and recipies](https://gpiozero.readthedocs.io/en/latest/)
 ```
 sudo apt install python3-gpiozero

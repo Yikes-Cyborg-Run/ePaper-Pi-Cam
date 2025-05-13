@@ -164,7 +164,6 @@ rpicam-still -o image.jpg
 ```
 • The terminal will create an image. After it's done, use the "ls" command to verify that a file was created.
 
-<!--
 ### Install Git  
 • OS Lite does not include Git, so you will need to install it for this project.
 ```
@@ -176,7 +175,6 @@ sudo apt install git
 ```
 sudo apt install python3-gpiozero
 ```
--->
 
 ### Enable SPI ###
 • SPI (Serial Peripheral Interface) must be enabled to use the ePaper display.  

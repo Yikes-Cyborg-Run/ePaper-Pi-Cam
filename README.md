@@ -71,6 +71,7 @@ Deleting photos is also an option.
 • For this project, I used the official Raspberry Pi Camera module.  
 • Others may work, but you may need to install specific device drivers.  
 • Before connecting the camera (or anything for that matter) power off your Pi.  
+• Be careful with the connector clips on the Pi and camera, as they are delicate and can break!  
 • Pay close attention to how you connect the ribbon cable to both your Pi and your camera.  
 • The copper for both ends of the ribbon cable should face as shown below.  
 

@@ -12,9 +12,10 @@ Deleting photos is also an option.
 **Hardware used in this project:**
 1) Raspberry Pi Zero2 W
 2) Waveshare 2.7-inch ePaper Hat (with built-in GPIO buttons)
-3) Official Raspberry Pi Camera Module V2
-4) 3x LEDs of different colors plus 3x 220Ω resistors
-5) Micro USB data cable → **$${\color{red}MAKE \space SURE \space IT'S \space A \space DATA \space CABLE!}$$**
+3) Micro SD Card
+4) Official Raspberry Pi Camera Module V2
+5) 3x LEDs of different colors plus 3x 220Ω resistors
+6) Micro USB data cable → **$${\color{red}MAKE \space SURE \space IT'S \space A \space DATA \space CABLE!}$$**
 
 
 ## Wire up hardware ##  

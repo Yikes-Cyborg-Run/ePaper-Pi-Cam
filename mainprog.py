@@ -1,5 +1,5 @@
 from gpiozero import LED, Button
-import time, datetime, os, logging
+import time, datetime, os, logging, sys
 from picamzero import Camera
 from waveshare_epd import epd2in7_V2 # -- the 2.7inch GPIO HAT
 from PIL import Image, ImageDraw, ImageFont
@@ -24,21 +24,10 @@ def log(msg, err_type):
 	elif(err_type==3):logger.critical(msg)
 	elif(err_type==4):logger.warning(msg)
 
-"""
-def write_config_file(config):
-	global drawn
-	with open("/home/pi/ePaper-Pi-Cam/config.txt", 'w') as file:
-		for key, value in config.items():
-			file.write(f"{key}={value}\n")
-		image=Image.new("1", (epd.height, epd.width), 255)
-		draw=ImageDraw.Draw(image)
-		font=ImageFont.truetype(font_path, 24)
-		draw.text((20,50),"Options Saved!",font=font,fill=0)
-		epd.display(epd.getbuffer(image))	
-		log("Config saved", 1)
-		drawn=False
-"""
+log("################################################# - Initializing", 1)
+
 def load_config():
+#	global config_font, font_path, font_size, white_balance, display_rotation, autoscroll_duration, timelapse_duration, timestamp_photo, brightness
 	config={}
 	if os.path.exists("/home/pi/ePaper-Pi-Cam/config.txt"):
 		with open("/home/pi/ePaper-Pi-Cam/config.txt", 'r') as file:
@@ -68,9 +57,11 @@ def take_photo():
     return
 
 def menu_pressed(go_to):
-	global selection, drawn
+	global h, selection, drawn
+	h=0
 	selection=go_to
 	drawn=False
+	log("Going to "+selection,1)
 	return selection
 
 def up_menu(list):
@@ -81,7 +72,6 @@ def up_menu(list):
 	log("Up pressed - h="+str(h), 1)
 	menu(list)
 	return None
-
 def down_menu(list):
 	global h
 	limit=len(list)-1
@@ -99,7 +89,6 @@ def up_font():
 	log("Up pressed - h="+str(h), 1)
 	font_menu()
 	return None
-
 def down_font():
 	global h, font_list
 	limit=len(font_list)-1
@@ -117,7 +106,6 @@ def up_photo(photo_list):
 	log("Up pressed - photo_increment="+str(photo_increment), 1)
 	display_photo(photo_list, photo_increment)
 	return photo_increment
-
 def down_photo(photo_list):
 	global photo_increment
 	limit=len(photo_list)-1
@@ -128,15 +116,15 @@ def down_photo(photo_list):
 	return photo_increment
 
 def font_menu():
-	global h, selection, font_list, drawn
+	global h, head_fs, base_fs, selection, font_list, drawn
 	LEDs(0,1,0)
 	y=40 # Will increment to place menu items vertically
 	image=Image.new("1", (epd.height, epd.width), 255) 	# Create a new image with a white background
 	draw=ImageDraw.Draw(image)
-	font=ImageFont.truetype(font_path, 24)
+	font=ImageFont.truetype(font_path, head_fs)
 	draw.text((20,10), selection.upper(), font=font, fill=0)
 	for f in font_list:
-		sample_font=ImageFont.truetype("/home/pi/ePaper-Pi-Cam/Fonts/"+f, 20)
+		sample_font=ImageFont.truetype("/home/pi/ePaper-Pi-Cam/Fonts/"+f, base_fs)
 		if f==font_list[h]:
 			f="> "+f
 		draw.text((20,y),f,font=sample_font,fill=0)
@@ -147,15 +135,15 @@ def font_menu():
 	return None
 
 def delete_photo_warning():
-	global photo_increment, photo_list, font_path, drawn
+	global head_fs, base_fs, photo_increment, photo_list, font_path, drawn
 	log("Delete photo warning...", 1)
 	filename=photo_list[photo_increment]
 	image=Image.open(filename)
 	image=image.resize((epd.height/2, epd.width/2))
 	draw=ImageDraw.Draw(image)
-	font=ImageFont.truetype(font_path, 20)
+	font=ImageFont.truetype(font_path, head_fs)
 	draw.text((20,10), "Are you SURE you want to \ndelete this photo?", font=font, fill=0)
-	font=ImageFont.truetype(font_path, 18)
+	font=ImageFont.truetype(font_path, base_fs)
 	draw.text((20,10), "Press Menu button to cancel\nPress Photo button to delete", font=font, fill=0)
 	epd.display(epd.getbuffer(image))
 	drawn="True"
@@ -169,14 +157,14 @@ def make_selection(list):
     return selection
 
 def menu(list):
-	global h, selection, font_path, drawn
+	global h, head_fs, base_fs, selection, font_path, drawn
 	LEDs(0,1,0)
 	y=40 # Will increment to place menu items vertically
 	image=Image.new("1", (epd.height, epd.width), 255) 	# Create a new image with a white background
 	draw=ImageDraw.Draw(image)
-	font=ImageFont.truetype(font_path, 24)
+	font=ImageFont.truetype(font_path, head_fs)
 	draw.text((20,10), selection.upper(), font=font, fill=0)
-	font=ImageFont.truetype(font_path, 20)
+	font=ImageFont.truetype(font_path, base_fs)
 	for i in list:
 		if i==list[h]:
 			i="> "+str(i)
@@ -188,12 +176,13 @@ def menu(list):
 	return None
 
 def display_photo(photo_list, key):
+	global head_fs, base_fs
 	log("Loading file...", 1)
 	filename=photo_list[key]
 	image=Image.open(filename)
 	image=image.resize((epd.height, epd.width))
 #	draw=ImageDraw.Draw(image)
-#	font=ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", 12)
+#	font=ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", base_fs-6)
 #	draw.text((5, 280), filename, font=font, fill=1)
 	epd.display(epd.getbuffer(image))
 	log("Displayed file: "+filename,1)
@@ -212,13 +201,14 @@ def purge_photo_dir(image_folder):
 			log("Failed to delete", 0)
 
 def no_photos_msg():
+	global head_fs, base_fs
 	log("List selected, but no photos on file.", 0)
 	LEDs(0,0,1)
 	image=Image.new("1", (epd.height, epd.width), 255)
 	draw=ImageDraw.Draw(image)
-	font=ImageFont.truetype(font_path, 24)
+	font=ImageFont.truetype(font_path, head_fs)
 	draw.text((20,50),"No photos to show.",font=font,fill=0)
-	font=ImageFont.truetype(font_path, 18)
+	font=ImageFont.truetype(font_path, base_fs)
 	draw.text((20,100),"Press menu button.",font=font,fill=0)
 	epd.display(epd.getbuffer(image))
 
@@ -245,24 +235,27 @@ def future_calc():
 	drawn=True
 	return None
 
-def save_options(key_name):
-#	global drawn, selection, config, config_font, white_balance, display_rotation, autoscroll_duration, timestamp_photo
-	global drawn, selection, config
+def save_options(key_name, list):
+	global h, drawn, head_fs, base_fs, selection, config
 	log("Saving options....", 1)
-	config[key_name]=selection
-#	config={"font": config_font, "white_balance": white_balance, "display_rotation": display_rotation, "autoscroll_duration":autoscroll_duration, "timestamp_photo":timestamp_photo}
+	config[key_name]=list[h]
 	# Save updated config
 	with open("/home/pi/ePaper-Pi-Cam/config.txt", 'w') as file:
 		for key, value in config.items():
 			file.write(f"{key}={value}\n")
 		image=Image.new("1", (epd.height, epd.width), 255)
 		draw=ImageDraw.Draw(image)
-		font=ImageFont.truetype(font_path, 24)
+		font=ImageFont.truetype(font_path, head_fs)
 		draw.text((20,50),"Options Saved!",font=font,fill=0)
-		epd.display(epd.getbuffer(image))	
-	config=load_config()
-	log("Options saved", 1)
+		font=ImageFont.truetype(font_path, base_fs)
+		draw.text((20,75),"Restart camera for \nchanges to load.",font=font,fill=0)
+		epd.display(epd.getbuffer(image))
+		time.sleep(3)
+	log("Options saved, rebooting now....", 1)
 	drawn=False
+	h=0
+	os.execv(sys.executable, ['python'] + sys.argv)
+#	os.system("sudo reboot")
 	return None
 
 def LEDs(green,yellow,red):
@@ -286,7 +279,7 @@ def format_timelapse_text():
 		dur=timelapse_duration/3600
 	# format the text to display
 	if dur!=1:
-		final=dur+" "+suffix+"s"
+		final=str(dur)+" "+suffix+"s"
 	else:
 		final=suffix
 	return final
@@ -302,25 +295,37 @@ def options_control(back_to, list, config_key_to_save):
 	if drawn==True:
 		up_btn.when_pressed=lambda:up_menu(list)
 		down_btn.when_pressed=lambda:down_menu(list)
-		photo_btn.when_pressed=lambda:save_options(config_key_to_save)
+		photo_btn.when_pressed=lambda:save_options(config_key_to_save, list)
 	else:
 		menu(autoscroll_list)
 	return None
 
-log("Initializing", 1)
-
 # Load existing config
 config=load_config()
 for key, value in config.items():
-    log(f"{key}: {value}", 1)
+	log(f"{key}: {value}", 1)
 config_font=str(config["font"])
 font_path="/home/pi/ePaper-Pi-Cam/Fonts/"+config_font
-white_balance=config["white_balance"]
-display_rotation=config["display_rotation"]
+font_size=str(config["font_size"])
+white_balance=str(config["white_balance"])
+display_rotation=int(config["display_rotation"])
 autoscroll_duration=int(config["autoscroll_duration"])
 timelapse_duration=int(config["timelapse_duration"])
-timestamp_photo=config["timestamp_photo"]
+timestamp_photo=bool(config["timestamp_photo"])
 brightness=int(config["brightness"])
+
+# Set the base font size
+base_fs=14
+if font_size=="-4":base_fs-=4
+elif font_size=="-2":base_fs-=2
+elif font_size=="0":base_fs=base_fs
+elif font_size=="+2":base_fs+=2
+elif font_size=="+4":base_fs+=4
+elif font_size=="+6":base_fs+=6
+elif font_size=="+8":base_fs+=8
+# Calculate header and sub font sizes
+head_fs=base_fs+2
+sub_fs=base_fs-2
 
 # Define the GPIO pin #s for buttons and LEDs
 photo_btn=Button(5, pull_up=True) # used to take photo or select a menu item
@@ -332,9 +337,10 @@ LED_Y=LED(16)
 LED_R=LED(12)
 
 # Menu & Options lists
-main_menu_list=["Camera", "Camera Options", "Autoscroll", "Manual Scroll", "Delete All Photos"]
-options_menu_list=["Font Selection", "Display Rotation", "Autoscroll Duration", "Time-Lapse Duration", "White Balance", "Shut Down", "Delete Photos"]
+main_menu_list=["Camera", "Time-lapse Camera", "Camera Options", "Autoscroll", "Manual Scroll", "Delete All Photos"]
+options_menu_list=["Font Selection", "Font Size", "Display Rotation", "Autoscroll Duration", "Time-Lapse Duration", "White Balance", "Shut Down", "Delete Photos"]
 white_balance_list=["auto", "tungsten", "fluorescent", "indoor", "daylight", "cloudy"]
+font_size_list=["-4", "-2", "0", "+2", "+4"]
 autoscroll_list=[10, 30, 60, 120, 300, 600]
 timelapse_list=[1, 30, 60, 300, 600, 1800, 3600]
 display_rotation_list=[90, 180, 270]
@@ -351,12 +357,12 @@ epd=epd2in7_V2.EPD()
 epd.init()
 
 # Show startup on screen
-splash_photo=["/home/pi/ePaper-Pi-Cam/Resources/splash/jpg"]
+splash_photo=["/home/pi/ePaper-Pi-Cam/Resources/splash.jpg"]
 display_photo(splash_photo, 0)
 image=Image.new("1", (epd.height, epd.width), 255)
 draw=ImageDraw.Draw(image)
-font=ImageFont.truetype(font_path, 24)
-draw.text((20,50),"Starting ePaper-Pi-Cam...",font=font,fill=0)
+font=ImageFont.truetype(font_path, head_fs)
+draw.text((20,50),"Starting up...",font=font,fill=0)
 epd.display(epd.getbuffer(image))
 time.sleep(2)
 
@@ -388,7 +394,6 @@ LEDs(1,0,0)
 
 try:
 	while True:
-		# MAIN MENU
 		if selection=="Main Menu":
 			if drawn==True:
 				up_btn.when_pressed=lambda:up_menu(main_menu_list)
@@ -396,8 +401,6 @@ try:
 				photo_btn.when_pressed=lambda:make_selection(main_menu_list)
 			else:
 				menu(main_menu_list)
-
-		# CAMERA OPTIONS
 		elif selection=="Camera Options":
 			if drawn==True:
 				up_btn.when_pressed=lambda:up_menu(options_menu_list)
@@ -406,8 +409,6 @@ try:
 				menu_btn.when_pressed=lambda:menu_pressed("Main Menu")
 			else:
 				menu(options_menu_list)
-
-		# CAMERA
 		elif selection=="Camera":
 			if drawn==True:
 #				drawn==True # NEED ???????
@@ -417,15 +418,13 @@ try:
 				LEDs(1,0,0)
 				image=Image.new("1", (epd.height, epd.width), 255)
 				draw=ImageDraw.Draw(image)
-				font=ImageFont.truetype(font_path, 24)
+				font=ImageFont.truetype(font_path, head_fs)
 				draw.text((10,50),"Ready to take photos.",font=font,fill=0)
-				font=ImageFont.truetype(font_path, 14)
+				font=ImageFont.truetype(font_path, base_fs)
 				draw.text((15,85),"Push Photo button to take a photo.\nPush the Menu button to cancel",font=font,fill=0)
 				epd.display(epd.getbuffer(image))
 				drawn=True
 			menu_btn.when_pressed=lambda:menu_pressed("Main Menu")	
-
-		# TIME-LAPSE
 		elif selection=="Time-lapse Camera":
 			if drawn==True:
 				if timelapse_begun==True:
@@ -439,20 +438,17 @@ try:
 			else:
 				log("Time-lapse Camera selected."+str(len(photo_list))+" photos onfile.",1)
 				LEDs(1,0,0)
-
 				timelapse_duration_text=format_timelapse_text()
 				image=Image.new("1", (epd.height, epd.width), 255)
 				draw=ImageDraw.Draw(image)
-				font=ImageFont.truetype(font_path, 24)
+				font=ImageFont.truetype(font_path, head_fs)
 				draw.text((10,50),"Ready to start time-lapse.",font=font,fill=0)
 				draw.text((15,85),"Photos will be taken every "+timelapse_duration_text+".",font=font,fill=0)
-				font=ImageFont.truetype(font_path, 14)
+				font=ImageFont.truetype(font_path, sub_fs)
 				draw.text((15,105),"Push Photo button to begin time-lapse photography.\nPush the Menu button at any time to exit.",font=font,fill=0)
 				epd.display(epd.getbuffer(image))
 				drawn=True
 			menu_btn.when_pressed=lambda:menu_pressed("Main Menu")
-
-		# MANUAL LIST
 		elif selection=="Manual Scroll":
 			if(len(photo_list)>0):
 				menu_btn.when_pressed=lambda:menu_pressed("Main Menu")
@@ -463,8 +459,6 @@ try:
 				if drawn==False:
 					drawn=True
 					no_photos_msg()
-
-		# CONFIRM DELETE SINGLE PHOTO
 		elif selection=="Delete Single Photo":
 			if drawn==True:
 				menu_btn.when_pressed=lambda:menu_pressed("Manual Scroll")
@@ -473,8 +467,6 @@ try:
 				photo_btn.when_pressed=lambda:menu_pressed("Delete Single Photo Confirmed")
 			else:
 				delete_photo_warning()
-
-		# DELETE SINGLE PHOTO!!!!!!!
 		elif selection=="Delete Single Photo Confirmed":
 			file_path="/home/pi/ePaper-Pi-Cam/Photos/"+photo_list[photo_increment]
 			try:
@@ -483,7 +475,7 @@ try:
 				LEDs(0,1,0)
 				image=Image.new("1", (epd.height, epd.width), 255)
 				draw=ImageDraw.Draw(image)
-				font=ImageFont.truetype(font_path, 20)
+				font=ImageFont.truetype(font_path, head_fs)
 				draw.text((15,5),"Photo Deleted",font=font,fill=0)
 				epd.display(epd.getbuffer(image))
 				time.sleep(1)
@@ -493,8 +485,6 @@ try:
 				log(f"Error: File '{file_path}' not found.",0)
 			except Exception as e:
 				log(f"An error occurred: {e}",0)
-
-		# AUTOSCROLL
 		elif selection=="Autoscroll":
 			menu_btn.when_pressed=lambda:menu_pressed("Main Menu")
 			if len(photo_list)>0:
@@ -515,74 +505,69 @@ try:
 				if drawn==False:
 					drawn=True
 					no_photos_msg()
-
-		# AUTOSCROLL DURATION
 		elif selection=="Autoscroll Duration":
 #			options_control("Camera Options", autoscroll_list, "autoscroll")
 			menu_btn.when_pressed=lambda:menu_pressed("Camera Options")
 			if drawn==True:
 				up_btn.when_pressed=lambda:up_menu(autoscroll_list)
 				down_btn.when_pressed=lambda:down_menu(autoscroll_list)
-				photo_btn.when_pressed=lambda:save_options("autoscroll")
+				photo_btn.when_pressed=lambda:save_options("autoscroll", autoscroll_list)
 			else:
 				menu(autoscroll_list)
-
-		# TIME-LAPSE DURATION
 		elif selection=="Time-Lapse Duration":
 #			options_control("Camera Options", timelapse_list, "timelapse_duration")
 			menu_btn.when_pressed=lambda:menu_pressed("Camera Options")
 			if drawn==True:
 				up_btn.when_pressed=lambda:up_menu(timelapse_list)
 				down_btn.when_pressed=lambda:down_menu(timelapse_list)
-				photo_btn.when_pressed=lambda:save_options("timelapse_duration")
+				photo_btn.when_pressed=lambda:save_options("timelapse_duration",timelapse_list)
 			else:
 				menu(timelapse_list)
-
-		# FONT SELECTION
 		elif selection=="Font Selection":
 			if drawn==True:
 				# Separate up and down functions so it can draw different fonts
 				menu_btn.when_pressed=lambda:menu_pressed("Camera Options")
 				up_btn.when_pressed=lambda:up_font()
 				down_btn.when_pressed=lambda:down_font()
-				photo_btn.when_pressed=lambda:save_options("font")
+				photo_btn.when_pressed=lambda:save_options("font", font_list)
 			else:
 				menu(font_list)
-
-		# TIMESTAMP PHOTO
+		elif selection=="Font Size":
+#			options_control(!!!!!!!)
+			menu_btn.when_pressed=lambda:menu_pressed("Camera Options")
+			if drawn==True:
+				up_btn.when_pressed=lambda:up_menu(font_size_list)
+				down_btn.when_pressed=lambda:down_menu(font_size_list)
+				photo_btn.when_pressed=lambda:save_options("font_size", font_size_list)
+			else:
+				menu(font_size_list)
 		elif selection=="Timestamp Photo":
 #			options_control("Camera Options", timestamp_list, "timestamp")
 			if drawn==True:
 				menu_btn.when_pressed=lambda:menu_pressed("Camera Options")
 				up_btn.when_pressed=lambda:up_menu(timestamp_list)
 				down_btn.when_pressed=lambda:down_menu(timestamp_list)
-				photo_btn.when_pressed=lambda:save_options("timestamp")
+				photo_btn.when_pressed=lambda:save_options("timestamp", timestamp_list)
 			else:
 				menu(timestamp_list)
-
-		# DISPLAY ROTATION
 		elif selection=="Display Rotation":
 #			options_control("Camera Options", display_rotation_list, "display_rotation")
 			if drawn==True:
 				menu_btn.when_pressed=lambda:menu_pressed("Camera Options")
 				up_btn.when_pressed=lambda:up_menu(display_rotation_list)
 				down_btn.when_pressed=lambda:down_menu(display_rotation_list)
-				photo_btn.when_pressed=lambda:save_options("display_rotation")
+				photo_btn.when_pressed=lambda:save_options("display_rotation", display_rotation_list)
 			else:
 				menu(display_rotation_list)
-
-		# WHITE BALANCE
 		elif selection=="White Balance":
 #			options_control("Camera Options", white_balance_list, "white_balance")
 			if drawn==True:
 				menu_btn.when_pressed=lambda:menu_pressed("Camera Options")
 				up_btn.when_pressed=lambda:up_menu(white_balance_list)
 				down_btn.when_pressed=lambda:down_menu(white_balance_list)
-				photo_btn.when_pressed=lambda:save_options("white_balance")
+				photo_btn.when_pressed=lambda:save_options("white_balance", display_rotation_list)
 			else:
 				menu(white_balance_list)
-
-		# CONFIRM PURGE
 		elif selection=="Delete All Photos":
 			if drawn==True:
 				menu_btn.when_pressed=lambda:menu_pressed("Main Menu")
@@ -592,15 +577,13 @@ try:
 				LEDs(0,1,0)
 				image=Image.new("1", (epd.height, epd.width), 255)
 				draw=ImageDraw.Draw(image)
-				font=ImageFont.truetype(font_path, 20)
+				font=ImageFont.truetype(font_path, base_fs)
 				draw.text((15,5),"Are you SURE you want to \ndelete all "+str(len(photo_list))+" photos?",font=font,fill=0)
-				font=ImageFont.truetype(font_path, 16)
+				font=ImageFont.truetype(font_path, sub_fs)
 				draw.text((20,75),"Press Menu button to cancel.",font=font,fill=0)
 				draw.text((20,100),"Press Photo button to confirm.",font=font,fill=0)
 				epd.display(epd.getbuffer(image))
 				drawn=True
-
-		# PURGE ALL PHOTOS!
 		elif selection=="Purge Confirmed":
 			log("Purging all photos....",1)	
 			LEDs(0,0,1)
@@ -612,16 +595,11 @@ try:
 			photo_list=[]
 			log("Purge complete.",1)
 			drawn=False
-
-		# Shut down the camera
 		elif selection=="Shut Down":
 			log("Shutdown requested..... Shutting down in 3 seconds.", 1)
 			image=Image.new("1", (epd.height, epd.width), 255)
 			epd.display(epd.getbuffer(image))
 			LEDs(0,0,0)
 			os.system("sudo shutdown -h now")
-
 except KeyboardInterrupt:
-    log("Process was interrupted.", 0)
-	# Close the camera
-    cam.close()
+    log("Process was interrupted - shutting down.", 0)

@@ -1,6 +1,7 @@
-font=seven_segment/Seven Segment.ttf
+font=Seven Segment.ttf
 white_balance=auto
 display_rotation=0
-auto_scroll_duration=30
+autoscroll_duration=30
+timelapse_duration=30
 timestamp_photo=False
 brightness=0

@@ -35,8 +35,13 @@ def main():
 	draw.text((20,50),"Starting up...",font=font,fill=0)
 	epd.display(epd.getbuffer(image))
 	"""
+	action_list=["Take Photos", "Time-lapse Camera", "Autoscroll", "Manual Scroll", "Delete All"]
+	warn_list=["Camera", "Delete All", "Delete Single Photo", "Camera", "Time-Lapse Camera"]
 
-	config=Config.load()
+#	C=Config
+#	config=C.load()
+	config=Config().load()
+
 	font_path="/home/pi/ePaper-Pi-Cam/Fonts/"+config["font"]
 	fontsize=int(config["fontsize"])
 	home_dir=os.environ['HOME'] # set home dir
@@ -50,13 +55,13 @@ def main():
 
 	# Build a list of saved photos already on file. 
 	# New photos will appended to the end of list.
-	Log.log("Building list of previously saved photos", 1)
+	Log().log("Building list of previously saved photos", 1)
 	photo_list=[]
 	for filename in os.listdir(image_dir):
 		if filename.lower().endswith((".png", ".jpg", ".jpeg", ".bmp", ".gif")):
 			img_path=str(os.path.join(image_dir, filename))
 			photo_list.append(img_path)
-	Log.log(f"Photos currently on file: {len(photo_list)}.",1)
+	Log().log(f"Photos currently on file: {len(photo_list)}.",1)
 
 	p=Button(5, pull_up=True) # used to take photo or select a menu item
 	m=Button(19, pull_up=True) # opens the menu/goes back
@@ -75,24 +80,25 @@ def main():
 			data=[0,"Main Menu", False]
 			scroll_data=[0, False]
 		elif sel in warn_list:
-			Log.log("-- Warning...", 1)
-			data=Warn.warn(epd, sel, photo_list, scroll_data[0])
+#			Log().log("-- Warning...", 1)
+			data=Warn().warn(sel, photo_list, scroll_data[0])
 		elif sel in action_list:
 			if sel=="Take Photos":
-				photo_list=Action.take_photo(p, cam, epd, photo_list, image_dir)
+				photo_list=Action().take_photo(p, cam, photo_list, image_dir)
 
 			elif sel=="Manual Scroll":
-				scroll_data=Action.manual_scroll(u, d, epd, photo_list, scroll_data)
+				scroll_data=Action.manual_scroll(u, d, photo_list, scroll_data)
 				if p.is_pressed:
 					data=[0,"Delete Single Photo",False]
 
 			elif sel=="Autocroll":
-				scroll_data=Action.autoscroll(epd, photo_list, scroll_data)
+				scroll_data=Action().autoscroll(epd, photo_list, scroll_data)
 		else:
 			if drawn==False:
-				Menu.build(h, epd, sel, menu_list, photo_list)
+#				Menu.build(h, sel, photo_list)
+				Menu().build(h, sel, photo_list)
 				drawn=True
-			data=Menu.select(h, sel, menu_list, ignore_list, p, m, u, d)
+			data=Menu().select(h, p, m, u, d, sel)
 
 if __name__ == "__main__":
     main()

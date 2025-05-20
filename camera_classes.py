@@ -5,10 +5,10 @@ from waveshare_epd import epd2in7_V2 # -- the 2.7inch GPIO HAT
 from PIL import Image, ImageDraw, ImageFont
 
 class Menu():
-    def __init__(self, h, p, m, u, d, sel):
-        config=Config.load()
+    def __init__(self):
+        config=Config().load()
         self.epd=epd2in7_V2.EPD()
-        self.h=h; self.p=p; self.m=m; self.u=u; self.d=d; self.sel=sel
+#        self.h=h; self.p=p; self.m=m; self.u=u; self.d=d; self.sel=sel
         self.image_dir="/home/pi/ePaper-Pi-Cam/photos/"
         self.font_dir="/home/pi/ePaper-Pi-Cam/Fonts"
         self.font_list=[] # for font menu
@@ -17,7 +17,7 @@ class Menu():
                 os.path.join(self.font_dir, f)
                 self.font_list.append(f)
 
-        self.font_size=config["fontsize"]
+        self.font_size=int(config["fontsize"])
         self.font_path="/home/pi/ePaper-Pi-Cam/Fonts/"+config["font"]
         self.menu_list={
                 "Main Menu":["Manual Scroll", "Camera", "Camera Options", "Time-lapse Camera", "Autoscroll", "Delete"],
@@ -31,15 +31,11 @@ class Menu():
                 "Font": self.font_list,
                 }
         self.ignore_list=["Camera", "Take Photo", "Time-lapse Camera", "Autoscroll", "Manual Scroll", "Delete", "Delete All"]
-        self.action_list=["Take Photos", "Time-lapse Camera", "Autoscroll", "Manual Scroll", "Delete All"]
-        self.warn_list=["Camera", "Delete All", "Delete Single Photo", "Camera", "Time-Lapse Camera"]
 
-    def build(self, photo_list):
+    def build(self, h, sel, photo_list):
         self.epd.init()
-        h=self.h
-        sel=self.sel
 #        menu_list=self.menu_list
-#        config=Config.load()
+#        config=Config().load()
 #        font_path="/home/pi/ePaper-Pi-Cam/Fonts/"+config["font"]
 #        fontsize=int(config["fontsize"])
         use_menu=self.menu_list[sel]
@@ -48,7 +44,7 @@ class Menu():
         font=ImageFont.truetype(self.font_path, self.font_size+4)
         draw.text((20,10),sel.upper(),font=font,fill=0)
         font=ImageFont.truetype(self.font_path, self.font_size)
-        Log.log(f"{sel.upper()} -- {use_menu}" ,1)
+        Log().log(f"{sel.upper()} -- {use_menu}" ,1)
         y=40
         highlighted=use_menu[h]
         for item in use_menu:
@@ -65,23 +61,23 @@ class Menu():
         return
 
 #    def select(self, h, sel, menu_list, ignore_list, p, m, u, d):
-    def select(self, h, sel):
+    def select(self, h, p, m, u, d, sel):
         use_menu=self.menu_list[sel]
-        final_data=[self.h, self.sel, True]
+        final_data=[h, sel, True]
         limit=len(use_menu)-1
 
         if sel not in self.ignore_list:
-            if self.p.is_pressed:
+            if p.is_pressed:
                 final_data=[0, use_menu[h], False]
                 if sel in self.menu_list["Camera Options"]:
-                    final_data=Config.save(sel, use_menu[h])
-            elif self.m.is_pressed: # go to main menu
+                    final_data=Config().save(sel, use_menu[h])
+            elif m.is_pressed: # go to main menu
                 final_data=[0, "Main Menu", False]
-            elif self.u.is_pressed:
-                self.h+=1
+            elif u.is_pressed:
+                h+=1
                 if h>limit:h=0
                 final_data=[h, sel, False]
-            elif self.d.is_pressed:
+            elif d.is_pressed:
                 h-=1 
                 if h<0:h=limit
                 final_data=[h, sel, False]
@@ -91,11 +87,11 @@ class Menu():
 
 class Config():
     def __init__(self):
-        self.config_path=r"/home/pi/ePaper-Pi-Cam/config.txt"
+        self.config_path="/home/pi/ePaper-Pi-Cam/config.txt"
         self.epd=epd2in7_V2.EPD()
 
     def load(self):
-        Log.log(f"Loading config....",1)
+#        Log().log("Loading config....",1)
         config={}
         if os.path.exists(self.config_path):
             with open(self.config_path, 'r') as file:
@@ -104,9 +100,9 @@ class Config():
                         key, value=line.strip().split("=", 1)
                         config[key]=value
                         #Log.log(f"Loaded: {key} -- {value}",1)
-            Log.log("Loaded config.",1)
+#            Log().log("Loaded config.",1)
         else:
-            Log.log("No config file.",1)
+            Log().log("No config file.",1)
         return config
 
     def save(self, k, v):
@@ -114,34 +110,32 @@ class Config():
         self.epd.init()
         k=k.lower()
         k=re.sub(r'[^a-zA-Z0-9]', '', k)
-        config=Config.load()
+        config=Config().load()
         config[k]=str(v)
-        Log.log(f"Saving option....\n{k} - {v}",1)
+        Log().log(f"Saving option....\n{k} - {v}",1)
         # Save updated config
         with open(self.config_path, 'w') as file:
             for key, value in config.items():
                 file.write(f"{key}={value}\n")
             time.sleep(.5)
-        Log.log("Saved config",1)
+        Log().log("Saved config",1)
         return [0,"Camera Options",False]
 
 class Warn():
     def __init__(self):
         self.epd=epd2in7_V2.EPD()
-        self.config=Config.load()
+        self.config=Config().load()
         self.font_path="/home/pi/ePaper-Pi-Cam/Fonts/"+self.config["font"]
         self.fontsize=int(self.config["fontsize"])
 
     def warn(self, sel, photo_list, num):
-#        config=Config.load()
+#        config=Config().load()
 #        font_path="/home/pi/ePaper-Pi-Cam/Fonts/"+config["font"]
 #        fontsize=int(config["fontsize"])
-
         image=Image.new("1", (self.epd.height, self.epd.width), 255)
         draw=ImageDraw.Draw(image)
         font=ImageFont.truetype(self.font_path, self.fontsize+4)
         draw.text((20,10),sel.upper(),font=font,fill=0)
-
         if sel=="Camera":
             draw.text((20,50),"Camera Ready \nPress photo button.",font=font,fill=0)
             sel="Take Photos"
@@ -152,11 +146,11 @@ class Warn():
   #          sel="Purge Confirmed"
 
         elif sel=="Delete Single Photo":
-            Log.log("Delete single photo warning...", 1)
+            Log().log("Delete single photo warning...", 1)
             filename=photo_list[num]
-            Log.log(f"Check delete: {filename}",1)
+            Log().log(f"Check delete: {filename}",1)
             image=Image.open(filename)
-            image=image.resize((epd.height, epd.width))
+            image=image.resize((self.epd.height, self.epd.width))
  #           image=image.resize((50, 100))
             draw=ImageDraw.Draw(image)
             font=ImageFont.truetype(self.font_path, self.fontsize+4)
@@ -164,14 +158,14 @@ class Warn():
             font=ImageFont.truetype(self.font_path, self.fontsize)
             draw.text((20,10), "Press Menu button to cancel\nPress Photo button to delete", font=font, fill=0)
 
-        epd.display(epd.getbuffer(image))
+        self.epd.display(self.epd.getbuffer(image))
         # !!!!!!! KEY PRESS HERE TO SEND THE ACTION
         return [0, sel, True]
 
-    def no_photos(self, epd):
-        Log.log("List selected, but no photos on file.", 0)
+    def no_photos(self):
+        Log().log("List selected, but no photos on file.", 0)
         LEDs.LEDs(0,0,1)
-#        config=Config.load()
+#        config=Config().load()
 #        font_path="/home/pi/ePaper-Pi-Cam/Fonts/"+config["font"]
 #        fontsize=int(config["fontsize"])
         image=Image.new("1", (self.epd.height, self.epd.width), 255)
@@ -180,18 +174,16 @@ class Warn():
         draw.text((20,50),"No photos to show.",font=font,fill=0)
         font=ImageFont.truetype(self.font_path, self.fontsize)
         draw.text((20,100),"Press menu button.",font=font,fill=0)
-        epd.display(epd.getbuffer(image))
+        self.epd.display(self.epd.getbuffer(image))
 
 class Action():
     def __init__(self):
-        self.config=Config.load()
+        self.config=Config().load()
         self.timestamp_photo=self.config["timestampphoto"]
         self.epd=epd2in7_V2.EPD()
+#        self.imiage_dir
 
-    def act(sel):
-        Log.log(f"Action: {sel}",0)
-
-    def take_photo(self, p, cam, epd, photo_list, image_dir):
+    def take_photo(self, p, cam, photo_list, image_dir):
         if p.is_pressed:
             LEDs.LEDs(0,0,1)
 #            timestamp_photo=config["timestampphoto"]
@@ -205,18 +197,18 @@ class Action():
             img_path=os.path.join(image_dir, filename)
             image=Image.open(img_path)
             image=image.resize((self.epd.height, self.epd.width))
-            self.epd.display(epd.getbuffer(image)) # Display the final image
+            self.epd.display(self.epd.getbuffer(image)) # Display the final image
             LEDs.LEDs(1,0,0)
             photo_list.append(img_path)
         return photo_list
 
     def display_photo(self, photo_list, key):
-        Log.log("Loading file...", 1)
+        Log().log("Loading file...", 1)
         filename=photo_list[key]
         image=Image.open(filename)
         image=image.resize((self.epd.height, self.epd.width))
         self.epd.display(self.epd.getbuffer(image))
-        Log.log("Displayed file: "+filename,1)
+        Log().log("Displayed file: "+filename,1)
         return None
     
     def manual_scroll(u, d, photo_list, data):
@@ -236,10 +228,10 @@ class Action():
                     return [num, False]
                 return [num, True]
             else:
-                Action.display_photo(photo_list, num)
+                Action().display_photo(photo_list, num)
                 return[num, True]
         else:
-            Warn.no_photos()
+            Warn().no_photos()
 
     #!!!!!!! NEED TO check where some of these calculations are
     def autoscroll(self, photo_list):
@@ -251,18 +243,18 @@ class Action():
                     list_increment+=1
                     if list_increment>=len(photo_list)-1:
                         list_increment=0
-                    Log.log("Autoscroll Increment: "+str(list_increment), 1)
+                    Log().log("Autoscroll Increment: "+str(list_increment), 1)
                     display_photo(photo_list, list_increment)
                     future=Calc.future(self.config["autoscroll_duration"])
             else:
-                Action.display_photo(self.epd, photo_list, list_increment)
+                Action().display_photo(self.epd, photo_list, list_increment)
                 Calc.future(self.config["autoscroll_duration"])
         else:
             if drawn==False:
                 drawn=True
-                Warn.no_photos_msg()
+                Warn().no_photos_msg()
 
-class LEDs:
+class LEDs():
     def LEDs(green, yellow, red):
         LED_G=LED(20)
         LED_Y=LED(16)
@@ -283,12 +275,12 @@ class Calc():
         future_time=now_time+datetime.timedelta(seconds=autoscroll_duration)
         future=int(time.mktime(future_time.timetuple()))
         # Print the original and updated timestamps
-        Log.log("   NOW: "+str(now),1)
-        Log.log("FUTURE: "+str(future),1)
+        Log().log("   NOW: "+str(now),1)
+        Log().log("FUTURE: "+str(future),1)
         return future
 
     def timelapse_text():
-        config=Config.load()
+        config=Config().load()
         dur=config["timelapse_duration"]
         if(dur<60):
             suffix="second"
@@ -309,12 +301,12 @@ class Calc():
 class Log():
     def __init__(self):
         pass
-    def log(msg, err_type):
+    def log(self, msg, err_type):
         err=["ERROR", "INFO", "DEBUG", "CRITICAL", "WARNING"]
         log_path="/home/pi/ePaper-Pi-Cam/log.log"
         logger=logging.getLogger(log_path)
         logging.basicConfig(filename=log_path, encoding='utf-8', level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s', datefmt='%I:%M:%S %p',)
-        err=self.err
+        err=err[err_type]
         print(err[err_type]+" : "+msg)
         if(err_type==0):logger.error(msg)
         elif(err_type==1):logger.info(msg)

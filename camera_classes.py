@@ -19,11 +19,11 @@ class Menu():
                 os.path.join(self.font_dir, f)
                 self.font_list.append(f)
         self.font_size=int(self.config['fontsize'])
-        self.font_path=self.home_dir / 'Fonts' / self.config['font']
+        self.font_path=str(self.home_dir / 'Fonts' / self.config['font'])
         self.menu_list={
                 # Camera options to vflip, hflip, greyscale
-                'Main Menu':['Manual Scroll', 'Camera', 'Display Options', 'Camera Options', 'Time-lapse Camera', 'Autoscroll', 'Delete All'],
-                'Camera Options':['Time-Lapse Duration', 'White Balance', 'Shut Down', 'Contrast', 'Exposure'],
+                'Main Menu':['Camera', 'Display Options', 'Camera Options', 'Manual Scroll', 'Time-lapse Camera', 'Autoscroll'],
+                'Camera Options':['Time-Lapse Duration', 'White Balance', 'Shut Down', 'Contrast', 'Exposure', 'Delete All'],
                 'White Balance':['Auto', 'Cloudy', 'Daylight', 'Fluorescent', 'Indoor', 'Tungsten'],
                 'Time-lapse Duration':['1', '30', '60', '300', '600', '1800', '3600'],
                 'Timestamp Photo':['Yes', 'No'],
@@ -100,27 +100,30 @@ class Warn():
         self.epd=epd2in7_V2.EPD()
         self.config=Config().load()
         self.home_dir=Path(__file__).parent.resolve() # Current directory
-        self.font_path= self.home_dir / self.config['font']
+        self.font_path=str(self.home_dir / 'Fonts' / self.config['font'])
         self.fontsize=int(self.config['fontsize'])
-
-    def warn(self, p, sel, num, data, photo_list):
+ 
+    def warn(self, p, sel, scroll_data, photo_list, num):
         image=Image.new('1', (self.epd.height, self.epd.width), 255)
         draw=ImageDraw.Draw(image)
         font=ImageFont.truetype(self.font_path, self.fontsize+4)
         draw.text((20, 10), sel.upper(), font=font, fill=0)
-        drawn=data[1]
+        drawn=scroll_data[1]
 
         if sel=='Camera':
-            draw.text((20, 50), "Camera Ready \nPress photo button.", font=font, fill=0)
-            sel='Take Photos'
+            if drawn==False:
+                draw.text((20, 50), "Camera Ready \nPress photo button.", font=font, fill=0)
+                sel='Take Photos'
+                data=[0, 'Take Photos', False]
+                drawn=True
 
         elif sel=='Delete All':
-            if photo_list>0:
+            if len(photo_list)>0:
                 if p.is_pressed:
                     return[0, 'Purge Confirmed', False]
                 elif drawn==False:
                     Log.log('Purge ALL Warning', 4)
-                    draw.text((20, 10), f"Are you SURE you want to \ndelete ALL \n{str(len(photo_list))} photos on file?", font=font, fill=0)
+                    draw.text((20, 10), f"Are you SURE you want to \ndelete ALL \n{len(photo_list)} photos on file?", font=font, fill=0)
                     font=ImageFont.truetype(self.font_path, self.fontsize)
                     draw.text((20, 10), "Press Menu button to cancel\nPress Photo button to confirm", font=font, fill=0)
                     data=[0, sel, True]
@@ -129,18 +132,21 @@ class Warn():
                 data=[0, 'Delete All', True]
 
         elif sel=='Delete Single Photo':
-            Log().log("Delete single photo warning...", 1)
-            filename=photo_list[num]
-            Log().log(f"Check delete: {filename}", 1)
-            image=Image.open(filename)
-            image=image.resize((self.epd.height, self.epd.width))
- #           image=image.resize((50, 100))
-            draw=ImageDraw.Draw(image)
-            font=ImageFont.truetype(self.font_path, self.fontsize+4)
-            draw.text((20, 10), "Are you SURE you want to \ndelete this photo?", font=font, fill=0)
-            font=ImageFont.truetype(self.font_path, self.fontsize)
-            draw.text((20, 10), "Press Menu button to cancel\nPress Photo button to delete", font=font, fill=0)
-
+            if drawn==False:
+                Log().log("Delete single photo warning...", 1)
+                filename=photo_list[num]
+                Log().log(f"Check delete: {filename}", 1)
+                image=Image.open(filename)
+                image=image.resize((self.epd.height, self.epd.width))
+    #           image=image.resize((50, 100))
+                draw=ImageDraw.Draw(image)
+                font=ImageFont.truetype(self.font_path, self.fontsize+4)
+                draw.text((20, 10), "Are you SURE you want to \ndelete this photo?", font=font, fill=0)
+                font=ImageFont.truetype(self.font_path, self.fontsize)
+                draw.text((20, 10), "Press Menu button to cancel\nPress Photo button to delete", font=font, fill=0)
+                data=[0, sel, True]
+            else:
+                data=[0, sel, False]
         self.epd.display(self.epd.getbuffer(image))
 #        return [0, sel, True] # NO CHANGE
         return data
@@ -162,8 +168,8 @@ class Action():
         self.config=Config().load()
         self.epd=epd2in7_V2.EPD()
         self.timestamp_photo=self.config['timestampphoto']
-        self.image_dir=self.home_dir / 'Photos'
-        self.font_path=self.home_dir / 'Fonts' / self.config['font']
+        self.image_dir=str(self.home_dir / 'Photos')
+        self.font_path=str(self.home_dir / 'Fonts' / self.config['font'])
 
     # p: photo button pressed, cam: initialized camera object from main(), existing photo_list
     def take_photo(self, p, cam, photo_list):
@@ -173,17 +179,20 @@ class Action():
             filename=f'{timestamp}.jpg' # Construct the filename
             if self.timestamp_photo==True: # Check if timestamping is enabled in config...
                 cam.annotate(timestamp, 'plain-small', 'white', 1, 2, [5, 170]) # add a timestamp to photo
-            cam.take_photo(self.image_dir+filename)
-            img_path=os.path.join(self.image_dir, filename)
-            image=Image.open(img_path)
+            image_path=self.image_dir+"/"+filename
+            print(f"img_path:{image_path}")
+            cam.take_photo(image_path)
+#            cam.take_photo(str(self.image_dir / filename))
+#            img_path=str(self.image_dir / filename)
+            image=Image.open(image_path)
             image=image.resize((self.epd.height, self.epd.width))
             self.epd.display(self.epd.getbuffer(image)) # Display the final image
             LEDs.LEDs(1, 0, 0)
-            photo_list.append(img_path)
+            photo_list.append(image_path)
         return photo_list
 
     def display_photo(self, photo):
-        Log().log("Loading file...", 1)
+        Log().log(f"Loading file: {photo}....", 1)
         image=Image.open(photo)
         image=image.resize((self.epd.height, self.epd.width))
         self.epd.display(self.epd.getbuffer(image))
@@ -193,7 +202,7 @@ class Action():
     # MANUAL SCROLL
     # Tab through existing photos with u: up button, d: down button
     # Also uses: existing photo_list and data:[photo_increment, drawn - True or False]
-    def manual_scroll(u, d, photo_list, data):
+    def manual_scroll(self, u, d, photo_list, data):
         num=data[0]
         drawn=data[1]
         if len(photo_list)>0:
@@ -247,13 +256,13 @@ class Action():
     # Function to delete ALL photos on file
     # I used the word "PURGE" to make it stand out against the word delete.
     def purge_photo_dir(self):
-        Log.log("Attempting to purge all photos...",1)
+        Log.log("Attempting to purge all photos...", 1)
         num=len(self.image_dir)
         for file in self.image_dir.iterdir():
             if file.is_file():
                 file.unlink()
-                Log.log(f"Deleted: {file}")
-        Log.log(f"Deleted All {num} photos")
+                Log.log(f"Deleted: {file}", 1)
+        Log.log(f"Deleted All {num} photos", 1)
         image=Image.new('1', (self.epd.height, self.epd.width), 255)
         draw=ImageDraw.Draw(image)
         font=ImageFont.truetype(self.font_path, self.fontsize+4)
@@ -338,7 +347,7 @@ class Config():
                     if '=' in line:
                         key, value=line.strip().split('=', 1)
                         config[key]=value
-            Log().log("Loaded config.", 1)
+#            Log().log("Loaded config.", 1)
         else:
             Log().log("No config file.", 0)
         return config
@@ -347,8 +356,8 @@ class Config():
     def save(self, k, v):
         self.epd.init()
         # Using key names from the Camera Options menu, strip down and make all lowercase
-        k=k.lower(re.sub(r'[^a-zA-Z0-9]', '', k))
-#        k=re.sub(r'[^a-zA-Z0-9]', '', k)
+        k=k.lower()
+        k=re.sub(r'[^a-zA-Z0-9]', '', k)
         config=Config().load()
         config[k]=str(v) # Assign passed variable to item
         Log().log(f"Saving option....\n{k} - {v}", 1)
@@ -358,7 +367,7 @@ class Config():
                 file.write(f'{key}={value}\n')
             time.sleep(.5)
         Log().log("Saved config", 1)
-        return [0, 'Camera Options', False]
+        return [0, 'Main Menu', False]
 
 # Save info to a log file
 class Log():

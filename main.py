@@ -40,11 +40,10 @@ def main():
 	# This can be disabled in Camera Options
 	image_dir=home_dir / 'Photos'
 	if(config['showsplashscreen']=='Yes'):
-		splash_photo=[home_dir / 'Resources' / 'splash.jpg']
-		Action.display_photo(splash_photo, 0)
+		Action().display_photo(home_dir / 'Resources' / 'splash.jpg')
 		image=Image.new('1', (epd.height, epd.width), 255)
 		draw=ImageDraw.Draw(image)
-		font=ImageFont.truetype(font_path, fontsize+4)
+		font=ImageFont.truetype(str(font_path), fontsize+4)
 		draw.text((20, 50), "Starting up...", font=font, fill=0)
 		epd.display(epd.getbuffer(image))
 
@@ -63,7 +62,7 @@ def main():
 	# New photos will appended to the end of list.
 	Log().log("Building list of previously saved photos", 1)
 	photo_list=[]
-	for filename in list(image_dir.glob('*bmp', '*jpg', '*jpeg', '*gif', '*png')):
+	for filename in list(image_dir.glob('*jpg')):
 		if Path(f).is_file():
 			img_path=image_dir/filename
 			photo_list.append(img_path)
@@ -90,14 +89,14 @@ def main():
 
 		# Warnings and Notices
 		elif sel in warn_list:
-			data=Warn().warn(p, sel, scroll_data[0], photo_list)
+			data=Warn().warn(p, sel, scroll_data, photo_list, num=scroll_data[0])
 
 		# Actions and menu items that don't need a menu drawn
 		elif sel=='Take Photos':
 			photo_list=Action().take_photo(p, cam, photo_list)
 
 		elif sel=='Manual Scroll':
-			scroll_data=Action.manual_scroll(u, d, photo_list, scroll_data)
+			scroll_data=Action().manual_scroll(u, d, photo_list, scroll_data)
 			if p.is_pressed:
 				data=[0, 'Delete Single Photo', False]
 
@@ -105,7 +104,7 @@ def main():
 			scroll_data=Action().autoscroll(photo_list, scroll_data)
 
 		elif sel=='Purge Confirmed':
-			scroll_data=Action().purge_photo_dir(photo_list, scroll_data)
+			scroll_data=Action().purge_photo_dir()
 
 		# Build the selected menu
 		else:

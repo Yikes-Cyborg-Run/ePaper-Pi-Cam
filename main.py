@@ -30,7 +30,7 @@ def main():
 			font_list.append(f)
 
 	# These items have a warning or message that will prompt the user for a response
-	warn_list=['Camera', 'Delete All', 'Delete Single Photo', 'Camera', 'Time-Lapse Camera']
+	warn_list=['Delete Single Photo', 'Time-Lapse Camera']
 
 	config=Config().load()
 	font_path=font_dir / config['font']
@@ -89,7 +89,21 @@ def main():
 
 		# Warnings and Notices
 		elif sel in warn_list:
-			data=Warn().warn(p, sel, scroll_data, photo_list, num=scroll_data[0])
+			data=Warn().warn(p, sel, data, photo_list, num=scroll_data[0])
+
+		# PURGE WARN
+		elif sel=='Delete All':
+			data=Warn().purge_warning(data, photo_list)
+			if p.is_pressed:
+				print('p--------------------------------------')
+				data=[0, 'Purge Confirmed', False]
+
+		# CAMERA MSG
+		elif sel=='Camera':
+			data=Warn().camera_msg(p, data)
+			time.sleep(0.2)
+			if p.is_pressed:
+				data=[0, 'Take Photos', False]
 
 		# Actions and menu items that don't need a menu drawn
 		elif sel=='Take Photos':
@@ -104,7 +118,9 @@ def main():
 			scroll_data=Action().autoscroll(photo_list, scroll_data)
 
 		elif sel=='Purge Confirmed':
-			scroll_data=Action().purge_photo_dir()
+			data=Action().purge_photo_dir(photo_list)
+			scroll_data=[0,'Main Menu',0]
+			photo_list=[]
 
 		# Build the selected menu
 		else:

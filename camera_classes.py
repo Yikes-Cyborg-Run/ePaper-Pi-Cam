@@ -22,7 +22,7 @@ class Menu():
         self.font_path=str(self.home_dir / 'Fonts' / self.config['font'])
         self.menu_list={
                 # Camera options to vflip, hflip, greyscale
-                'Main Menu':['Camera', 'Display Options', 'Camera Options', 'Manual Scroll', 'Time-lapse Camera', 'Autoscroll'],
+                'Main Menu':['Camera Options', 'Camera', 'Display Options', 'Manual Scroll', 'Time-lapse Camera', 'Autoscroll'],
                 'Camera Options':['Time-Lapse Duration', 'White Balance', 'Shut Down', 'Contrast', 'Exposure', 'Delete All'],
                 'White Balance':['Auto', 'Cloudy', 'Daylight', 'Fluorescent', 'Indoor', 'Tungsten'],
                 'Time-lapse Duration':['1', '30', '60', '300', '600', '1800', '3600'],
@@ -55,6 +55,8 @@ class Menu():
         highlighted=use_menu[h]
         for item in use_menu:
             item=str(item)
+#            if (len(photo_list)<1) and (item=='Delete All' or item=='Manual Scroll' or item=='Autoscroll'):
+#                continue
             # Show the total number of photos for these items
             if item=='Autoscroll' or item=='Manual Scroll' or item=='Delete' or item=='Delete All':
                 show=item+f' - {str(len(photo_list))} photos'
@@ -110,28 +112,8 @@ class Warn():
         draw.text((20, 10), sel.upper(), font=font, fill=0)
         drawn=scroll_data[1]
 
-        if sel=='Camera':
-            if drawn==False:
-                draw.text((20, 50), "Camera Ready \nPress photo button.", font=font, fill=0)
-                sel='Take Photos'
-                data=[0, 'Take Photos', False]
-                drawn=True
-
-        elif sel=='Delete All':
-            if len(photo_list)>0:
-                if p.is_pressed:
-                    return[0, 'Purge Confirmed', False]
-                elif drawn==False:
-                    Log.log('Purge ALL Warning', 4)
-                    draw.text((20, 10), f"Are you SURE you want to \ndelete ALL \n{len(photo_list)} photos on file?", font=font, fill=0)
-                    font=ImageFont.truetype(self.font_path, self.fontsize)
-                    draw.text((20, 10), "Press Menu button to cancel\nPress Photo button to confirm", font=font, fill=0)
-                    data=[0, sel, True]
-            else:
-                Warn().no_photos()
-                data=[0, 'Delete All', True]
-
-        elif sel=='Delete Single Photo':
+        # -- SINGLE PHOTO
+        if sel=='Delete Single Photo':
             if drawn==False:
                 Log().log("Delete single photo warning...", 1)
                 filename=photo_list[num]
@@ -143,13 +125,50 @@ class Warn():
                 font=ImageFont.truetype(self.font_path, self.fontsize+4)
                 draw.text((20, 10), "Are you SURE you want to \ndelete this photo?", font=font, fill=0)
                 font=ImageFont.truetype(self.font_path, self.fontsize)
-                draw.text((20, 10), "Press Menu button to cancel\nPress Photo button to delete", font=font, fill=0)
+                draw.text((20, 40), "Press Menu button to cancel\nPress Photo button to delete", font=font, fill=0)
                 data=[0, sel, True]
             else:
-                data=[0, sel, False]
+                data=[0, sel, True]
+        else:
+            data=[0, sel, False]
+        # Display the message and return data
         self.epd.display(self.epd.getbuffer(image))
-#        return [0, sel, True] # NO CHANGE
         return data
+
+    # -- CAMERA MESSAGE
+    def camera_msg(self, p, data):
+        if data[2]==False: # drawn
+            image=Image.new('1', (self.epd.height, self.epd.width), 255)
+            draw=ImageDraw.Draw(image)
+            font=ImageFont.truetype(self.font_path, self.fontsize+4)
+            draw.text((20, 50), "Camera Ready", font=font, fill=0)
+            font=ImageFont.truetype(self.font_path, self.fontsize)
+            draw.text((10, 70), "Press photo button", font=font, fill=0)
+            draw.text((10, 90), "or/nPress menu button", font=font, fill=0)
+            self.epd.display(self.epd.getbuffer(image))
+            return [0, 'Camera', True]
+        else:
+#            print(f"drawn true data::::{data}")
+            return data
+
+    # -- PURGE WARNING
+    def purge_warning(self, data, photo_list):
+            if data[2]==False: # drawn
+                if len(photo_list)>0:
+                    Log().log('Purge ALL Warning', 4)
+                    image=Image.new('1', (self.epd.height, self.epd.width), 255)
+                    draw=ImageDraw.Draw(image)
+                    font=ImageFont.truetype(self.font_path, self.fontsize+4)
+                    draw.text((15, 30), f"Are you SURE you want \nto delete ALL \n{len(photo_list)} photos on file?", font=font, fill=0)
+                    font=ImageFont.truetype(self.font_path, self.fontsize)
+                    draw.text((15, 130), "Press Menu button to cancel\nPress Photo button to confirm", font=font, fill=0)
+                    self.epd.display(self.epd.getbuffer(image))
+                    return [0, 'Delete All', True]
+                else:
+                    Warn().no_photos()
+                    return [0, 'Delete All', True]
+            else:
+                return data
 
     def no_photos(self):
         Log().log("List selected, but no photos on file.", 0)
@@ -169,6 +188,7 @@ class Action():
         self.epd=epd2in7_V2.EPD()
         self.timestamp_photo=self.config['timestampphoto']
         self.image_dir=str(self.home_dir / 'Photos')
+        self.fontsize=int(self.config['fontsize'])
         self.font_path=str(self.home_dir / 'Fonts' / self.config['font'])
 
     # p: photo button pressed, cam: initialized camera object from main(), existing photo_list
@@ -255,14 +275,15 @@ class Action():
 
     # Function to delete ALL photos on file
     # I used the word "PURGE" to make it stand out against the word delete.
-    def purge_photo_dir(self):
-        Log.log("Attempting to purge all photos...", 1)
-        num=len(self.image_dir)
-        for file in self.image_dir.iterdir():
+    def purge_photo_dir(self, photo_list):
+        Log().log("Attempting to purge all photos...", 1)
+        num=len(photo_list)
+        del_dir=Path(self.image_dir)
+        for file in del_dir.iterdir():
             if file.is_file():
                 file.unlink()
-                Log.log(f"Deleted: {file}", 1)
-        Log.log(f"Deleted All {num} photos", 1)
+                Log().log(f"Deleted: {file}", 1)
+        Log().log(f"Deleted All {num} photos", 1)
         image=Image.new('1', (self.epd.height, self.epd.width), 255)
         draw=ImageDraw.Draw(image)
         font=ImageFont.truetype(self.font_path, self.fontsize+4)
@@ -272,18 +293,6 @@ class Action():
         self.epd.display(self.epd.getbuffer(image))
         time.sleep(3)
         return [0, "Main Menu", False]
-
-        """
-        for filename in os.listdir(self.image_dir):
-            file_path=os.path.join(self.image_dir, filename)
-            try:
-                if os.path.isfile(file_path) or os.path.islink(file_path):
-                    os.unlink(file_path)
-                elif os.path.isdir(file_path):
-                    shutilrmtree(file_path)
-            except Exception as e:
-                Log.log("Failed to delete", 0)
-        """
                 
 # Light up LEDs
 # Takes 0 or 1, 0=off, 1=on

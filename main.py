@@ -110,16 +110,16 @@ def main():
 			data=Action().purge_photo_dir(photo_list)
 			photo_list=[]
 
-		# TIMELAPSE - MSG
+		# TIMELAPSE - Message warning
 		elif sel=='Time-Lapse Photo':
 			data=Warn().timelapse_msg(data)
 			if p.is_pressed:
-				print('tmelapse initial button pusehed')
+				Log().log('tmelapse initial button pusehed', 1)
 				photo_list=Action().take_photo(cam, photo_list)
 				future=Calc().future(int(config['timelapseduration']))
 				data=[0, 'Timelapse Confirmed', False, num]
 
-		# TIMELAPSE
+		# TIMELAPSE - Confirmed
 		elif sel=='Timelapse Confirmed':
 			if drawn==True:
 				now_time=datetime.datetime.now()
@@ -133,7 +133,6 @@ def main():
 				future=Calc().future(int(config['timelapseduration']))
 				data=[0, "Timelapse Confirmed", True, 0]
 
-
 		# AUTOSCROLL - MSG
 		elif sel=='Autoscroll':
 			data=Warn().autoscroll_msg(data, photo_list)
@@ -144,7 +143,6 @@ def main():
 		# AUTOSCROLL
 		# Needed to put this in main, in order to better calculate the time comparisson.
 		elif sel=='Autoscroll Confirmed':
-			print('autoscroll going now')
 			if len(photo_list)>0:
 				if drawn==True:
 					now_time=datetime.datetime.now()

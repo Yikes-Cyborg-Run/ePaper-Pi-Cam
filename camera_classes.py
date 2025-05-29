@@ -269,7 +269,7 @@ class Action():
         self.epd.display(self.epd.getbuffer(image))
         Log().log(f"Displayed file: {photo}",1)
         return None
-    
+
     # MANUAL SCROLL
     # Tab through existing photos with u: up button, d: down button
     # Also uses: existing photo_list and data:[photo_increment, drawn - True or False]
@@ -361,13 +361,14 @@ class Calc():
     # Display the current timelapse setting
     # !!!!!!! IN PROGRESS
     def convert_time_text(self, dur):
+        suffix=".."
         if(dur<60):
             suffix='second'
             dur=dur
         elif(dur>60 and dur<3600):
             suffix='minute'
             dur=dur/60
-        elif(dur>60 and dur<3600):
+        elif(dur>60 and dur>3600):
             suffix='hour'
             dur=dur/3600
         # format the text to display

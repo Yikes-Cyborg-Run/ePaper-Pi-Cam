@@ -52,7 +52,6 @@ class Menu():
             k=re.sub(r'[^a-zA-Z0-9]', '', k)
             config=Config().load()
             config_val=str(config[k])
- #           print(f"config val: {config_val}")
         use_menu=self.menu_list[sel]
         image=Image.new('1', (self.epd.height, self.epd.width), 255)
         draw=ImageDraw.Draw(image)
@@ -245,7 +244,6 @@ class Action():
     # p: photo button pressed, cam: initialized camera object from main(), existing photo_list
     def take_photo(self, cam, photo_list):
         LEDs.LEDs(0, 0, 1)
-        Log().log('Taking photo....', 1)
         timestamp=datetime.datetime.now().strftime('%Y-%m-%d_%H-%M-%S') # Get the current timestamp
         filename=f'{timestamp}.jpg' # Construct the filename
         if self.timestamp_photo==True: # Check if timestamping is enabled in config...

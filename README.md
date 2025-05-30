@@ -21,7 +21,7 @@ Deleting photos is also an option.
 ## Wire up hardware ##  
 **Setup Waveshare ePaper Display**  
 • If you are using the Waveshare 2.7-inch GPIO hat, all you need to do is seat the hat on your Pi.  
-• If you're using a different/wired Waveshare display, refer to the wiring diagram and table below.
+• If you're using a different/wired Waveshare display, refer to the GPIO diagram and table below.
 <br>
 
 <img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/waveshare_Pi02W_setup.jpg' align='left' width='550'>  
@@ -61,7 +61,7 @@ Deleting photos is also an option.
 • If you are using the Waveshare 2.7-inch GPIO hat, you'll need to use a breakout board or some kind of prototype board to connect the LEDs.  
 [Example of Breakout Board](https://www.amazon.com/dp/B0DMNJ17PD?ref=ppx_yo2ov_dt_b_fed_asin_title)  
 [Example of Prototype Board](https://www.amazon.com/dp/B08C2XSTK2?ref=ppx_yo2ov_dt_b_fed_asin_title&th=1)  
-• Refer to the wiring table below if you are adding LEDs to your camera.
+• Refer to the GPIO table below if you are adding LEDs to your camera.
 | LED | Pi GPIO Pin |
 |------------|------------|  
 | Green | 16 |  

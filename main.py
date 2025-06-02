@@ -1,4 +1,4 @@
-from camera_classes import Config, Warn, Action, Menu, Calc, Log
+from camera_classes import Config, Warn, Action, Menu, Calc, Log, LEDs
 import time, datetime
 from gpiozero import LED, Button
 from picamzero import Camera
@@ -80,7 +80,10 @@ def main():
 
 		# Actions and menu items that don't need a menu drawn
 		elif sel=='Take Photos':
-			if p.is_pressed:photo_list=Action().take_photo(cam, photo_list)
+			if p.is_pressed:
+				LEDs().flash(1)
+				photo_list=Action().take_photo(cam, photo_list)
+#				LEDs().flash(0)
 
 		# Manually Scroll through photos
 		# Option to delete when photo button is pushed 

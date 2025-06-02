@@ -245,18 +245,17 @@ class Action():
 
     # p: photo button pressed, cam: initialized camera object from main(), existing photo_list
     def take_photo(self, cam, photo_list):
-        LEDs.LEDs(0, 0, 1)
+        LEDs().LEDs(0, 0, 1)
         timestamp=datetime.datetime.now().strftime('%Y-%m-%d_%H-%M-%S') # Get the current timestamp
         filename=f'{timestamp}.jpg' # Construct the filename
         if self.timestamp_photo==True: # Check if timestamping is enabled in config...
             cam.annotate(timestamp, 'plain-small', 'white', 1, 2, [5, 170]) # add a timestamp to photo ??????? Any way to make the position dynamic based on the screen size?
         image_path=self.image_dir+'/'+filename
-        LEDs().flash(1)
+#        LEDs().flash(1)
         Log().info(f"Taking photo:{image_path}")
         cam.take_photo(image_path)
-        LEDs().flash(0)
         Display().photo(image_path)
-        LEDs.LEDs(1, 0, 0)
+        LEDs().LEDs(1, 0, 0)
         photo_list.append(image_path)
         return photo_list
 
@@ -344,7 +343,7 @@ class LEDs():
     # Camera Flash
     def flash(self, on_or_off):
         if self.photo_flash=='Yes':
-            LED_FLASH=LED(123123123123) # !!!!!!! Need proper pin
+            LED_FLASH=LED(4) # !!!!!!! Need proper pin
             if on_or_off==1: 
                 LED_FLASH.on()
             else:

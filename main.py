@@ -106,8 +106,9 @@ def main():
 			# ARCHIVE CONFIRMED
 			elif sel=='Archive Confirmed':
 				data=Action().archive_confirmed()
+				photo_list=[]
 
-			# PURGE WARNING MSG
+			# PURGE WARNING MESSAGE
 			elif sel=='Purge':
 				data=Display().purge_warning(data, photo_list)
 				if p.is_pressed: data=[0, 'Purge Confirmed', False, num]
@@ -174,7 +175,7 @@ def main():
 					drawn=True
 				data=Menu().navigate(h, p, m, u, d, sel)
 	except KeyboardInterrupt:
-		Log().error("Interrupted by user keyboard.")
+		Log().error("Interrupted by user - Keyboard cancel.")
 	finally:
 		Log().info("Exiting program.")
 

@@ -77,7 +77,7 @@ class Display():
 				if num_photos==1: s='s'
 				display_text=f"This will create a zip file\ncontaining {len(photo_list)} photo{s} currently on file.\n"
 				display_text+="Files will then be deleted from \n the 'Photos' directory\nPhoto button = Confirm\nMenu button = Cancel"
-				Display().text_with_header(10, 40, "ARCHIVE PHOTOS", display_text)
+				Display().text_with_header(10, 5, "ARCHIVE PHOTOS", display_text)
 				data=[0,'Archive Photos', True, 0]
 		else:
 			data=Display().no_photos(data)
@@ -92,7 +92,7 @@ class Display():
 			Display().text_with_header(10, 40, "START TIME-LAPSE", menu_text)
 			data=[0, 'Time-Lapse Photography', True, 0]
 		return data
-		
+
 	# WARNING - PURGE ALL
 	def purge_warning(self, data, photo_list):
 		if data[2]==False:
@@ -198,8 +198,7 @@ class Menu():
 			item=str(item)
 			# Check config values for Option Menus
 			saved_val=''
-			if is_option_menu==True:
-				saved_val=' - '+config[item]
+#			if is_option_menu==True: saved_val=' - '+config[item]
 
 			if item==config_val: config_notch=' x ' # Mark the current config
 			else: config_notch=''
@@ -283,12 +282,6 @@ class Action():
 		photo_list.append(image_path)
 		return photo_list
 
-#	def display_photo(self, photo):
-#		Log().info(f"Loading file: {photo}....")
-#		Display().photo(photo)
-#		Log().info(f"Displayed file: {photo}")
-#		return None
-
 	# MANUAL SCROLL
 	# Tab through existing photos with u: up button, d: down button
 	# Also uses: existing photo_list and data:[photo_increment, drawn - True or False]
@@ -337,15 +330,20 @@ class Action():
 		if not os.path.exists(archive_dir): os.makedirs(archive_dir)
 		zip_path=f"{archive_dir}/Photos_Archived_{now.strftime('%Y-%m-%d_%H%M%S')}.zip"
 		# Create the zip file
-		Log.info(f"Attempting to archive photos to: {zip_path}")
+		Log().info(f"Attempting to archive photos to: {zip_path}")
 		try:
 			with zipfile.ZipFile(zip_path, 'w') as zip_file:
 				for root, _, files in os.walk(self.image_dir):
 					for file in files:
 						file_path=os.path.join(root, file)
-						zip_file.write(file_path)
+						try:
+							zip_file.write(file_path)
+							Log().info(f"Moved {file_path} to zip file.")
+						except Exception as e:
+							Log().error(f"Error archiving file: {file_path}.\n Details:\n{e}")
+			Log().info(f"Archiving to {file_path} completed.")
 		except Exception as e:
-			Log().error(f"There was an error archiving photos to {zip_path}.\n Details:\n{e}")
+			Log().error(f"Error archiving photos to {zip_path}.\n Details:\n{e}")
 
 		# Get total size of the Archive directory
 		dir_size=0

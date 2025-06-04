@@ -211,7 +211,7 @@ sudo raspi-config
 > [!IMPORTANT]
 > * This project makes use of ePaper displays manufactured by WaveShare.  
 > * Installing this project will install drivers for ALL WaveShare displays and save them into the directory "waveshare_epd".  
-> * To use a particular display, you will need to edit the line near the top of "mainprog.py" that looks like this:  
+> * To use a particular display, you will need to edit the line near the top of "main.py" that looks like this:  
 > ``` from waveshare_epd import epd2in7_V2 ```  
 edit the part "epd2in7_V2" to match the name of your display.
 

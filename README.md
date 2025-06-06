@@ -222,6 +222,7 @@ edit the part "epd2in7_V2" to match the name of your display.
 
 ### Project Resources
 **Picamzero Documents**  
+[Docs Recipes](https://picamera.readthedocs.io/en/release-1.13/)
 [Getting Started](https://raspberrypifoundation.github.io/picamera-zero/)
 [Picamera Project Docs](https://projects.raspberrypi.org/en/projects/getting-started-with-picamera/0)  
 [Using Picamera2 Functions with Picamzero](https://raspberrypifoundation.github.io/picamera-zero/picamera2/)    

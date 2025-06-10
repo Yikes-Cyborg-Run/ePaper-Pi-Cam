@@ -27,7 +27,7 @@ def main():
 
 	# Start Camera() and set its configuration
 	cam=Camera()
-#	cam.greyscale=True # Take photos in black & white... duh
+	cam.greyscale=True # Take photos in black & white... duh
 #	cam.still_size=(264, 176) # Resolution of the 2.7 GPIO display
 
 	# Create a list of existing photos

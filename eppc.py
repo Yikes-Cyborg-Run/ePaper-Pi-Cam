@@ -243,6 +243,8 @@ class Action():
 		self.image_dir=str(self.home_dir / 'Photos')
 		self.fontsize=int(self.config['fontsize'])
 		self.font_path=str(self.home_dir / 'Fonts' / self.config['font'])
+#		self.logger = logging.getLogger(__name__)
+#		self.logging.basicConfig(filename='/home/pi/e-Paper-Pi-Cam/log.log', filemode='w', encoding='utf-8', level=logging.INFO)
 
 	# PHOTO LIST
 	# Build a list of saved photos already on file.
@@ -277,7 +279,9 @@ class Action():
 		if self.config['timestampphoto']=='Yes':
 			cam.annotate(timestamp, 'plain-small', 'white', 1, 2, [5, 170])
 		image_path=self.image_dir+'/'+filename
-		Log().info(f"Taking photo:{image_path}")
+		Log().info(f"Taking photo: {image_path}")
+
+		#Log().info(f"Taking photo:{image_path}")
 		cam.take_photo(image_path)
 		Display().photo(image_path)
 		LEDs().LEDs(1, 0, 0)
@@ -330,7 +334,7 @@ class Action():
 		archive_dir='Archived_Photos'
 		now=datetime.datetime.now()
 		Path(archive_dir).mkdir(parents=True, exist_ok=True)
-		zip_path=f"{archive_dir}/Photos_Archived_{now.strftime('%Y-%m-%d_%H%M%S')}.zip"
+		zip_path=f"{archive_dir}/Archived_Photos_{now.strftime('%Y-%m-%d_%H%M%S')}.zip"
 		# Create the zip file
 		Log().info(f"Attempting to archive photos to: {zip_path}....")
 		try:
@@ -521,16 +525,24 @@ class Config():
 
 class Log():
 	def __init__(self):
+		pass
 		self.home_dir=Path(__file__).parent.resolve()
 		self.log_path=self.home_dir / 'log.log'
 		self.logger=logging.getLogger(str(self.log_path))
-#		self.log_config=logging.basicConfig(filename=self.log_path, encoding='utf-8', level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s', datefmt='%I:%M:%S %p',)
-#		logging.basicConfig(filename=self.log_path, encoding='utf-8', level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s', datefmt='%I:%M:%S %p',)
+		self.log_config=logging.basicConfig(filename=self.log_path, encoding='utf-8', level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s', datefmt='%I:%M:%S %p',)
+		logging.basicConfig(filename=self.log_path, encoding='utf-8', level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s', datefmt='%I:%M:%S %p',)
 
 	def info(self, msg):
-		logging.basicConfig(filename=self.log_path, encoding='utf-8', level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s', datefmt='%I:%M:%S %p',)
+#		logging.basicConfig(filename='/home/pi/e-Paper-Pi-Cam/log.log', filemode='w', encoding='utf-8', level=logging.INFO)
+#		logger = logging.getLogger(__name__)
+#		logger.info(msg)
+
+		home_dir=Path(__file__).parent.resolve()
+		log_path=home_dir / 'log.log'
+		logger=logging.getLogger(str(log_path))
+		logging.basicConfig(filename=log_path, encoding='utf-8', level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s', datefmt='%I:%M:%S %p',)
 		print(f"INFO: {msg}")
-		self.logger.info(msg)
+		logger.info(msg)
 
 	def warning(self, msg):
 		logging.basicConfig(filename=self.log_path, encoding='utf-8', level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s', datefmt='%I:%M:%S %p',)

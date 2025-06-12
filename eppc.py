@@ -1,12 +1,10 @@
-import time, datetime, logging, re
-import zipfile
+import datetime, logging, re, time, zipfile
 from waveshare_epd import epd2in7_V2 # -- the 2.7inch GPIO HAT
 from gpiozero import LED #, Button
 from PIL import Image, ImageDraw, ImageFont
 from pathlib import Path
-from picamzero import Camera
 
-# If you dont like my kumkuats, dont shake my tree
+# If you dont like mangos, dont shake my tree
 
 class Display():
 	def __init__(self):
@@ -87,18 +85,6 @@ class Display():
 			data=[0, 'Time-Lapse', True, 0]
 		return data
 
-	# WARNING - PURGE ALL
-	def purge_warning(self, data, photo_list):
-		if data[2]==False:
-			if len(photo_list)>0:
-				Log().warning('Purge ALL Warning')
-				txt=f"\n\nMenu button = Cancel\nPhoto button = Confirm"
-				Display().text_with_header(10, 5, f"DELETE {len(photo_list)} PHOTOS?", txt)
-				data=[0, 'Purge', True, 0]
-			else:
-				data=Display().no_photos(data)
-		return data
-
 	# NO PHOTOS MESSAGE
 	def no_photos(self, data):
 		if data[2]==False:
@@ -116,6 +102,7 @@ class Display():
 			filename=photo_list[num]
 			Log().info(f"Check delete: {filename}")
 			image=Image.open(filename)
+			image=image.resize((self.epd.height, self.epd.width))
 			draw=ImageDraw.Draw(image)
 			draw.rectangle([(0, 0), (int(self.epd.width)*2, 70)], fill=0)
 			font=ImageFont.truetype(self.font_path, self.fontsize+4)
@@ -126,6 +113,18 @@ class Display():
 			data=[0, 'Delete', True, num]
 		else:
 			data=[0, 'Delete', True, num]
+		return data
+
+	# WARNING - PURGE ALL
+	def purge_warning(self, data, photo_list):
+		if data[2]==False:
+			if len(photo_list)>0:
+				Log().warning('Purge ALL Warning')
+				txt=f"\n\nMenu button = Cancel\nPhoto button = Confirm"
+				Display().text_with_header(10, 5, f"DELETE {len(photo_list)} PHOTOS?", txt)
+				data=[0, 'Purge', True, 0]
+			else:
+				data=Display().no_photos(data)
 		return data
 
 	# SPLASH SCREEN
@@ -152,38 +151,38 @@ class Menu():
 		self.font_size=int(self.config['fontsize'])
 		self.font_path=str(self.home_dir / 'Fonts' / self.config['font'])
 		self.menu_list={
-				# Camera options to add -- vflip, hflip, greyscale
+				# ??????? Camera options to add -- vflip, hflip, greyscale
 				'Main Menu':['Camera', 'Time-Lapse', 'Manual Scroll', 'Autoscroll',  'Camera Options', 'Display Options', 'System Options'],
 
-				'Camera Options':['Brightness', 'Contrast', 'Flash', 'Time-Lapse Duration', 'White Balance'],
+				'Camera Options':['Brightness', 'Contrast', 'Flash', 'Time-Lapse Duration', 'White Balance'], # 'Exposure', 
 				'Brightness':['-1.0', '-0.5', '-0.25', '0', '0.25', '0.5', '1.0'],
 				'Contrast':['0', '1', '5', '10', '15', '20', '25', '32'],
 #				'Exposure':['75', '200', '1000', '3000', '6000', '1238765'], # !!!!!!! In progress
-				'Flash':['Auto', 'On', 'Off'],	
-				'Time-Lapse Duration':['1', '30', '60', '300', '600', '1800', '3600'],
+				'Flash':['On', 'Off'], # 'Auto' 
+				'Time-Lapse Duration':['5', '30', '60', '300', '600', '1800', '3600'],
 				'White Balance':['Auto', 'Cloudy', 'Daylight', 'Fluorescent', 'Indoor', 'Tungsten'],
 
 				'Display Options':['Font', 'Font Size', 'Autoscroll Duration'], # 'Display Rotation', 
 				'Font': self.font_list,
 				'Font Size':['12', '14', '16', '18', '20', '22', '24'],
 				'Autoscroll Duration':['10', '30', '60', '120', '300', '600'],
-				'Display Rotation':['0', '90', '180', '270'],
+#				'Display Rotation':['0', '90', '180', '270'],
 
 				'System Options':['Archive Photos', 'Show Splash Screen', 'Timestamp Photo', 'Shut Down',  'Purge'],
 				'Show Splash Screen':['Yes', 'No'],
 				'Timestamp Photo':['Yes', 'No'],
 				}
-		# These do not need a menu created
+		# These item selections don't need a menu created
 		self.ignore_list=['Archive Photos', 'Autoscroll', 'Camera', 'Delete', 'Manual Scroll', 'Purge', 'Take Photo', 'Time-lapse Camera']
 
 	# Build the selected menu
 	# sel = selected menu to use, h = item that's highlighted, photo_list = to tally the total photos
 	def build(self, h, sel, photo_list):
-		config_val='- Im empty check me -'
-		is_option_menu=False
+		LEDs().LEDs(1, 0, 0)
+		config_val=''
 		use_menu=self.menu_list[sel]
 		options_list=Config().options_list()
-		Log().info(f"{sel.upper()} -- {use_menu}")
+		Log().info(f"h: {h} -- {sel.upper()} -- {use_menu}")
 		if (sel in self.menu_list['Camera Options']) or (sel in self.menu_list['Display Options']) or (sel in self.menu_list['System Options']):
 			k=sel.lower()
 			k=re.sub(r'[^a-zA-Z0-9]', '', k)
@@ -210,7 +209,7 @@ class Menu():
 				final_item='-- '+final_item # add a mark to the one that's highlighted
 			final_menu+=final_item+'\n'
 		Display().text_with_header(10, 0, sel.upper(), final_menu)
-		return
+		LEDs().LEDs(0, 0, 0)
 
 	# Function to navigate through the menu
 	# h = highlighted item, p = photo button, m = menu button, u = up button, d = down button
@@ -221,19 +220,24 @@ class Menu():
 		limit=len(use_menu)-1
 		if sel not in self.ignore_list:
 			if p.is_pressed:
+				LEDs().LEDs(1, 0, 0)
 				data=[0, use_menu[h], False, 0]
 				if (sel in self.menu_list['Camera Options']) or (sel in self.menu_list['Display Options']) or (sel in self.menu_list['System Options']):
 					data=Config().save(sel, use_menu[h], cam)
 			elif m.is_pressed: # go to main menu
+				LEDs().LEDs(1, 0, 0)
 				data=[0, 'Main Menu', False, 0]
 			elif u.is_pressed:
+				LEDs().LEDs(0, 1, 0)
 				h+=1
 				if h>limit:h=0
 				data=[h, sel, False, 0]
 			elif d.is_pressed:
+				LEDs().LEDs(0, 1, 0)
 				h-=1
 				if h<0:h=limit
 				data=[h, sel, False, 0]
+		LEDs().LEDs(0, 0, 0)
 		return data
 
 class Action():
@@ -298,10 +302,12 @@ class Action():
 			limit=len(photo_list)-1
 			if drawn==True:
 				if u.is_pressed:
+					LEDs().LEDs(1, 0, 0)
 					num+=1
 					if num>limit:num=0
 					data=[0, 'Manual Scroll', False, num]
 				elif d.is_pressed:
+					LEDs().LEDs(1, 0, 0)
 					num-=1
 					if num<0: num=limit
 					data=[0, 'Manual Scroll', False, num]
@@ -310,6 +316,7 @@ class Action():
 				data=[0, 'Manual Scroll', True, num]
 		else:
 			data=Display().no_photos(data)
+		LEDs().LEDs(0, 0, 0)
 		return data
 
 	# DELETE
@@ -317,6 +324,7 @@ class Action():
 	def delete_single_photo(self, num, file):
 		Log().info(f"Attempting to delete: {file}....")
 		try:
+			LEDs().LEDs(0, 0, 1)
 			next_num=num-1
 			file=Path(file)
 			file.unlink()
@@ -324,6 +332,7 @@ class Action():
 			Log().info(txt)
 			Display().text_with_header(10, 5, "DELETED PHOTO", txt)
 			time.sleep(.2) # ??????? Need sleep here?
+			LEDs().LEDs(0, 0, 0)
 			return [0, 'Manual Scroll', False, next_num]
 		except Exception as e:
 			Log().error(f"There was an error deleting file: {file}.\n Details:\n{e}")
@@ -331,14 +340,15 @@ class Action():
 	# ARCHIVE CONFIRMED
 	# Creates a zip file to archive photos and then empty the Photos directory
 	def archive_confirmed(self):
-		archive_dir='Archived_Photos'
+		LEDs().LEDs(1, 0, 0)
+		archive_dir=self.home_dir/'Archived_Photos'
 		now=datetime.datetime.now()
 		Path(archive_dir).mkdir(parents=True, exist_ok=True)
 		zip_path=f"{archive_dir}/Archived_Photos_{now.strftime('%Y-%m-%d_%H%M%S')}.zip"
 		# Create the zip file
 		Log().info(f"Attempting to archive photos to: {zip_path}....")
 		try:
-			photo_dir=Path('Photos')
+			photo_dir=Path(self.home_dir/'Photos')
 			files=list(photo_dir.glob('*jpg'))
 			with zipfile.ZipFile(zip_path, 'w') as zip_file:
 				for f in files:
@@ -347,7 +357,9 @@ class Action():
 							zip_file.write(f)
 							Log().info(f"Moved {f} to zip file.")
 						except Exception as e:
-							Log().error(f"Error archiving file: {f}.\n Details:\n{e}")
+							Log().critical(f"Error archiving file: {f}.\n Details:\n{e}")
+				zip_file.close()
+
 			Log().info(f"Archiving to {f} completed.")
 		except Exception as e:
 			Log().error(f"Error archiving to {zip_path}.\n Details:\n{e}")
@@ -362,11 +374,13 @@ class Action():
 		Log().info(success_text)
 		time.sleep(3)
 		data=Action().purge_confirmed(len(self.image_dir) , False) # False - dont need to show purge message
+		LEDs().LEDs(0, 0, 0)
 		return data
 
 	# PURGE CONFIRMED
 	# Delete ALL photos on file
 	def purge_confirmed(self, num_photos, show_message):
+		LEDs().LEDs(1, 1, 1)
 		Log().info("Attempting to purge all photos...")
 		del_dir=Path(self.image_dir)
 		for file in del_dir.iterdir():
@@ -379,6 +393,7 @@ class Action():
 			txt="\nGoing back to main menu...."
 			Display().text_with_header(10, 5, f"DELETED ALL\n{num_photos} PHOTOS", txt)
 			time.sleep(2)
+		LEDs().LEDs(0, 0, 0)
 		return [0, 'Main Menu', False, 0]
 
 class LEDs():
@@ -402,7 +417,7 @@ class LEDs():
 	# CAMERA FLASH
 	# In progress ???????
 	def flash(self, future):
-		if self.config['photoflash']=='Yes':
+		if self.config['flash']=='Yes':
 			LED_FLASH=LED(23)
 			now_time=datetime.datetime.now()
 			now=int(time.mktime(now_time.timetuple()))
@@ -531,105 +546,16 @@ class Log():
 		format=logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 		self.logger.setLevel(logging.DEBUG)
 		log_path.setFormatter(format)
-		self.logger.addHandler(log_path)
 		console_handler=logging.StreamHandler()
 		console_handler.setLevel(logging.DEBUG)
 		console_handler.setFormatter(format)
+		if (self.logger.hasHandlers()):
+			self.logger.handlers.clear()
+		self.logger.addHandler(log_path)
 		self.logger.addHandler(console_handler)
-
+	
 	def critical(self, msg): self.logger.critical(msg)
 	def debug(self, msg): self.logger.debug(msg)
 	def error(self, msg): self.logger.error(msg)
 	def info(self, msg): self.logger.info(msg)
 	def warning(self, msg): self.logger.warning(msg)
-
-"""
-### NEGATIVE EFFECT:
-from picamzero import Camera
-from time import sleep
-import cv2
-import os
-
-home_dir = os.environ['HOME']
-cam = Camera()
-rgb_array = cam.capture_array()
-
-bgr_array = cv2.cvtColor(rgb_array, cv2.COLOR_RGB2BGR)
-negative_bgr_array = 255 - bgr_array
-cv2.imwrite(f"{home_dir}/Desktop/negativeImage.jpg", negative_bgr_array)
-
-
-#### SKETCH
-from time import sleep
-import cv2
-import os
-
-home_dir = os.environ['HOME']
-cam = Camera()
-sleep(2)
-rgb_array = cam.capture_array()
-img = cv2.cvtColor(rgb_array, cv2.COLOR_RGB2BGR)
-
-# Convert to sketch
-greyscale = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-inverted = 255 - greyscale
-blur_inverted = cv2.GaussianBlur(inverted, (125, 125), 0)
-inverted_blur = 255 - blur_inverted
-sketch = cv2.divide(greyscale, inverted_blur, scale=256)
-cv2.imwrite(f"{home_dir}/Desktop/sketchImage.jpg", sketch)
-
-img=image.rotate(90,expand=True)
-epd.set_frame_memory(img, 0, 0)
-epd.display_frame()
-epd.set_frame_memory(img, 0, 0)
-epd.display_frame()
-
-# just a little test example filling the screen black 8 pixels at a time:
-pixel = Image.new('1', (8,8), 0)
-for x in range(0,epd2in13.EPD_WIDTH,8):
-    for y in range(0,epd2in13.EPD_HEIGHT,8):
-        for fc in range(2):
-            epd.set_frame_memory(pixel, x, y)
-            epd.display_frame()
-        print(x,y)
-
-###################################
-??????? Partial UPDATES ???????
-###################################
-The final test is about partial updates. To say the truth, I don’t love continuously updating an e-ink display as it has a limited number of refreshes (even if very big) and I think that you can use the full power of this kind of display when you want to show a static image which changes with a very low frequency.
-The test shows partial updates on the e-ink display by showing a clock that runs for 10 seconds, with an inverse progress bar.
-epd.displayPartBaseImage initializes the e-ink display to partial update mode. Then, a loop is executed for 10 seconds, continuously updating the image on the display.
-The elapsed time will adjust the width of the progress bar by calculating at each loop the width of the first 3 rectangles. The 4th rectangle will just cover at each run the old time characters, in order to avoid the overlapping between old characters and new ones.
-The updated image is displayed using epd.displayPartial, and there’s a pause of 0.2 seconds between each update.
-After the end of the while loop, the display is switched back to full update mode.
-
-	clear_display(epd)
-	draw.text((0, 0), 'Test 9) Partial Updates', font = font15, fill = black)
-	epd.displayPartBaseImage(epd.getbuffer(image))
-	epd.init(epd.PART_UPDATE)
-
-	num = 0
-	start_time=time.time()
-	elapsed = time.time()-start_time
-	while (time.time()-start_time) <= 10:
-		elapsed=time.time()-start_time
-		progress = int(220-int(elapsed*10))
-		draw.rectangle((120, 70, progress, 75), fill = black)
-		draw.rectangle((progress, 70, 220, 75), fill = white)
-		draw.rectangle([(progress,70),(220,75)],outline = black)
-
-		draw.rectangle((120, 80, 220, 105), fill = white)
-		draw.text((120, 80), time.strftime('%H:%M:%S'), font = font24, fill = black)
-		epd.displayPartial(epd.getbuffer(image))
-		time.sleep(0.2)
-	epd.init(epd.FULL_UPDATE)
-	time.sleep(2)
-
-			# ??????? NEW RESIZING use "thumbnail" because it will keep image ratio
-#			resized_image = image.copy() # thumbnail() modifies the image in place
-#			resized_image.thumbnail((self.epd.height/2, self.epd.height/2), Image.LANCZOS) # LANCZOS = method for resampling or interpolating digital signals
-#			resized_image.thumbnail((50, 50), Image.LANCZOS) # LANCZOS = method for resampling or interpolating digital signals
-#			resized_image=resized_image.resize((500,500), Image.LANCZOS) 
-#			image=resized_image
-
-"""

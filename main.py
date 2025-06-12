@@ -1,5 +1,5 @@
 from eppc import Action, Calc, Config, Display, LEDs, Log, Menu
-import time, datetime
+import time, datetime, logging 
 from gpiozero import LED, Button
 from picamzero import Camera
 from pathlib import Path
@@ -53,11 +53,13 @@ def main():
 
 			# MAIN MENU SELECTED
 			if m.is_pressed:
+				LEDs().LEDs(1, 0, 0)
 				if sel=='Delete':
 					data=[0,'Manual Scroll', False, num]
 				else:
 					data=[0,'Main Menu', False, 0]
 				time.sleep(0.5) # need short delay or it will immediately revert to Main Menu
+				LEDs().LEDs(0, 0, 0)
 
 			# CAMERA MESSSAGE
 			elif sel=='Camera':
@@ -74,7 +76,8 @@ def main():
 			# Option to delete when photo button is pushed 
 			elif sel=='Manual Scroll':
 				data=Action().manual_scroll(u, d, photo_list, data)
-				if p.is_pressed: data=[0, 'Delete', False, num]
+				if p.is_pressed:
+					data=[0, 'Delete', False, num]
 
 			# DELETE SINGLE PHOTO WARNING
 			# Confirmed when photo button is pressed

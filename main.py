@@ -111,6 +111,10 @@ def main():
 			elif sel=='Purge Confirmed':
 				data=Action().purge_confirmed(len(photo_list), True) # True = display the msg
 				photo_list=[]
+	
+			# Clear display and shut down
+			elif sel=='Shut Down':
+				Display().shutdown() # g'night!
 
 			# TIMELAPSE MESSAGE
 			# Confirmed when photo button is pressed

@@ -1,4 +1,4 @@
-import datetime, logging, re, time, zipfile
+import datetime, logging, os, re, time, zipfile
 from waveshare_epd import epd2in7_V2 # -- the 2.7inch GPIO HAT
 from gpiozero import LED #, Button
 from PIL import Image, ImageDraw, ImageFont
@@ -137,6 +137,11 @@ class Display():
 			draw.text((20, 50), "Starting up...", font=font, fill=0)
 			self.epd.display(self.epd.getbuffer(image))
 
+	def shutdown(self):
+		self.epd.Clear()
+		Log().info(f"Clearing display and shutting down. \nZzzzzzzzz\n\nZzzzzzzzzzzzzzzzzzzz")
+		os.system("sudo shutdown -h now")
+
 class Menu():
 	def __init__(self):
 		self.config=Config().load()
@@ -173,7 +178,7 @@ class Menu():
 				'Timestamp Photo':['Yes', 'No'],
 				}
 		# These item selections don't need a menu created
-		self.ignore_list=['Archive Photos', 'Autoscroll', 'Camera', 'Delete', 'Manual Scroll', 'Purge', 'Take Photo', 'Time-lapse Camera']
+		self.ignore_list=['Archive Photos', 'Autoscroll', 'Camera', 'Delete', 'Manual Scroll', 'Purge', 'Shut Down', 'Take Photo', 'Time-lapse Camera']
 
 	# Build the selected menu
 	# sel = selected menu to use, h = item that's highlighted, photo_list = to tally the total photos

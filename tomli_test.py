@@ -12,7 +12,7 @@ def load_config(file_path):
         print(f"Error: TOML parsing error: {e}")
         return None
 
-config = load_config("config.toml")
+config = load_config(r"C:/Users/ckingsbury/OneDrive - City of Port Orange/Desktop/ePaperPiCam/ePaper-Pi-Cam/config.toml")
 
 if config:
     print(f"WB: {config['whitebalance']}")

@@ -1,2 +1,1 @@
-timestampphoto='No'
-whitebalance='auto'
+whitebalance = "indoor"

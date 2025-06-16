@@ -1,4 +1,4 @@
-import datetime, logging, os, re, time, tomli, zipfile
+import datetime, logging, os, re, time, tomlkit, zipfile
 from waveshare_epd import epd2in7_V2 # -- the 2.7inch GPIO HAT
 from gpiozero import LED #, Button
 from PIL import Image, ImageDraw, ImageFont
@@ -497,6 +497,7 @@ class Config():
 		self.config_path=self.home_dir / 'config.toml'
 
 	# Load config settings from txt file
+	"""
 	def load(self):
 		try:
 			with open(self.config_path, "rb") as f:
@@ -508,10 +509,21 @@ class Config():
 		except tomli.TOMLDecodeError as e:
 			print(f"Error: TOML parsing error: {e}")
 			return None
-
-
+	"""
+	def load(self):
+		try:
+			with open(self.config_path, "rb") as f:
+				data = tomlkit.load(f)
+			return(data)
+		except FileNotFoundError:
+			print(f"Error: File not found at '{self.config_path}'")
+			return None
+		except tomlkit.TOMLDecodeError as e:
+			print(f"Error: TOML parsing error: {e}")
+			return None
 
 	# Save config settings to txt file
+	"""
 	def save(self, config_item, v):
 		# Key names from the Camera/Display Options menus
 		# Strip down, remove spaces and special characters, and make lowercase
@@ -533,6 +545,16 @@ class Config():
 			return [0, 'Main Menu', False, 0]
 		except Exception as e:
 			Log().error(f"Could not save config.\nDetails:\n{e}")
+	"""
+	def save(self, config_item, v):
+		# Key names from the Camera/Display Options menus
+		# Strip down, remove spaces and special characters, and make lowercase
+		k=config_item.lower()
+		k=re.sub(r'[^a-zA-Z0-9]', '', k)
+		config=Config().load()
+		config[k]=str(v)
+		with open(self.config_path, 'w') as file:
+			tomlkit.dump(config, file)
 
 	def options_list(self):
 		options_list=[]

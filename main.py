@@ -1,4 +1,4 @@
-# DEVELOPMENT BRANCH check
+# DEVELOPMENT BRANCH
 
 from eppc import Action, Calc, Config, Display, LEDs, Log, Menu
 import time, datetime, logging 

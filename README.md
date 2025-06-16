@@ -9,6 +9,15 @@ There are several different camera configuration options that can be customized 
 You can set the display to autoscroll through photos you've taken, and also set the camera to take time lapse photos if you like.
 Deleting photos is also an option.  
 <br>
+
+
+| Menu Name | Options/Items | 
+|------------|------------|  
+| Main | Camera, Time-Lapse, Manual Scroll, Autoscroll,  Camera Options, Display Options, System Options |  
+| Camera Options | Brightness, Contrast, Flash, Time-Lapse Duration, White Balance |
+| Display Options | Font, Font Size, Autoscroll Duration |
+| System Options | Archive Photos, Show Splash Screen, Timestamp Photo, Clear Display and Shut Down,  Show Photo and Shut Down, Purge |
+
 **Hardware used in this project:**
 1) Raspberry Pi Zero2 W
 2) Waveshare 2.7-inch ePaper Hat (with built-in GPIO buttons)

@@ -4,8 +4,6 @@ from gpiozero import LED, Button
 from picamzero import Camera
 from pathlib import Path
 
-# New
-
 def main():
 	home_dir=Path(__file__).parent.resolve() # Current directory
 

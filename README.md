@@ -215,6 +215,7 @@ sudo raspi-config
 <br><br><br><br><br><br><br><br><br><br><br>  
 
 • Select "Yes" to reboot your Pi and apply config changes.  
+• If not prompted to rebood, reboot in the terminal manually - sudo reboot  
 <br>
 <img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/SPI_4.jpg' width='400' align='left'>  
 <br><br><br><br><br><br><br><br><br><br><br>  

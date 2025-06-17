@@ -156,7 +156,11 @@ ping pi -n 1
 <br>
 <img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/ssh_IP_pw.png' width='500' align='left'>  
 <br><br>
-
+If you get a warning like the one below, approve it by typing "yes".
+<br><br>
+<img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/ssh_warning.jpg' width='700' align='left'>  
+<br><br><br><br><br>
+  
 ### Update Pi
 • After flashing, it is always recommended to update and upgrade  the OS.  
 (This process will likely take a couple minutes time to complete.)  

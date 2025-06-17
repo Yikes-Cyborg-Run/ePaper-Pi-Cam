@@ -159,6 +159,7 @@ ping pi -n 1
 
 ### Update Pi
 • After flashing, it is always recommended to update and upgrade  the OS.  
+• This process will likely take some time to complete.  
 ```
 sudo apt update && sudo apt -y full-upgrade
 ```

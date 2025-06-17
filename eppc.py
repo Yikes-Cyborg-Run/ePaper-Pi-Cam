@@ -1,5 +1,5 @@
-import datetime, logging, os, re, time, tomlkit, zipfile
-from waveshare_epd import epd2in7_V2 # -- the 2.7inch GPIO HAT
+import datetime, logging, os, re, time, zipfile
+from waveshare_epd import epd4in2_V2 # epd2in7_V2-- the 2.7inch GPIO HAT
 from gpiozero import LED #, Button
 from PIL import Image, ImageDraw, ImageFont
 from pathlib import Path
@@ -8,7 +8,7 @@ from pathlib import Path
 
 class Display():
 	def __init__(self):
-		self.epd=epd2in7_V2.EPD()
+		self.epd=epd4in2_V2.EPD()
 		self.epd.init()
 		self.config=Config().load()
 		self.home_dir=Path(__file__).parent.resolve()
@@ -235,7 +235,7 @@ class Menu():
 				LEDs().LEDs(1, 0, 0)
 				data=[0, use_menu[h], False, 0]
 				if (sel in self.menu_list['Camera Options']) or (sel in self.menu_list['Display Options']) or (sel in self.menu_list['System Options']):
-					data=Config().save(sel, use_menu[h])
+					data=Config().save(sel, use_menu[h], cam)
 			elif m.is_pressed: # go to main menu
 				LEDs().LEDs(1, 0, 0)
 				data=[0, 'Main Menu', False, 0]
@@ -493,38 +493,26 @@ class Calc():
 class Config():
 	def __init__(self):
 		self.home_dir=Path(__file__).parent.resolve()
-#		self.config_path=self.home_dir / 'config.txt'
-		self.config_path=self.home_dir / 'config.toml'
+		self.config_path=self.home_dir / 'config.txt'
 
 	# Load config settings from txt file
-	"""
 	def load(self):
-		try:
-			with open(self.config_path, "rb") as f:
-				data = tomli.load(f)
-			return(data)
-		except FileNotFoundError:
-			print(f"Error: File not found at '{self.config_path}'")
-			return None
-		except tomli.TOMLDecodeError as e:
-			print(f"Error: TOML parsing error: {e}")
-			return None
-	"""
-	def load(self):
-		try:
-			with open(self.config_path, "rb") as f:
-				data = tomlkit.load(f)
-			return(data)
-		except FileNotFoundError:
-			print(f"Error: File not found at '{self.config_path}'")
-			return None
-		except tomlkit.TOMLDecodeError as e:
-			print(f"Error: TOML parsing error: {e}")
-			return None
+		config={}
+		if Path(self.config_path).is_file():
+			try:
+				with open(self.config_path, 'r') as file:
+					for line in file:
+						if '=' in line:
+							key, value=line.strip().split('=', 1)
+							config[key]=value
+			except Exception as e:
+				Log().error(f"Could not load config.\nDetails:\n{e}")
+		else:
+			Log().error("No config file.")
+		return config
 
 	# Save config settings to txt file
-	"""
-	def save(self, config_item, v):
+	def save(self, config_item, v, cam):
 		# Key names from the Camera/Display Options menus
 		# Strip down, remove spaces and special characters, and make lowercase
 		k=config_item.lower()
@@ -545,16 +533,6 @@ class Config():
 			return [0, 'Main Menu', False, 0]
 		except Exception as e:
 			Log().error(f"Could not save config.\nDetails:\n{e}")
-	"""
-	def save(self, config_item, v):
-		# Key names from the Camera/Display Options menus
-		# Strip down, remove spaces and special characters, and make lowercase
-		k=config_item.lower()
-		k=re.sub(r'[^a-zA-Z0-9]', '', k)
-		config=Config().load()
-		config[k]=str(v)
-		with open(self.config_path, 'w') as file:
-			tomlkit.dump(config, file)
 
 	def options_list(self):
 		options_list=[]

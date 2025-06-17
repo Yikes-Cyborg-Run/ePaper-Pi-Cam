@@ -1,0 +1,9 @@
+####### 2025-49-06/17/25 #######
+2025-06-17 00:49:51,496 - eppc - INFO - Loading file: /home/pi/ePaper-Pi-Cam/Resources/splash.jpg....
+2025-06-17 00:49:54,165 - eppc - INFO - Displayed file: /home/pi/ePaper-Pi-Cam/Resources/splash.jpg
+2025-06-17 00:49:55,510 - eppc - INFO - Building list of previously saved photos
+2025-06-17 00:49:55,622 - eppc - INFO - Photos currently on file: 525.
+2025-06-17 00:49:55,651 - eppc - INFO - h: 0 -- MAIN MENU -- ['Camera', 'Time-Lapse', 'Manual Scroll', 'Autoscroll', 'Camera Options', 'Display Options', 'System Options']
+2025-06-17 09:37:34,489 - eppc - INFO - h: 1 -- MAIN MENU -- ['Camera', 'Time-Lapse', 'Manual Scroll', 'Autoscroll', 'Camera Options', 'Display Options', 'System Options']
+2025-06-17 09:37:37,485 - eppc - INFO - h: 2 -- MAIN MENU -- ['Camera', 'Time-Lapse', 'Manual Scroll', 'Autoscroll', 'Camera Options', 'Display Options', 'System Options']
+2025-06-17 09:37:43,690 - eppc - INFO - Exiting program.

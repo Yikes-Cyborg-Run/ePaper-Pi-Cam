@@ -169,7 +169,7 @@ sudo apt update && sudo apt -y full-upgrade
 • This project makes use of the picamzero module to take photos.  
 • Install the module:
 ```
-sudo apt install python3-picamzero
+sudo apt install python3-picamzero -y
 ```
 • Use the terminal to take a test photo after picamzero has been installed.  
 ```

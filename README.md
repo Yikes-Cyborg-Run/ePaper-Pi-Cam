@@ -188,14 +188,6 @@ rpicam-still -o image.jpg
 sudo apt install git -y
 ```
 
-### Install pip
-• OS Lite does not include pip, so you will need to install it for this project.
-(This process will likely take a couple minutes time to complete.)  
-```
-sudo apt-get install python3-pip
-```
-
-
 ### Install gpiozero  
 • This project uses the gpiozero module to interface with buttons and LEDs.  
 • gpiozero is a library that simplifies interacting with GPIO (General Purpose Input/Output) pins the  Pi.  
@@ -205,7 +197,7 @@ sudo apt-get install python3-pip
 sudo apt install python3-gpiozero -y
 ```
 
-### Enable SPI ###
+## Enable SPI ##
 • SPI (Serial Peripheral Interface) must be enabled to use the ePaper display.  
 • To asccess the Pi config menu:
 ```
@@ -227,7 +219,7 @@ sudo raspi-config
 <br><br><br><br><br><br><br><br><br><br><br>  
 
 • Select "Yes" to reboot your Pi and apply config changes.  
-• If not prompted to rebood, reboot in the terminal manually - sudo reboot  
+• NOTE: If not prompted to reboot, select Finish from the config menu and manually reboot in the terminal - sudo reboot  
 <br>
 <img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/SPI_4.jpg' width='400' align='left'>  
 <br><br><br><br><br><br><br><br><br><br><br>  

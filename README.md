@@ -181,7 +181,7 @@ rpicam-still -o image.jpg
 • OS Lite does not include Git, so you will need to install it for this project.
 (This process will likely take a couple minutes time to complete.)  
 ```
-sudo apt install git
+sudo apt install git -y
 ```
 
 ### Install gpiozero  
@@ -190,7 +190,7 @@ sudo apt install git
 • OS Lite does not include gpiozero, so you will need to install it for this project.  
 [gpiozero info, docs and recipies](https://gpiozero.readthedocs.io/en/latest/)
 ```
-sudo apt install python3-gpiozero
+sudo apt install python3-gpiozero -y
 ```
 
 ### Enable SPI ###

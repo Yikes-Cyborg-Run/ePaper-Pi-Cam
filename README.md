@@ -233,6 +233,8 @@ sudo raspi-config
 edit the part "epd2in7_V2" to match the name of your display.
 
 
+<img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/cron_notice.jpg' width='400' align='left'>  
+<br><br><br><br><br><br><br><br>  
 
 
 

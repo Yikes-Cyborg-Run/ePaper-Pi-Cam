@@ -168,10 +168,11 @@ If you get a warning like the one below, approve it by typing "yes".
 sudo apt update && sudo apt -y full-upgrade
 ```
 
+## Install Modules  
+(Installing each module will likely take a couple minutes to complete.)  
 
 ### Install picamzero
 • This project makes use of the picamzero module to take photos.  
-(This process will likely take a couple minutes time to complete.)  
 ```
 sudo apt install python3-picamzero -y
 ```
@@ -183,7 +184,6 @@ rpicam-still -o image.jpg
 
 ### Install Git  
 • OS Lite does not include Git, so you will need to install it for this project.
-(This process will likely take a couple minutes time to complete.)  
 ```
 sudo apt install git -y
 ```

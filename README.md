@@ -24,8 +24,8 @@ Deleting photos is also an option.
 3) Official Raspberry Pi Camera Module V2
 4) Micro SD Card
 5) Micro USB data cable → **$${\color{red}MAKE \space SURE \space IT'S \space A \space DATA \space CABLE!}$$**
-6) 3x LEDs of different colors plus 3x 220Ω resistors → **$${\color{blue}optional}$$**
-
+6) 3x LEDs of different colors, plus 3x 220Ω resistors → **$${\color{blue}LEDs optional}$$**
+7) 1x extra-bright LED for camera flash, plus 1x 220Ω resistors → **$${\color{blue}LED optional}$$**
 
 ## Wire up hardware ##  
 **Setup Waveshare ePaper Display**  

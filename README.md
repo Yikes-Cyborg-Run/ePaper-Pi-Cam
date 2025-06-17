@@ -76,6 +76,7 @@ Deleting photos is also an option.
 | Green | 16 |  
 | Yellow | 12 |
 | Red | 20 |
+| Flash | 23 |
 
 **Connect the Camera**  
 • For this project, I used the official Raspberry Pi Camera module.  

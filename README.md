@@ -184,6 +184,14 @@ rpicam-still -o image.jpg
 sudo apt install git -y
 ```
 
+### Install pip
+• OS Lite does not include pip, so you will need to install it for this project.
+(This process will likely take a couple minutes time to complete.)  
+```
+sudo apt-get install python3-pip
+```
+
+
 ### Install gpiozero  
 • This project uses the gpiozero module to interface with buttons and LEDs.  
 • gpiozero is a library that simplifies interacting with GPIO (General Purpose Input/Output) pins the  Pi.  

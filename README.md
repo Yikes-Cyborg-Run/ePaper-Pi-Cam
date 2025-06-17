@@ -233,7 +233,17 @@ sudo raspi-config
 edit the part "epd2in7_V2" to match the name of your display.
 
 
-<img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/cron_notice.jpg' width='400' align='left'>  
+## Start Camera When Pi Starts Up ##  
+<img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/crontab_notice.jpg' width='500' align='left'>  
+<br><br><br><br><br><br><br><br>  
+
+```
+sudo crontab -e
+```
+```
+@reboot python3 /home/pi/ePaper-Pi-Cam/main.py &
+```
+<img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/crontab_setting.jpg' width='600' align='left'>  
 <br><br><br><br><br><br><br><br>  
 
 

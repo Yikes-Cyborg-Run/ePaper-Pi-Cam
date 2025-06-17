@@ -1,4 +1,4 @@
-<img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/title.jpg' align='left'>  
+<img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/title.jpg' align='left'>  
 <br>  
 
 ## Take photos with Raspberry Pi and then show them on an ePaper display. ##  

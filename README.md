@@ -233,19 +233,28 @@ sudo raspi-config
 edit the part "epd2in7_V2" to match the name of your display.
 
 
-## Start Camera When Pi Starts Up ##  
-<img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/crontab_notice.jpg' width='500' align='left'>  
-<br><br><br><br><br><br><br><br>  
-
+## When Pi Starts Up, Start Camera ##  
+• To make the camera start when the Pi starts, you'll need to do a couple things.
+• Open the crontab...  
 ```
 sudo crontab -e
 ```
+• Select the first option for the editor.  
+<img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/crontab_notice.jpg' width='500' align='left'>  
+<br><br><br><br><br><br>  
+
+• Add the folowwing to the bottom of the file.  
 ```
 @reboot python3 /home/pi/ePaper-Pi-Cam/main.py &
 ```
 <img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/crontab_setting.jpg' width='600' align='left'>  
-<br><br><br><br><br><br><br><br>  
+<br><br><br><br><br><br>  
 
+• Ctrl-X to exit, then Y to save, and Enter to confirm.  
+• Then reboot the Pi
+```
+sudo reboot
+```
 
 
 

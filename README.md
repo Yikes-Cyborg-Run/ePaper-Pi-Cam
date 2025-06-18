@@ -10,6 +10,12 @@ You can set the display to autoscroll through photos you've taken, and also set 
 Deleting photos is also an option.  
 <br>
 
+### To-Do
+- [ ] Increase flash duration for better exposure.
+- [ ] Audit code for efficiencey - remove/refine classes / modules -- logging
+- [ ] Menu Config Options for: Screen Rotation, Camera Eposure, Screen & Photo Resolution
+- [ ] Long Term: Wifi connect to download photos?
+- [ ] Web UI?
 
 | Menu Name | Options/Items | 
 |------------|------------|  
@@ -258,7 +264,7 @@ sudo reboot
 
 
 
-### Project Resources
+### Project Resources & Notes for Future Updates/To-Do 
 **Picamzero Documents**  
 [Docs Recipes](https://picamera.readthedocs.io/en/release-1.13/)
 [Getting Started](https://raspberrypifoundation.github.io/picamera-zero/)
@@ -287,7 +293,7 @@ sudo reboot
 
 ### To-Do
 - [x] Buttons to navigate through past photos.
-- [ ] Button to delete single images
-- [ ] Button to delete ALL images
-- [ ] Settings window to change indoor/outdoor brightness, whitebalance, etc.
-- [ ] Possibly add a bright LED for flash?
+- [x] Delete single images
+- [x] Delete ALL images
+- [x] Settings window to change indoor/outdoor brightness, whitebalance, etc.
+- [x] Possibly add a bright LED for flash?

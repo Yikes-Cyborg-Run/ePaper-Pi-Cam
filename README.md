@@ -3,6 +3,13 @@
 
 ## Take photos with Raspberry Pi and then show them on an ePaper display. ##  
 
+### Cool Stuff: ###
+1) Use your camera to take photos and render them on-the-fly with an ePaper display.
+2) Take timelapse photos with user-defined duration.
+3) Display photos you've taken on Autoscroll function with a user-defined duration.
+4) Manually scroll through photos you've taken.
+5) Archive photo directory to a zip file to download later and purge photo directory
+6) Customizable camera options: 
 
 I have been coding/programming for 25+ years, but only in the past couple years have I been coding Python -- some for my job as a GIS Analyst and some for my own entertainment/enrichment. I have also enjoyed working on Raspberry Pi projects for a while, and have wanted to contribute to the RPi community in some way for a while. So, first off, I understand full well that a lot of this code could be better, and some of it is likely downright offensive to a long-time Python programmer. And for that I sincerely apologize. For example.... Classes. This project was originally an effort to force myself to gain a better understanding of Classes. Throughout my career, I've had little need to create or write them into any of my own code, other than have an understanding of them in plugins, ets. I've also had no experience in creating a decent-sized python app with the textbook structure for a properly organized app. I am aware this is not structured anywhere near properly, but I plan to make it better. Up until a little while ago I've never tried to put together a Github repo. Still, I think I'm learning and getting a little bit better; and that continuing to work on this will help me to improve on all of my shortcomings. Lastly, I would like to say that I would never offer anything up to the public that didn't work for me personally. At this point, I've gone though these steps a number of times from scratch. I know what some of the possible stumbling blocks might be, and hopefully have doucument them in the walk-through. But if anyone has any issues, I will do my absolute best to help.  
   

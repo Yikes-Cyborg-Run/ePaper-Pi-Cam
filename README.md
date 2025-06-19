@@ -22,11 +22,12 @@ Deleting photos is also an option.
 <br>
 
 ### To-Do
-- [ ] Increase flash duration for better exposure.
+- [ ] Increase flash duration for better exposure. ! Priority ! 
 - [ ] Audit code for efficiencey - remove/refine classes / modules -- logging
 - [ ] Menu Config Options for: Screen Rotation, Camera Eposure, Screen & Photo Resolution
+- [ ] Select a photo for splashscreen from manual scroll
 - [ ] Long Term: Wifi connect to download photos?
-- [ ] Web UI?
+- [ ] Long Term: Web UI?
 
 | Menu Name | Options/Items | 
 |------------|------------|  

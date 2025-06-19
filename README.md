@@ -7,7 +7,7 @@
 
 
 
-### About This Project: ###
+### Project Features: ###
 1) Use your camera to take photos and render them on-the-fly with an ePaper display.
 2) Take timelapse photos with user-defined duration.
 3) Display photos you've taken on Autoscroll function with a user-defined duration.

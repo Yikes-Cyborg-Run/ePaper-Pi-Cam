@@ -4,7 +4,7 @@
 ## Take photos with Raspberry Pi and then show them on an ePaper display. ##  
 
 
-Included are options to auto-scroll through your photos, or you can use buttons to tab through them manually.  
+Even though I have been coding/programming for 25+ years, I have recently in the past couple years began to learn more Python; and also work on more Raspberry Pi projects. So I understand full well that some of this code could be better, and some of it is likely downright offensive to a long-time python programmer. For example.... Classes. This project originally was an effort to force myself to gain a better understanding of Classes. Throughout my career, I've had little need to create them. I've also had no experience in creating a decent-sized python app with the textbook structure for a properly organized app. Moreover, up until a couple months ago I've never tried to put together a repo.... But I think I'm learning and getting better. I'm hoping that continuing to work on this will help me to improve on all. I would like to say that I would never offer anything up to the public that didn't work for me. At this point, I've gone though these steps a number of times from scratch. So if anyone has any issues, I will do my absolute best to help. Included are options to auto-scroll through your photos, or you can use buttons to tab through them manually.  
 There are several different camera configuration options that can be customized by editing the config.txt file.  
 You can set the display to autoscroll through photos you've taken, and also set the camera to take time lapse photos if you like.
 Deleting photos is also an option.  

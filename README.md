@@ -21,13 +21,6 @@ You can set the display to autoscroll through photos you've taken, and also set 
 Deleting photos is also an option.  
 <br>
 
-### To-Do
-- [ ] Increase flash duration for better exposure. ! Priority ! 
-- [ ] Audit code for efficiencey - remove/refine classes / modules -- logging
-- [ ] Menu Config Options for: Screen Rotation, Camera Eposure, Screen & Photo Resolution
-- [ ] Select a photo for splashscreen from manual scroll
-- [ ] Long Term: Wifi connect to download photos?
-- [ ] Long Term: Web UI?
 
 | Menu Name | Options/Items | 
 |------------|------------|  
@@ -303,7 +296,14 @@ sudo reboot
 [Raspberry Pi Official Camera Module Documentation](https://www.raspberrypi.com/documentation/accessories/camera.html)
 [Install gpiozero](https://gpiozero.readthedocs.io/en/stable/installing.html)
 
+
 ### To-Do
+- [ ] Increase flash duration for better exposure. ! Priority ! 
+- [ ] Audit code for efficiencey - remove/refine classes / modules -- logging
+- [ ] Menu Config Options for: Screen Rotation, Camera Eposure, Screen & Photo Resolution
+- [ ] Select a photo for splashscreen from manual scroll
+- [ ] Long Term: Wifi connect to download photos?
+- [ ] Long Term: Web UI?
 - [x] Buttons to navigate through past photos.
 - [x] Delete single images
 - [x] Delete ALL images

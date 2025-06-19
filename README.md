@@ -1,7 +1,7 @@
 <img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/title.jpg' align='left'>  
 <br>  
 
-## Take photos with Raspberry Pi and then show them on an ePaper display. ##  
+## A Raspberry Pi Camera to show photos on an ePaper display. ##  
 
 ### Cool Stuff: ###
 1) Use your camera to take photos and render them on-the-fly with an ePaper display.

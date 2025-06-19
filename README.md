@@ -11,8 +11,8 @@
 1) Use your camera to take photos and render them on-the-fly with an ePaper display.
 2) Take timelapse photos with user-defined duration.
 3) Display photos you've taken on Autoscroll function with a user-defined duration.
-4) Manually scroll through photos you've taken.
-5) Archive the Photos directory to a zip file for protecting or downloading later.
+4) Manually scroll through photos you've taken and delete photos if you wish to.
+5) Archive your Photos directory to a zip file for protecting or downloading later.
 6) Purge all photos.
 7) Customizable Camera Options: Display Font, Font Size, Time-Lapse Duration, Autoscroll Duration, Brightness, Contrast, Enable/Disable Flash, White Balance, Archive Photos, Show Splash Screen, Clear Display and Shut Down, Show Photo and Shut Down, Purge Photo Directory.
 

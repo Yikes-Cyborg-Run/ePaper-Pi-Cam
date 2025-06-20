@@ -5,7 +5,7 @@
 <img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/splash_lego_enclosure.jpg' align='right' width='550'>  
 
 # My menu
-[Preamble](https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam#Preamble)
+[Preamble](https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam#preamble)
 [Technical documentation](techdocs)
 [User manual](usermanual)
 

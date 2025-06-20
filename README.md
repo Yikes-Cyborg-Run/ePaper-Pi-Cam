@@ -7,7 +7,7 @@
 
 
 
-### Project Features: ###
+# Project Features: ###
 1) Use your camera to take photos and render them on-the-fly with an ePaper display.
 2) Take timelapse photos with user-defined duration.
 3) Display photos you've taken on Autoscroll function with a user-defined duration.
@@ -16,7 +16,7 @@
 6) Purge all photos.
 7) Customizable Camera Options: Display Font, Font Size, Time-Lapse Duration, Autoscroll Duration, Brightness, Contrast, Enable/Disable Flash, White Balance, Archive Photos, Show Splash Screen, Clear Display and Shut Down, Show Photo and Shut Down, Purge Photo Directory.
 
-## Preable x-D ##
+# Preable x-D #
 I have been coding/programming for 25+ years, but only in the past couple years have I been coding Python -- some for my job as a GIS Analyst and some for my own entertainment/enrichment. I have also enjoyed working on Raspberry Pi projects for a while, and have wanted to contribute to the RPi community in some way for a while. So, first off, I understand full well that a lot of this code could be better, and some of it is likely downright offensive to a long-time Python programmer. And for that I sincerely apologize. For example.... Classes. This project was originally an effort to force myself to gain a better understanding of Classes. Throughout my career, I've had little need to create or write them into any of my own code, other than have an understanding of them in plugins, ets. I've also had no experience in creating a decent-sized python app with the textbook structure for a properly organized app. I am aware this is not structured anywhere near properly, but I plan to make it better. Up until a little while ago I've never tried to put together a Github repo. Still, I think I'm learning and getting a little bit better; and that continuing to work on this will help me to improve on all of my shortcomings. Lastly, I would like to say that I would never offer anything up to the public that didn't work for me personally. At this point, I've gone though these steps a number of times from scratch. I know what some of the possible stumbling blocks might be, and hopefully have doucument them in the walk-through. But if anyone has any issues, I will do my absolute best to help.  
   
   Included are options to auto-scroll through your photos, or you can use buttons to tab through them manually.  
@@ -42,7 +42,7 @@ Deleting photos is also an option.
 6) 3x LEDs of different colors, plus 3x 220Ω resistors → **$${\color{blue}LEDs\space optional}$$**
 7) 1x extra-bright LED for camera flash, plus 1x 220Ω resistors → **$${\color{blue}LED\space optional}$$**
 
-## Wire up hardware ##  
+# Wire up hardware #  
 **Setup Waveshare ePaper Display**  
 • If you are using the Waveshare 2.7-inch GPIO hat, all you need to do is seat the hat on your Pi.  
 • If you're using a different/wired Waveshare display, refer to the GPIO diagram and table below.
@@ -104,7 +104,7 @@ Deleting photos is also an option.
 <img src='' align='left' width='400' alt='connect camera'>  
 <br>  
 
-## Install the Raspberry Pi Operating System
+# Install the Raspberry Pi Operating System #
 **Flash the OS with Raspberry Pi Imager**  
 [Download Raspberry Pi Imager here](https://www.raspberrypi.com/software/)  
 <br>

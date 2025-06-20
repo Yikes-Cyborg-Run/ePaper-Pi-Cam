@@ -12,8 +12,9 @@
 • [Enable SPI](https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam#enable-spi)
 
 <!-- <img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/splash_lego_enclosure.jpg' align='right' width='550'>  -->
-<img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/splash_lego_enclosure.jpg' width='650'>  
-<sub>_An early prototype of the ePaper-Pi-Cam. Please forgive the crude lego enclosure, I've no 3D printer._</sub>  
+<img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/splash_lego_enclosure.jpg' width='650'>
+
+_An early prototype of the ePaper-Pi-Cam. Please forgive the crude lego enclosure, I've no 3D printer!_  
 <br><br>
 
 ### Main Features: ###
@@ -28,7 +29,7 @@
 # Introduction #
 I have been coding/programming for 25+ years, but only in the past couple years have I been coding Python -- some for my job as a GIS Analyst and some for my own entertainment/enrichment. I have also enjoyed working on Raspberry Pi projects for a while, and have wanted to contribute to the RPi community in some way for a while. So, first off, I understand full well that a lot of this code could be better, and some of it is likely downright offensive to a long-time Python programmer. And for that I sincerely apologize. For example.... Classes. This project was originally an effort to force myself to gain a better understanding of Classes. Throughout my career, I've had little need to create or write them into any of my own code, other than have an understanding of them in plugins, ets. I've also had no experience in creating a decent-sized python app with the textbook structure for a properly organized app. I am aware this is not structured anywhere near properly, but I plan to make it better. Up until a little while ago I've never tried to put together a Github repo. Still, I think I'm learning and getting a little bit better; and that continuing to work on this will help me to improve on all of my shortcomings. Lastly, I would like to say that I would never offer anything up to the public that didn't work for me personally. At this point, I've gone though these steps a number of times from scratch. I know what some of the possible stumbling blocks might be, and hopefully have doucument them in the walk-through. But if anyone has any issues, I will do my absolute best to help.  
   
-  Included are options to auto-scroll through your photos, or you can use buttons to tab through them manually.  
+Included are options to auto-scroll through your photos, or you can use buttons to tab through them manually.  
 There are several different camera configuration options that can be customized by editing the config.txt file.  
 You can set the display to autoscroll through photos you've taken, and also set the camera to take time lapse photos if you like.
 Deleting photos is also an option.  

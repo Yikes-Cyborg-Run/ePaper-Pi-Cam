@@ -9,7 +9,7 @@
 • [Hardware](https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam#hardware)
 • [Install Raspberry Pi OS](https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam#install-the-raspberry-pi-operating-system)
 • [Install Modules](https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam#install-modules)
-• [Enable SPI](https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam#enable-spi)
+• [Enable SPI](https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam#enable-spi)  
 • [Resources & To-Do](https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam?#project-resources--notes-for-future-updatesto-do)
 
 

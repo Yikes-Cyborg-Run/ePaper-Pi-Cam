@@ -10,7 +10,7 @@
 [User manual](usermanual)
 
 
-# Project Features: ###
+### Main Features: ###
 1) Use your camera to take photos and render them on-the-fly with an ePaper display.
 2) Take timelapse photos with user-defined duration.
 3) Display photos you've taken on Autoscroll function with a user-defined duration.
@@ -36,6 +36,7 @@ Deleting photos is also an option.
 | Display Options | Font, Font Size, Autoscroll Duration |
 | System Options | Archive Photos, Show Splash Screen, Timestamp Photo, Clear Display and Shut Down,  Show Photo and Shut Down, Purge |
 
+## Wire up hardware ##  
 **Hardware used in this project:**
 1) Raspberry Pi Zero2 W
 2) Waveshare 2.7-inch ePaper Hat (with built-in GPIO buttons)
@@ -45,7 +46,8 @@ Deleting photos is also an option.
 6) 3x LEDs of different colors, plus 3x 220Ω resistors → **$${\color{blue}LEDs\space optional}$$**
 7) 1x extra-bright LED for camera flash, plus 1x 220Ω resistors → **$${\color{blue}LED\space optional}$$**
 
-# Wire up hardware #  
+
+
 **Setup Waveshare ePaper Display**  
 • If you are using the Waveshare 2.7-inch GPIO hat, all you need to do is seat the hat on your Pi.  
 • If you're using a different/wired Waveshare display, refer to the GPIO diagram and table below.

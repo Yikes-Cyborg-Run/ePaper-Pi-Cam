@@ -13,7 +13,7 @@
 
 <!-- <img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/splash_lego_enclosure.jpg' align='right' width='550'>  -->
 <img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/splash_lego_enclosure.jpg' width='650'>  
-<sub>An early prototype of the ePaper-Pi-Cam. Please forgive the crude lego enclosure, I've no 3D printer.</sub>  
+<sub>_An early prototype of the ePaper-Pi-Cam. Please forgive the crude lego enclosure, I've no 3D printer._</sub>  
 <br><br>
 
 ### Main Features: ###

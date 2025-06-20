@@ -43,7 +43,7 @@ Deleting photos is also an option.
 | Main | Camera, Time-Lapse, Manual Scroll, Autoscroll,  Camera Options, Display Options, System Options |  
 | Camera Options | Brightness, Contrast, Flash, Time-Lapse Duration, White Balance |
 | Display Options | Font, Font Size, Autoscroll Duration |
-| System Options | Archive Photos, Show Splash Screen, Timestamp Photo, Clear Display and Shut Down,  Show Photo and Shut Down, Purge |
+| System Options | Archive Photos, Show Splash Screen, Timestamp Photo, Clear Display and Shut Down,  Show Photo and Shut Down, Purge All Photos |
 
 # Hardware #  
 **Hardware used in this project:**
@@ -296,8 +296,9 @@ sudo reboot
 [Picamzero API Documentation](https://raspberrypifoundation.github.io/picamera-zero/api_docs/)  
 [PiCamzero Timelapse option](https://raspberrypifoundation.github.io/picamera-zero/camera/)
 
-**GPIO Zero Recipies**  
-[light sensor - for auto flash](https://gpiozero.readthedocs.io/en/stable/recipes.html#light-sensor)  
+**GPIO Zero Install & Recipies**  
+[Install gpiozero](https://gpiozero.readthedocs.io/en/stable/installing.html)  
+[Recipies → light sensor - for auto flash](https://gpiozero.readthedocs.io/en/stable/recipes.html#light-sensor)  
 
 **Waveshare ePaper Info**  
 [ePaper Tutorials](https://dev.to/ranewallin/getting-started-with-the-waveshare-2-7-epaper-hat-on-raspberry-pi-41m8)  
@@ -311,8 +312,7 @@ sudo reboot
 [Raspberry Pi Headless Setup for ssh - by Sam Westby Tech](https://www.youtube.com/watch?v=9fEnvDgxwbI)  
 [Headless Pi Setup Documentation](https://www.raspberrypi.com/documentation/computers/configuration.html#setting-up-a-headless-raspberry-pi)  
 [How to Install Git](https://github.com/git-guides/install-git)  
-[Raspberry Pi Official Camera Module Documentation](https://www.raspberrypi.com/documentation/accessories/camera.html)
-[Install gpiozero](https://gpiozero.readthedocs.io/en/stable/installing.html)
+[Raspberry Pi Official Camera Module Documentation](https://www.raspberrypi.com/documentation/accessories/camera.html)  
 
 
 ### To-Do
@@ -322,6 +322,7 @@ sudo reboot
 - [ ] Select a photo for splashscreen from manual scroll
 - [ ] Long Term: Wifi connect to download photos?
 - [ ] Long Term: Web UI?
+- [ ] Long Term: Light sensor for auto-flash?
 - [x] Buttons to navigate through past photos.
 - [x] Delete single images
 - [x] Delete ALL images

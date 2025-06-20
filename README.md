@@ -6,9 +6,9 @@
 
 ### Table of Contents ###
 • [Introduction](https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam#introduction)  
-• [Hardware](https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/README.md#hardware)  
-• [Install RPi OS](https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/edit/main/README.md#install-the-raspberry-pi-operating-system)  
-• [Install Modules](https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/edit/main/README.md#install-modules)  
+• [Hardware](https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam#hardware)  
+• [Install RPi OS](https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam#install-the-raspberry-pi-operating-system)  
+• [Install Modules](https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam#install-modules)  
 
 ### Main Features: ###
 1) Use your camera to take photos and render them on-the-fly with an ePaper display.

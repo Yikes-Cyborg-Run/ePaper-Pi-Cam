@@ -4,13 +4,17 @@
 ## A Raspberry Pi Camera to show photos on an ePaper display. ##  
 
 ### Table of Contents ###
+• [Main Features](https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam#main-features)
 • [Introduction](https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam#introduction)
 • [Hardware](https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam#hardware)
 • [Install Raspberry Pi OS](https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam#install-the-raspberry-pi-operating-system)
 • [Install Modules](https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam#install-modules)
+• [Enable SPI](https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam#enable-spi)
 
 <!-- <img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/splash_lego_enclosure.jpg' align='right' width='550'>  -->
 <img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/splash_lego_enclosure.jpg' width='650'>  
+<sub>An early prototype of the ePaper-Pi-Cam. Please forgive the crude lego enclosure, I've no 3D printer.</sub>  
+<br><br>
 
 ### Main Features: ###
 1) Use your camera to take photos and render them on-the-fly with an ePaper display.
@@ -256,7 +260,7 @@ edit the part "epd2in7_V2" to match the name of your display.
 
 
 ## When Pi Starts Up, Start Camera ##  
-• To make the camera start when the Pi starts, you'll need to do a couple things.
+• To make the camera start when the Pi boots up, you'll need to do a couple things.
 • Open the crontab...  
 ```
 sudo crontab -e

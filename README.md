@@ -4,7 +4,7 @@
 ## A Raspberry Pi Camera to show photos on an ePaper display. ##  
 <img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/splash_lego_enclosure.jpg' align='right' width='550'>  
 
-# My menu
+### Table of Contents ###
 [Intro](https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam#intro)
 [Technical documentation](techdocs)
 [User manual](usermanual)

@@ -2,13 +2,15 @@
 <br>  
 
 ## A Raspberry Pi Camera to show photos on an ePaper display. ##  
-<img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/splash_lego_enclosure.jpg' align='right' width='550'>  
 
 ### Table of Contents ###
-• [Introduction](https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam#introduction)  
-• [Hardware](https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam#hardware)  
-• [Install RPi OS](https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam#install-the-raspberry-pi-operating-system)  
-• [Install Modules](https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam#install-modules)  
+• [Introduction](https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam#introduction)
+• [Hardware](https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam#hardware)
+• [Install Raspberry Pi OS](https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam#install-the-raspberry-pi-operating-system)
+• [Install Modules](https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam#install-modules)
+
+<!-- <img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/splash_lego_enclosure.jpg' align='right' width='550'>  -->
+<img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/splash_lego_enclosure.jpg' width='650'>  
 
 ### Main Features: ###
 1) Use your camera to take photos and render them on-the-fly with an ePaper display.

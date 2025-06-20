@@ -59,6 +59,7 @@ Enjoy!
 5) Micro USB data cable → **$${\color{red}MAKE \space SURE \space IT'S \space A \space DATA \space CABLE!}$$**
 6) 3x LEDs of different colors, plus 3x 220Ω resistors → **$${\color{blue}LEDs\space optional}$$**
 7) 1x extra-bright LED for camera flash, plus 1x 220Ω resistors → **$${\color{blue}LED\space optional}$$**
+8) Powerbank (to make it mobile) -- I have plans to add instructions for a battery build.
 
 **Wiring Diagram**  
 • This image shows how to wire up the camera buttons if you are not using the ePaper Hat.  

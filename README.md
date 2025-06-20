@@ -62,7 +62,7 @@ Deleting photos is also an option.
 
 **Setup Waveshare ePaper Display**  
 • If you are using the Waveshare 2.7-inch GPIO hat, all you need to do is seat the hat on your Pi.  
-• If you're using a different/wired Waveshare display, refer to the GPIO diagram and table below.
+• If you're using a different/wired Waveshare display, refer to the GPIO diagram and table below or the image above.
 <br>
 
 <img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/waveshare_Pi02W_setup.jpg' align='left' width='550'>  

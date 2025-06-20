@@ -5,9 +5,9 @@
 <img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/splash_lego_enclosure.jpg' align='right' width='550'>  
 
 ### Table of Contents ###
-[• Introduction](https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam#intro)
-[• Hardware](https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/README.md#wire-up-hardware)
-[User manual](usermanual)
+• [Introduction](https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam#introduction)  
+• [Hardware](https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/README.md#hardware)  
+• [Install RPi OS](https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/edit/main/README.md#install-the-raspberry-pi-operating-system)  
 
 
 ### Main Features: ###

@@ -63,6 +63,7 @@ Enjoy!
 **Wiring Diagram**  
 • This image shows how to wire up the camera buttons if you are not using the ePaper Hat.  
 • It also shows the wiring of optional LEDs.  
+<br>
 <img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/wiring_diagram.png' width='650'>
 
 **Setup Waveshare ePaper Display**  

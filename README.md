@@ -215,11 +215,13 @@ sudo apt update && sudo apt -y full-upgrade
 ```
 sudo apt install python3-picamzero -y
 ```
+<!--
 • Use the terminal to take a test photo after picamzero has been installed.  
 ```
 rpicam-still -o image.jpg
 ```
 • The terminal will create an image. After it's done, use the "ls" command to verify that a file was created.
+-->
 
 ### Install Git  
 • OS Lite does not include Git, so you will need to install it for this project.

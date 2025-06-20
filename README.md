@@ -55,7 +55,10 @@ Deleting photos is also an option.
 6) 3x LEDs of different colors, plus 3x 220Ω resistors → **$${\color{blue}LEDs\space optional}$$**
 7) 1x extra-bright LED for camera flash, plus 1x 220Ω resistors → **$${\color{blue}LED\space optional}$$**
 
-
+**Wiring Diagram**  
+• This image shows how to wire up the camera buttons if you are not using the ePaper Hat.  
+• It also shows the wiring of optional LEDs.  
+<img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/wiring_diagram.png' width='650'>
 
 **Setup Waveshare ePaper Display**  
 • If you are using the Waveshare 2.7-inch GPIO hat, all you need to do is seat the hat on your Pi.  
@@ -63,6 +66,7 @@ Deleting photos is also an option.
 <br>
 
 <img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/waveshare_Pi02W_setup.jpg' align='left' width='550'>  
+  
 <br>  
 
 | ePaper Pin | Pi GPIO Pin | 

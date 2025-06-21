@@ -77,7 +77,7 @@ def main():
 			# Manually Scroll through photos
 			# Option to delete when photo button is pushed 
 			elif sel=='Manual Scroll':
-				if len(photo_list>0):
+				if len(photo_list)>0:
 					data=Action().manual_scroll(u, d, photo_list, data)
 					if p.is_pressed:
 						data=[0, 'Delete', False, num]

@@ -1,39 +1,79 @@
-<img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/title.jpg' align='left'>  
+<img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/title.jpg' align='left'>  
 <br>  
 
-## Take photos with Raspberry Pi and then show them on an ePaper display. ##  
+## A Raspberry Pi Camera to show photos on an ePaper display. ##  
+
+### Table of Contents ###
+• [Main Features](https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam#main-features)
+• [Introduction](https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam#introduction)
+• [Hardware](https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam#hardware)
+• [Install Raspberry Pi OS](https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam#install-the-raspberry-pi-operating-system)
+• [Install Modules](https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam#install-modules)  
+• [Enable SPI](https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam#enable-spi)
+• [Resources & To-Do](https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam?#project-resources--notes-for-future-updatesto-do)
 
 
-Included are options to auto-scroll through your photos, or you can use buttons to tab through them manually.  
-There are several different camera configuration options that can be customized by editing the config.txt file.  
-You can set the display to autoscroll through photos you've taken, and also set the camera to take time lapse photos if you like.
-Deleting photos is also an option.  
+<!-- <img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/splash_lego_enclosure.jpg' align='right' width='550'>  -->
+<img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/splash_lego_enclosure.jpg' width='650'>
+
+_An early prototype of the ePaper-Pi-Cam. Please forgive the crude lego enclosure, I've no 3D printer!_  
 <br>
 
+# Main Features #
+1) Use your camera to take photos and render them on-the-fly with an ePaper display.
+2) Take timelapse photos with user-defined duration.
+3) Display photos you've taken on Autoscroll function with a user-defined duration.
+4) Manually scroll through photos you've taken and delete photos if you wish to.
+5) Archive your Photos directory to a zip file for protecting or downloading later.
+6) Purge all photos.
+7) Customizable Camera Options: Display Font, Font Size, Time-Lapse Duration, Autoscroll Duration, Brightness, Contrast, Enable/Disable Flash, White Balance, Archive Photos, Show Splash Screen, Clear Display and Shut Down, Show Photo and Shut Down, Purge Photo Directory.
 
 | Menu Name | Options/Items | 
 |------------|------------|  
 | Main | Camera, Time-Lapse, Manual Scroll, Autoscroll,  Camera Options, Display Options, System Options |  
 | Camera Options | Brightness, Contrast, Flash, Time-Lapse Duration, White Balance |
 | Display Options | Font, Font Size, Autoscroll Duration |
-| System Options | Archive Photos, Show Splash Screen, Timestamp Photo, Clear Display and Shut Down,  Show Photo and Shut Down, Purge |
+| System Options | Archive Photos, Show Splash Screen, Timestamp Photo, Clear Display and Shut Down,  Show Photo and Shut Down, Purge All Photos |
 
+# Introduction #  
+I have been coding/programming for 25+ years, but only in the past couple years have I been coding Python -- some for my job as a GIS Analyst and some for my own entertainment/enrichment. I have also enjoyed working on Raspberry Pi projects for a while, and have wanted to contribute to the RPi community in some way. I hope that some in the Pi community will enjoy this project! I've tried my best to go step-by-step through every process needed to get this project running; from flashing the Raspberry Pi OS to programming the Pi to boot up directly into the camera program.   
+
+There are an increasing number of projects that take advantage of the ePaper display's functionality. I'm really drawn to these displays and the soft aesthetic they add to pretty much any project. There are many people who use the ePaper displays as a picture frame and I've always thought these were interesting. The Pi serves up photos and scrolls through them at an interval; simple enough but still very cool. So I thought, why not build an actual camera that takes photos and uses an ePaper display as the screen? I Googled around and didn't find anything of the sort -- a combination of a camera AND scrolling picture frame. So I decided to see if I could build one.  
+
+Some may wonder, why use an ePaper display as a camera screen? Isn't it laggy with the re-drawing? The answer is yes, the screen does need to re-draw. This was one of my major hurdles in putting this together. The ePaper display will need to refresh each time there is a change to the image. With a normal display, the refresh rate is so fast, it's not even noticible. And with looping code, it's pretty much a non-issue in my opinion. But with ePaper, the refresh is very noticible. So I needed a way to let the program know that the screen had drawn and to not continue to refresh it upon each iteration of the program loop. I believe I did this in the most efficient way I know. But I certainly have plans to refine the code to have the display only partially refresh the changed areas.    
+  
+Just a couple of other quick notes: I understand full well that a lot of this code could be better, and some of it is likely downright offensive to a long-time Python programmer. For that I sincerely apologize. For example.... Classes. This project was originally an effort to force myself to gain a better understanding of Classes. Throughout my career, I've had little need to create or write them into any of my own code, other than have an understanding of them in plugins, ets. I've also had no experience in creating a decent-sized python app with the textbook structure for a properly organized app. I am aware this is not structured anywhere near properly, but I plan to make it better. Up until a little while ago I've never tried to put together a Github repo. Still, I think I'm learning and getting a little bit better; and that continuing to work on this will help me to improve on all of my shortcomings.  
+  
+To conclude, I would like to say that I would never offer anything up to the public that didn't work for me personally. At this point, I've gone though these steps a number of times from scratch. I know what some of the possible stumbling blocks might be, and hopefully I've doucumented how to overcome them in the walk-through. But if anyone has any issues, I will do my absolute best to help. And I am always open to suggestions to make this better and to hopefully learn even more myself.  
+
+Enjoy!
+<br>
+
+
+# Hardware #  
 **Hardware used in this project:**
 1) Raspberry Pi Zero2 W
 2) Waveshare 2.7-inch ePaper Hat (with built-in GPIO buttons)
 3) Official Raspberry Pi Camera Module V2
 4) Micro SD Card
 5) Micro USB data cable → **$${\color{red}MAKE \space SURE \space IT'S \space A \space DATA \space CABLE!}$$**
-6) 3x LEDs of different colors plus 3x 220Ω resistors → **$${\color{blue}optional}$$**
+6) 3x LEDs of different colors, plus 3x 220Ω resistors → **$${\color{blue}LEDs\space optional}$$**
+7) 1x extra-bright LED for camera flash, plus 1x 220Ω resistors → **$${\color{blue}LED\space optional}$$**
+8) Powerbank (to make it mobile) -- I have plans to add instructions for a battery build.
 
+**Wiring Diagram**  
+• This image shows how to wire up the camera buttons if you are not using the ePaper Hat.  
+• It also shows the wiring of optional LEDs.  
+<br>
+<img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/wiring_diagram.png' width='650'>
 
-## Wire up hardware ##  
 **Setup Waveshare ePaper Display**  
 • If you are using the Waveshare 2.7-inch GPIO hat, all you need to do is seat the hat on your Pi.  
-• If you're using a different/wired Waveshare display, refer to the GPIO diagram and table below.
+• If you're using a different/wired Waveshare display, refer to the GPIO diagram and table below or the image above.
 <br>
 
 <img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/waveshare_Pi02W_setup.jpg' align='left' width='550'>  
+  
 <br>  
 
 | ePaper Pin | Pi GPIO Pin | 
@@ -76,6 +116,7 @@ Deleting photos is also an option.
 | Green | 16 |  
 | Yellow | 12 |
 | Red | 20 |
+| Flash | 23 |
 
 **Connect the Camera**  
 • For this project, I used the official Raspberry Pi Camera module.  
@@ -88,7 +129,7 @@ Deleting photos is also an option.
 <img src='' align='left' width='400' alt='connect camera'>  
 <br>  
 
-## Install the Raspberry Pi Operating System
+# Install the Raspberry Pi Operating System #
 **Flash the OS with Raspberry Pi Imager**  
 [Download Raspberry Pi Imager here](https://www.raspberrypi.com/software/)  
 <br>
@@ -155,30 +196,38 @@ ping pi -n 1
 <br>
 <img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/ssh_IP_pw.png' width='500' align='left'>  
 <br><br>
-
+If you get a warning like the one below, approve it by typing "yes".
+<br><br>
+<img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/ssh_warning.jpg' width='700' align='left'>  
+<br><br><br><br><br>
+  
 ### Update Pi
 • After flashing, it is always recommended to update and upgrade  the OS.  
+(This process will likely take a couple minutes time to complete.)  
 ```
 sudo apt update && sudo apt -y full-upgrade
 ```
 
+# Install Modules #  
+(Installing each module will likely take a couple minutes to complete.)  
 
 ### Install picamzero
 • This project makes use of the picamzero module to take photos.  
-• Install the module:
 ```
-sudo apt install python3-picamzero
+sudo apt install python3-picamzero -y
 ```
+<!--
 • Use the terminal to take a test photo after picamzero has been installed.  
 ```
 rpicam-still -o image.jpg
 ```
 • The terminal will create an image. After it's done, use the "ls" command to verify that a file was created.
+-->
 
 ### Install Git  
 • OS Lite does not include Git, so you will need to install it for this project.
 ```
-sudo apt install git
+sudo apt install git -y
 ```
 
 ### Install gpiozero  
@@ -187,10 +236,10 @@ sudo apt install git
 • OS Lite does not include gpiozero, so you will need to install it for this project.  
 [gpiozero info, docs and recipies](https://gpiozero.readthedocs.io/en/latest/)
 ```
-sudo apt install python3-gpiozero
+sudo apt install python3-gpiozero -y
 ```
 
-### Enable SPI ###
+## Enable SPI ##
 • SPI (Serial Peripheral Interface) must be enabled to use the ePaper display.  
 • To asccess the Pi config menu:
 ```
@@ -212,6 +261,7 @@ sudo raspi-config
 <br><br><br><br><br><br><br><br><br><br><br>  
 
 • Select "Yes" to reboot your Pi and apply config changes.  
+• NOTE: If not prompted to reboot, select Finish from the config menu and manually reboot in the terminal - sudo reboot  
 <br>
 <img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/SPI_4.jpg' width='400' align='left'>  
 <br><br><br><br><br><br><br><br><br><br><br>  
@@ -225,11 +275,32 @@ sudo raspi-config
 edit the part "epd2in7_V2" to match the name of your display.
 
 
+## When Pi Starts Up, Start Camera ##  
+• To make the camera start when the Pi boots up, you'll need to do a couple things.
+• Open the crontab...  
+```
+sudo crontab -e
+```
+• Select the first option for the editor.  
+<img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/crontab_notice.jpg' width='500' align='left'>  
+<br><br><br><br><br><br>  
+
+• Add the folowwing to the bottom of the file.  
+```
+@reboot python3 /home/pi/ePaper-Pi-Cam/main.py &
+```
+<img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/crontab_setting.jpg' width='600' align='left'>  
+<br><br><br><br><br><br>  
+
+• Ctrl-X to exit, then Y to save, and Enter to confirm.  
+• Then reboot the Pi
+```
+sudo reboot
+```
 
 
 
-
-### Project Resources
+### Project Resources & Notes for Future Updates/To-Do 
 **Picamzero Documents**  
 [Docs Recipes](https://picamera.readthedocs.io/en/release-1.13/)
 [Getting Started](https://raspberrypifoundation.github.io/picamera-zero/)
@@ -238,8 +309,9 @@ edit the part "epd2in7_V2" to match the name of your display.
 [Picamzero API Documentation](https://raspberrypifoundation.github.io/picamera-zero/api_docs/)  
 [PiCamzero Timelapse option](https://raspberrypifoundation.github.io/picamera-zero/camera/)
 
-**GPIO Zero Recipies**  
-[light sensor - for auto flash](https://gpiozero.readthedocs.io/en/stable/recipes.html#light-sensor)  
+**GPIO Zero Install & Recipies**  
+[Install gpiozero](https://gpiozero.readthedocs.io/en/stable/installing.html)  
+[Recipies → light sensor - for auto flash](https://gpiozero.readthedocs.io/en/stable/recipes.html#light-sensor)  
 
 **Waveshare ePaper Info**  
 [ePaper Tutorials](https://dev.to/ranewallin/getting-started-with-the-waveshare-2-7-epaper-hat-on-raspberry-pi-41m8)  
@@ -253,12 +325,20 @@ edit the part "epd2in7_V2" to match the name of your display.
 [Raspberry Pi Headless Setup for ssh - by Sam Westby Tech](https://www.youtube.com/watch?v=9fEnvDgxwbI)  
 [Headless Pi Setup Documentation](https://www.raspberrypi.com/documentation/computers/configuration.html#setting-up-a-headless-raspberry-pi)  
 [How to Install Git](https://github.com/git-guides/install-git)  
-[Raspberry Pi Official Camera Module Documentation](https://www.raspberrypi.com/documentation/accessories/camera.html)
-[Install gpiozero](https://gpiozero.readthedocs.io/en/stable/installing.html)
+[Raspberry Pi Official Camera Module Documentation](https://www.raspberrypi.com/documentation/accessories/camera.html)  
+
 
 ### To-Do
+- [ ] Increase flash duration for better exposure. ! Priority ! 
+- [ ] Audit code for efficiencey - remove/refine classes / modules -- logging
+- [ ] Partial refresh of display
+- [ ] Menu Config Options for: Screen Rotation, Camera Eposure, Screen & Photo Resolution
+- [ ] Select a photo for splashscreen from manual scroll
+- [ ] Long Term: Wifi connect to download photos?
+- [ ] Long Term: Web UI?
+- [ ] Long Term: Light sensor for auto-flash?
 - [x] Buttons to navigate through past photos.
-- [ ] Button to delete single images
-- [ ] Button to delete ALL images
-- [ ] Settings window to change indoor/outdoor brightness, whitebalance, etc.
-- [ ] Possibly add a bright LED for flash?
+- [x] Delete single images
+- [x] Delete ALL images
+- [x] Settings window to change indoor/outdoor brightness, whitebalance, etc.
+- [x] Possibly add a bright LED for flash?

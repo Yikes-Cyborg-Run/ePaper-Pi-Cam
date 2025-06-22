@@ -115,6 +115,7 @@ class Display():
 			data=[0, 'Delete', True, num]
 		return data
 
+
 	# WARNING - PURGE ALL
 	def purge_warning(self, data, photo_list):
 		if data[2]==False:

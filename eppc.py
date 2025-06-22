@@ -115,7 +115,6 @@ class Display():
 			data=[0, 'Delete', True, num]
 		return data
 
-
 	# WARNING - PURGE ALL
 	def purge_warning(self, data, photo_list):
 		if data[2]==False:
@@ -191,7 +190,7 @@ class Menu():
 	# Build the selected menu
 	# sel = selected menu to use, h = item that's highlighted, photo_list = to tally the total photos
 	def build(self, h, sel, photo_list):
-		LEDs().LEDs(1, 0, 0)
+		LEDs().LEDs(0, 1, 0)
 		config_val=''
 		use_menu=self.menu_list[sel]
 		options_list=Config().options_list()
@@ -222,7 +221,7 @@ class Menu():
 				final_item='-- '+final_item # add a mark to the one that's highlighted
 			final_menu+=final_item+'\n'
 		Display().text_with_header(10, 0, sel.upper(), final_menu)
-		LEDs().LEDs(0, 0, 0)
+		LEDs().LEDs(1, 0, 0)
 
 	# Function to navigate through the menu
 	# h = highlighted item, p = photo button, m = menu button, u = up button, d = down button
@@ -250,7 +249,7 @@ class Menu():
 				h-=1
 				if h<0:h=limit
 				data=[h, sel, False, 0]
-		LEDs().LEDs(0, 0, 0)
+#		LEDs().LEDs(0, 0, 0)
 		return data
 
 class Action():

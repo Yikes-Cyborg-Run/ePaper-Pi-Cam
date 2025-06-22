@@ -1,5 +1,5 @@
 import datetime, logging, os, re, time, zipfile
-from waveshare_epd import epd4in2_V2 # epd2in7_V2-- the 2.7inch GPIO HAT
+from waveshare_epd import epd2in7_V2 # -- the 2.7inch GPIO HAT
 from gpiozero import LED #, Button
 from PIL import Image, ImageDraw, ImageFont
 from pathlib import Path
@@ -8,7 +8,7 @@ from pathlib import Path
 
 class Display():
 	def __init__(self):
-		self.epd=epd4in2_V2.EPD()
+		self.epd=epd2in7_V2.EPD()
 		self.epd.init()
 		self.config=Config().load()
 		self.home_dir=Path(__file__).parent.resolve()
@@ -190,7 +190,7 @@ class Menu():
 	# Build the selected menu
 	# sel = selected menu to use, h = item that's highlighted, photo_list = to tally the total photos
 	def build(self, h, sel, photo_list):
-		LEDs().LEDs(1, 0, 0)
+		LEDs().LEDs(0, 1, 0)
 		config_val=''
 		use_menu=self.menu_list[sel]
 		options_list=Config().options_list()
@@ -221,7 +221,7 @@ class Menu():
 				final_item='-- '+final_item # add a mark to the one that's highlighted
 			final_menu+=final_item+'\n'
 		Display().text_with_header(10, 0, sel.upper(), final_menu)
-		LEDs().LEDs(0, 0, 0)
+		LEDs().LEDs(1, 0, 0)
 
 	# Function to navigate through the menu
 	# h = highlighted item, p = photo button, m = menu button, u = up button, d = down button
@@ -249,7 +249,7 @@ class Menu():
 				h-=1
 				if h<0:h=limit
 				data=[h, sel, False, 0]
-		LEDs().LEDs(0, 0, 0)
+		LEDs().LEDs(1, 0, 0)
 		return data
 
 class Action():
@@ -259,8 +259,6 @@ class Action():
 		self.image_dir=str(self.home_dir / 'Photos')
 		self.fontsize=int(self.config['fontsize'])
 		self.font_path=str(self.home_dir / 'Fonts' / self.config['font'])
-#		self.logger = logging.getLogger(__name__)
-#		self.logging.basicConfig(filename='/home/pi/e-Paper-Pi-Cam/log.log', filemode='w', encoding='utf-8', level=logging.INFO)
 
 	# PHOTO LIST
 	# Build a list of saved photos already on file.
@@ -343,7 +341,7 @@ class Action():
 			txt=f"\nDeleted: {file}\nGoing back to photos...."
 			Log().info(txt)
 			Display().text_with_header(10, 5, "DELETED PHOTO", txt)
-			time.sleep(.2) # ??????? Need sleep here?
+			time.sleep(.2) # ??????? Do we really need sleep here?
 			LEDs().LEDs(0, 0, 0)
 			return [0, 'Manual Scroll', False, next_num]
 		except Exception as e:
@@ -444,8 +442,7 @@ class Calc():
 	def __init__(self):
 		self.config=Config().load()
 
-	# Calculates a future time to load next picture in Autoscroll 
-	# and to take a Time-Lapse photo
+	# Calculates a future time to load next picture in Autoscroll or Timelapse
 	def future(self, duration):
 		now_time=datetime.datetime.now() # Get the current datetime
 		now=int(time.mktime(now_time.timetuple())) # Make timestamp
@@ -456,8 +453,7 @@ class Calc():
 		Log().info(f"FUTURE: {str(future)}")
 		return future
 
-	# Display the current timelapse setting
-	# ??????? IN PROGRESS
+	# Display readable time setting
 	def convert_time_text(self, dur):
 		suffix='...'
 		if(dur<=60):
@@ -534,6 +530,8 @@ class Config():
 		except Exception as e:
 			Log().error(f"Could not save config.\nDetails:\n{e}")
 
+	# This returns a list used to determine whether a selected menu item should be 
+	# a saved config item or to perform a menu action 
 	def options_list(self):
 		options_list=[]
 		if Path(self.config_path).is_file():
@@ -565,7 +563,7 @@ class Log():
 			self.logger.handlers.clear()
 		self.logger.addHandler(log_path)
 		self.logger.addHandler(console_handler)
-	
+
 	def critical(self, msg): self.logger.critical(msg)
 	def debug(self, msg): self.logger.debug(msg)
 	def error(self, msg): self.logger.error(msg)

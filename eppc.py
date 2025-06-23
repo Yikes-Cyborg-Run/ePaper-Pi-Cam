@@ -6,6 +6,9 @@ from pathlib import Path
 
 # If you dont like mangos, dont shake the tree
 
+# LED threading: 
+# https://stackoverflow.com/questions/46956380/python-threading-class-for-gpio-led-blink
+
 class Display():
 	def __init__(self):
 		self.epd=epd2in7_V2.EPD()

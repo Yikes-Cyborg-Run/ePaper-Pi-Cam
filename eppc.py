@@ -259,8 +259,6 @@ class Action():
 		self.image_dir=str(self.home_dir / 'Photos')
 		self.fontsize=int(self.config['fontsize'])
 		self.font_path=str(self.home_dir / 'Fonts' / self.config['font'])
-#		self.logger = logging.getLogger(__name__)
-#		self.logging.basicConfig(filename='/home/pi/e-Paper-Pi-Cam/log.log', filemode='w', encoding='utf-8', level=logging.INFO)
 
 	# PHOTO LIST
 	# Build a list of saved photos already on file.
@@ -285,7 +283,7 @@ class Action():
 		cam.brightness=float(self.config['brightness'])
 		cam.contrast=float(self.config['contrast'])
 #		cam.exposure=int(self.config['exposure'])
-#		cam.gain=int(self.config['gain']) min and max vary
+#		cam.gain=int(self.config['gain']) # min and max vary
 		cam.white_balance=str(self.config['whitebalance'].lower())
 		LEDs().LEDs(0, 0, 1)
 		timestamp=datetime.datetime.now().strftime('%Y-%m-%d_%H-%M-%S')

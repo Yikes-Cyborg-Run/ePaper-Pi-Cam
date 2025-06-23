@@ -1,4 +1,4 @@
-import datetime, logging, os, re, time, zipfile
+import datetime, logging, os, re, threading, time, zipfile
 from waveshare_epd import epd2in7_V2 # -- the 2.7inch GPIO HAT
 from gpiozero import LED #, Button
 from PIL import Image, ImageDraw, ImageFont
@@ -33,13 +33,14 @@ class Display():
 		image=image.resize((self.epd.height, self.epd.width))
 		self.epd.display(self.epd.getbuffer(image))
 		Log().info(f"Displayed file: {photo_path}")
-#		return None
+		LEDs().LEDs(1, 0, 0)
 
 	# CAMERA MESSAGE
 	def camera_msg(self, data):
 		if data[2]==False:
-			txt="Menu button = Cancel"
-			txt+=f"\n\nWhite Balance: {str(self.config['whitebalance'])}\n"
+			txt="Menu button = Cancel\n"
+			txt+=f"\nFlash: {str(self.config['flash'])}\n"
+			txt+=f"White Balance: {str(self.config['whitebalance'])}\n"
 			txt+=f"Add Timestamp: {str(self.config['timestampphoto'])}\n"
 			txt+=f"Brightness: {float(self.config['brightness'])}\n"
 			txt+=f"Contrast: {str(self.config['contrast'])}\n"
@@ -190,7 +191,7 @@ class Menu():
 	# Build the selected menu
 	# sel = selected menu to use, h = item that's highlighted, photo_list = to tally the total photos
 	def build(self, h, sel, photo_list):
-		LEDs().LEDs(0, 1, 0)
+		LEDs().LEDs(1, 0, 0)
 		config_val=''
 		use_menu=self.menu_list[sel]
 		options_list=Config().options_list()
@@ -254,7 +255,7 @@ class Menu():
 
 class Action():
 	def __init__(self):
-		self.home_dir=Path(__file__).parent.resolve() # Current directory
+		self.home_dir=Path(__file__).parent.resolve()
 		self.config=Config().load()
 		self.image_dir=str(self.home_dir / 'Photos')
 		self.fontsize=int(self.config['fontsize'])
@@ -425,18 +426,13 @@ class LEDs():
 			else: LED_R.off()
 
 	# CAMERA FLASH
-	# In progress ???????
-	def flash(self, future):
-		if self.config['flash']=='Yes':
-			LED_FLASH=LED(23)
-			now_time=datetime.datetime.now()
-			now=int(time.mktime(now_time.timetuple()))
-			if now>future:
+	def flash(self, LED_FLASH, on_or_off):
+		if self.config['flash']=='On':
+			if on_or_off==1:
 				LED_FLASH.on()
-				future=Calc().future(2)
 			else:
 				LED_FLASH.off()
-			return future
+
 
 class Calc():
 	def __init__(self):

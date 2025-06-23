@@ -1,7 +1,7 @@
 # MAIN BRANCH
 
 from eppc import Action, Calc, Config, Display, LEDs, Log, Menu
-import time, datetime, logging 
+import time, datetime, logging, threading 
 from gpiozero import LED, Button
 from picamzero import Camera
 from pathlib import Path
@@ -32,6 +32,8 @@ def main():
 	cam.greyscale=True # Take photos in black & white... duh
 #	cam.still_size=(264, 176) # Resolution of the 2.7 GPIO display
 
+	print(f"Exposure: {cam.exposure}")
+
 	# Create a list of existing photos
 	photo_list=Action().photo_list() 
 
@@ -44,6 +46,12 @@ def main():
 	data=[0, 'Main Menu', False, 0] # set initial data to: [highlight=0, sel="Main Menu", drawn=False, photonum=0]
 
 	future=0
+
+#	flash_LED=threading.Thread(target=LEDs.flash)
+#	flash_LED.start()
+#	print("Loop start")
+
+	LED_FLASH=LED(23)
 
 	try:
 		# Start program loop
@@ -70,9 +78,15 @@ def main():
 
 			# Actions and menu items that don't need a menu drawn
 			elif sel=='Take Photos':
+				now_time=datetime.datetime.now() # Get the current datetime
+				now=int(time.mktime(now_time.timetuple())) # Make timestamp
 				if p.is_pressed:
-					future=LEDs().flash(future)
+					future=Calc().future(1.75) # Keep the flash LED on for 1.75 seconds
+					LEDs().flash(LED_FLASH, 1)
 					photo_list=Action().take_photo(cam, photo_list)
+#				Log().info(f"Now: {now} -- Future: {future}")
+				if now>future:
+					LEDs().flash(LED_FLASH, 0)
 
 			# Manually Scroll through photos
 			# Option to delete when photo button is pushed 

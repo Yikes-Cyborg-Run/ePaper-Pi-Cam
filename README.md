@@ -37,9 +37,11 @@ _An early prototype of the ePaper-Pi-Cam. Please forgive the crude lego enclosur
 
 # Introduction #  
 
-<div align="right" style="border: 2px solid grey; float:right; width: 500px;">
-<img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/TL_sunset.gif' width='400'>
-</div>
+<p style='width:420px'>
+<img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/TL_sunset.gif' hspace="10" align='right' style="border: 2px solid #000; width: 400px;">
+<em>CAPTION</em>
+</p>
+
 
 I have been coding/programming for 25+ years, but only in the past couple years have I been coding Python -- some for my job as a GIS Analyst and some for my own entertainment/enrichment. I have also enjoyed working on Raspberry Pi projects for a while, and have wanted to contribute to the RPi community in some way. I hope that some in the Pi community will enjoy this project! I've tried my best to go step-by-step through every process needed to get this project running; from flashing the Raspberry Pi OS to programming the Pi to boot up directly into the camera program.   
 

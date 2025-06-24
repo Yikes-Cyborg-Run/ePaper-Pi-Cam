@@ -36,6 +36,11 @@ _An early prototype of the ePaper-Pi-Cam. Please forgive the crude lego enclosur
 | System Options | Archive Photos, Show Splash Screen, Timestamp Photo, Clear Display and Shut Down,  Show Photo and Shut Down, Purge All Photos |
 
 # Introduction #  
+
+<div border='1'>
+<img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/TL_sunset.gif' width='400' align='right'>
+</div>
+
 I have been coding/programming for 25+ years, but only in the past couple years have I been coding Python -- some for my job as a GIS Analyst and some for my own entertainment/enrichment. I have also enjoyed working on Raspberry Pi projects for a while, and have wanted to contribute to the RPi community in some way. I hope that some in the Pi community will enjoy this project! I've tried my best to go step-by-step through every process needed to get this project running; from flashing the Raspberry Pi OS to programming the Pi to boot up directly into the camera program.   
 
 There are an increasing number of projects that take advantage of the ePaper display's functionality. I'm really drawn to these displays and the soft aesthetic they add to pretty much any project. There are many people who use the ePaper displays as a picture frame and I've always thought these were interesting. The Pi serves up photos and scrolls through them at an interval; simple enough but still very cool. So I thought, why not build an actual camera that takes photos and uses an ePaper display as the screen? I Googled around and didn't find anything of the sort -- a combination of a camera AND scrolling picture frame. So I decided to see if I could build one.  

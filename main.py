@@ -1,7 +1,6 @@
 # MAIN BRANCH
-
 from eppc import Action, Calc, Config, Display, LEDs, Log, Menu
-import time, datetime, logging, threading 
+import time, datetime #, logging, threading 
 from gpiozero import LED, Button
 from picamzero import Camera
 from pathlib import Path
@@ -13,7 +12,7 @@ def main():
 	photo_dir=Path(home_dir / 'Photos')
 	photo_dir.mkdir(parents=True, exist_ok=True)
 
-	# Create the log file and put today's date at the top
+	# Create the log file and print today's date at the header
 	# This file will be overwritten each time the script runs
 	now=datetime.datetime.now()
 	todays_date=now.strftime('%Y-%M-%D')
@@ -30,10 +29,9 @@ def main():
 	# Start Camera() and set its configuration
 	cam=Camera()
 	cam.greyscale=True # Take photos in black & white... duh
-#	cam.still_size=(264, 176) # Resolution of the 2.7 GPIO display
 
-	print(f"Exposure: {cam.exposure}")
-
+	size=cam.still_size
+	print(f"{size}")
 	# Create a list of existing photos
 	photo_list=Action().photo_list() 
 

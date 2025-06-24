@@ -6,9 +6,6 @@ from pathlib import Path
 
 # If you dont like mangos, dont shake the tree
 
-# LED threading: 
-# https://stackoverflow.com/questions/46956380/python-threading-class-for-gpio-led-blink
-
 class Display():
 	def __init__(self):
 		self.epd=epd2in7_V2.EPD()
@@ -20,7 +17,7 @@ class Display():
 		self.font=ImageFont.truetype(self.font_path, self.fontsize)
 		self.header_font=ImageFont.truetype(self.font_path, self.fontsize+4)
 		self.image=Image.new('1', (self.epd.height, self.epd.width), 255)
-#		self.draw=self.image.transpose(self.image.ROTATE_180)
+#		self.draw=self.image.transpose(self.image.ROTATE_180) # !!!!!!! In progress
 		self.draw=ImageDraw.Draw(self.image)
 
 	# DRAW TEXT WITH A LARGER SIZED HEADER
@@ -42,12 +39,12 @@ class Display():
 	def camera_msg(self, data):
 		if data[2]==False:
 			txt="Menu button = Cancel\n"
-			txt+=f"\nFlash: {str(self.config['flash'])}\n"
-			txt+=f"White Balance: {str(self.config['whitebalance'])}\n"
-			txt+=f"Add Timestamp: {str(self.config['timestampphoto'])}\n"
-			txt+=f"Brightness: {float(self.config['brightness'])}\n"
-			txt+=f"Contrast: {str(self.config['contrast'])}\n"
-#			txt+=f"Exposure: {str(self.config['exposure'])}\n"
+			txt+=f"\nFlash = {self.config['flash']}\n"
+			txt+=f"White Balance = {self.config['whitebalance']}\n"
+			txt+=f"Exposure = {str(self.config['exposure'])}\n"
+			txt+=f"Add Timestamp = {str(self.config['timestampphoto'])}\n"
+			txt+=f"Brightness = {float(self.config['brightness'])}\n"
+			txt+=f"Contrast = {str(self.config['contrast'])}\n"
 			Display().text_with_header(10, 5, "CAMERA READY ", txt)
 			return [0, 'Camera', True, 0]
 		else:
@@ -166,15 +163,15 @@ class Menu():
 		self.font_size=int(self.config['fontsize'])
 		self.font_path=str(self.home_dir / 'Fonts' / self.config['font'])
 		self.menu_list={
-				# ??????? Camera options to add -- vflip, hflip, greyscale
+				# !!!!!!! Camera options to add? - vflip, hflip, greyscale
 				'Main Menu':['Camera', 'Time-Lapse', 'Manual Scroll', 'Autoscroll',  'Camera Options', 'Display Options', 'System Options'],
 
-				'Camera Options':['Brightness', 'Contrast', 'Flash', 'Time-Lapse Duration', 'White Balance'], # 'Exposure', 
+				'Camera Options':['Brightness', 'Contrast', 'Exposure', 'Flash', 'Time-Lapse Duration', 'White Balance'], # 'Exposure', 
 				'Brightness':['-1.0', '-0.5', '-0.25', '0', '0.25', '0.5', '1.0'],
 				'Contrast':['0', '1', '5', '10', '15', '20', '25', '32'],
-#				'Exposure':['75', '200', '1000', '3000', '6000', '1238765'], # !!!!!!! In progress
-				'Flash':['On', 'Off'], # 'Auto' 
-				'Time-Lapse Duration':['5', '30', '60', '300', '600', '1800', '3600'],
+				'Exposure':['100', '5000', '20000', '100000', '250000', '500000', '1000000',],
+				'Flash':['On', 'Off'], # !!!!!!! In progress - 'Auto' 
+				'Time-Lapse Duration':['1', '10', '30', '60', '300', '600', '1800', '3600'],
 				'White Balance':['Auto', 'Cloudy', 'Daylight', 'Fluorescent', 'Indoor', 'Tungsten'],
 
 				'Display Options':['Font', 'Font Size', 'Autoscroll Duration'], # 'Display Rotation', 
@@ -183,10 +180,10 @@ class Menu():
 				'Autoscroll Duration':['10', '30', '60', '120', '300', '600'],
 #				'Display Rotation':['0', '90', '180', '270'], !!!!!!! In progress
 
-				'System Options':['Archive Photos', 'Show Splash Screen', 'Timestamp Photo', 'Clear Display and Shut Down',  'Show Photo and Shut Down', 'Purge'],
+				'System Options':['Archive Photos', 'Show Splash Screen', 'Photo Resolution', 'Clear Display and Shut Down',  'Show Photo and Shut Down', 'Purge'], # 'Timestamp Photo', 
 				'Show Splash Screen':['Yes', 'No'],
-				'Timestamp Photo':['Yes', 'No'],
-				
+				'Photo Resolution':['264 x 176', '425 x 319', '708 x 532', '1181 x 887', '1968 x 1478', '3280 x 2464'],
+#				'Timestamp Photo':['Yes', 'No'], !!!!!!! In Progress
 				}
 		# These item selections don't need a menu created
 		self.ignore_list=['Archive Photos', 'Autoscroll', 'Camera', 'Delete', 'Manual Scroll', 'Purge', 'Take Photo', 'Time-lapse Camera']
@@ -212,7 +209,7 @@ class Menu():
 			check_config_item=item.lower()
 			check_config_item=re.sub(r'[^a-zA-Z0-9]', '', check_config_item)
 			# Check config values for Option Menus
-			if check_config_item in options_list: saved_config_val=' - ('+self.config[check_config_item]+')'
+			if check_config_item in options_list: saved_config_val=' = '+self.config[check_config_item]
 			# Mark the current config
 			if item==config_val: config_notch=' x '
 			else: config_notch=''
@@ -253,7 +250,6 @@ class Menu():
 				h-=1
 				if h<0:h=limit
 				data=[h, sel, False, 0]
-#		LEDs().LEDs(0, 0, 0)
 		return data
 
 class Action():
@@ -286,20 +282,26 @@ class Action():
 	def take_photo(self, cam, photo_list):
 		cam.brightness=float(self.config['brightness'])
 		cam.contrast=float(self.config['contrast'])
-#		cam.exposure=int(self.config['exposure'])
-#		cam.gain=int(self.config['gain']) # min and max vary
+		cam.exposure=int(self.config['exposure'])
+
+		res_str=self.config['photoresolution']
+		res_width, res_height=res_str.split(' x ')
+
+		print(f"W: {res_width}")
+		print(f"H: {res_height}")
+
+		cam.still_size=(int(res_width), int(res_height)) # Photo resolution
+
+
+#		cam.gain=int(self.config['gain']) # !!!!!!! In progress - min and max vary
 		cam.white_balance=str(self.config['whitebalance'].lower())
 		LEDs().LEDs(0, 0, 1)
 		timestamp=datetime.datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
 		filename=f'{timestamp}.jpg'
-
-		# Any way to make the position dynamic based on the screen size? ??????? 
-		if self.config['timestampphoto']=='Yes':
-			cam.annotate(timestamp, 'plain-small', 'white', 1, 2, [5, 170])
+		# !!!!!!! In progress - Timestamp - Any way to make the position dynamic based on the screen size?
+#		if self.config['timestampphoto']=='Yes': cam.annotate(timestamp, 'plain-small', 'white', 1, 2, [5, 170])
 		image_path=self.image_dir+'/'+filename
 		Log().info(f"Taking photo: {image_path}")
-
-		#Log().info(f"Taking photo:{image_path}")
 		cam.take_photo(image_path)
 		Display().photo(image_path)
 		LEDs().LEDs(1, 0, 0)
@@ -345,7 +347,7 @@ class Action():
 			txt=f"\nDeleted: {file}\nGoing back to photos...."
 			Log().info(txt)
 			Display().text_with_header(10, 5, "DELETED PHOTO", txt)
-			time.sleep(.2) # ??????? Need sleep here?
+			time.sleep(.2) # !!!!!!! Is sleep really needed here?
 			LEDs().LEDs(0, 0, 0)
 			return [0, 'Manual Scroll', False, next_num]
 		except Exception as e:
@@ -436,7 +438,6 @@ class LEDs():
 			else:
 				LED_FLASH.off()
 
-
 class Calc():
 	def __init__(self):
 		self.config=Config().load()
@@ -454,7 +455,6 @@ class Calc():
 		return future
 
 	# Display the current timelapse setting
-	# ??????? IN PROGRESS
 	def convert_time_text(self, dur):
 		suffix='...'
 		if(dur<=60):
@@ -510,14 +510,14 @@ class Config():
 
 	# Save config settings to txt file
 	def save(self, config_item, v, cam):
-		# Key names from the Camera/Display Options menus
+		# Key names from the Camera Options and Display Options menus
 		# Strip down, remove spaces and special characters, and make lowercase
 		k=config_item.lower()
 		k=re.sub(r'[^a-zA-Z0-9]', '', k)
 		config=Config().load()
 		config[k]=str(v) # Assign passed variable to item
 		Log().info(f"Saving {config_item}....\n{k} - {v}")
-		# Open txt file and save the updated config
+		# Open file and save the updated config
 		try:
 			with open(self.config_path, 'w') as file:
 				for key, value in config.items():

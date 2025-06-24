@@ -36,27 +36,13 @@ _An early prototype of the ePaper-Pi-Cam. Please forgive the crude lego enclosur
 | System Options | Archive Photos, Show Splash Screen, Timestamp Photo, Clear Display and Shut Down,  Show Photo and Shut Down, Purge All Photos |
 
 # Introduction #  
-<img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/TL_sunset.gif' align='right' width='200' hspace="0">
-
-<div style="width:200px;">
-This is a time-lapse compilation I put together from the files I downloaded from the camera.
-</div>
-
-
-<!--
-<p style='width:420px; '>
-<img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/TL_sunset.gif' hspace="10" align='right' style="border: 2px solid #000; width: 400px;">
-<em>CAPTION</em>
-</p>
--->
-
-<!--
-<p align='right' >
-|<img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/TL_sunset.gif' align='right' hspace='0'>|
-|:--:| 
-|This is a time-lapse compilation I put together<br>from the files I downloaded from the camera.|
-</p>
--->
+<table style="width:500px; border-collapse: collapse; padding: 0px;" align='right'>
+<tr><td>
+<img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/TL_sunset.gif'>
+</td></tr>
+<tr><td><i>This is a time-lapse compilation of the sun going down <br>from my porch. I put it together with photos I downloaded <br>from the camera taken at a 30-second interval.</i>
+</td></tr>
+</table>
 
 
 

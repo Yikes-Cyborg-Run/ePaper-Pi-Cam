@@ -13,8 +13,7 @@
 • [Auto-Start/Boot-Time Exectution](https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam#auto-startboot-time-execution)
 • [Questions & Troubleshooting](https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam?#questions--troubleshooting)  
 • [Resources & To-Do](https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam?#project-resources-notes--to-do)
-• [About the Author](https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam?#project-resources--notes-for-future-updatesto-do)
-
+• [About the Author](https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam?#about-the-author)
 
 <!-- <img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/splash_lego_enclosure.jpg' align='right' width='550'>  -->
 <img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/splash_lego_enclosure.jpg' width='650'>

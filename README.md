@@ -213,7 +213,7 @@ ssh pi@192.168.1.139
 <br>
 <img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/ssh_IP_pw.png' width='500' align='left'>  
 <br><br>
-If you get a warning like the one below, approve it by typing "yes" and pressing enter.
+If you get a warning like the one below, approve it by typing "yes" and pressing Enter.
 <br><br>
 <img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/ssh_warning.jpg' width='700' align='left'>  
 <br><br><br><br><br>

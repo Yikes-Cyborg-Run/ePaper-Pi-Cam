@@ -213,15 +213,17 @@ If you get a warning like the one below, approve it by typing "yes".
 <br><br>
 <img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/ssh_warning.jpg' width='700' align='left'>  
 <br><br><br><br><br>
-**Alternatively...**
+**Alternatively...**  
 • An alternate way to SSH into your Pi is to open the terminal and type:
 ```
 ssh pi@pi
 ```
-  
+• Then enter your password.  
+• However, if you want to download your photos using an FTP application like FileZilla, you will need the IP address to connect.   
+
 ### Update Pi
-• After flashing, it is always recommended to update and upgrade  the OS.  
-(This process will likely take a couple minutes time to complete.)  
+• After flashing, it is always recommended to update and upgrade the OS.  
+(This process will likely take a couple minutes to complete.)  
 ```
 sudo apt update && sudo apt -y full-upgrade
 ```
@@ -250,7 +252,7 @@ sudo apt install git -y
 
 ### Install gpiozero  
 • This project uses the gpiozero module to interface with buttons and LEDs.  
-• gpiozero is a library that simplifies interacting with GPIO (General Purpose Input/Output) pins the  Pi.  
+• gpiozero is a library that simplifies interacting with GPIO (General Purpose Input/Output) pins the Pi.  
 • OS Lite does not include gpiozero, so you will need to install it for this project.  
 [gpiozero info, docs and recipies](https://gpiozero.readthedocs.io/en/latest/)
 ```

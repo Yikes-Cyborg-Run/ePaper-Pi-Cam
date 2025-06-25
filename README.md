@@ -240,13 +240,6 @@ sudo apt update && sudo apt -y full-upgrade
 ```
 sudo apt install python3-picamzero -y
 ```
-<!--
-• Use the terminal to take a test photo after picamzero has been installed.  
-```
-rpicam-still -o image.jpg
-```
-• The terminal will create an image. After it's done, use the "ls" command to verify that a file was created.
--->
 
 ### Install Git  
 • OS Lite does not include Git, so you will need to install it for this project.
@@ -293,9 +286,7 @@ sudo raspi-config
 > [!IMPORTANT]
 > * This project makes use of ePaper displays manufactured by WaveShare.  
 > * Installing this project will install drivers for ALL WaveShare displays and save them into the directory "waveshare_epd".  
-> * To use a particular display, you will need to edit the line near the top of "main.py" that looks like this:  
-> ``` from waveshare_epd import epd2in7_V2 ```  
-• Edit the part "epd2in7_V2" to match the name of your display.
+> * To use a different WaveShare display, you will need to read "How do I use a different ePaper display?" under the [Questions & Troubleshooting](https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam?#questions--troubleshooting) section.  
 
 # Auto-Start/Boot-Time Execution #  
 • To make the camera mobile and automatically start when the Pi boots up, you'll need to do a couple things.  

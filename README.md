@@ -1,5 +1,4 @@
-<img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/title.jpg' align='left'>  
-<br>  
+<img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/title.jpg'>  
 
 ## A Raspberry Pi Camera to show photos on an ePaper display. ##  
 
@@ -16,11 +15,9 @@
 • [Resources & To-Do](https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam?#project-resources-notes--to-do)
 • [About the Author](https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam?#about-the-author)
 
-<!-- <img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/splash_lego_enclosure.jpg' align='right' width='550'>  -->
 <img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/splash_lego_enclosure.jpg' width='650'>
 
 _Early prototype of the ePaper-Pi-Cam. Forgive the crude lego enclosure, I've no 3D printer!_  
-<br>
 
 # Main Features #
 1) Use your camera to take photos and render them on-the-fly with an ePaper display.
@@ -75,17 +72,14 @@ Enjoy!
 • This image shows how to wire up the camera buttons if you are not using the ePaper Hat.  
 • It also shows the wiring of optional LEDs.  
 • IMPORTANT NOTE: The camera in the image below is for display ONLY. This is NOT the proper orientation/connection for the camera. See "Connect the Camera" below for proper connection.  
-<br>
-<img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/wiring_diagram.png' width='650'>
+
+<img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/wiring_diagram.png' width='650'>  
 
 **Setup Waveshare ePaper Display**  
 • If you are using the Waveshare 2.7-inch GPIO hat, all you need to do is seat the hat on your Pi.  
-• If you're using a different/wired Waveshare display, refer to the GPIO diagram and table below or the image above.
-<br>
+• If you're using a different/wired Waveshare display, refer to the GPIO diagram and table below or the image above.  
 
-<img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/waveshare_Pi02W_setup.jpg' align='left' width='550'>  
-  
-<br>  
+<img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/waveshare_Pi02W_setup.jpg' width='550' align='left'>  
 
 | ePaper Pin | Pi GPIO Pin | 
 |------------|------------|  
@@ -96,25 +90,24 @@ Enjoy!
 | CS | 8 (CE0) |
 | DC | 25 |
 | RST | 17 |
-| BUSY | 24 |  
+| BUSY | 24 |
 
- <br><br>
-
+<br><br>
+  
 **Connect Camera Buttons**  
-• If you are using the Waveshare 2.7-inch GPIO hat, all you need to do is seat the hat on your Pi.  
+• If you are using the WaveShare 2.7-inch GPIO hat, all you need to do is seat the hat on your Pi.  
 • If you're using a different Waveshare display, refer to the diagram and table below.  
 
 <img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/Waveshare_2in7_GPIOhat_pins.jpg' align='left' width='400'>  
-<br>  
 
 | Button Function | Pi GPIO Pin |
 |------------|------------|  
 | Take Photo/Select | 5 |  
 | Up Selection | 13 |
 | Down Selection | 6 |
-| Open Menu/Cancel | 19 |  
+| Open Menu/Cancel | 19 |
 
-<br><br>
+<br><br>  
 
 **Optional Camera LEDs**  
 • The addition of LEDs to the camera is optional but adds a little bit of flare to the camera's functionality.  
@@ -143,22 +136,22 @@ Enjoy!
 # Install the Raspberry Pi Operating System #
 **Flash the OS with Raspberry Pi Imager**  
 [Download Raspberry Pi Imager here](https://www.raspberrypi.com/software/)  
-<br>
+  
 • To start, select Raspberry Pi Zero 2W from the device selection list.  
-<img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/select_board.jpg' align='left' width='400'>  
-<br><br><br><br>
+<img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/select_board.jpg' width='400'>  
+
 • For the operating system, select "Raspberry Pi OS (other)".  
-<br>
-<img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/os_other.jpg' align='left' width='300'>  
-<br><br><br><br>
+
+<img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/os_other.jpg' width='300'>  
+
 • Then select "Raspberry Pi OS Lite (64 bit)".  
-<br>
-<img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/OS_lite64.png' align='left' width='300'>  
-<br><br><br><br>
+
+<img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/OS_lite64.png' width='300'>  
+
 • Now select the drive where your SD card is stored.  
-<br>
-<img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/storage.jpg' align='left' width='400'>  
-<br>  
+
+<img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/storage.jpg' width='400'>  
+
 • Click "NEXT".  
 
 **Use OS Customization?**  
@@ -170,17 +163,17 @@ Enjoy!
 • Keep the username as "pi" and keep the default password as "raspberry" for now.  
 • You can change the password later, but the username **MUST** stay as "pi".  
 • Under "Configure Wireless LAN", enter your WiFi SSID, WiFi password and select your country.  
-<br>
-<img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/general_settings.png' width='400'>
-<br>  
+
+<img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/general_settings.png' width='400'>  
+
 • Keep the SERVICES settings to enable SSH as they are and click "SAVE" to continue.  
-<br>
+
 <img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/setup_ssh.jpg' width='500'>  
-<br>
+
 • Click "YES", and then double check the disc you'll be writing to. All data will be erased.  
 • Click "CONTINUE" to begin writing the OS.  
 • Once the Raspberry Pi Imager has finished, you can eject the card and insert it into your Pi.  
-<br>
+
 <img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/OS_write_complete.png' width='500'>  
   
 ### Get Your Pi's IP Address  

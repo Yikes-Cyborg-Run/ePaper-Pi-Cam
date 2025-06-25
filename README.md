@@ -74,9 +74,9 @@ I hope you enjoy this project, I've had a lot of fun with it!
 
 <img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/wiring_diagram.png' width='650'>  
 
-**Setup Waveshare ePaper Display**  
-• If you are using the Waveshare 2.7-inch GPIO hat, all you need to do is seat the hat on your Pi.  
-• If you're using a different/wired Waveshare display, refer to the GPIO diagram and table below or the image above.  
+**Setup WaveShare ePaper Display**  
+• If you are using the WaveShare 2.7-inch GPIO hat, all you need to do is seat the hat on your Pi.  
+• If you're using a different/wired WaveShare display, refer to the GPIO diagram and table below or the image above.  
 
 <img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/waveshare_Pi02W_setup.jpg' width='550' align='left'>  
 
@@ -95,7 +95,7 @@ I hope you enjoy this project, I've had a lot of fun with it!
   
 **Connect Camera Buttons**  
 • If you are using the WaveShare 2.7-inch GPIO hat, all you need to do is seat the hat on your Pi.  
-• If you're using a different Waveshare display, refer to the diagram and table below.  
+• If you're using a different WaveShare display, refer to the diagram and table below.  
 
 <img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/Waveshare_2in7_GPIOhat_pins.jpg' align='left' width='400'>  
 
@@ -160,7 +160,7 @@ I hope you enjoy this project, I've had a lot of fun with it!
 <img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/edit_custom_settings.png' width='500'>  
 
 • Keep the username as "pi" and keep the default password as "raspberry" for now.  
-• You can change the password later, but the username **MUST** stay as "pi".  
+• You can change the password later, but the username **MUST** remain "pi".  
 • Under "Configure Wireless LAN", enter your WiFi SSID, WiFi password and select your country.  
 
 <img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/general_settings.png' width='400'>  
@@ -174,7 +174,7 @@ I hope you enjoy this project, I've had a lot of fun with it!
 • Once the Raspberry Pi Imager has finished, you can eject the card and insert it into your Pi.  
 
 <img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/OS_write_complete.png' width='500'>  
-  
+
 ### Get Your Pi's IP Address  
 <img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/Pi_data_port.png' width='200' align='right'>  
 
@@ -216,7 +216,7 @@ If you get a warning like the one below, approve it by typing "yes" and pressing
 ssh pi@pi
 ```
 • Then enter your password.  
-• However, if you want to download your photos using an FTP application like FileZilla, you will need the IP address to connect.   
+• However, if you want to download your photos using an file-transfer application like FileZilla, you will need the IP address to connect.  
 
 ### Update Pi
 • After flashing, it is always recommended to update and upgrade the OS.  

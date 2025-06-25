@@ -36,7 +36,7 @@ _Early prototype of the ePaper-Pi-Cam. Forgive the crude lego enclosure, I've no
 | System Options | Archive Photos, Show Splash Screen, Timestamp Photo, Clear Display and Shut Down,  Show Photo and Shut Down, Purge All Photos |
 
 # Introduction #  
-<table style="width:500px; border-collapse: collapse; padding: 0px;" align='right'>
+<table style="width:500px;" align='right'>
 <tr><td>
 <img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/TL_sunset.gif'>
 </td></tr>
@@ -53,8 +53,7 @@ I know you may be wondering, why use an ePaper display as a camera screen? Isn't
 **Some things to keep in mind**    
 I understand full well that a lot of this code could be better, and some of it is likely downright offensive to a long-time Python programmer. For that I sincerely apologize. Still, I think I'm learning and getting a little bit better; and that continuing to work on this will help me to improve on all of my shortcomings. To conclude, I would like to emphasize that I would never offer anything up to the public that didn't work for me personally. At this point, I've gone though these steps a number of times from scratch. I know what some of the possible stumbling blocks might be, and hopefully I've doucumented how to overcome them in the walk-through. If anyone has any issues, I will do my absolute best to help. And I am always open to suggestions to make this better and to hopefully learn even more.  
 
-Enjoy!
-<br>
+I hope you enjoy this project, I've had a lot of fun with it!  
 
 # Hardware #  
 **Hardware Used in This Project:**

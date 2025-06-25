@@ -59,9 +59,10 @@ Enjoy!
 <br>
 
 # Hardware #  
-**Hardware used in this project:**
+**Hardware Used in This Project:**
 1) Raspberry Pi Zero2 W
-2) Waveshare 2.7-inch ePaper Hat (with built-in GPIO buttons)
+2) Waveshare 2.7-inch ePaper Hat with built-in GPIO buttons  
+   Note: This project does NOT support multi-color ePaper displays -- ONLY black and white ones.
 3) Official Raspberry Pi Camera Module V2
 4) Micro SD Card (formatted to Fat32)
 5) Micro USB data cable → **$${\color{red}MAKE \space SURE \space IT'S \space A \space DATA \space CABLE!}$$**
@@ -202,7 +203,7 @@ ping pi -n 1
 <img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/ping_pi.png' width='500' align='left'>
 <br><br><br><br><br><br><br>
 
-### SSH into Pi  
+### SSH Into Pi  
 • Once you have the IP, you can SSH into your pi to complete the installation.  
 • Replace the IP below with your IP.  
 • Enter your password and press Enter.  
@@ -329,8 +330,8 @@ The FileFilla application is a great resource for gaining access to your photos.
 <img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/Pi_data_port.png' width='100' align='right'>
 The "Law of USB Cables" states: No matter how many USB cables you have, you only ever have ONE good one. 99% of the time when you can't connect it is because the cable is for power-only. You will need a data cable to connect successfully. Furthermore, you need to connect the micro USB to the proper port on the Pi (see image). The data port is the micro USB connection that is more toward the middle of the board. This port will also power the Pi. The port near the edge of the board is for power only and does not support data transfer.    
 
-**How do I restore the camera defaults?**  
-There is a file in the Resources directory titled "default_config.txt". Copy that folder into the parent directory and rename it to "config.txt".  
+**How do I restore the original camera defaults?**  
+There is a file in the Resources directory titled "default_config.txt". Copy that file into the parent directory and rename it to "config.txt".  
 
 **My camera is not working or is not recognized**  
 Make sure that you have connected your camera properly to the Serial Interface port. Refer to the image under Connect the Camera in the [Hardware](https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam#hardware) section.  

@@ -46,7 +46,7 @@ _An early prototype of the ePaper-Pi-Cam. Please forgive the crude lego enclosur
 </td></tr>
 </table>
 
-**Heading**  
+**Inspiration for this project**  
 There are an increasing number of projects that take advantage of the ePaper display's functionality. I'm really drawn to these displays and the soft aesthetic they add to pretty much any project. One popular use for the ePaper display is to use it as a picture frame and I've always thought these were interesting. The Pi serves up photos saved to an SD card and scrolls through them at an interval. Simple enough and at the same time, very cool. So I thought, why not build an actual camera that takes photos and uses an ePaper display as the screen and then combine it with the picture frame functionality? I Googled around and didn't really find anything of the sort -- a combination of a camera AND scrolling picture frame. So I decided to see if I could build one.  
 
 **Yeah, but... WHY?**  

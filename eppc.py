@@ -292,7 +292,6 @@ class Action():
 
 		cam.still_size=(int(res_width), int(res_height)) # Photo resolution
 
-
 #		cam.gain=int(self.config['gain']) # !!!!!!! In progress - min and max vary
 		cam.white_balance=str(self.config['whitebalance'].lower())
 		LEDs().LEDs(0, 0, 1)

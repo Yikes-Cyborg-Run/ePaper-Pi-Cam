@@ -196,23 +196,22 @@ ping pi -n 1
 • The terminal will attempt to verify the status of your Pi and return its IP address.  
 • Write down the IP address, you will use this to SSH into your Pi.  
 
-<img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/ping_pi.png' width='500' align='left'>
-<br><br><br><br><br><br><br>
+<img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/ping_pi.png' width='500'>  
 
 ### SSH Into Pi  
-• Once you have the IP, you can SSH into your pi to complete the installation.  
+• Once you have the IP, you can SSH into your Pi to complete the installation.  
 • Replace the IP below with your IP.  
 ```
 ssh pi@192.168.1.139
 ```
 • Enter your password and press Enter.  
 <br>
-<img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/ssh_IP_pw.png' width='500' align='left'>  
-<br><br>
-If you get a warning like the one below, approve it by typing "yes" and pressing Enter.
-<br><br>
-<img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/ssh_warning.jpg' width='700' align='left'>  
-<br><br><br><br><br>
+<img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/ssh_IP_pw.png' width='500'>  
+
+If you get a warning like the one below, approve it by typing "yes" and pressing Enter.  
+
+<img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/ssh_warning.jpg' width='700'>  
+
 **Alternatively....**  
 • An alternate way to SSH into your Pi is to open the terminal and type:
 ```
@@ -291,12 +290,13 @@ sudo raspi-config
 > * To use a different WaveShare display, you will need to read "How do I use a different ePaper display?" under the [Questions & Troubleshooting](https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam?#questions--troubleshooting) section.  
 
 # Auto-Start/Boot-Time Execution #  
-• To make the camera mobile and automatically start when the Pi boots up, you'll need to do a couple things.  
-• Open the crontab...  
+• To make the camera automatically start when the Pi boots up, facilitating mobility, you'll need to do a couple things.  
+• Open the crontab from the terminal.  
 ```
 sudo crontab -e
 ```
 • Select the first option for the editor.  
+
 <img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/crontab_notice.jpg' width='500'>  
 
 • Add the folowwing to the bottom of the file.  

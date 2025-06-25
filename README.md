@@ -79,6 +79,7 @@ I hope you enjoy this project, I've had a lot of fun with it!
 • If you're using a different/wired WaveShare display, refer to the GPIO diagram and table below or the image above.  
 
 <img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/waveshare_Pi02W_setup.jpg' width='550' align='left'>  
+<br>  
 
 | ePaper Pin | Pi GPIO Pin | 
 |------------|------------|  
@@ -91,13 +92,14 @@ I hope you enjoy this project, I've had a lot of fun with it!
 | RST | 17 |
 | BUSY | 24 |
 
-<br><br>
-  
+<br>
+
 **Connect Camera Buttons**  
 • If you are using the WaveShare 2.7-inch GPIO hat, all you need to do is seat the hat on your Pi.  
 • If you're using a different WaveShare display, refer to the diagram and table below.  
 
 <img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/Waveshare_2in7_GPIOhat_pins.jpg' align='left' width='400'>  
+<br>  
 
 | Button Function | Pi GPIO Pin |
 |------------|------------|  
@@ -106,7 +108,7 @@ I hope you enjoy this project, I've had a lot of fun with it!
 | Down Selection | 6 |
 | Open Menu/Cancel | 19 |
 
-<br><br>  
+<br>
 
 **Optional Camera LEDs**  
 • The addition of LEDs to the camera is optional but adds a little bit of flare to the camera's functionality.  

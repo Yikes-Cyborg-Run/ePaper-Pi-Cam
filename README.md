@@ -181,10 +181,11 @@ Enjoy!
 <br>
 <img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/OS_write_complete.png' width='500'>  
   
-### Get Pi's IP address  
+### Get Your Pi's IP Address  
 <img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/Pi_data_port.png' width='200' align='right'>  
 
 • To create an SSH session, you need to determine your Pi's IP address.  
+• There are a number of ways you can achieve this, but this method works well for me.
 • Connect your Pi to your computer via a USB data cable.  
 • Be sure to connect to the micro-USB port that is more toward the middle of the board, as the one on the outer edge is for power only.
 > [!IMPORTANT]
@@ -212,6 +213,11 @@ If you get a warning like the one below, approve it by typing "yes".
 <br><br>
 <img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/ssh_warning.jpg' width='700' align='left'>  
 <br><br><br><br><br>
+**Alternatively...**
+• An alternate way to SSH into your Pi is to open the terminal and type:
+```
+ssh pi@pi
+```
   
 ### Update Pi
 • After flashing, it is always recommended to update and upgrade  the OS.  

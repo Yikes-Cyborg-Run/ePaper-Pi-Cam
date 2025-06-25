@@ -213,11 +213,11 @@ ssh pi@192.168.1.139
 <br>
 <img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/ssh_IP_pw.png' width='500' align='left'>  
 <br><br>
-If you get a warning like the one below, approve it by typing "yes".
+If you get a warning like the one below, approve it by typing "yes" and pressing enter.
 <br><br>
 <img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/ssh_warning.jpg' width='700' align='left'>  
 <br><br><br><br><br>
-**Alternatively...**  
+**Alternatively....**  
 • An alternate way to SSH into your Pi is to open the terminal and type:
 ```
 ssh pi@pi
@@ -256,7 +256,7 @@ sudo apt install git -y
 
 ### Install gpiozero  
 • This project uses the gpiozero module to interface with buttons and LEDs.  
-• gpiozero is a library that simplifies interacting with GPIO (General Purpose Input/Output) pins the Pi.  
+• gpiozero is a library that simplifies interacting with GPIO (General Purpose Input/Output) pins of the Pi.  
 • OS Lite does not include gpiozero, so you will need to install it for this project.  
 [gpiozero info, docs and recipies](https://gpiozero.readthedocs.io/en/latest/)
 ```
@@ -265,7 +265,7 @@ sudo apt install python3-gpiozero -y
 
 # Enable SPI #
 • SPI (Serial Peripheral Interface) must be enabled to use the ePaper display.  
-• To asccess the Pi config menu:
+• To to enable this, access the Pi config menu:
 ```
 sudo raspi-config
 ```
@@ -290,14 +290,12 @@ sudo raspi-config
 <img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/SPI_4.jpg' width='400' align='left'>  
 <br><br><br><br><br><br><br><br><br><br><br>  
 
-
 > [!IMPORTANT]
 > * This project makes use of ePaper displays manufactured by WaveShare.  
 > * Installing this project will install drivers for ALL WaveShare displays and save them into the directory "waveshare_epd".  
 > * To use a particular display, you will need to edit the line near the top of "main.py" that looks like this:  
 > ``` from waveshare_epd import epd2in7_V2 ```  
-edit the part "epd2in7_V2" to match the name of your display.
-
+• Edit the part "epd2in7_V2" to match the name of your display.
 
 # Auto-Start/Boot-Time Execution #  
 • To make the camera mobile and automatically start when the Pi boots up, you'll need to do a couple things.  

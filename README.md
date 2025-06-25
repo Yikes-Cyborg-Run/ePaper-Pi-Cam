@@ -116,7 +116,9 @@ I hope you enjoy this project, I've had a lot of fun with it!
 • If you are using the Waveshare 2.7-inch GPIO hat, you'll need to use a breakout board or some kind of prototype board to connect the LEDs.  
 [Example of Breakout Board](https://www.amazon.com/dp/B0DMNJ17PD?ref=ppx_yo2ov_dt_b_fed_asin_title)  
 [Example of Prototype Board](https://www.amazon.com/dp/B08C2XSTK2?ref=ppx_yo2ov_dt_b_fed_asin_title&th=1)  
-• Refer to the table below if you are adding LEDs to your camera.
+• Refer to the table below if you are adding LEDs to your camera.  
+• I use these "traffic-light" LEDs as they come with built in resistors and are simple to wire up.  
+
 | LED | Pi GPIO Pin |
 |------------|------------|  
 | Green | 16 |  

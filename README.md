@@ -11,6 +11,7 @@
 • [Install Modules](https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam#install-modules)  
 • [Enable SPI](https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam#enable-spi)
 • [Auto-Start/Boot-Time Exectution](https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam#auto-startboot-time-execution)
+• [Install ePaper-Pi-Cam](https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam#auto-startboot-time-execution)
 • [Questions & Troubleshooting](https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam?#questions--troubleshooting)  
 • [Resources & To-Do](https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam?#project-resources-notes--to-do)
 • [About the Author](https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam?#about-the-author)

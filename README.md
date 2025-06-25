@@ -224,7 +224,7 @@ If you get a warning like the one below, approve it by typing "yes" and pressing
 ssh pi@pi
 ```
 • Then enter your password.  
-• However, if you want to download your photos using an file-transfer application like FileZilla, you will need the IP address to connect.  
+• However, if you want to download your photos using a file-transfer application like FileZilla, you will need the IP address to connect.  
 
 ### Update Pi
 • After flashing, it is always recommended to update and upgrade the OS.  

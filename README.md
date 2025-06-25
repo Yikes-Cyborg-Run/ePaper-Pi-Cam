@@ -245,7 +245,6 @@ sudo apt install git -y
 • This project uses the gpiozero module to interface with buttons and LEDs.  
 • gpiozero is a library that simplifies interacting with GPIO (General Purpose Input/Output) pins of the Pi.  
 • OS Lite does not include gpiozero, so you will need to install it for this project.  
-[gpiozero info, docs and recipies](https://gpiozero.readthedocs.io/en/latest/)
 ```
 sudo apt install python3-gpiozero -y
 ```
@@ -341,10 +340,10 @@ The default resolution is set to the highest resolution for this particular came
 There is a file in the Resources directory named "splash.jpg". To have your own splash screen, simply overwrite this file with your own image. The file must be titled "splash.jpg". Alternatively, you can choose to disable the splash screen altogether from the System Options menu.
 
 **Am I able to add my own fonts?**  
-Yes. You can upload your own fonts to the "Fonts" directory and select them from the Display Options menu. Fonts must be TrueType (.ttf).
+You sure can! You can upload your own fonts to the "Fonts" directory and select them from the Display Options menu. Fonts must be TrueType (.ttf).
 
 # Project Resources, Notes & To-Do #
-**Picamzero Documents**  
+**picamzero**  
 [Docs Recipes](https://picamera.readthedocs.io/en/release-1.13/)
 [Getting Started](https://raspberrypifoundation.github.io/picamera-zero/)
 [Picamera Project Docs](https://projects.raspberrypi.org/en/projects/getting-started-with-picamera/0)  
@@ -352,11 +351,12 @@ Yes. You can upload your own fonts to the "Fonts" directory and select them from
 [Picamzero API Documentation](https://raspberrypifoundation.github.io/picamera-zero/api_docs/)  
 [PiCamzero Timelapse option](https://raspberrypifoundation.github.io/picamera-zero/camera/)
 
-**GPIO Zero Install & Recipies**  
+**gpiozero**  
 [Install gpiozero](https://gpiozero.readthedocs.io/en/stable/installing.html)  
-[Recipies → light sensor - for auto flash](https://gpiozero.readthedocs.io/en/stable/recipes.html#light-sensor)  
+[gpiozero Info, Docs & Recipies](https://gpiozero.readthedocs.io/en/latest/)
+[Recipies → light sensor for auto flash](https://gpiozero.readthedocs.io/en/stable/recipes.html#light-sensor)  
 
-**Waveshare ePaper Info**  
+**Waveshare ePaper Display**  
 [ePaper Tutorials](https://dev.to/ranewallin/getting-started-with-the-waveshare-2-7-epaper-hat-on-raspberry-pi-41m8)  
 [Waveshare screen rotation -- MAYBE](https://www.waveshare.com/wiki/4.3inch_DSI_LCD)  
 [More Waveshare info - Python Screen rotation / partial refresh options](https://www.waveshare.com/wiki/E-Paper_API_Analysis#Python)  

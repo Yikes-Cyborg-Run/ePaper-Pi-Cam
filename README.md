@@ -11,6 +11,7 @@
 • [Install Modules](https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam#install-modules)  
 • [Enable SPI](https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam#enable-spi)
 • [Resources & To-Do](https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam?#project-resources--notes-for-future-updatesto-do)
+• [Conclusion & FAQ](https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam?#project-resources--notes-for-future-updatesto-do)
 
 
 <!-- <img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/splash_lego_enclosure.jpg' align='right' width='550'>  -->
@@ -305,6 +306,13 @@ sudo crontab -e
 ```
 sudo reboot
 ```
+
+### Conclusion and FAQ 
+**How do I restore the camera defaults?**  
+There is a file in the Resources directory titled "default_config.txt". Copy that folder into the parent directory and rename it to "config.txt".  
+
+**What resolution and size are photos taken at?**  
+The default resolution is set to the highest resolution it can be: 
 
 
 

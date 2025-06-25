@@ -101,7 +101,7 @@ Enjoy!
 
 **Connect Camera Buttons**  
 • If you are using the Waveshare 2.7-inch GPIO hat, all you need to do is seat the hat on your Pi.  
-• If you're using a different Waveshare display, refer to the GPIO diagram and table below.  
+• If you're using a different Waveshare display, refer to the diagram and table below.  
 
 <img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/Waveshare_2in7_GPIOhat_pins.jpg' align='left' width='400'>  
 <br>  
@@ -120,7 +120,7 @@ Enjoy!
 • If you are using the Waveshare 2.7-inch GPIO hat, you'll need to use a breakout board or some kind of prototype board to connect the LEDs.  
 [Example of Breakout Board](https://www.amazon.com/dp/B0DMNJ17PD?ref=ppx_yo2ov_dt_b_fed_asin_title)  
 [Example of Prototype Board](https://www.amazon.com/dp/B08C2XSTK2?ref=ppx_yo2ov_dt_b_fed_asin_title&th=1)  
-• Refer to the GPIO table below if you are adding LEDs to your camera.
+• Refer to the table below if you are adding LEDs to your camera.
 | LED | Pi GPIO Pin |
 |------------|------------|  
 | Green | 16 |  

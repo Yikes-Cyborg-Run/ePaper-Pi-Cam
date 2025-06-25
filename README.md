@@ -261,12 +261,12 @@ sudo apt install python3-gpiozero -y
 • To get the link to clone this repo, click the green "Code" button at the top of this page.  
 • Click the Copy to Clipboard icon button.  
 <img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/install_ePaper-Pi-Cam.png'>  
-• Open the terminal and type:
+• But I've already done that for you, 😉 so you can just open the terminal and type:
 ```
-git clone 
+git clone https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam.git
 ```
-
-
+**Alternatively....**  
+An alternate method of installation is to download the zip file, extract it, and upload the ePaper-Pi-Cam directory to home/pi/.  
 
 # Enable SPI #
 • SPI (Serial Peripheral Interface) must be enabled to use the ePaper display.  

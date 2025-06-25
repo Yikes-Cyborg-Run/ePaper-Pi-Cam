@@ -112,6 +112,7 @@ I hope you enjoy this project, I've had a lot of fun with it!
 
 **Optional Camera LEDs**  
 • The addition of LEDs to the camera is optional but adds a little bit of flare to the camera's functionality.  
+• The LEDs will light up to notify you that the camera is busy, or that other operations are in progress.  
 • If you are using the Waveshare 2.7-inch GPIO hat, you'll need to use a breakout board or some kind of prototype board to connect the LEDs.  
 [Example of Breakout Board](https://www.amazon.com/dp/B0DMNJ17PD?ref=ppx_yo2ov_dt_b_fed_asin_title)  
 [Example of Prototype Board](https://www.amazon.com/dp/B08C2XSTK2?ref=ppx_yo2ov_dt_b_fed_asin_title&th=1)  

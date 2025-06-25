@@ -322,6 +322,9 @@ The "Law of USB Cables" states: No matter how many USB cables you have, you only
 **How do I restore the camera defaults?**  
 There is a file in the Resources directory titled "default_config.txt". Copy that folder into the parent directory and rename it to "config.txt".  
 
+**My camera is not working or is not recognized**  
+Make sure that you have connected your camera properly to the Serial Interface port. Refer to the image under Connect the Camera in the [Hardware](https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam#hardware) section.  
+
 **At what resolution/size are photos taken?**  
 The default resolution is set to the highest resolution for this particular camera: 3000x2000 -- Need exact number here!!!!!!! You can set the resolution to be lower from the System Options Menu. If you have a camera that will accept a higher resolution   
 

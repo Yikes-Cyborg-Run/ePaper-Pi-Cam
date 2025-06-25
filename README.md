@@ -332,7 +332,7 @@ There is a file in the Resources directory named "splash.jpg". To have your own 
 **Am I able to add my own fonts?**  
 Yes. You can upload your own fonts to the "Fonts" directory and select them from the Display Options menu. Fonts must be TrueType (.ttf).
 
-# Project Resources & Notes for Future Updates/To-Do #
+# Project Resources, Notes & To-Do #
 **Picamzero Documents**  
 [Docs Recipes](https://picamera.readthedocs.io/en/release-1.13/)
 [Getting Started](https://raspberrypifoundation.github.io/picamera-zero/)
@@ -360,7 +360,6 @@ Yes. You can upload your own fonts to the "Fonts" directory and select them from
 [Raspberry Pi Official Camera Module Documentation](https://www.raspberrypi.com/documentation/accessories/camera.html)  
 
 ### To-Do
-- [ ] Increase flash duration for better exposure. ! Priority ! 
 - [ ] Audit code for efficiencey - remove/refine classes / modules -- logging
 - [ ] Partial refresh of display
 - [ ] Menu Config Options for: Screen Rotation, Camera Eposure, Screen & Photo Resolution
@@ -368,6 +367,7 @@ Yes. You can upload your own fonts to the "Fonts" directory and select them from
 - [ ] Long Term: Wifi connect to download photos?
 - [ ] Long Term: Web UI?
 - [ ] Long Term: Light sensor for auto-flash?
+- [x] Increase flash duration for better exposure.
 - [x] Buttons to navigate through past photos.
 - [x] Delete single images
 - [x] Delete ALL images

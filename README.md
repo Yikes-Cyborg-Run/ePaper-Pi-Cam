@@ -63,7 +63,7 @@ Enjoy!
 1) Raspberry Pi Zero2 W
 2) Waveshare 2.7-inch ePaper Hat (with built-in GPIO buttons)
 3) Official Raspberry Pi Camera Module V2
-4) Micro SD Card
+4) Micro SD Card (formatted to Fat32)
 5) Micro USB data cable → **$${\color{red}MAKE \space SURE \space IT'S \space A \space DATA \space CABLE!}$$**
 6) 3x LEDs of different colors, plus 3x 220Ω resistors → **$${\color{blue}LEDs\space optional}$$**
 7) 1x extra-bright LED for camera flash, plus 1x 220Ω resistors → **$${\color{blue}LED\space optional}$$**

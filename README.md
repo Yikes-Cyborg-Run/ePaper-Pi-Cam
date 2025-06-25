@@ -307,13 +307,21 @@ sudo crontab -e
 sudo reboot
 ```
 
-### Conclusion and FAQ 
+### Questions 
+**How do I download photos from the camera?**  
+The FileFilla application is a great resource for gaining access to your photos. It is a free and open-source platform that makes it easy for a user to connect to their Pi. You can [Download FileZilla here](https://filezilla-project.org/) Once you have installed and launched FileZilla, you will need to enter the host (IP address of your Pi), username (pi), and password (default is "raspberry"); then click "Quick Connect".  Navigate to the `home/pi/ePaper-Pi-Cam` directory
+
 **How do I restore the camera defaults?**  
 There is a file in the Resources directory titled "default_config.txt". Copy that folder into the parent directory and rename it to "config.txt".  
 
 **What resolution and size are photos taken at?**  
-The default resolution is set to the highest resolution it can be: 
+The default resolution is set to the highest resolution it can be: 3000x2000 -- Need exact number here!!!!!!! You can set the resolution to be lower from the System Options Menu.   
 
+**How do I change the splash screen?**  
+There is a file in the Resources directory named "splash.jpg". To have your own splash screen, simply overwrite this file with your own image. The file must be titled "splash.jpg". Alternatively, you can choose to disable the splash screen altogether from the System Options menu.
+
+**Am I able to add my own fonts?**  
+Yes. You can upload your own fonts to the "Fonts" directory and select them from the Display Options menu. Fonts must be TrueType (.ttf).
 
 
 ### Project Resources & Notes for Future Updates/To-Do 

@@ -252,9 +252,9 @@ sudo apt install python3-gpiozero -y
 
 # Install ePaper-Pi-Cam #  
 • To get the link to clone this repo, click the green "Code" button at the top of this page.  
-• Click the Copy to Clipboard icon button.  
+• Click the Copy url to clipboard icon/button.  
 <img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/install_ePaper-Pi-Cam.png'>  
-• But I've already done that for you, 😉 so you can just open the terminal and paste this in:
+• But I've already done this for you, 😉 so you can just open the terminal and paste this in:
 ```
 git clone https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam.git
 ```

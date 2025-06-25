@@ -18,12 +18,12 @@
 <!-- <img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/splash_lego_enclosure.jpg' align='right' width='550'>  -->
 <img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/splash_lego_enclosure.jpg' width='650'>
 
-_An early prototype of the ePaper-Pi-Cam. Please forgive the crude lego enclosure, I've no 3D printer!_  
+_Early prototype of the ePaper-Pi-Cam. Forgive the crude lego enclosure, I've no 3D printer!_  
 <br>
 
 # Main Features #
 1) Use your camera to take photos and render them on-the-fly with an ePaper display.
-2) Take timelapse photos with user-defined duration.
+2) Take time-lapse photos with user-defined duration.
 3) Display photos you've taken on Autoscroll function with a user-defined duration.
 4) Manually scroll through photos you've taken and delete photos if you wish to.
 5) Archive your Photos directory to a zip file for protecting from deletion or downloading later.

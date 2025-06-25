@@ -317,8 +317,8 @@ The FileFilla application is a great resource for gaining access to your photos.
 **How do I restore the camera defaults?**  
 There is a file in the Resources directory titled "default_config.txt". Copy that folder into the parent directory and rename it to "config.txt".  
 
-**What resolution and size are photos taken at?**  
-The default resolution is set to the highest resolution it can be: 3000x2000 -- Need exact number here!!!!!!! You can set the resolution to be lower from the System Options Menu.   
+**At what resolution/size are photos taken?**  
+The default resolution is set to the highest resolution for this particular camera: 3000x2000 -- Need exact number here!!!!!!! You can set the resolution to be lower from the System Options Menu. If you have a camera that will accept a higher resolution   
 
 **How do I change the splash screen?**  
 There is a file in the Resources directory named "splash.jpg". To have your own splash screen, simply overwrite this file with your own image. The file must be titled "splash.jpg". Alternatively, you can choose to disable the splash screen altogether from the System Options menu.

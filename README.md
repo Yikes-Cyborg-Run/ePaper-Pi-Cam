@@ -58,7 +58,7 @@ I hope you enjoy this project, I've had a lot of fun with it!
 # Hardware #  
 **Hardware Used in This Project:**
 1) Raspberry Pi Zero2 W
-2) Waveshare 2.7-inch ePaper Hat with built-in GPIO buttons  
+2) Waveshare 2.7-inch ePaper HAT with built-in GPIO buttons  
    Note: This project does NOT support multi-color ePaper displays -- ONLY black and white ones.
 3) Official Raspberry Pi Camera Module V2
 4) Micro SD Card (formatted to Fat32)
@@ -68,14 +68,14 @@ I hope you enjoy this project, I've had a lot of fun with it!
 8) Powerbank (to make it mobile) -- I have plans to add instructions for a battery build.
 
 **Wiring Diagram**  
-• This image shows how to wire up the camera buttons if you are not using the ePaper Hat.  
+• This image shows how to wire up the camera buttons if you are not using the ePaper HAT.  
 • It also shows the wiring of optional LEDs.  
 • IMPORTANT NOTE: The camera in the image below is for display ONLY. This is NOT the proper orientation/connection for the camera. See "Connect the Camera" below for proper connection.  
 
 <img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/wiring_diagram.png' width='650'>  
 
 **Setup WaveShare ePaper Display**  
-• If you are using the WaveShare 2.7-inch GPIO hat, all you need to do is seat the hat on your Pi.  
+• If you are using the WaveShare 2.7-inch GPIO hat, all you need to do is seat the HAT on your Pi.  
 • If you're using a different/wired WaveShare display, refer to the GPIO diagram and table below or the image above.  
 
 <img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/waveshare_Pi02W_setup.jpg' width='550' align='left'>  
@@ -95,7 +95,7 @@ I hope you enjoy this project, I've had a lot of fun with it!
 <br>
 
 **Connect Camera Buttons**  
-• If you are using the WaveShare 2.7-inch GPIO hat, all you need to do is seat the hat on your Pi.  
+• If you are using the WaveShare 2.7-inch GPIO HAT, all you need to do is seat the HAT on your Pi.  
 • If you're using a different WaveShare display, refer to the diagram and table below.  
 
 <img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/Waveshare_2in7_GPIOhat_pins.jpg' align='left' width='400'>  
@@ -113,7 +113,7 @@ I hope you enjoy this project, I've had a lot of fun with it!
 **Optional Camera LEDs**  
 • The addition of LEDs to the camera is optional but adds a little bit of flare to the camera's functionality.  
 • The LEDs will light up to notify you that the camera is busy, or that other operations are in progress.  
-• If you are using the Waveshare 2.7-inch GPIO hat, you'll need to use a breakout board or some kind of prototype board to connect the LEDs.  
+• If you are using the WaveShare 2.7-inch GPIO HAT, you'll need to use a breakout board or some kind of prototype board to connect the LEDs.  
 [Example of Breakout Board](https://www.amazon.com/dp/B0DMNJ17PD?ref=ppx_yo2ov_dt_b_fed_asin_title)  
 [Example of Prototype Board](https://www.amazon.com/dp/B08C2XSTK2?ref=ppx_yo2ov_dt_b_fed_asin_title&th=1)  
 • Refer to the table below if you are adding LEDs to your camera.  
@@ -187,7 +187,7 @@ I hope you enjoy this project, I've had a lot of fun with it!
 ### Get Your Pi's IP Address  
 <img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/Pi_data_port.png' width='200' align='right'>  
 
-• To create an SSH session, you need to determine your Pi's IP address.  
+• To create an SSH session (and to download your photos later), you need to determine your Pi's IP address.  
 • There are a number of ways you can achieve this, but this method works well for me.  
 • Connect your Pi to your computer via a USB **data** cable.  
 • Be sure to connect to the micro-USB port that is more toward the middle of the board, as the one on the outer edge is for power only.

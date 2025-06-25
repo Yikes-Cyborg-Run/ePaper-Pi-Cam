@@ -47,18 +47,16 @@ _Early prototype of the ePaper-Pi-Cam. Forgive the crude lego enclosure, I've no
 </table>
 
 **Inspiration for this project**  
-There are an increasing number of projects that take advantage of the ePaper display's functionality. I'm really drawn to these displays and the soft aesthetic they add to pretty much any project. One popular use for the ePaper display is to use it as a picture frame and I've always thought these were interesting. The Pi serves up photos saved to an SD card and scrolls through them at an interval. Simple enough and at the same time, very cool. So I thought, why not build an actual camera that takes photos and uses an ePaper display as the screen and then combine it with the picture frame functionality? I Googled around and didn't really find anything of the sort -- a combination of a camera AND scrolling picture frame. So I decided to see if I could build one.  
+There are an increasing number of projects that take advantage of the ePaper display's functionality. I'm really drawn to these displays and the soft aesthetic they add to pretty much any project. One popular use for the ePaper display is to use it as a picture frame and I've always thought these were interesting. The Pi serves up photos saved to an SD card and scrolls through them at an interval. Simple enough and at the same time, very cool. So I thought, why not build an actual camera that takes photos and uses an ePaper display as the screen; and then combine it with the picture frame functionality? I Googled around and didn't really find anything of the sort -- a combination of a camera AND scrolling picture frame. So I decided to see if I could build one.  
 
 **Yeah, but... WHY?**  
-Some may wonder, why use an ePaper display as a camera screen? Isn't it laggy with the re-drawing? I must admit, this project is a sort of [Rube Goldberg](https://en.wikipedia.org/wiki/Rube_Goldberg) macine. The screen does need to re-draw, and this was one of my major hurdles in putting this together. The ePaper display will need to refresh each time there is a change to the image. Normal displays (like LCDs and such) have a high refresh that make them better suited for displaying dynamic content. But with that benefit, there comes a higher power consumption that increases even more with back-lighting of the screen. With ePaper the refresh rate is very noticible, but power consumption is quite low as a trade-off. I've set this camera out for hours taking time lapse photos on a single 18650 lithium-ion battery. Still, the code needs to loop to function. And in doing so, the ePaper screen would continually refresh despite not having any changes to the display. So I needed a way to let the program know that the display had drawn and to not continue to refresh it upon each iteration of the loop. I believe I did this in the most efficient way I know. But I certainly have plans to refine the code to have the display only partially refresh the changed areas.    
+I know you may be wondering, why use an ePaper display as a camera screen? Isn't it laggy with the re-drawing? To be fair, this project is a sort of [Rube Goldberg](https://en.wikipedia.org/wiki/Rube_Goldberg) macine. The screen does need to re-draw, and this was one of my major hurdles in putting this together. The ePaper display will need to refresh each time there is a change to the image. Normal displays (like LCDs and such) have a high refresh rate that makes them better suited for displaying dynamic content. But with that benefit, there comes increased power consumption that increases even more with back-lighting of the screen. With ePaper the refresh rate is very noticible (to say the least), but power consumption is quite low as a trade-off. I've set this camera out for hours taking time-lapse photos on a single 18650 lithium-ion battery. Still, the code needs to loop in order to function. In doing so, the ePaper screen will continually refresh despite not having any changes to the display. So I needed a way to let the program know that the display had drawn and to not continue to refresh it upon each iteration of the loop. I believe I did this in the most efficient way I know. But I certainly have plans to refine the code to have the display only partially refresh the changed areas.  
 
 **Some things to keep in mind**    
 I understand full well that a lot of this code could be better, and some of it is likely downright offensive to a long-time Python programmer. For that I sincerely apologize. Still, I think I'm learning and getting a little bit better; and that continuing to work on this will help me to improve on all of my shortcomings. To conclude, I would like to emphasize that I would never offer anything up to the public that didn't work for me personally. At this point, I've gone though these steps a number of times from scratch. I know what some of the possible stumbling blocks might be, and hopefully I've doucumented how to overcome them in the walk-through. If anyone has any issues, I will do my absolute best to help. And I am always open to suggestions to make this better and to hopefully learn even more.  
 
 Enjoy!
 <br>
-
-
 
 # Hardware #  
 **Hardware used in this project:**
@@ -74,6 +72,7 @@ Enjoy!
 **Wiring Diagram**  
 • This image shows how to wire up the camera buttons if you are not using the ePaper Hat.  
 • It also shows the wiring of optional LEDs.  
+• IMPORTANT NOTE: The camera in the image below is for display only. This is NOT the proper orientation/connection for the camera. See below for proper connection.
 <br>
 <img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/wiring_diagram.png' width='650'>
 

@@ -250,7 +250,7 @@ sudo apt install git -y
 sudo apt install python3-gpiozero -y
 ```
 
-## Enable SPI ##
+# Enable SPI #
 • SPI (Serial Peripheral Interface) must be enabled to use the ePaper display.  
 • To asccess the Pi config menu:
 ```
@@ -286,7 +286,7 @@ sudo raspi-config
 edit the part "epd2in7_V2" to match the name of your display.
 
 
-### Auto-Start/Boot-Time Execution ##  
+# Auto-Start/Boot-Time Execution #  
 • To make the camera mobile and automatically start when the Pi boots up, you'll need to do a couple things.  
 • Open the crontab...  
 ```
@@ -309,7 +309,7 @@ sudo crontab -e
 sudo reboot
 ```
 
-### Questions & Troubleshooting
+# Questions & Troubleshooting #
 **How do I use a different ePaper display?**  
 Right now, this code only supports [Waveshare ePaper displays](https://www.waveshare.com/epaper). It is written mostly for the [Waveshare HAT that includes GPIO buttons](https://www.waveshare.com/product/displays/e-paper/epaper-2/2.7inch-e-paper-hat.htm?___SID=U). The fact that the HAT has GPIO buttons built in makes it very convenient and easy to use. HOWEVER, you can use any of the displays listed in the [waveshare_epd](https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/tree/main/waveshare_epd) directory. You will need to edit a couple lines of code to use your specific display. First, open the file "eppc.py" and look for this code at the top: `from waveshare_epd import epd2in7_V2`. Edit this code to match your specific display. For example, if you are using the 4.2-inch version-2 display, you would change this to be `from waveshare_epd import epd4in2_V2`. Do NOT include the .py extension. Second, in the Display class of this file, change the code `self.epd=epd2in7_V2.EPD()` to match your display. For example, if you are using the 4.2-inch version-2 display, you would change this to be `self.epd=epd4in2_V2.EPD()`. Save the file, re-upload it to the ePaper-Pi-Cam directory, and restart your Pi.
 
@@ -332,7 +332,7 @@ There is a file in the Resources directory named "splash.jpg". To have your own 
 **Am I able to add my own fonts?**  
 Yes. You can upload your own fonts to the "Fonts" directory and select them from the Display Options menu. Fonts must be TrueType (.ttf).
 
-### Project Resources & Notes for Future Updates/To-Do 
+# Project Resources & Notes for Future Updates/To-Do #
 **Picamzero Documents**  
 [Docs Recipes](https://picamera.readthedocs.io/en/release-1.13/)
 [Getting Started](https://raspberrypifoundation.github.io/picamera-zero/)
@@ -374,5 +374,5 @@ Yes. You can upload your own fonts to the "Fonts" directory and select them from
 - [x] Settings window to change indoor/outdoor brightness, whitebalance, etc.
 - [x] Possibly add a bright LED for flash?
 
-### About the Author  
+# About the Author #  
 I am a GIS Analyst currently residing in sunny Central Florida, working in local municipal government. A child of the 70's, I have been programming since the days of the Apple IIe. Although I began my career as a newspaper journalist and graphic designer, that path quickly evolved to include web design. Up until I started working in GIS in 2020, I had never programmed in the Python language. The nature of my job and the applications we use to produce paper and online maps required me to gain some experience with Python. After developing some scripts to automate the many repetitive tasks we must perform, including a couple of Python Toolboxes, I started to fall in love with the language and it's benefits. I have been interested in microcontrollers since a friend introduced me Arduino back in 2009. I put together a number of projects with Arduino before I started to investigate the Raspberry Pi. 

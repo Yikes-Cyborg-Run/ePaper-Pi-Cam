@@ -182,8 +182,11 @@ Enjoy!
 <img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/OS_write_complete.png' width='500'>  
   
 ### Get Pi's IP address  
+<img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/Pi_data_port.png' width='200' align='right'>  
+
 • To create an SSH session, you need to determine your Pi's IP address.  
-• Connect your Pi to your computer via a USB cable.
+• Connect your Pi to your computer via a USB data cable.  
+• Be sure to connect to the micro-USB port that is more toward the middle of the board, as the one on the outer edge is for power only.
 > [!IMPORTANT]
 > * It is essential that USB cable you connect to your Pi is a **DATA** cable.  
 > * Some cables are strictly for charging and will not transfer data.  

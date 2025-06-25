@@ -284,8 +284,8 @@ sudo raspi-config
 edit the part "epd2in7_V2" to match the name of your display.
 
 
-## When Pi Starts Up, Start Camera ##  
-• To make the camera start when the Pi boots up, you'll need to do a couple things.  
+### Auto-Start/Boot-Time Execution ##  
+• To make the camera mobile and automatically start when the Pi boots up, you'll need to do a couple things.  
 • Open the crontab...  
 ```
 sudo crontab -e

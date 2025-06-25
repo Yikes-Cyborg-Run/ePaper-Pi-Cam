@@ -119,6 +119,8 @@ I hope you enjoy this project, I've had a lot of fun with it!
 • Refer to the table below if you are adding LEDs to your camera.  
 • I use these "traffic-light" LEDs as they come with built in resistors and are simple to wire up.  
 
+<img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/traffic_light_LEDs.png' width='400'>  
+
 | LED | Pi GPIO Pin |
 |------------|------------|  
 | Green | 16 |  

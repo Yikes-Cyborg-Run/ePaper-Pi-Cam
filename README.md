@@ -10,9 +10,10 @@
 • [Install Raspberry Pi OS](https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam#install-the-raspberry-pi-operating-system)
 • [Install Modules](https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam#install-modules)  
 • [Enable SPI](https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam#enable-spi)
-• [Auto-Start/Boot-Time Exectution](https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam#auto-startboot-time-execution)  
-• [Questions & Troubleshooting](https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam?#questions--troubleshooting)
+• [Auto-Start/Boot-Time Exectution](https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam#auto-startboot-time-execution)
+• [Questions & Troubleshooting](https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam?#questions--troubleshooting)  
 • [Resources & To-Do](https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam?#project-resources--notes-for-future-updatesto-do)
+• [About the Author](https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam?#project-resources--notes-for-future-updatesto-do)
 
 
 <!-- <img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/splash_lego_enclosure.jpg' align='right' width='550'>  -->
@@ -358,7 +359,6 @@ Yes. You can upload your own fonts to the "Fonts" directory and select them from
 [How to Install Git](https://github.com/git-guides/install-git)  
 [Raspberry Pi Official Camera Module Documentation](https://www.raspberrypi.com/documentation/accessories/camera.html)  
 
-
 ### To-Do
 - [ ] Increase flash duration for better exposure. ! Priority ! 
 - [ ] Audit code for efficiencey - remove/refine classes / modules -- logging
@@ -373,3 +373,6 @@ Yes. You can upload your own fonts to the "Fonts" directory and select them from
 - [x] Delete ALL images
 - [x] Settings window to change indoor/outdoor brightness, whitebalance, etc.
 - [x] Possibly add a bright LED for flash?
+
+### About the Author  
+I am a GIS Analyst currently residing in sunny Central Florida, working in local municipal government. A child of the 70's, I have been programming since the days of the Apple IIe. Although I began my career as a newspaper journalist and graphic designer, that path quickly evolved to include web design. Up until I started working in GIS in 2020, I had never programmed in the Python language. The nature of my job and the applications we use to produce paper and online maps required me to gain some experience with Python. After developing some scripts to automate the many repetitive tasks we must perform, including a couple of Python Toolboxes, I started to fall in love with the language and it's benefits. I have been interested in microcontrollers since a friend introduced me Arduino back in 2009. I put together a number of projects with Arduino before I started to investigate the Raspberry Pi. 

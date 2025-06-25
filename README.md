@@ -254,7 +254,7 @@ sudo apt install python3-gpiozero -y
 • To get the link to clone this repo, click the green "Code" button at the top of this page.  
 • Click the Copy to Clipboard icon button.  
 <img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/install_ePaper-Pi-Cam.png'>  
-• But I've already done that for you, 😉 so you can just open the terminal and type:
+• But I've already done that for you, 😉 so you can just open the terminal and paste this in:
 ```
 git clone https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam.git
 ```
@@ -269,24 +269,20 @@ sudo raspi-config
 ```
 • Use the arrow keys to select option 5 "Interfacing Options".  
 
-<img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/SPI_1.jpg' width='400' align='left'>  
-<br><br><br><br><br><br><br><br>  
+<img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/SPI_1.jpg' width='400'>  
 
 • Then select P4 "SPI".  
 
-<img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/SPI_2.jpg' width='400' align='left'>  
-<br><br><br><br><br><br><br><br>  
+<img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/SPI_2.jpg' width='400'>  
 
 • Select "Yes" to enable SPI.  
 
-<img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/SPI_3.jpg' width='400' align='left'>  
-<br><br><br><br><br><br><br><br><br><br><br>  
+<img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/SPI_3.jpg' width='400'>  
 
 • Select "Yes" to reboot your Pi and apply config changes.  
 • NOTE: If not prompted to reboot, select Finish from the config menu and manually reboot in the terminal - sudo reboot  
 <br>
-<img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/SPI_4.jpg' width='400' align='left'>  
-<br><br><br><br><br><br><br><br><br><br><br>  
+<img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/SPI_4.jpg' width='400'>  
 
 > [!IMPORTANT]
 > * This project makes use of ePaper displays manufactured by WaveShare.  
@@ -300,15 +296,13 @@ sudo raspi-config
 sudo crontab -e
 ```
 • Select the first option for the editor.  
-<img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/crontab_notice.jpg' width='500' align='left'>  
-<br><br><br><br><br><br>  
+<img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/crontab_notice.jpg' width='500'>  
 
 • Add the folowwing to the bottom of the file.  
 ```
 @reboot python3 /home/pi/ePaper-Pi-Cam/main.py &
 ```
-<img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/crontab_setting.jpg' width='600' align='left'>  
-<br><br><br><br><br><br>  
+<img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/crontab_setting.jpg' width='600'>  
 
 • Ctrl-X to exit, then Y to save, and Enter to confirm.  
 • Then reboot the Pi

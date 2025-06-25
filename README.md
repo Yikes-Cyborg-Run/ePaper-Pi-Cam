@@ -311,6 +311,11 @@ sudo crontab -e
 sudo reboot
 ```
 
+### All Done! ###  
+• At this point, you have completed the installation.
+• When you Pi reboots it should automatically start the ePaper-Pi-Cam app, display the splash screen and load the main menu.  
+• If you encounter any issues, please check the section below or contact me. I'm glad to help!  
+
 # Questions & Troubleshooting #
 **How do I use a different ePaper display?**  
 Right now, this code only supports [Waveshare ePaper displays](https://www.waveshare.com/epaper). It is written mostly for the [Waveshare HAT that includes GPIO buttons](https://www.waveshare.com/product/displays/e-paper/epaper-2/2.7inch-e-paper-hat.htm?___SID=U). The fact that the HAT has GPIO buttons built in makes it very convenient and easy to use. HOWEVER, you can use any of the displays listed in the [waveshare_epd](https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/tree/main/waveshare_epd) directory. You will need to edit a couple lines of code to use your specific display. First, open the file "eppc.py" and look for this code at the top: `from waveshare_epd import epd2in7_V2`. Edit this code to match your specific display. For example, if you are using the 4.2-inch version-2 display, you would change this to be `from waveshare_epd import epd4in2_V2`. Do NOT include the .py extension. Second, in the Display class of this file, change the code `self.epd=epd2in7_V2.EPD()` to match your display. For example, if you are using the 4.2-inch version-2 display, you would change this to be `self.epd=epd4in2_V2.EPD()`. Save the file, re-upload it to the ePaper-Pi-Cam directory, and restart your Pi.

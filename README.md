@@ -226,8 +226,8 @@ ssh pi@pi
 • Then enter your password.  
 • However, if you want to download your photos using a file-transfer application like FileZilla, you will need the IP address to connect.  
 
-### Update Pi
-• After flashing, it is always recommended to update and upgrade the OS.  
+### Update & Upgrade Your Pi
+• After flashing, it is standard practice to update and upgrade the OS.  
 (This process will likely take a couple minutes to complete.)  
 ```
 sudo apt update && sudo apt -y full-upgrade

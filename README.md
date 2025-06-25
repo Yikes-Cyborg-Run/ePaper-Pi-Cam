@@ -17,7 +17,7 @@
 
 <img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/splash_lego_enclosure.jpg' width='650'>
 
-_Early prototype of the ePaper-Pi-Cam. Forgive the crude lego enclosure, I've no 3D printer!_  
+_Early prototype of the ePaper-Pi-Cam. Forgive the crude Lego enclosure, I've no 3D printer!_  
 
 # Main Features #
 1) Use your camera to take photos and render them on-the-fly with an ePaper display.

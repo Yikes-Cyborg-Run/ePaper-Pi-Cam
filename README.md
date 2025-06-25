@@ -178,7 +178,7 @@ Enjoy!
 <br>
 • Click "YES", and then double check the disc you'll be writing to. All data will be erased.  
 • Click "CONTINUE" to begin writing the OS.  
-• Once Imager has finished, you can eject the card and insert it into your Pi.  
+• Once the Raspberry Pi Imager has finished, you can eject the card and insert it into your Pi.  
 <br>
 <img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/OS_write_complete.png' width='500'>  
   

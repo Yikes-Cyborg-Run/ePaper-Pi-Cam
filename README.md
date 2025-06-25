@@ -206,6 +206,9 @@ ping pi -n 1
 ### SSH Into Pi  
 • Once you have the IP, you can SSH into your pi to complete the installation.  
 • Replace the IP below with your IP.  
+```
+ssh pi@192.168.1.139
+```
 • Enter your password and press Enter.  
 <br>
 <img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/ssh_IP_pw.png' width='500' align='left'>  

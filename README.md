@@ -119,14 +119,16 @@ I hope you enjoy this project, I've had a lot of fun with it!
 • Refer to the table below if you are adding LEDs to your camera.  
 • I use these "traffic-light" LEDs as they come with built in resistors and are simple to wire up.  
 
-<img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/traffic_light_LEDs.png' width='400'>  
+<img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/traffic_light_LEDs.png' align='left'>  
 
 | LED | Pi GPIO Pin |
 |------------|------------|  
 | Green | 16 |  
 | Yellow | 12 |
 | Red | 20 |
-| Flash | 23 |
+| Flash | 23 |  
+
+<br>
 
 **Connect the Camera**  
 • For this project, I used the official Raspberry Pi Camera module.  

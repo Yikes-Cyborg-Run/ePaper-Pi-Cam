@@ -3,8 +3,8 @@
 ## A Raspberry Pi Camera to show photos on an ePaper display. ##  
 
 ### Table of Contents ###
-• [Main Features](https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam#main-features)
 • [Introduction](https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam#introduction)
+• [Main Features](https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam#main-features)
 • [Hardware](https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam#hardware)
 • [Install Raspberry Pi OS](https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam#install-the-raspberry-pi-operating-system)
 • [Install Modules](https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam#install-modules)  
@@ -18,22 +18,6 @@
 <img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/splash_lego_enclosure.jpg' width='650'>
 
 _Early prototype of the ePaper-Pi-Cam. Forgive the crude Lego enclosure, I've no 3D printer!_  
-
-# Main Features #
-1) Use your camera to take photos and render them on-the-fly with an ePaper display.
-2) Take time-lapse photos with user-defined duration.
-3) Display photos you've taken on Autoscroll function with a user-defined duration.
-4) Manually scroll through photos you've taken and delete photos if you wish to.
-5) Archive your Photos directory to a zip file for protecting from deletion or downloading later.
-6) Purge all photos.
-7) Customizable Options: Display Font, Font Size, Time-Lapse Duration, Autoscroll Duration, Brightness, Contrast, Enable/Disable Flash, Exposure, Photo Resolution, White Balance, Archive Photos, Show Splash Screen, Clear Display and Shut Down, Show Photo and Shut Down, Purge Entire Photo Directory.
-
-| Menu Name | Options/Items | 
-|------------|------------|  
-| Main | Camera, Time-Lapse, Manual Scroll, Autoscroll,  Camera Options, Display Options, System Options |  
-| Camera Options | Brightness, Contrast, Exposure, Flash, Time-Lapse Duration, White Balance |
-| Display Options | Font, Font Size, Autoscroll Duration, Photo Resolution |
-| System Options | Archive Photos, Show Splash Screen, Timestamp Photo, Clear Display and Shut Down,  Show Photo and Shut Down, Purge All Photos |
 
 # Introduction #  
 <table style="width:500px;" align='right'>
@@ -54,6 +38,22 @@ I know you may be wondering, why use an ePaper display as a camera screen? Isn't
 I understand full well that a lot of this code could be better, and some of it is likely downright offensive to a long-time Python programmer. For that I sincerely apologize. Still, I think I'm learning and getting a little bit better; and that continuing to work on this will help me to improve on all of my shortcomings. To conclude, I would like to emphasize that I would never offer anything up to the public that didn't work for me personally. At this point, I've gone though these steps a number of times from scratch. I know what some of the possible stumbling blocks might be, and hopefully I've doucumented how to overcome them in the walk-through. If anyone has any issues, I will do my absolute best to help. And I am always open to suggestions to make this better and to hopefully learn even more.  
 
 I hope you enjoy this project, I've had a lot of fun with it!  
+
+# Main Features #
+1) Use your camera to take photos and render them on-the-fly with an ePaper display.
+2) Take time-lapse photos with user-defined duration.
+3) Display photos you've taken on Autoscroll function with a user-defined duration.
+4) Manually scroll through photos you've taken and delete photos if you wish to.
+5) Archive your Photos directory to a zip file for protecting from deletion or downloading later.
+6) Purge all photos.
+7) Customizable Options: Display Font, Font Size, Time-Lapse Duration, Autoscroll Duration, Brightness, Contrast, Enable/Disable Flash, Exposure, Photo Resolution, White Balance, Archive Photos, Show Splash Screen, Clear Display and Shut Down, Show Photo and Shut Down, Purge Entire Photo Directory.
+
+| Menu Name | Options/Items | 
+|------------|------------|  
+| Main | Camera, Time-Lapse, Manual Scroll, Autoscroll,  Camera Options, Display Options, System Options |  
+| Camera Options | Brightness, Contrast, Exposure, Flash, Time-Lapse Duration, White Balance |
+| Display Options | Font, Font Size, Autoscroll Duration, Photo Resolution |
+| System Options | Archive Photos, Show Splash Screen, Timestamp Photo, Clear Display and Shut Down,  Show Photo and Shut Down, Purge All Photos |
 
 # Hardware #  
 **Hardware Used in This Project:**
@@ -138,8 +138,7 @@ I hope you enjoy this project, I've had a lot of fun with it!
 • Pay close attention to how you connect the ribbon cable to both your Pi and your camera.  
 • The copper for both ends of the ribbon cable should face as shown below.  
 
-<img src='' align='left' width='400' alt='connect camera'>  
-<br>  
+<img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/camera_attachment.jpg' width='500'>  
 
 # Install the Raspberry Pi Operating System #
 **Flash the OS with Raspberry Pi Imager**  
@@ -237,7 +236,7 @@ sudo apt update && sudo apt -y full-upgrade
 (Installing each module will likely take a couple minutes to complete.)  
 
 ### Install picamzero
-• This project makes use of the picamzero module to take photos.  
+• This project makes use of the [picamzero](https://raspberrypifoundation.github.io/picamera-zero/) module to take photos.  
 ```
 sudo apt install python3-picamzero -y
 ```
@@ -249,7 +248,7 @@ sudo apt install git -y
 ```
 
 ### Install gpiozero  
-• This project uses the gpiozero module to interface with buttons and LEDs.  
+• This project uses the [gpiozero](https://gpiozero.readthedocs.io/en/latest/installing.html) module to interface with buttons and LEDs.  
 • gpiozero is a library that simplifies interacting with GPIO (General Purpose Input/Output) pins of the Pi.  
 • OS Lite does not include gpiozero, so you will need to install it for this project.  
 ```
@@ -293,7 +292,7 @@ sudo raspi-config
 > [!IMPORTANT]
 > * This project makes use of ePaper displays manufactured by WaveShare.  
 > * Installing this project will install drivers for ALL WaveShare displays and save them into the directory "waveshare_epd".  
-> * To use a different WaveShare display, you will need to read "How do I use a different ePaper display?" under the [Questions & Troubleshooting](https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam?#questions--troubleshooting) section.  
+> * To use a different WaveShare display, read "How do I use a different ePaper display?" under the [Questions & Troubleshooting](https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam?#questions--troubleshooting) section.  
 
 # Auto-Start/Boot-Time Execution #  
 • To make the camera automatically start when the Pi boots up, facilitating mobility, you'll need to do a couple things.  
@@ -347,7 +346,7 @@ There is a file in the Resources directory titled "default_config.txt". Copy tha
 Make sure that you have connected your camera properly to the Serial Interface port. Refer to the image under Connect the Camera in the [Hardware](https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam#hardware) section.  
 
 **At what resolution/size are photos taken?**  
-The default resolution is set to the highest resolution for this particular camera: 3000x2000 -- Need exact number here!!!!!!! You can set the resolution to be lower from the System Options Menu. If you have a camera that will accept a higher resolution, you can always edit the dimentions that are listed under the Menu class. Be sure to use the same syntax if you edit these.   
+The default resolution is set to: 3280 x 2464 pixels You can set the resolution to be lower from the System Options Menu. If you have a camera that will accept a higher resolution, you can always edit the dimentions that are listed under the Menu class. Be sure to use the same syntax if you edit these.   
 
 **How do I change the splash screen?**  
 There is a file in the Resources directory named "splash.jpg". To have your own splash screen, simply overwrite this file with your own image. The file must be titled "splash.jpg". Alternatively, you can choose to disable the splash screen altogether from the System Options menu.

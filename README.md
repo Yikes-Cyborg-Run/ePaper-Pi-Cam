@@ -36,6 +36,7 @@ _Early prototype of the ePaper-Pi-Cam. Forgive the crude Lego enclosure, I've no
 | System Options | Archive Photos, Show Splash Screen, Timestamp Photo, Clear Display and Shut Down,  Show Photo and Shut Down, Purge All Photos |
 
 # Introduction #  
+• [Skip to Hardware](https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam#hardware)
 <table style="width:500px;" align='right'>
 <tr><td>
 <img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/TL_sunset.gif'>

@@ -1,4 +1,4 @@
-import datetime, logging, os, re, threading, time, zipfile
+import datetime, logging, os, re, time, zipfile
 from waveshare_epd import epd2in7_V2 # -- the 2.7inch GPIO HAT
 from gpiozero import LED #, Button
 from PIL import Image, ImageDraw, ImageFont
@@ -17,7 +17,6 @@ class Display():
 		self.font=ImageFont.truetype(self.font_path, self.fontsize)
 		self.header_font=ImageFont.truetype(self.font_path, self.fontsize+4)
 		self.image=Image.new('1', (self.epd.height, self.epd.width), 255)
-#		self.draw=self.image.transpose(self.image.ROTATE_180) # !!!!!!! In progress
 		self.draw=ImageDraw.Draw(self.image)
 
 	# DRAW TEXT WITH A LARGER SIZED HEADER
@@ -166,18 +165,18 @@ class Menu():
 				# !!!!!!! Camera options to add? - vflip, hflip, greyscale
 				'Main Menu':['Camera', 'Time-Lapse', 'Manual Scroll', 'Autoscroll',  'Camera Options', 'Display Options', 'System Options'],
 
-				'Camera Options':['Brightness', 'Contrast', 'Exposure', 'Flash', 'Time-Lapse Duration', 'White Balance'], # 'Exposure', 
-				'Brightness':['-1.0', '-0.5', '-0.25', '0', '0.25', '0.5', '1.0'],
-				'Contrast':['0', '1', '5', '10', '15', '20', '25', '32'],
-				'Exposure':['100', '5000', '20000', '100000', '250000', '500000', '1000000',],
-				'Flash':['On', 'Off'], # !!!!!!! In progress - 'Auto' 
-				'Time-Lapse Duration':['1', '10', '30', '60', '300', '600', '1800', '3600'],
-				'White Balance':['Auto', 'Cloudy', 'Daylight', 'Fluorescent', 'Indoor', 'Tungsten'],
+				'Camera Options':['Brightness', 'Contrast', 'Exposure', 'Flash', 'Time-Lapse Duration', 'White Balance'],  
+				'Brightness':['-1.0', '-0.5', '-0.25', '0', '0.25', '0.5', '1.0'], 
+				'Contrast':['0', '1', '5', '10', '15', '20', '25', '32'], 
+				'Exposure':['100', '5000', '20000', '100000', '250000', '500000', '1000000',], 
+				'Flash':['On', 'Off'], # - 'Auto' 
+				'Time-Lapse Duration':['1', '10', '30', '60', '300', '600', '1800', '3600'], 
+				'White Balance':['Auto', 'Cloudy', 'Daylight', 'Fluorescent', 'Indoor', 'Tungsten'], 
 
 				'Display Options':['Font', 'Font Size', 'Autoscroll Duration'], # 'Display Rotation', 
-				'Font': self.font_list,
-				'Font Size':['12', '14', '16', '18', '20', '22', '24'],
-				'Autoscroll Duration':['10', '30', '60', '120', '300', '600'],
+				'Font': self.font_list, 
+				'Font Size':['12', '14', '16', '18', '20', '22', '24'], 
+				'Autoscroll Duration':['10', '30', '60', '120', '300', '600'], 
 #				'Display Rotation':['0', '90', '180', '270'], !!!!!!! In progress
 
 				'System Options':['Archive Photos', 'Show Splash Screen', 'Photo Resolution', 'Clear Display and Shut Down',  'Show Photo and Shut Down', 'Purge'], # 'Timestamp Photo', 
@@ -283,21 +282,15 @@ class Action():
 		cam.brightness=float(self.config['brightness'])
 		cam.contrast=float(self.config['contrast'])
 		cam.exposure=int(self.config['exposure'])
-
 		res_str=self.config['photoresolution']
 		res_width, res_height=res_str.split(' x ')
-
-		print(f"W: {res_width}")
-		print(f"H: {res_height}")
-
 		cam.still_size=(int(res_width), int(res_height)) # Photo resolution
-
 #		cam.gain=int(self.config['gain']) # !!!!!!! In progress - min and max vary
 		cam.white_balance=str(self.config['whitebalance'].lower())
 		LEDs().LEDs(0, 0, 1)
 		timestamp=datetime.datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
 		filename=f'{timestamp}.jpg'
-		# !!!!!!! In progress - Timestamp - Any way to make the position dynamic based on the screen size?
+		# !!!!!!! In progress - Timestamp - need to make the position dynamic based on the screen size
 #		if self.config['timestampphoto']=='Yes': cam.annotate(timestamp, 'plain-small', 'white', 1, 2, [5, 170])
 		image_path=self.image_dir+'/'+filename
 		Log().info(f"Taking photo: {image_path}")
@@ -317,12 +310,12 @@ class Action():
 			limit=len(photo_list)-1
 			if drawn==True:
 				if u.is_pressed:
-					LEDs().LEDs(1, 0, 0)
+					LEDs().LEDs(0, 1, 0)
 					num+=1
 					if num>limit:num=0
 					data=[0, 'Manual Scroll', False, num]
 				elif d.is_pressed:
-					LEDs().LEDs(1, 0, 0)
+					LEDs().LEDs(0, 1, 0)
 					num-=1
 					if num<0: num=limit
 					data=[0, 'Manual Scroll', False, num]
@@ -346,7 +339,7 @@ class Action():
 			txt=f"\nDeleted: {file}\nGoing back to photos...."
 			Log().info(txt)
 			Display().text_with_header(10, 5, "DELETED PHOTO", txt)
-			time.sleep(.2) # !!!!!!! Is sleep really needed here?
+			time.sleep(.2)
 			LEDs().LEDs(0, 0, 0)
 			return [0, 'Manual Scroll', False, next_num]
 		except Exception as e:
@@ -363,7 +356,7 @@ class Action():
 		# Create the zip file
 		Log().info(f"Attempting to archive photos to: {zip_path}....")
 		try:
-			photo_dir=Path(self.home_dir/'Photos')
+			photo_dir=Path(self.home_dir / 'Photos')
 			files=list(photo_dir.glob('*jpg'))
 			with zipfile.ZipFile(zip_path, 'w') as zip_file:
 				for f in files:
@@ -414,20 +407,20 @@ class Action():
 class LEDs():
 	def __init__(self):
 		self.config=Config().load()
+		self.LED_G=LED(20)
+		self.LED_Y=LED(16)
+		self.LED_R=LED(12)
 
 	# LEDs to show camera is busy or performing an action
 	# Takes 0 or 1, 0=off, 1=on
 	def LEDs(self, green, yellow, red):
 		if self.config['showleds']=='Yes':
-			LED_G=LED(20)
-			LED_Y=LED(16)
-			LED_R=LED(12)
-			if green==1: LED_G.on()
-			else: LED_G.off()
-			if yellow==1: LED_Y.on()
-			else: LED_Y.off()
-			if red==1: LED_R.on()
-			else: LED_R.off()
+			if green==1: self.LED_G.on()
+			else: self.LED_G.off()
+			if yellow==1: self.LED_Y.on()
+			else: self.LED_Y.off()
+			if red==1: self.LED_R.on()
+			else: self.LED_R.off()
 
 	# CAMERA FLASH
 	def flash(self, LED_FLASH, on_or_off):
@@ -449,11 +442,12 @@ class Calc():
 		future_time=now_time+datetime.timedelta(seconds=duration) # Add autoscroll_duration to timestamp
 		future=int(time.mktime(future_time.timetuple()))
 		# Log the current and future timestamps
-		Log().info(f"   NOW: {str(now)}")
-		Log().info(f"FUTURE: {str(future)}")
+		Log().info(f"     NOW: {str(now)}")
+		Log().info(f"DURATION: {str(duration)}")
+		Log().info(f"  FUTURE: {str(future)}")
 		return future
 
-	# Display the current timelapse setting
+	# Display a readable time setting
 	def convert_time_text(self, dur):
 		suffix='...'
 		if(dur<=60):
@@ -514,7 +508,7 @@ class Config():
 		k=config_item.lower()
 		k=re.sub(r'[^a-zA-Z0-9]', '', k)
 		config=Config().load()
-		config[k]=str(v) # Assign passed variable to item
+		config[k]=str(v) # Assign passed variable 'v' to item
 		Log().info(f"Saving {config_item}....\n{k} - {v}")
 		# Open file and save the updated config
 		try:
@@ -561,7 +555,7 @@ class Log():
 			self.logger.handlers.clear()
 		self.logger.addHandler(log_path)
 		self.logger.addHandler(console_handler)
-	
+
 	def critical(self, msg): self.logger.critical(msg)
 	def debug(self, msg): self.logger.debug(msg)
 	def error(self, msg): self.logger.error(msg)

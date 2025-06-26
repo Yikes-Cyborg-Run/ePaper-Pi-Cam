@@ -237,7 +237,7 @@ sudo apt update && sudo apt -y full-upgrade
 (Installing each module will likely take a couple minutes to complete.)  
 
 ### Install picamzero
-• This project makes use of the picamzero module to take photos.  
+• This project makes use of the [picamzero](https://raspberrypifoundation.github.io/picamera-zero/) module to take photos.  
 ```
 sudo apt install python3-picamzero -y
 ```

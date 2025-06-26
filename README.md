@@ -3,8 +3,8 @@
 ## A Raspberry Pi Camera to show photos on an ePaper display. ##  
 
 ### Table of Contents ###
-• [Main Features](https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam#main-features)
 • [Introduction](https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam#introduction)
+• [Main Features](https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam#main-features)
 • [Hardware](https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam#hardware)
 • [Install Raspberry Pi OS](https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam#install-the-raspberry-pi-operating-system)
 • [Install Modules](https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam#install-modules)  
@@ -19,24 +19,7 @@
 
 _Early prototype of the ePaper-Pi-Cam. Forgive the crude Lego enclosure, I've no 3D printer!_  
 
-# Main Features #
-1) Use your camera to take photos and render them on-the-fly with an ePaper display.
-2) Take time-lapse photos with user-defined duration.
-3) Display photos you've taken on Autoscroll function with a user-defined duration.
-4) Manually scroll through photos you've taken and delete photos if you wish to.
-5) Archive your Photos directory to a zip file for protecting from deletion or downloading later.
-6) Purge all photos.
-7) Customizable Options: Display Font, Font Size, Time-Lapse Duration, Autoscroll Duration, Brightness, Contrast, Enable/Disable Flash, Exposure, Photo Resolution, White Balance, Archive Photos, Show Splash Screen, Clear Display and Shut Down, Show Photo and Shut Down, Purge Entire Photo Directory.
-
-| Menu Name | Options/Items | 
-|------------|------------|  
-| Main | Camera, Time-Lapse, Manual Scroll, Autoscroll,  Camera Options, Display Options, System Options |  
-| Camera Options | Brightness, Contrast, Exposure, Flash, Time-Lapse Duration, White Balance |
-| Display Options | Font, Font Size, Autoscroll Duration, Photo Resolution |
-| System Options | Archive Photos, Show Splash Screen, Timestamp Photo, Clear Display and Shut Down,  Show Photo and Shut Down, Purge All Photos |
-
 # Introduction #  
-• [Skip to Hardware](https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam#hardware)
 <table style="width:500px;" align='right'>
 <tr><td>
 <img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/TL_sunset.gif'>
@@ -55,6 +38,22 @@ I know you may be wondering, why use an ePaper display as a camera screen? Isn't
 I understand full well that a lot of this code could be better, and some of it is likely downright offensive to a long-time Python programmer. For that I sincerely apologize. Still, I think I'm learning and getting a little bit better; and that continuing to work on this will help me to improve on all of my shortcomings. To conclude, I would like to emphasize that I would never offer anything up to the public that didn't work for me personally. At this point, I've gone though these steps a number of times from scratch. I know what some of the possible stumbling blocks might be, and hopefully I've doucumented how to overcome them in the walk-through. If anyone has any issues, I will do my absolute best to help. And I am always open to suggestions to make this better and to hopefully learn even more.  
 
 I hope you enjoy this project, I've had a lot of fun with it!  
+
+# Main Features #
+1) Use your camera to take photos and render them on-the-fly with an ePaper display.
+2) Take time-lapse photos with user-defined duration.
+3) Display photos you've taken on Autoscroll function with a user-defined duration.
+4) Manually scroll through photos you've taken and delete photos if you wish to.
+5) Archive your Photos directory to a zip file for protecting from deletion or downloading later.
+6) Purge all photos.
+7) Customizable Options: Display Font, Font Size, Time-Lapse Duration, Autoscroll Duration, Brightness, Contrast, Enable/Disable Flash, Exposure, Photo Resolution, White Balance, Archive Photos, Show Splash Screen, Clear Display and Shut Down, Show Photo and Shut Down, Purge Entire Photo Directory.
+
+| Menu Name | Options/Items | 
+|------------|------------|  
+| Main | Camera, Time-Lapse, Manual Scroll, Autoscroll,  Camera Options, Display Options, System Options |  
+| Camera Options | Brightness, Contrast, Exposure, Flash, Time-Lapse Duration, White Balance |
+| Display Options | Font, Font Size, Autoscroll Duration, Photo Resolution |
+| System Options | Archive Photos, Show Splash Screen, Timestamp Photo, Clear Display and Shut Down,  Show Photo and Shut Down, Purge All Photos |
 
 # Hardware #  
 **Hardware Used in This Project:**

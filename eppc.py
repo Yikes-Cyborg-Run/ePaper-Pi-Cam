@@ -5,6 +5,7 @@ from PIL import Image, ImageDraw, ImageFont
 from pathlib import Path
 
 # If you dont like mangos, dont shake the tree
+#!!!!!!!
 
 class Display():
 	def __init__(self):

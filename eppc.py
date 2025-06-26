@@ -134,7 +134,7 @@ class Display():
 			time.sleep(1)
 
 	def clear_and_shutdown(self):
-		Log().info(f"Clearing display and shutting down. \nZzzzzzz\n\nZzzzzzz Zzzzzzzzzzzzzz")
+		Log().info(f"Clearing display and shutting down.")
 		self.epd.Clear()
 		os.system("sudo shutdown -h now")
 
@@ -142,7 +142,7 @@ class Display():
 		if len(photo_list)>0:
 			photo=photo_list[len(photo_list)-1]
 			Display().photo(photo)
-			Log().info(f"Showing photo: {photo} and shutting down. \nZzzzzzz Zzzzzzzzzzzzzz")
+			Log().info(f"Showing photo: {photo} and shutting down.")
 			os.system("sudo shutdown -h now")
 		else:
 			data=Display().no_photos(data=[0, 'Main Menu', False, 0])
@@ -162,10 +162,10 @@ class Menu():
 		self.font_size=int(self.config['fontsize'])
 		self.font_path=str(self.home_dir / 'Fonts' / self.config['font'])
 		self.menu_list={
-				# !!!!!!! Camera options to add? - vflip, hflip, greyscale
 				'Main Menu':['Camera', 'Time-Lapse', 'Manual Scroll', 'Autoscroll',  'Camera Options', 'Display Options', 'System Options'],
 
-				'Camera Options':['Brightness', 'Contrast', 'Exposure', 'Flash', 'Time-Lapse Duration', 'White Balance'],  
+				'Camera Options':['Brightness', 'Contrast', 'Exposure', 'Flash', 'Time-Lapse Duration', 'White Balance'], # !!!!!!! Camera options to add? - vflip, hflip, greyscale
+
 				'Brightness':['-1.0', '-0.5', '-0.25', '0', '0.25', '0.5', '1.0'], 
 				'Contrast':['0', '1', '5', '10', '15', '20', '25', '32'], 
 				'Exposure':['100', '5000', '20000', '100000', '250000', '500000', '1000000',], 

@@ -138,8 +138,7 @@ I hope you enjoy this project, I've had a lot of fun with it!
 • Pay close attention to how you connect the ribbon cable to both your Pi and your camera.  
 • The copper for both ends of the ribbon cable should face as shown below.  
 
-<img src='' align='left' width='400' alt='connect camera'>  
-<br>  
+<img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/camera_attachment.jpg' width='500'>  
 
 # Install the Raspberry Pi Operating System #
 **Flash the OS with Raspberry Pi Imager**  

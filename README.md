@@ -268,7 +268,7 @@ An alternate method of installation is to download the zip file, extract it, and
 
 # Enable SPI #
 • SPI (Serial Peripheral Interface) must be enabled to use the ePaper display.  
-• To to enable this, access the Pi configuration menu:
+• To enable this, access the Pi configuration menu:
 ```
 sudo raspi-config
 ```

@@ -1,10 +1,23 @@
 # MAIN BRANCH
 
 from eppc import Action, Calc, Config, Display, LEDs, Log, Menu
-import time, datetime #, logging, threading 
+import time, datetime, logging
 from gpiozero import LED, Button
 from picamzero import Camera
 from pathlib import Path
+
+home_dir=Path(__file__).parent.resolve()
+logger=logging.getLogger(__name__)
+log_path=logging.FileHandler(home_dir/'log.log')
+#format=logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+format=logging.Formatter(fmt='%(asctime)s - %(name)s - Line %(lineno)d - %(levelname)s - %(message)s', datefmt='%Y-%m-%d %H:%M:%S')
+logger.setLevel(logging.DEBUG)
+log_path.setFormatter(format)
+console_handler=logging.StreamHandler()
+console_handler.setLevel(logging.DEBUG)
+console_handler.setFormatter(format)
+logger.addHandler(log_path)
+logger.addHandler(console_handler)
 
 def main():
 	home_dir=Path(__file__).parent.resolve() # Current directory
@@ -52,6 +65,8 @@ def main():
 
 	LED_FLASH=LED(23)
 
+	logger.info("started")
+
 	try:
 		# Start program loop
 		while True:
@@ -83,7 +98,7 @@ def main():
 					future=Calc().future(1.75) # Keep the flash LED on for 1.75 seconds
 					LEDs().flash(LED_FLASH, 1)
 					photo_list=Action().take_photo(cam, photo_list)
-#				Log().info(f"Now: {now} -- Future: {future}")
+#				logger.info(f"Now: {now} -- Future: {future}")
 				if now>future:
 					LEDs().flash(LED_FLASH, 0)
 
@@ -143,7 +158,7 @@ def main():
 			elif sel=='Time-Lapse':
 				data=Display().timelapse_msg(data)
 				if p.is_pressed:
-					Log().info("Timelapse initial button pushed")
+					logger.info("Timelapse initial button pushed")
 					photo_list=Action().take_photo(cam, photo_list)
 					data=[0, 'Timelapse Confirmed', False, num]
 					future=0
@@ -155,7 +170,7 @@ def main():
 					now=int(time.mktime(now_time.timetuple()))
 					if now>future:
 						photo_list=Action().take_photo(cam, photo_list)
-						Log().info("Timelapse photo taken")
+						logger.info("Timelapse photo taken")
 						future=Calc().future(int(config['timelapseduration']))
 						data=[0, sel, False, 0]
 				else:
@@ -178,7 +193,7 @@ def main():
 						if now>future:
 							num+=1
 							if num>=len(photo_list)-1: num=0
-							Log().info("Autoscroll Increment: "+str(num))
+							logger.info("Autoscroll Increment: "+str(num))
 							future=Calc().future(int(config['autoscrollduration']))
 							data=[0, sel, False, num]
 					else:
@@ -194,10 +209,10 @@ def main():
 					drawn=True
 				data=Menu().navigate(h, p, m, u, d, sel, cam)
 	except KeyboardInterrupt:
-		Log().error("Interrupted by user - Keyboard cancel.")
+		logger.error("Interrupted by user - Keyboard cancel.")
 #		cam.close()
 	finally:
-		Log().info("Exiting program.")
+		logger.info("Exiting program.")
 
 if __name__ == '__main__':
 	main()

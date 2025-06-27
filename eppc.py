@@ -101,6 +101,14 @@ class Display():
 		if data[2]==False:
 			filename=photo_list[num]
 			Log().info(f"Check delete: {filename}")
+
+			"""
+			image=Image.open(filename)
+			ih=int(self.epd.height/2)
+			iw=int(self.epd.width/2)
+			image=image.resize((ih, iw))
+
+			"""
 			image=Image.open(filename)
 			image=image.resize((self.epd.height, self.epd.width))
 			draw=ImageDraw.Draw(image)
@@ -162,7 +170,7 @@ class Menu():
 		self.font_size=int(self.config['fontsize'])
 		self.font_path=str(self.home_dir / 'Fonts' / self.config['font'])
 		self.menu_list={
-				'Main Menu':['Camera', 'Time-Lapse', 'Manual Scroll', 'Autoscroll',  'Camera Options', 'Display Options', 'System Options'],
+				'Main Menu':['Camera', 'Manual Scroll', 'Time-Lapse', 'Autoscroll',  'Camera Options', 'Display Options', 'System Options'],
 
 				'Camera Options':['Brightness', 'Contrast', 'Exposure', 'Flash', 'Time-Lapse Duration', 'White Balance'], # !!!!!!! Camera options to add? - vflip, hflip, greyscale
 

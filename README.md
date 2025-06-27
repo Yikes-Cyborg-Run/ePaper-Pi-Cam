@@ -58,7 +58,7 @@ I hope you enjoy this project, I've had a lot of fun with it!
 # Hardware #  
 **Hardware Used in This Project:**
 1) Raspberry Pi Zero2 W
-2) Waveshare 2.7-inch ePaper HAT with built-in GPIO buttons  
+2) WaveShare 2.7-inch ePaper HAT with built-in GPIO buttons  
    Note: This project does NOT support multi-color ePaper displays -- ONLY black and white ones.
 3) Official Raspberry Pi Camera Module V2
 4) Micro SD Card (formatted to Fat32)

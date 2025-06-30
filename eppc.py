@@ -27,11 +27,11 @@ class Display():
 
 	# DISPLAY PHOTO
 	def photo(self, photo_path):
-		Log().info(f"Loading file: {photo_path}....")
+		logger.info(f"Loading file: {photo_path}....")
 		image=Image.open(photo_path)
 		image=image.resize((self.epd.height, self.epd.width))
 		self.epd.display(self.epd.getbuffer(image))
-		Log().info(f"Displayed file: {photo_path}")
+		logger.info(f"Displayed file: {photo_path}")
 		LEDs().LEDs(1, 0, 0)
 
 	# CAMERA MESSAGE
@@ -88,7 +88,7 @@ class Display():
 	# NO PHOTOS MESSAGE
 	def no_photos(self, data):
 		if data[2]==False:
-			Log().error("List selected, but no photos on file.")
+			logger.error("List selected, but no photos on file.")
 			LEDs().LEDs(0, 0, 1)
 			txt="\nThere are no photos\non file to show.\n\nPress menu button...."
 			Display().text_with_header(10, 5, "NO PHOTOS", txt)
@@ -100,7 +100,7 @@ class Display():
 		num=data[3]
 		if data[2]==False:
 			filename=photo_list[num]
-			Log().info(f"Check delete: {filename}")
+			logger.info(f"Check delete: {filename}")
 
 			"""
 			image=Image.open(filename)
@@ -127,7 +127,7 @@ class Display():
 	def purge_warning(self, data, photo_list):
 		if data[2]==False:
 			if len(photo_list)>0:
-				Log().warning('Purge ALL Warning')
+				logger.warning('Purge ALL Warning')
 				txt=f"\n\nMenu button = Cancel\nPhoto button = Confirm"
 				Display().text_with_header(10, 5, f"DELETE {len(photo_list)} PHOTOS?", txt)
 				data=[0, 'Purge', True, 0]
@@ -142,7 +142,7 @@ class Display():
 			time.sleep(1)
 
 	def clear_and_shutdown(self):
-		Log().info(f"Clearing display and shutting down.")
+		logger.info(f"Clearing display and shutting down.")
 		self.epd.Clear()
 		os.system("sudo shutdown -h now")
 
@@ -150,7 +150,7 @@ class Display():
 		if len(photo_list)>0:
 			photo=photo_list[len(photo_list)-1]
 			Display().photo(photo)
-			Log().info(f"Showing photo: {photo} and shutting down.")
+			logger.info(f"Showing photo: {photo} and shutting down.")
 			os.system("sudo shutdown -h now")
 		else:
 			data=Display().no_photos(data=[0, 'Main Menu', False, 0])
@@ -202,7 +202,7 @@ class Menu():
 		config_val=''
 		use_menu=self.menu_list[sel]
 		options_list=Config().options_list()
-		Log().info(f"h: {h} -- {sel.upper()} -- {use_menu}")
+		logger.info(f"h: {h} -- {sel.upper()} -- {use_menu}")
 		if (sel in self.menu_list['Camera Options']) or (sel in self.menu_list['Display Options']) or (sel in self.menu_list['System Options']):
 			k=sel.lower()
 			k=re.sub(r'[^a-zA-Z0-9]', '', k)
@@ -271,7 +271,7 @@ class Action():
 	# Build a list of saved photos already on file.
 	# New photos will appended to the end of list.
 	def photo_list(self):
-			Log().info("Building list of previously saved photos")
+			logger.info("Building list of previously saved photos")
 			photo_list=[]
 			dir=Path(self.image_dir)
 			try:
@@ -279,10 +279,10 @@ class Action():
 					if Path(filename).is_file():
 						img_path=self.image_dir / filename
 						photo_list.append(img_path)
-				Log().info(f"Photos currently on file: {len(photo_list)}.")
+				logger.info(f"Photos currently on file: {len(photo_list)}.")
 				return photo_list
 			except Exception as e:
-				Log().error(f"Could not create photo list.\nDetails:\n{e}")
+				logger.error(f"Could not create photo list.\nDetails:\n{e}")
 
 	# TAKE PHOTO
 	# cam = initialized camera object from main(), existing photo_list
@@ -301,7 +301,7 @@ class Action():
 		# !!!!!!! In progress - Timestamp - need to make the position dynamic based on the screen size
 #		if self.config['timestampphoto']=='Yes': cam.annotate(timestamp, 'plain-small', 'white', 1, 2, [5, 170])
 		image_path=self.image_dir+'/'+filename
-		Log().info(f"Taking photo: {image_path}")
+		logger.info(f"Taking photo: {image_path}")
 		cam.take_photo(image_path)
 		Display().photo(image_path)
 		LEDs().LEDs(1, 0, 0)
@@ -338,20 +338,20 @@ class Action():
 	# DELETE
 	# Deletes a single photo passed from Manual Scroll
 	def delete_single_photo(self, num, file):
-		Log().info(f"Attempting to delete: {file}....")
+		logger.info(f"Attempting to delete: {file}....")
 		try:
 			LEDs().LEDs(0, 0, 1)
 			next_num=num-1
 			file=Path(file)
 			file.unlink()
 			txt=f"\nDeleted: {file}\nGoing back to photos...."
-			Log().info(txt)
+			logger.info(txt)
 			Display().text_with_header(10, 5, "DELETED PHOTO", txt)
 			time.sleep(.2)
 			LEDs().LEDs(0, 0, 0)
 			return [0, 'Manual Scroll', False, next_num]
 		except Exception as e:
-			Log().error(f"There was an error deleting file: {file}.\n Details:\n{e}")
+			logger.error(f"There was an error deleting file: {file}.\n Details:\n{e}")
 
 	# ARCHIVE CONFIRMED
 	# Creates a zip file to archive photos and then empty the Photos directory
@@ -362,7 +362,7 @@ class Action():
 		Path(archive_dir).mkdir(parents=True, exist_ok=True)
 		zip_path=f"{archive_dir}/Archived_Photos_{now.strftime('%Y-%m-%d_%H%M%S')}.zip"
 		# Create the zip file
-		Log().info(f"Attempting to archive photos to: {zip_path}....")
+		logger.info(f"Attempting to archive photos to: {zip_path}....")
 		try:
 			photo_dir=Path(self.home_dir / 'Photos')
 			files=list(photo_dir.glob('*jpg'))
@@ -371,14 +371,14 @@ class Action():
 					if Path(f).is_file():
 						try:
 							zip_file.write(f)
-							Log().info(f"Moved {f} to zip file.")
+							logger.info(f"Moved {f} to zip file.")
 						except Exception as e:
-							Log().critical(f"Error archiving file: {f}.\n Details:\n{e}")
+							logger.critical(f"Error archiving file: {f}.\n Details:\n{e}")
 				zip_file.close()
 
-			Log().info(f"Archiving to {f} completed.")
+			logger.info(f"Archiving to {f} completed.")
 		except Exception as e:
-			Log().error(f"Error archiving to {zip_path}.\n Details:\n{e}")
+			logger.error(f"Error archiving to {zip_path}.\n Details:\n{e}")
 
 		# Get total size of the Archive directory
 		dir_size=0
@@ -387,7 +387,7 @@ class Action():
 		dir_size=Calc().format_size(dir_size)
 		success_text=f"Photos archived to: \n{archive_dir}.\nTotal size of archive: {dir_size}."
 		Display().text_with_header(10, 5, "ARCHICE SUCCESSFUL", success_text)
-		Log().info(success_text)
+		logger.info(success_text)
 		time.sleep(3)
 		data=Action().purge_confirmed(len(self.image_dir) , False) # False - dont need to show purge message
 		LEDs().LEDs(0, 0, 0)
@@ -397,14 +397,14 @@ class Action():
 	# Delete ALL photos on file
 	def purge_confirmed(self, num_photos, show_message):
 		LEDs().LEDs(1, 1, 1)
-		Log().info("Attempting to purge all photos...")
+		logger.info("Attempting to purge all photos...")
 		del_dir=Path(self.image_dir)
 		for file in del_dir.iterdir():
 			if file.is_file():
 				try:file.unlink()
-				except Exception as e:Log().error(f"Could not delete: {file}.\n Details:\n{e}")
-				Log().info(f"Deleted: {file}")
-		Log().info(f"Deleted All {num_photos} photos")
+				except Exception as e:logger.error(f"Could not delete: {file}.\n Details:\n{e}")
+				logger.info(f"Deleted: {file}")
+		logger.info(f"Deleted All {num_photos} photos")
 		if show_message==True:
 			txt="\nGoing back to main menu...."
 			Display().text_with_header(10, 5, f"DELETED ALL\n{num_photos} PHOTOS", txt)
@@ -450,9 +450,9 @@ class Calc():
 		future_time=now_time+datetime.timedelta(seconds=duration) # Add autoscroll_duration to timestamp
 		future=int(time.mktime(future_time.timetuple()))
 		# Log the current and future timestamps
-		Log().info(f"     NOW: {str(now)}")
-		Log().info(f"DURATION: {str(duration)}")
-		Log().info(f"  FUTURE: {str(future)}")
+		logger.info(f"     NOW: {str(now)}")
+		logger.info(f"DURATION: {str(duration)}")
+		logger.info(f"  FUTURE: {str(future)}")
 		return future
 
 	# Display a readable time setting
@@ -504,9 +504,9 @@ class Config():
 							key, value=line.strip().split('=', 1)
 							config[key]=value
 			except Exception as e:
-				Log().error(f"Could not load config.\nDetails:\n{e}")
+				logger.error(f"Could not load config.\nDetails:\n{e}")
 		else:
-			Log().error("No config file.")
+			logger.error("No config file.")
 		return config
 
 	# Save config settings to txt file
@@ -517,7 +517,7 @@ class Config():
 		k=re.sub(r'[^a-zA-Z0-9]', '', k)
 		config=Config().load()
 		config[k]=str(v) # Assign passed variable 'v' to item
-		Log().info(f"Saving {config_item}....\n{k} - {v}")
+		logger.info(f"Saving {config_item}....\n{k} - {v}")
 		# Open file and save the updated config
 		try:
 			with open(self.config_path, 'w') as file:
@@ -525,12 +525,12 @@ class Config():
 					file.write(f'{key}={value}\n')
 				time.sleep(.5)
 			txt=f"\n{config_item} = {str(v)}"
-			Log().info(f"Saved {txt}")
+			logger.info(f"Saved {txt}")
 			Display().text_with_header(10, 10, f"SAVED CONFIG", txt)
 			time.sleep(1)
 			return [0, 'Main Menu', False, 0]
 		except Exception as e:
-			Log().error(f"Could not save config.\nDetails:\n{e}")
+			logger.error(f"Could not save config.\nDetails:\n{e}")
 
 	def options_list(self):
 		options_list=[]
@@ -543,11 +543,11 @@ class Config():
 							key=l[0]
 							options_list.append(key)
 			except Exception as e:
-				Log().error(f"Could create options list from config file.\nDetails:\n{e}")
+				logger.error(f"Could create options list from config file.\nDetails:\n{e}")
 		else:
-			Log().error("No config file.")
+			logger.error("No config file.")
 		return options_list
-
+"""
 class Log():
 	def __init__(self):
 		home_dir=Path(__file__).parent.resolve()
@@ -569,3 +569,4 @@ class Log():
 	def error(self, msg): self.logger.error(msg)
 	def info(self, msg): self.logger.info(msg)
 	def warning(self, msg): self.logger.warning(msg)
+"""

@@ -1,4 +1,5 @@
 # MAIN BRANCH
+
 from eppc import Action, Calc, Config, Display, LEDs, Log, Menu
 import time, datetime #, logging, threading 
 from gpiozero import LED, Button
@@ -28,7 +29,8 @@ def main():
 
 	# Start Camera() and set its configuration
 	cam=Camera()
-	cam.greyscale=True # Take photos in black & white... duh
+#	cam.greyscale=True # Take photos in black & white... duh
+	cam.greyscale=False # Take photos in black & white... duh
 
 	size=cam.still_size
 	print(f"{size}")

@@ -53,7 +53,7 @@ I hope you enjoy this project, I've had a lot of fun with it!
 | Main | Camera, Time-Lapse, Manual Scroll, Autoscroll,  Camera Options, Display Options, System Options |  
 | Camera Options | Brightness, Contrast, Exposure, Flash, Time-Lapse Duration, White Balance |
 | Display Options | Font, Font Size, Autoscroll Duration, Photo Resolution |
-| System Options | Archive Photos, Show Splash Screen, Timestamp Photo, Clear Display and Shut Down,  Show Photo and Shut Down, Purge All Photos |
+| System Options | Archive Photos, Show Splash Screen, Clear Display and Shut Down,  Show Photo and Shut Down, Purge All Photos |
 
 # Hardware #  
 **Hardware Used in This Project:**

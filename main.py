@@ -5,6 +5,7 @@ from gpiozero import LED, Button
 from picamzero import Camera
 from pathlib import Path
 
+# Start Logger
 home_dir=Path(__file__).parent.resolve()
 logger=logging.getLogger(__name__)
 log_path=logging.FileHandler(home_dir/'log.log')
@@ -17,8 +18,6 @@ console_handler.setLevel(logging.DEBUG)
 console_handler.setFormatter(format)
 logger.addHandler(log_path)
 logger.addHandler(console_handler)
-
-# If you dont like mangos, dont shake the tree
 
 class Display():
 	def __init__(self):
@@ -55,7 +54,8 @@ class Display():
 			txt+=f"\nFlash = {self.config['flash']}\n"
 			txt+=f"White Balance = {self.config['whitebalance']}\n"
 			txt+=f"Exposure = {str(self.config['exposure'])}\n"
-			txt+=f"Add Timestamp = {str(self.config['timestampphoto'])}\n"
+			txt+=f"Color Setting = {str(self.config['blackwhitephotos'])}\n"
+#			txt+=f"Add Timestamp = {str(self.config['timestampphoto'])}\n" # -- In progress
 			txt+=f"Brightness = {float(self.config['brightness'])}\n"
 			txt+=f"Contrast = {str(self.config['contrast'])}\n"
 			Display().text_with_header(10, 5, "CAMERA READY ", txt)
@@ -754,3 +754,5 @@ def main():
 
 if __name__ == '__main__':
 	main()
+
+# If you dont like mangos, dont shake the tree

@@ -168,7 +168,7 @@ I hope you enjoy this project, I've had a lot of fun with it!
 • Click "NEXT".  
 
 **Use OS Customization?**  
-*→ You need to configure a few custom settings so you can access Wi-Fi and SSH into your Pi.*  
+*→ You need to configure a few custom settings.*  
 • Click on the "EDIT SETTINGS" button.  
 
 <img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/edit_custom_settings.png' width='500'>  

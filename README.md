@@ -32,7 +32,7 @@ _Early prototype of the ePaper-Pi-Cam. Forgive the crude Lego enclosure, I've no
 There are an increasing number of projects that take advantage of the ePaper display's functionality. I'm really drawn to these displays and the soft aesthetic they add to pretty much any project. One popular use for the ePaper display is to use it as a picture frame and I've always thought these were interesting. The Pi serves up photos that have been previously saved to an SD card, scrolling through them at an interval. Simple enough and at the same time, very cool. So I thought, why not build an actual camera that takes photos and uses an ePaper display as the screen; and then combine it with the picture frame functionality? I Googled around and didn't really find anything of the sort -- a combination of a camera AND scrolling picture frame. So I decided to see if I could build one.  
 
 **Yeah, but... WHY?**  
-I know you may be wondering, why use an ePaper display as a camera screen? Isn't it laggy with the re-drawing? To be fair, this project is a sort of [Rube Goldberg](https://en.wikipedia.org/wiki/Rube_Goldberg) machine. The screen does need to re-draw, and this was one of my major hurdles in putting this together. The ePaper display will need to refresh each time there is a change to the image. Normal displays (like LCDs and such) have a high refresh rate that makes them better suited for displaying dynamic content. But with that benefit, there comes increased power consumption that increases even more with back-lighting of the screen. With ePaper the refresh rate is very noticable (to say the least), but power consumption is quite low as a trade-off. I've set this camera out for hours taking time-lapse photos on a single 18650 lithium-ion battery. Still, the code needs to loop in order to function. In doing so, the ePaper screen will continually refresh despite not having any changes to the display. So I needed a way to let the program know that the display had drawn and to not continue to refresh it upon each iteration of the loop. I believe I did this in the most efficient way I know. But I certainly have plans to refine the code to have the display only partially refresh the changed areas.  
+I know you may be wondering, why use an ePaper display as a camera screen? Isn't it laggy with the re-drawing? Yup. To be fair, this project is a sort of [Rube Goldberg](https://en.wikipedia.org/wiki/Rube_Goldberg) machine. The screen does need to re-draw, and this was one of my hurdles in putting this together. The ePaper display will need to refresh each time there is a change to the image. Normal displays (like LCDs and such) have a high refresh rate that makes them better suited for displaying dynamic content. But with that benefit, there comes increased power consumption that increases even more with back-lighting of the screen. With ePaper, the refresh rate is very noticable to say the least. However, power consumption is quite low as a trade-off. I've set this camera out for hours taking time-lapse photos on a single 18650 lithium-ion battery. Still, the code needs to loop in order to function. In doing so, the ePaper screen will continually refresh despite not having any changes to the display. So I needed a way to let the program know that the display had drawn and to not continue to refresh it upon each iteration of the loop. I believe I did this in the most efficient way I know. But I certainly have plans to refine the code to have the display only partially refresh the changed areas.  
 
 **Some things to keep in mind**    
 I understand full well that a lot of this code could be better, and some of it is likely downright offensive to a long-time Python programmer. For that I sincerely apologize. Still, I think I'm learning and getting a little bit better; and that continuing to work on this will help me to improve on all of my shortcomings. To conclude, I would like to emphasize that I would never offer anything up to the public that didn't work for me personally. At this point, I've gone though these steps a number of times from scratch. I know what some of the possible stumbling blocks might be, and hopefully I've documented how to overcome them in the walk-through. If anyone has any issues, I will do my absolute best to help. And I am always open to suggestions to make this better and to hopefully learn even more.  
@@ -53,19 +53,22 @@ I hope you enjoy this project, I've had a lot of fun with it!
 | Main | Camera, Time-Lapse, Manual Scroll, Autoscroll,  Camera Options, Display Options, System Options |  
 | Camera Options | Brightness, Contrast, Exposure, Flash, Time-Lapse Duration, White Balance |
 | Display Options | Font, Font Size, Autoscroll Duration, Photo Resolution |
-| System Options | Archive Photos, Show Splash Screen, Timestamp Photo, Clear Display and Shut Down,  Show Photo and Shut Down, Purge All Photos |
+| System Options | Archive Photos, Show Splash Screen, Clear Display and Shut Down,  Show Photo and Shut Down, Purge All Photos |
 
 # Hardware #  
 **Hardware Used in This Project:**
-1) Raspberry Pi Zero2 W
+1) Raspberry Pi Zero 2 W
 2) WaveShare 2.7-inch ePaper HAT with built-in GPIO buttons  
-   Note: This project does NOT support multi-color ePaper displays -- ONLY black and white ones.
-3) Official Raspberry Pi Camera Module V2
-4) Micro SD Card (formatted to Fat32)
-5) Micro USB data cable → **$${\color{red}MAKE \space SURE \space IT'S \space A \space DATA \space CABLE!}$$**
-6) 3x LEDs of different colors, plus 3x 220Ω resistors → **$${\color{blue}LEDs\space optional}$$**
-7) 1x extra-bright LED for camera flash, plus 1x 220Ω resistors → **$${\color{blue}LED\space optional}$$**
-8) Powerbank (to make it mobile) -- I have plans to add instructions for a battery build.
+   Note: This project does NOT support multi-color ePaper displays -- ONLY black and white ones.  
+   If you want to use a different display, please see the instructions under [Questions & Troubleshooting](https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam?#questions--troubleshooting).
+
+   
+4) Official Raspberry Pi Camera Module V2
+5) Micro SD Card (formatted to Fat32)
+6) Micro USB data cable → **$${\color{red}MAKE \space SURE \space IT'S \space A \space DATA \space CABLE!}$$**
+7) 3x LEDs of different colors, plus 3x 220Ω resistors → **$${\color{blue}LEDs\space optional}$$**
+8) 1x extra-bright LED for camera flash, plus 1x 220Ω resistor → **$${\color{blue}LED\space optional}$$**
+9) Powerbank (to make it mobile) -- I have plans to add instructions for a battery build.
 
 **Wiring Diagram**  
 • This image shows how to wire up the camera buttons if you are not using the ePaper HAT.  
@@ -77,6 +80,8 @@ I hope you enjoy this project, I've had a lot of fun with it!
 **Setup WaveShare ePaper Display**  
 • If you are using the WaveShare 2.7-inch GPIO hat, all you need to do is seat the HAT on your Pi.  
 • If you're using a different/wired WaveShare display, refer to the GPIO diagram and table below or the image above.  
+• You will also need to follow the "How do I use a different ePaper display?" instructions under [Questions & Troubleshooting](https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam?#questions--troubleshooting)
+
 
 <img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/waveshare_Pi02W_setup.jpg' width='550' align='left'>  
 <br>  
@@ -118,6 +123,7 @@ I hope you enjoy this project, I've had a lot of fun with it!
 [Example of Prototype Board](https://www.amazon.com/dp/B08C2XSTK2?ref=ppx_yo2ov_dt_b_fed_asin_title&th=1)  
 • Refer to the table below if you are adding LEDs to your camera.  
 • I use these "traffic-light" LEDs as they come with built-in resistors and are simple to wire up.  
+• I also added an extra bright LED to work as a flash.  
 
 <img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/traffic_light_LEDs.png' align='left'>  
 
@@ -132,7 +138,7 @@ I hope you enjoy this project, I've had a lot of fun with it!
 
 **Connect the Camera**  
 • For this project, I used the official Raspberry Pi Camera module.  
-• Others may work, but you may need to install specific device drivers.  
+• Others may work, but you may need to install specific device drivers and edit the code.  
 • Before connecting the camera (or anything for that matter) power off your Pi.  
 • Be careful with the connector clips on the Pi and camera, as they are delicate and can break!  
 • Pay close attention to how you connect the ribbon cable to both your Pi and your camera.  
@@ -162,7 +168,7 @@ I hope you enjoy this project, I've had a lot of fun with it!
 • Click "NEXT".  
 
 **Use OS Customization?**  
-*→ You need to configure a few custom settings so you can access Wi-Fi and SSH into your Pi.*  
+*→ You need to configure a few custom settings.*  
 • Click on the "EDIT SETTINGS" button.  
 
 <img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/edit_custom_settings.png' width='500'>  
@@ -237,6 +243,7 @@ sudo apt update && sudo apt -y full-upgrade
 
 ### Install picamzero
 • This project makes use of the [picamzero](https://raspberrypifoundation.github.io/picamera-zero/) module to take photos.  
+• picamzero, is a Python library designed to simplify controlling a Raspberry Pi camera.  
 ```
 sudo apt install python3-picamzero -y
 ```
@@ -328,12 +335,8 @@ Right now, this code only supports [WaveShare ePaper displays](https://www.waves
 **How do I download photos from the camera?**  
 The FileZilla application is a great resource for gaining access to your photos. It is a free and open-source platform that makes it easy for a user to connect to their Pi. You can [Download FileZilla here](https://filezilla-project.org/) Once you have installed and launched FileZilla, you will need to enter the host (IP address of your Pi), username (pi), and password (default is "raspberry"); then click "Quick Connect".  Navigate to the `home/pi/ePaper-Pi-Cam` directory and download the Photos directory. If you have archived photos, these will be saved in the "Archived_Photos" directory. Open that directory and download the .zip file(s).  
 
-**When I download from the Photos directory they are in Black & White**  
-Well, duh -- This is a black and white display! But in all candor, you CAN set the camera to take color photos if you wish. That way, when you download them they are in color. To do this, open the file "main.py". Find this line of code:
-```
-cam.greyscale=True
-```
-Change it to False (you can also comment it out or delete it completely) and restart your Pi. However, changing to color photography will increase the time it takes for them to render on the display.  
+**When I download from the Photos directory all of the photos are in Black & White**  
+Well, duh -- This is a black and white display! But in all candor, you CAN set the camera to take color photos if you wish. That way, when you download them they are in color. Toggle the Black & White Photos option to "Color" (Camera Menu). However, changing to color photography will increase the time it takes for them to render on the display.  
   
 **My Pi won't connect to my computer**  
 <img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/Pi_data_port.png' width='100' align='right'>
@@ -385,8 +388,8 @@ You sure can! You can upload your own fonts to the "Fonts" directory and select 
 [Raspberry Pi Official Camera Module Documentation](https://www.raspberrypi.com/documentation/accessories/camera.html)  
 
 ### To-Do
-- [ ] Audit code for efficiencey - remove/refine classes / modules -- logging
 - [ ] Partial refresh of display !Priority!
+- [ ] Audit code - remove/refine classes / modules
 - [ ] Menu Config Options for: Screen Rotation
 - [ ] Select a photo for splashscreen from manual scroll
 - [ ] Long Term: Wifi connect to download photos?

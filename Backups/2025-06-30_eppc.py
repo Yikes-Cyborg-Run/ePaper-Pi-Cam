@@ -172,7 +172,7 @@ class Menu():
 		self.menu_list={
 				'Main Menu':['Camera', 'Manual Scroll', 'Time-Lapse', 'Autoscroll',  'Camera Options', 'Display Options', 'System Options'],
 
-				'Camera Options':['Brightness', 'Contrast', 'Exposure', 'Flash', 'Time-Lapse Duration', 'White Balance'], # !!!!!!! Camera options to add? - vflip, hflip, greyscale
+				'Camera Options':['Brightness', 'Contrast', 'Exposure', 'Flash', 'Time-Lapse Duration', 'White Balance', 'Black & White Photos'], # !!!!!!! Camera options to add? - vflip, hflip, greyscale
 
 				'Brightness':['-1.0', '-0.5', '-0.25', '0', '0.25', '0.5', '1.0'], 
 				'Contrast':['0', '1', '5', '10', '15', '20', '25', '32'], 
@@ -180,6 +180,7 @@ class Menu():
 				'Flash':['On', 'Off'], # - 'Auto' 
 				'Time-Lapse Duration':['1', '10', '30', '60', '300', '600', '1800', '3600'], 
 				'White Balance':['Auto', 'Cloudy', 'Daylight', 'Fluorescent', 'Indoor', 'Tungsten'], 
+				'Black & White Photos':['Black & White', 'Color'], 
 
 				'Display Options':['Font', 'Font Size', 'Autoscroll Duration'], # 'Display Rotation', 
 				'Font': self.font_list, 

@@ -32,10 +32,10 @@ _Early prototype of the ePaper-Pi-Cam. Forgive the crude Lego enclosure, I've no
 There are an increasing number of projects that take advantage of the ePaper display's functionality. I'm really drawn to these displays and the soft aesthetic they add to pretty much any project. One popular use for the ePaper display is to use it as a picture frame and I've always thought these were interesting. The Pi serves up photos that have been previously saved to an SD card, scrolling through them at an interval. Simple enough and at the same time, very cool. So I thought, why not build an actual camera that takes photos and uses an ePaper display as the screen; and then combine it with the picture frame functionality? I Googled around and didn't really find anything of the sort -- a combination of a camera AND scrolling picture frame. So I decided to see if I could build one.  
 
 **Yeah, but... WHY?**  
-I know you may be wondering, why use an ePaper display as a camera screen? Isn't it laggy with the re-drawing? To be fair, this project is a sort of [Rube Goldberg](https://en.wikipedia.org/wiki/Rube_Goldberg) macine. The screen does need to re-draw, and this was one of my major hurdles in putting this together. The ePaper display will need to refresh each time there is a change to the image. Normal displays (like LCDs and such) have a high refresh rate that makes them better suited for displaying dynamic content. But with that benefit, there comes increased power consumption that increases even more with back-lighting of the screen. With ePaper the refresh rate is very noticible (to say the least), but power consumption is quite low as a trade-off. I've set this camera out for hours taking time-lapse photos on a single 18650 lithium-ion battery. Still, the code needs to loop in order to function. In doing so, the ePaper screen will continually refresh despite not having any changes to the display. So I needed a way to let the program know that the display had drawn and to not continue to refresh it upon each iteration of the loop. I believe I did this in the most efficient way I know. But I certainly have plans to refine the code to have the display only partially refresh the changed areas.  
+I know you may be wondering, why use an ePaper display as a camera screen? Isn't it laggy with the re-drawing? To be fair, this project is a sort of [Rube Goldberg](https://en.wikipedia.org/wiki/Rube_Goldberg) machine. The screen does need to re-draw, and this was one of my major hurdles in putting this together. The ePaper display will need to refresh each time there is a change to the image. Normal displays (like LCDs and such) have a high refresh rate that makes them better suited for displaying dynamic content. But with that benefit, there comes increased power consumption that increases even more with back-lighting of the screen. With ePaper the refresh rate is very noticable (to say the least), but power consumption is quite low as a trade-off. I've set this camera out for hours taking time-lapse photos on a single 18650 lithium-ion battery. Still, the code needs to loop in order to function. In doing so, the ePaper screen will continually refresh despite not having any changes to the display. So I needed a way to let the program know that the display had drawn and to not continue to refresh it upon each iteration of the loop. I believe I did this in the most efficient way I know. But I certainly have plans to refine the code to have the display only partially refresh the changed areas.  
 
 **Some things to keep in mind**    
-I understand full well that a lot of this code could be better, and some of it is likely downright offensive to a long-time Python programmer. For that I sincerely apologize. Still, I think I'm learning and getting a little bit better; and that continuing to work on this will help me to improve on all of my shortcomings. To conclude, I would like to emphasize that I would never offer anything up to the public that didn't work for me personally. At this point, I've gone though these steps a number of times from scratch. I know what some of the possible stumbling blocks might be, and hopefully I've doucumented how to overcome them in the walk-through. If anyone has any issues, I will do my absolute best to help. And I am always open to suggestions to make this better and to hopefully learn even more.  
+I understand full well that a lot of this code could be better, and some of it is likely downright offensive to a long-time Python programmer. For that I sincerely apologize. Still, I think I'm learning and getting a little bit better; and that continuing to work on this will help me to improve on all of my shortcomings. To conclude, I would like to emphasize that I would never offer anything up to the public that didn't work for me personally. At this point, I've gone though these steps a number of times from scratch. I know what some of the possible stumbling blocks might be, and hopefully I've documented how to overcome them in the walk-through. If anyone has any issues, I will do my absolute best to help. And I am always open to suggestions to make this better and to hopefully learn even more.  
 
 I hope you enjoy this project, I've had a lot of fun with it!  
 
@@ -58,7 +58,7 @@ I hope you enjoy this project, I've had a lot of fun with it!
 # Hardware #  
 **Hardware Used in This Project:**
 1) Raspberry Pi Zero2 W
-2) Waveshare 2.7-inch ePaper HAT with built-in GPIO buttons  
+2) WaveShare 2.7-inch ePaper HAT with built-in GPIO buttons  
    Note: This project does NOT support multi-color ePaper displays -- ONLY black and white ones.
 3) Official Raspberry Pi Camera Module V2
 4) Micro SD Card (formatted to Fat32)
@@ -162,14 +162,14 @@ I hope you enjoy this project, I've had a lot of fun with it!
 • Click "NEXT".  
 
 **Use OS Customization?**  
-*→ You need to configure a few custom settings so you can access WiFi and SSH into your Pi.*  
+*→ You need to configure a few custom settings so you can access Wi-Fi and SSH into your Pi.*  
 • Click on the "EDIT SETTINGS" button.  
 
 <img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/edit_custom_settings.png' width='500'>  
 
 • Keep the username as "pi" and keep the default password as "raspberry" for now.  
 • You can change the password later, but the username **MUST** remain "pi".  
-• Under "Configure Wireless LAN", enter your WiFi SSID, WiFi password and select your country.  
+• Under "Configure Wireless LAN", enter your Wi-Fi SSID, Wi-Fi password and select your country.  
 
 <img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/general_settings.png' width='400'>  
 
@@ -268,7 +268,7 @@ An alternate method of installation is to download the zip file, extract it, and
 
 # Enable SPI #
 • SPI (Serial Peripheral Interface) must be enabled to use the ePaper display.  
-• To to enable this, access the Pi configuration menu:
+• To enable this, access the Pi configuration menu:
 ```
 sudo raspi-config
 ```
@@ -323,7 +323,7 @@ sudo reboot
 
 # Questions & Troubleshooting #
 **How do I use a different ePaper display?**  
-Right now, this code only supports [Waveshare ePaper displays](https://www.waveshare.com/epaper). It is written mostly for the [Waveshare HAT that includes GPIO buttons](https://www.waveshare.com/product/displays/e-paper/epaper-2/2.7inch-e-paper-hat.htm?___SID=U). The fact that the HAT has GPIO buttons built in makes it very convenient and easy to use. HOWEVER, you can use any of the displays listed in the [waveshare_epd](https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/tree/main/waveshare_epd) directory. You will need to edit a couple lines of code to use your specific display. First, open the file "eppc.py" and look for this code at the top: `from waveshare_epd import epd2in7_V2`. Edit this code to match your specific display. For example, if you are using the 4.2-inch version-2 display, you would change this to be `from waveshare_epd import epd4in2_V2`. Do NOT include the .py extension. Second, in the Display class of this file, change the code `self.epd=epd2in7_V2.EPD()` to match your display. For example, if you are using the 4.2-inch version-2 display, you would change this to be `self.epd=epd4in2_V2.EPD()`. Save the file, re-upload it to the ePaper-Pi-Cam directory, and restart your Pi.
+Right now, this code only supports [WaveShare ePaper displays](https://www.waveshare.com/epaper). It is written mostly for the [WaveShare HAT that includes GPIO buttons](https://www.waveshare.com/product/displays/e-paper/epaper-2/2.7inch-e-paper-hat.htm?___SID=U). The fact that the HAT has GPIO buttons built in makes it very convenient and easy to use. HOWEVER, you can use any of the displays listed in the [waveshare_epd](https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/tree/main/waveshare_epd) directory. You will need to edit a couple lines of code to use your specific display. First, open the file "eppc.py" and look for this code at the top: `from waveshare_epd import epd2in7_V2`. Edit this code to match your specific display. For example, if you are using the 4.2-inch version-2 display, you would change this to be `from waveshare_epd import epd4in2_V2`. Do NOT include the .py extension. Second, in the Display class of this file, change the code `self.epd=epd2in7_V2.EPD()` to match your display. For example, if you are using the 4.2-inch version-2 display, you would change this to be `self.epd=epd4in2_V2.EPD()`. Save the file, re-upload it to the ePaper-Pi-Cam directory, and restart your Pi.
 
 **How do I download photos from the camera?**  
 The FileZilla application is a great resource for gaining access to your photos. It is a free and open-source platform that makes it easy for a user to connect to their Pi. You can [Download FileZilla here](https://filezilla-project.org/) Once you have installed and launched FileZilla, you will need to enter the host (IP address of your Pi), username (pi), and password (default is "raspberry"); then click "Quick Connect".  Navigate to the `home/pi/ePaper-Pi-Cam` directory and download the Photos directory. If you have archived photos, these will be saved in the "Archived_Photos" directory. Open that directory and download the .zip file(s).  
@@ -340,13 +340,13 @@ Change it to False (you can also comment it out or delete it completely) and res
 The "Law of USB Cables" states: No matter how many USB cables you have, you only ever have ONE good one. 99% of the time when you can't connect it is because the cable is for power-only. You will need a data cable to connect successfully. Furthermore, you need to connect the micro USB to the proper port on the Pi (see image). The data port is the micro USB connection that is more toward the middle of the board. This port will also power the Pi. The port near the edge of the board is for power only and does not support data transfer.  
 
 **How do I restore the original camera defaults?**  
-There is a file in the Resources directory titled "default_config.txt". Copy that file into the parent directory, delete yout old config.txt file and rename the default to "config.txt".  
+There is a file in the Resources directory titled "default_config.txt". Copy that file into the parent directory, delete your old config.txt file and rename the default to "config.txt".  
 
 **My camera is not working or is not recognized**  
 Make sure that you have connected your camera properly to the Serial Interface port. Refer to the image under Connect the Camera in the [Hardware](https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam#hardware) section.  
 
 **At what resolution/size are photos taken?**  
-The default resolution is set to: 3280 x 2464 pixels You can set the resolution to be lower from the System Options Menu. If you have a camera that will accept a higher resolution, you can always edit the dimentions that are listed under the Menu class. Be sure to use the same syntax if you edit these.   
+The default resolution is set to: 3280 x 2464 pixels You can set the resolution to be lower from the System Options Menu. If you have a camera that will accept a higher resolution, you can always edit the dimensions that are listed under the Menu class. Be sure to use the same syntax if you edit these.   
 
 **How do I change the splash screen?**  
 There is a file in the Resources directory named "splash.jpg". To have your own splash screen, simply overwrite this file with your own image. The file must be titled "splash.jpg". Alternatively, you can choose to disable the splash screen altogether from the System Options menu.

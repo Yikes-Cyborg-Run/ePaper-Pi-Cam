@@ -1,4 +1,5 @@
 autoscrollduration=10
+blackwhitephotos=Black & White
 brightness=0
 contrast=1
 displayrotation=90

@@ -328,12 +328,8 @@ Right now, this code only supports [WaveShare ePaper displays](https://www.waves
 **How do I download photos from the camera?**  
 The FileZilla application is a great resource for gaining access to your photos. It is a free and open-source platform that makes it easy for a user to connect to their Pi. You can [Download FileZilla here](https://filezilla-project.org/) Once you have installed and launched FileZilla, you will need to enter the host (IP address of your Pi), username (pi), and password (default is "raspberry"); then click "Quick Connect".  Navigate to the `home/pi/ePaper-Pi-Cam` directory and download the Photos directory. If you have archived photos, these will be saved in the "Archived_Photos" directory. Open that directory and download the .zip file(s).  
 
-**When I download from the Photos directory they are in Black & White**  
-Well, duh -- This is a black and white display! But in all candor, you CAN set the camera to take color photos if you wish. That way, when you download them they are in color. To do this, open the file "main.py". Find this line of code:
-```
-cam.greyscale=True
-```
-Change it to False (you can also comment it out or delete it completely) and restart your Pi. However, changing to color photography will increase the time it takes for them to render on the display.  
+**When I download from the Photos directory all of the photos are in Black & White**  
+Well, duh -- This is a black and white display! But in all candor, you CAN set the camera to take color photos if you wish. That way, when you download them they are in color. Toggle the Black & White Photos option to "Color" (Camera Menu). However, changing to color photography will increase the time it takes for them to render on the display.  
   
 **My Pi won't connect to my computer**  
 <img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/Pi_data_port.png' width='100' align='right'>
@@ -385,8 +381,8 @@ You sure can! You can upload your own fonts to the "Fonts" directory and select 
 [Raspberry Pi Official Camera Module Documentation](https://www.raspberrypi.com/documentation/accessories/camera.html)  
 
 ### To-Do
-- [ ] Audit code for efficiencey - remove/refine classes / modules -- logging
 - [ ] Partial refresh of display !Priority!
+- [ ] Audit code - remove/refine classes / modules
 - [ ] Menu Config Options for: Screen Rotation
 - [ ] Select a photo for splashscreen from manual scroll
 - [ ] Long Term: Wifi connect to download photos?

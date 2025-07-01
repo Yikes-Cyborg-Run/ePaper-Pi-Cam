@@ -138,7 +138,7 @@ I hope you enjoy this project, I've had a lot of fun with it!
 
 **Connect the Camera**  
 • For this project, I used the official Raspberry Pi Camera module.  
-• Others may work, but you may need to install specific device drivers.  
+• Others may work, but you may need to install specific device drivers and edit the code.  
 • Before connecting the camera (or anything for that matter) power off your Pi.  
 • Be careful with the connector clips on the Pi and camera, as they are delicate and can break!  
 • Pay close attention to how you connect the ribbon cable to both your Pi and your camera.  

@@ -77,6 +77,8 @@ I hope you enjoy this project, I've had a lot of fun with it!
 **Setup WaveShare ePaper Display**  
 • If you are using the WaveShare 2.7-inch GPIO hat, all you need to do is seat the HAT on your Pi.  
 • If you're using a different/wired WaveShare display, refer to the GPIO diagram and table below or the image above.  
+• You will also need to follow the "How do I use a different ePaper display?" instructions under [Questions & Troubleshooting](https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam?#questions--troubleshooting)
+
 
 <img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/waveshare_Pi02W_setup.jpg' width='550' align='left'>  
 <br>  

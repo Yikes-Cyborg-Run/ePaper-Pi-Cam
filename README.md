@@ -57,15 +57,18 @@ I hope you enjoy this project, I've had a lot of fun with it!
 
 # Hardware #  
 **Hardware Used in This Project:**
-1) Raspberry Pi Zero2 W
+1) Raspberry Pi Zero 2 W
 2) WaveShare 2.7-inch ePaper HAT with built-in GPIO buttons  
-   Note: This project does NOT support multi-color ePaper displays -- ONLY black and white ones.
-3) Official Raspberry Pi Camera Module V2
-4) Micro SD Card (formatted to Fat32)
-5) Micro USB data cable → **$${\color{red}MAKE \space SURE \space IT'S \space A \space DATA \space CABLE!}$$**
-6) 3x LEDs of different colors, plus 3x 220Ω resistors → **$${\color{blue}LEDs\space optional}$$**
-7) 1x extra-bright LED for camera flash, plus 1x 220Ω resistors → **$${\color{blue}LED\space optional}$$**
-8) Powerbank (to make it mobile) -- I have plans to add instructions for a battery build.
+   Note: This project does NOT support multi-color ePaper displays -- ONLY black and white ones.  
+   If you want to use a different display, please see the instructions under [Questions & Troubleshooting](https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam?#questions--troubleshooting).
+
+   
+4) Official Raspberry Pi Camera Module V2
+5) Micro SD Card (formatted to Fat32)
+6) Micro USB data cable → **$${\color{red}MAKE \space SURE \space IT'S \space A \space DATA \space CABLE!}$$**
+7) 3x LEDs of different colors, plus 3x 220Ω resistors → **$${\color{blue}LEDs\space optional}$$**
+8) 1x extra-bright LED for camera flash, plus 1x 220Ω resistor → **$${\color{blue}LED\space optional}$$**
+9) Powerbank (to make it mobile) -- I have plans to add instructions for a battery build.
 
 **Wiring Diagram**  
 • This image shows how to wire up the camera buttons if you are not using the ePaper HAT.  

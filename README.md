@@ -120,6 +120,7 @@ I hope you enjoy this project, I've had a lot of fun with it!
 [Example of Prototype Board](https://www.amazon.com/dp/B08C2XSTK2?ref=ppx_yo2ov_dt_b_fed_asin_title&th=1)  
 • Refer to the table below if you are adding LEDs to your camera.  
 • I use these "traffic-light" LEDs as they come with built-in resistors and are simple to wire up.  
+• I also added a high-
 
 <img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/traffic_light_LEDs.png' align='left'>  
 

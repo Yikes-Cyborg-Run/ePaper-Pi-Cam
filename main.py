@@ -8,7 +8,6 @@ from pathlib import Path
 home_dir=Path(__file__).parent.resolve()
 logger=logging.getLogger(__name__)
 log_path=logging.FileHandler(home_dir/'log.log')
-#format=logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 format=logging.Formatter(fmt='%(asctime)s - %(name)s - Line %(lineno)d - %(levelname)s - %(message)s', datefmt='%Y-%m-%d %H:%M:%S')
 logger.setLevel(logging.DEBUG)
 log_path.setFormatter(format)
@@ -115,13 +114,11 @@ class Display():
 		if data[2]==False:
 			filename=photo_list[num]
 			logger.info(f"Check delete: {filename}")
-
 			"""
 			image=Image.open(filename)
 			ih=int(self.epd.height/2)
 			iw=int(self.epd.width/2)
 			image=image.resize((ih, iw))
-
 			"""
 			image=Image.open(filename)
 			image=image.resize((self.epd.height, self.epd.width))
@@ -155,11 +152,13 @@ class Display():
 			Display().photo(self.home_dir / 'Resources' / 'splash.jpg')
 			time.sleep(1)
 
+	# CLEAR DISPLAY AND SHUTDOWN PI
 	def clear_and_shutdown(self):
 		logger.info(f"Clearing display and shutting down.")
 		self.epd.Clear()
 		os.system("sudo shutdown -h now")
 
+	# DISPLAY MOST RECENT PHOTO AND SHUTDOWN PI
 	def show_photo_and_shutdown(self, photo_list):
 		if len(photo_list)>0:
 			photo=photo_list[len(photo_list)-1]
@@ -186,7 +185,11 @@ class Menu():
 		self.menu_list={
 				'Main Menu':['Camera', 'Manual Scroll', 'Time-Lapse', 'Autoscroll',  'Camera Options', 'Display Options', 'System Options'],
 
+<<<<<<< HEAD
+				'Camera Options':['Brightness', 'Contrast', 'Exposure', 'Flash', 'Time-Lapse Duration', 'White Balance', 'Photo Color'], # !!!!!!! Options to add? - vflip, hflip
+=======
 				'Camera Options':['Brightness', 'Contrast', 'Exposure', 'Flash', 'Time-Lapse Duration', 'White Balance', 'Photo Color'], # !!!!!!! Camera options to add? - vflip, hflip, greyscale
+>>>>>>> de49d2da0e91a9ed84ce111d1a6bf713257ebdb1
 
 				'Brightness':['-1.0', '-0.5', '-0.25', '0', '0.25', '0.5', '1.0'], 
 				'Contrast':['0', '1', '5', '10', '15', '20', '25', '32'], 
@@ -207,7 +210,7 @@ class Menu():
 				'Photo Resolution':['264 x 176', '425 x 319', '708 x 532', '1181 x 887', '1968 x 1478', '3280 x 2464'],
 #				'Timestamp Photo':['Yes', 'No'], !!!!!!! In Progress
 				}
-		# These item selections don't need a menu created
+		# These selections don't need a menu created
 		self.ignore_list=['Archive Photos', 'Autoscroll', 'Camera', 'Delete', 'Manual Scroll', 'Purge', 'Take Photo', 'Time-lapse Camera']
 
 	# Build the selected menu
@@ -227,12 +230,12 @@ class Menu():
 		for item in use_menu:
 			item=str(item)
 			saved_config_val=''
-			# If its a config option item, show value
+			# If its a config option item, show the saved value
 			check_config_item=item.lower()
 			check_config_item=re.sub(r'[^a-zA-Z0-9]', '', check_config_item)
 			# Check config values for Option Menus
 			if check_config_item in options_list: saved_config_val=' = '+self.config[check_config_item]
-			# Mark the current config
+			# Mark the current config on list
 			if item==config_val: config_notch=' x '
 			else: config_notch=''
 			# Show the total number of photos for these items
@@ -283,8 +286,8 @@ class Action():
 		self.font_path=str(self.home_dir / 'Fonts' / self.config['font'])
 
 	# PHOTO LIST
-	# Build a list of saved photos already on file.
-	# New photos will appended to the end of list.
+	# Build a list of saved photos already on file
+	# New photos will be appended to the end of list
 	def photo_list(self):
 			logger.info("Building list of previously saved photos")
 			photo_list=[]
@@ -294,7 +297,7 @@ class Action():
 					if Path(filename).is_file():
 						img_path=self.image_dir / filename
 						photo_list.append(img_path)
-				logger.info(f"Photos currently on file: {len(photo_list)}.")
+				logger.info(f"Total photos currently on file: {len(photo_list)}.")
 				return photo_list
 			except Exception as e:
 				logger.error(f"Could not create photo list.\nDetails:\n{e}")
@@ -309,7 +312,11 @@ class Action():
 		res_width, res_height=res_str.split(' x ')
 		if str(self.config['photocolor']) =='Black and White': cam.greyscale=True
 		cam.still_size=(int(res_width), int(res_height)) # Photo resolution
+<<<<<<< HEAD
+#		cam.gain=int(self.config['gain']) # !!!!!!! In progress - min and max vary by camera type
+=======
 #		cam.gain=int(self.config['gain']) # !!!!!!! In progress - min and max vary
+>>>>>>> de49d2da0e91a9ed84ce111d1a6bf713257ebdb1
 		cam.white_balance=str(self.config['whitebalance'].lower())
 		LEDs().LEDs(0, 0, 1)
 		timestamp=datetime.datetime.now().strftime('%Y-%m-%d_%H-%M-%S')

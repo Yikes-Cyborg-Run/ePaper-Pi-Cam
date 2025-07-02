@@ -63,7 +63,7 @@ I hope you enjoy this project, I've had a lot of fun with it!
    If you want to use a different display, please see the instructions under [Questions & Troubleshooting](https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam?#questions--troubleshooting).
 
    
-4) Official Raspberry Pi Camera Module V2
+4) Official Raspberry Pi Camera Module (V2)
 5) Micro SD Card (formatted to Fat32)
 6) Micro USB data cable → **$${\color{red}MAKE \space SURE \space IT'S \space A \space DATA \space CABLE!}$$**
 7) 3x LEDs of different colors, plus 3x 220Ω resistors → **$${\color{blue}LEDs\space optional}$$**
@@ -232,7 +232,7 @@ ssh pi@pi
 • However, if you want to download your photos using a file-transfer application like FileZilla, you will need the IP address to connect.  
 
 ### Update & Upgrade Your Pi
-• After flashing, it is standard practice to update and upgrade the OS.  
+• After flashing the OS, it is standard practice to update and upgrade the OS.  
 (This process will likely take a couple minutes to complete.)  
 ```
 sudo apt update && sudo apt -y full-upgrade

@@ -324,7 +324,7 @@ sudo reboot
 ```
 
 ### All Done! ###  
-• At this point, you have completed the installation.
+• At this point, you have completed the installation.  
 • When you Pi reboots it should automatically start the ePaper-Pi-Cam app, display the splash screen and load the main menu.  
 • If you encounter any issues, please check the section below or contact me. I'm glad to help!  
 

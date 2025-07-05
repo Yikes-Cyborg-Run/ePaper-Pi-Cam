@@ -1,5 +1,5 @@
 import time, datetime, logging, os, re, time, zipfile
-from waveshare_epd import epd2in7_V2 # -- the 2.7inch GPIO HAT
+from waveshare_epd import epd2in7_V2 # -- Using the 2.7inch GPIO HAT - See README for help with using a different display
 from PIL import Image, ImageDraw, ImageFont
 from gpiozero import LED, Button
 from picamzero import Camera
@@ -11,13 +11,11 @@ log_path=logging.FileHandler(home_dir/'log.log')
 format=logging.Formatter(fmt='%(asctime)s - %(name)s - Line %(lineno)d - %(levelname)s - %(message)s', datefmt='%Y-%m-%d %H:%M:%S')
 logger.setLevel(logging.DEBUG)
 log_path.setFormatter(format)
-console_handler=logging.StreamHandler()
-console_handler.setLevel(logging.DEBUG)
-console_handler.setFormatter(format)
 logger.addHandler(log_path)
-logger.addHandler(console_handler)
-
-# If you dont like mangos, dont shake the tree
+#console_handler=logging.StreamHandler()
+#console_handler.setLevel(logging.DEBUG)
+#console_handler.setFormatter(format)
+#logger.addHandler(console_handler)
 
 class Display():
 	def __init__(self):
@@ -77,6 +75,7 @@ class Display():
 	# ARCHIVE MESSAGE
 	def archive_msg(self, data, photo_list):
 		s='s'
+		LEDs().LEDs(0, 1, 0)
 		num_photos=len(photo_list)
 		if num_photos>0:
 			if data[2]==False:
@@ -91,6 +90,7 @@ class Display():
 
 	# TIMELAPSE MESSAGE
 	def timelapse_msg(self, data):
+		LEDs().LEDs(0, 1, 0)
 		if data[2]==False:
 			dur=Calc().convert_time_text(int(self.config['timelapseduration']))
 			txt=f"\nWait time = {dur}\n\nPhoto button = Start\nMenu button = Cancel"
@@ -100,9 +100,9 @@ class Display():
 
 	# NO PHOTOS MESSAGE
 	def no_photos(self, data):
+		LEDs().LEDs(0, 0, 1)
 		if data[2]==False:
 			logger.error("List selected, but no photos on file.")
-			LEDs().LEDs(0, 0, 1)
 			txt="\nThere are no photos\non file to show.\n\nPress menu button...."
 			Display().text_with_header(10, 5, "NO PHOTOS", txt)
 			data=[0, 'Main Menu', True, 0]
@@ -111,23 +111,18 @@ class Display():
 	# CHECK DELETE MESSAGE
 	def delete_warning(self, data, photo_list):
 		num=data[3]
+		LEDs().LEDs(0, 0, 1)
 		if data[2]==False:
 			filename=photo_list[num]
 			logger.info(f"Check delete: {filename}")
-			"""
-			image=Image.open(filename)
-			ih=int(self.epd.height/2)
-			iw=int(self.epd.width/2)
-			image=image.resize((ih, iw))
-			"""
 			image=Image.open(filename)
 			image=image.resize((self.epd.height, self.epd.width))
 			draw=ImageDraw.Draw(image)
-			draw.rectangle([(0, 0), (int(self.epd.width)*2, 70)], fill=0)
-			font=ImageFont.truetype(self.font_path, self.fontsize+4)
-			draw.text((10, 2), "DELETE PHOTO?", font=font, fill=255)
+			draw.rectangle([(0, 0), (int(self.epd.width)*2, 70)], fill=255)
+			font=ImageFont.truetype(self.font_path, self.fontsize+5)
+			draw.text((10, 2), "DELETE PHOTO?", font=font, fill=0)
 			font=ImageFont.truetype(self.font_path, self.fontsize-1)
-			draw.text((10, self.fontsize+8), "Menu button = Cancel\nPhoto button = Confirm", font=font, fill=255)
+			draw.text((10, self.fontsize+8), "Menu button = Cancel\nPhoto button = Confirm", font=font, fill=0)
 			self.epd.display(self.epd.getbuffer(image))
 			data=[0, 'Delete', True, num]
 		else:
@@ -136,6 +131,7 @@ class Display():
 
 	# WARNING - PURGE ALL
 	def purge_warning(self, data, photo_list):
+		LEDs().LEDs(0, 0, 1)
 		if data[2]==False:
 			if len(photo_list)>0:
 				logger.warning('Purge ALL Warning')
@@ -149,23 +145,25 @@ class Display():
 	# SPLASH SCREEN
 	def splash(self):
 		if(self.config['showsplashscreen']=='Yes'):
+			LEDs().LEDs(0, 1, 0)
 			Display().photo(self.home_dir / 'Resources' / 'splash.jpg')
 			time.sleep(1)
 
-	# CLEAR DISPLAY AND SHUTDOWN PI
 	def clear_and_shutdown(self):
+		LEDs().LEDs(0, 1, 0)
 		logger.info(f"Clearing display and shutting down.")
 		self.epd.Clear()
 		os.system("sudo shutdown -h now")
 
-	# DISPLAY MOST RECENT PHOTO AND SHUTDOWN PI
 	def show_photo_and_shutdown(self, photo_list):
 		if len(photo_list)>0:
+			LEDs().LEDs(0, 1, 0)
 			photo=photo_list[len(photo_list)-1]
 			Display().photo(photo)
 			logger.info(f"Showing photo: {photo} and shutting down.")
 			os.system("sudo shutdown -h now")
 		else:
+			LEDs().LEDs(0, 0, 1)
 			data=Display().no_photos(data=[0, 'Main Menu', False, 0])
 			return data
 
@@ -185,16 +183,13 @@ class Menu():
 		self.menu_list={
 				'Main Menu':['Camera', 'Manual Scroll', 'Time-Lapse', 'Autoscroll',  'Camera Options', 'Display Options', 'System Options'],
 
-<<<<<<< HEAD
-				'Camera Options':['Brightness', 'Contrast', 'Exposure', 'Flash', 'Time-Lapse Duration', 'White Balance', 'Photo Color'], # !!!!!!! Options to add? - vflip, hflip
-=======
-				'Camera Options':['Brightness', 'Contrast', 'Exposure', 'Flash', 'Time-Lapse Duration', 'White Balance', 'Photo Color'], # !!!!!!! Camera options to add? - vflip, hflip, greyscale
->>>>>>> de49d2da0e91a9ed84ce111d1a6bf713257ebdb1
+				'Camera Options':['Brightness', 'Contrast', 'Exposure', 'Flash', 'Photo Resolution', 'Time-Lapse Duration', 'White Balance', 'Photo Color'], # !!!!!!! Camera options to add? - vflip, hflip, greyscale
 
 				'Brightness':['-1.0', '-0.5', '-0.25', '0', '0.25', '0.5', '1.0'], 
 				'Contrast':['0', '1', '5', '10', '15', '20', '25', '32'], 
 				'Exposure':['100', '5000', '20000', '100000', '250000', '500000', '1000000',], 
 				'Flash':['On', 'Off'], # - 'Auto' 
+				'Photo Resolution':['264 x 176', '425 x 319', '708 x 532', '1181 x 887', '1968 x 1478', '3280 x 2464'],
 				'Time-Lapse Duration':['1', '10', '30', '60', '300', '600', '1800', '3600'], 
 				'Photo Color':['Black and White', 'Color'], 
 				'White Balance':['Auto', 'Cloudy', 'Daylight', 'Fluorescent', 'Indoor', 'Tungsten'], 
@@ -205,18 +200,16 @@ class Menu():
 				'Autoscroll Duration':['10', '30', '60', '120', '300', '600'], 
 #				'Display Rotation':['0', '90', '180', '270'], !!!!!!! In progress
 
-				'System Options':['Archive Photos', 'Show Splash Screen', 'Photo Resolution', 'Clear Display and Shut Down',  'Show Photo and Shut Down', 'Purge'], # 'Timestamp Photo', 
+				'System Options':['Archive Photos', 'Show Splash Screen', 'Clear Display and Shut Down',  'Show Photo and Shut Down', 'Purge'], # 'Timestamp Photo', 
 				'Show Splash Screen':['Yes', 'No'],
-				'Photo Resolution':['264 x 176', '425 x 319', '708 x 532', '1181 x 887', '1968 x 1478', '3280 x 2464'],
 #				'Timestamp Photo':['Yes', 'No'], !!!!!!! In Progress
 				}
-		# These selections don't need a menu created
+		# These item selections don't need a menu created
 		self.ignore_list=['Archive Photos', 'Autoscroll', 'Camera', 'Delete', 'Manual Scroll', 'Purge', 'Take Photo', 'Time-lapse Camera']
 
 	# Build the selected menu
 	# sel = selected menu to use, h = item that's highlighted, photo_list = to tally the total photos
 	def build(self, h, sel, photo_list):
-		LEDs().LEDs(1, 0, 0)
 		config_val=''
 		use_menu=self.menu_list[sel]
 		options_list=Config().options_list()
@@ -230,12 +223,12 @@ class Menu():
 		for item in use_menu:
 			item=str(item)
 			saved_config_val=''
-			# If its a config option item, show the saved value
+			# If its a config option item, show value
 			check_config_item=item.lower()
 			check_config_item=re.sub(r'[^a-zA-Z0-9]', '', check_config_item)
 			# Check config values for Option Menus
 			if check_config_item in options_list: saved_config_val=' = '+self.config[check_config_item]
-			# Mark the current config on list
+			# Mark the current config
 			if item==config_val: config_notch=' x '
 			else: config_notch=''
 			# Show the total number of photos for these items
@@ -247,7 +240,6 @@ class Menu():
 				final_item='-- '+final_item # add a mark to the one that's highlighted
 			final_menu+=final_item+'\n'
 		Display().text_with_header(10, 0, sel.upper(), final_menu)
-		LEDs().LEDs(1, 0, 0)
 
 	# Function to navigate through the menu
 	# h = highlighted item, p = photo button, m = menu button, u = up button, d = down button
@@ -258,12 +250,12 @@ class Menu():
 		limit=len(use_menu)-1
 		if sel not in self.ignore_list:
 			if p.is_pressed:
-				LEDs().LEDs(1, 0, 0)
+				LEDs().LEDs(0, 0, 1)
 				data=[0, use_menu[h], False, 0]
 				if (sel in self.menu_list['Camera Options']) or (sel in self.menu_list['Display Options']) or (sel in self.menu_list['System Options']):
 					data=Config().save(sel, use_menu[h], cam)
 			elif m.is_pressed: # go to main menu
-				LEDs().LEDs(1, 0, 0)
+				LEDs().LEDs(0, 0, 1)
 				data=[0, 'Main Menu', False, 0]
 			elif u.is_pressed:
 				LEDs().LEDs(0, 1, 0)
@@ -286,8 +278,8 @@ class Action():
 		self.font_path=str(self.home_dir / 'Fonts' / self.config['font'])
 
 	# PHOTO LIST
-	# Build a list of saved photos already on file
-	# New photos will be appended to the end of list
+	# Build a list of saved photos already on file.
+	# New photos will appended to the end of list.
 	def photo_list(self):
 			logger.info("Building list of previously saved photos")
 			photo_list=[]
@@ -297,7 +289,7 @@ class Action():
 					if Path(filename).is_file():
 						img_path=self.image_dir / filename
 						photo_list.append(img_path)
-				logger.info(f"Total photos currently on file: {len(photo_list)}.")
+				logger.info(f"Photos currently on file: {len(photo_list)}.")
 				return photo_list
 			except Exception as e:
 				logger.error(f"Could not create photo list.\nDetails:\n{e}")
@@ -312,11 +304,6 @@ class Action():
 		res_width, res_height=res_str.split(' x ')
 		if str(self.config['photocolor']) =='Black and White': cam.greyscale=True
 		cam.still_size=(int(res_width), int(res_height)) # Photo resolution
-<<<<<<< HEAD
-#		cam.gain=int(self.config['gain']) # !!!!!!! In progress - min and max vary by camera type
-=======
-#		cam.gain=int(self.config['gain']) # !!!!!!! In progress - min and max vary
->>>>>>> de49d2da0e91a9ed84ce111d1a6bf713257ebdb1
 		cam.white_balance=str(self.config['whitebalance'].lower())
 		LEDs().LEDs(0, 0, 1)
 		timestamp=datetime.datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
@@ -327,7 +314,6 @@ class Action():
 		logger.info(f"Taking photo: {image_path}")
 		cam.take_photo(image_path)
 		Display().photo(image_path)
-		LEDs().LEDs(1, 0, 0)
 		photo_list.append(image_path)
 		return photo_list
 
@@ -337,6 +323,7 @@ class Action():
 	def manual_scroll(self, u, d, photo_list, data):
 		num=data[3]
 		drawn=data[2]
+		LEDs().LEDs(1, 0, 0)
 		if len(photo_list)>0:
 			limit=len(photo_list)-1
 			if drawn==True:
@@ -353,9 +340,9 @@ class Action():
 			else:
 				Display().photo(photo_list[num])
 				data=[0, 'Manual Scroll', True, num]
+				LEDs().LEDs(1, 0, 0)
 		else:
 			data=Display().no_photos(data)
-		LEDs().LEDs(0, 0, 0)
 		return data
 
 	# DELETE
@@ -465,8 +452,7 @@ class Calc():
 	def __init__(self):
 		self.config=Config().load()
 
-	# Calculates a future time to load next picture in Autoscroll 
-	# and to take a Time-Lapse photo
+	# Calculates a future time to load next picture in Autoscroll and to take a Time-Lapse photo
 	def future(self, duration):
 		now_time=datetime.datetime.now() # Get the current datetime
 		now=int(time.mktime(now_time.timetuple())) # Make timestamp
@@ -571,12 +557,11 @@ class Config():
 			logger.error("No config file.")
 		return options_list
 
-
 #################################################
 # -- Main
 #################################################
-
 def main():
+	LEDs().LEDs(0, 1, 0)
 	home_dir=Path(__file__).parent.resolve() # Current directory
 
 	# Create Photos dir if it doesn't exist
@@ -600,8 +585,6 @@ def main():
 	# Start Camera() and set its configuration
 	cam=Camera()
 
-	size=cam.still_size
-	print(f"{size}")
 	# Create a list of existing photos
 	photo_list=Action().photo_list() 
 
@@ -612,16 +595,9 @@ def main():
 	d=Button(6, pull_up=True) # menu selection -1
 
 	data=[0, 'Main Menu', False, 0] # set initial data to: [highlight=0, sel="Main Menu", drawn=False, photonum=0]
-
 	future=0
-
-#	flash_LED=threading.Thread(target=LEDs.flash)
-#	flash_LED.start()
-#	print("Loop start")
-
 	LED_FLASH=LED(23)
-
-	logger.info("started")
+	logger.info("Starting")
 
 	try:
 		# Start program loop
@@ -633,18 +609,19 @@ def main():
 
 			# MAIN MENU SELECTED
 			if m.is_pressed:
-				LEDs().LEDs(1, 0, 0)
+				LEDs().LEDs(0, 1, 0)
 				if sel=='Delete':
 					data=[0,'Manual Scroll', False, num]
 				else:
 					data=[0,'Main Menu', False, 0]
 				time.sleep(0.5) # need short delay or it will immediately revert to Main Menu
-				LEDs().LEDs(0, 0, 0)
 
 			# CAMERA MESSSAGE
 			elif sel=='Camera':
 				data=Display().camera_msg(data)
-				if p.is_pressed: data=[0, 'Take Photos', False, num]
+				LEDs().LEDs(1, 0, 0)
+				if p.is_pressed: 
+					data=[0, 'Take Photos', False, num]
 
 			# Actions and menu items that don't need a menu drawn
 			elif sel=='Take Photos':
@@ -654,9 +631,9 @@ def main():
 					future=Calc().future(1.75) # Keep the flash LED on for 1.75 seconds
 					LEDs().flash(LED_FLASH, 1)
 					photo_list=Action().take_photo(cam, photo_list)
-#				logger.info(f"Now: {now} -- Future: {future}")
 				if now>future:
 					LEDs().flash(LED_FLASH, 0)
+				LEDs().LEDs(1, 0, 0)
 
 			# Manually Scroll through photos
 			# Option to delete when photo button is pushed 
@@ -664,6 +641,7 @@ def main():
 				if len(photo_list)>0:
 					data=Action().manual_scroll(u, d, photo_list, data)
 					if p.is_pressed:
+						LEDs().LEDs(0, 1, 0)
 						data=[0, 'Delete', False, num]
 				else:
 					data=Display().no_photos(data)
@@ -722,6 +700,7 @@ def main():
 			# TIMELAPSE - Confirmed
 			elif sel=='Timelapse Confirmed':
 				if drawn==True:
+					LEDs().LEDs(1, 0, 0)
 					now_time=datetime.datetime.now()
 					now=int(time.mktime(now_time.timetuple()))
 					if now>future:
@@ -764,6 +743,8 @@ def main():
 					Menu().build(h, sel, photo_list)
 					drawn=True
 				data=Menu().navigate(h, p, m, u, d, sel, cam)
+				LEDs().LEDs(1, 0, 0)
+
 	except KeyboardInterrupt:
 		logger.error("Interrupted by user - Keyboard cancel.")
 #		cam.close()

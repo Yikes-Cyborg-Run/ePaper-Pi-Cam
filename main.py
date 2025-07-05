@@ -12,14 +12,10 @@ format=logging.Formatter(fmt='%(asctime)s - %(name)s - Line %(lineno)d - %(level
 logger.setLevel(logging.DEBUG)
 log_path.setFormatter(format)
 logger.addHandler(log_path)
-#console_handler=logging.StreamHandler()
-#console_handler.setLevel(logging.DEBUG)
-#console_handler.setFormatter(format)
-#logger.addHandler(console_handler)
 
 class Display():
 	def __init__(self):
-		self.epd=epd2in7_V2.EPD()
+		self.epd=epd2in7_V2.EPD() # -- EDIT HERE if using a different display
 		self.epd.init()
 		self.config=Config().load()
 		self.home_dir=Path(__file__).parent.resolve()
@@ -183,7 +179,7 @@ class Menu():
 		self.menu_list={
 				'Main Menu':['Camera', 'Manual Scroll', 'Time-Lapse', 'Autoscroll',  'Camera Options', 'Display Options', 'System Options'],
 
-				'Camera Options':['Brightness', 'Contrast', 'Exposure', 'Flash', 'Photo Resolution', 'Time-Lapse Duration', 'White Balance', 'Photo Color'], # !!!!!!! Camera options to add? - vflip, hflip, greyscale
+				'Camera Options':['Brightness', 'Contrast', 'Exposure', 'Flash', 'Photo Resolution', 'Time-Lapse Duration', 'White Balance', 'Photo Color'],
 
 				'Brightness':['-1.0', '-0.5', '-0.25', '0', '0.25', '0.5', '1.0'], 
 				'Contrast':['0', '1', '5', '10', '15', '20', '25', '32'], 
@@ -198,11 +194,10 @@ class Menu():
 				'Font': self.font_list, 
 				'Font Size':['12', '14', '16', '18', '20', '22', '24'], 
 				'Autoscroll Duration':['10', '30', '60', '120', '300', '600'], 
-#				'Display Rotation':['0', '90', '180', '270'], !!!!!!! In progress
 
-				'System Options':['Archive Photos', 'Show Splash Screen', 'Clear Display and Shut Down',  'Show Photo and Shut Down', 'Purge'], # 'Timestamp Photo', 
+				'System Options':['Archive Photos', 'Show Splash Screen', 'LEDs', 'Clear Display and Shut Down',  'Show Photo and Shut Down', 'Purge'],
 				'Show Splash Screen':['Yes', 'No'],
-#				'Timestamp Photo':['Yes', 'No'], !!!!!!! In Progress
+				'LEDs':['On', 'Off'],
 				}
 		# These item selections don't need a menu created
 		self.ignore_list=['Archive Photos', 'Autoscroll', 'Camera', 'Delete', 'Manual Scroll', 'Purge', 'Take Photo', 'Time-lapse Camera']
@@ -303,13 +298,11 @@ class Action():
 		res_str=self.config['photoresolution']
 		res_width, res_height=res_str.split(' x ')
 		if str(self.config['photocolor']) =='Black and White': cam.greyscale=True
-		cam.still_size=(int(res_width), int(res_height)) # Photo resolution
+		cam.still_size=(int(res_width), int(res_height)) # Resolution of photo that will be taken
 		cam.white_balance=str(self.config['whitebalance'].lower())
 		LEDs().LEDs(0, 0, 1)
 		timestamp=datetime.datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
 		filename=f'{timestamp}.jpg'
-		# !!!!!!! In progress - Timestamp - need to make the position dynamic based on the screen size
-#		if self.config['timestampphoto']=='Yes': cam.annotate(timestamp, 'plain-small', 'white', 1, 2, [5, 170])
 		image_path=self.image_dir+'/'+filename
 		logger.info(f"Taking photo: {image_path}")
 		cam.take_photo(image_path)
@@ -432,7 +425,7 @@ class LEDs():
 	# LEDs to show camera is busy or performing an action
 	# Takes 0 or 1, 0=off, 1=on
 	def LEDs(self, green, yellow, red):
-		if self.config['showleds']=='Yes':
+		if self.config['leds']=='On':
 			if green==1: self.LED_G.on()
 			else: self.LED_G.off()
 			if yellow==1: self.LED_Y.on()
@@ -684,6 +677,7 @@ def main():
 				data=Display().clear_and_shutdown()
 
 			# Show Photo and Shut Down
+			# Displays most recent photo taken before shutting down
 			elif sel=='Show Photo and Shut Down':
 				data=Display().show_photo_and_shutdown(photo_list)
 
@@ -747,7 +741,6 @@ def main():
 
 	except KeyboardInterrupt:
 		logger.error("Interrupted by user - Keyboard cancel.")
-#		cam.close()
 	finally:
 		logger.info("Exiting program.")
 

@@ -2,6 +2,40 @@
 
 ## A Raspberry Pi Camera to show photos on an ePaper display. ##  
 
+
+
+Did a full format of card -- FAT32
+
+#######
+libcamera-hello  (creates an image)
+vcgencmd get_camera (0 on each response)
+
+update raspi-config (in menu --actual config menu update)
+
+libcamera-still --list-cameras (list connected cameras)
+
+libcamera-jpeg -o test.jpg
+
+
+In /boot/firmware/config.txt
+camera_auto_detect=0
+dtoverlay=imx477
+Is this likely to matter?
+[all]
+camera_auto_detect=0
+dtoverlay=imx477
+
+
+
+sudo apt install python3-pip
+
+
+Verify Camera Detection: Run the command vcgencmd get_camera in the terminal to see if the Raspberry Pi detects the camera. You should see supported=1 detected=1. If it shows detected=0, there's likely a hardware or driver issue
+
+
+
+
+
 ### Table of Contents ###
 • [Introduction](https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam#introduction)
 • [Main Features](https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam#main-features)

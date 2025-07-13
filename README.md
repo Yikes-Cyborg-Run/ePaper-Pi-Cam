@@ -244,6 +244,12 @@ sudo apt update && sudo apt -y full-upgrade
 ### Install picamzero
 • This project makes use of the [picamzero](https://raspberrypifoundation.github.io/picamera-zero/) module to take photos.  
 • picamzero, is a Python library designed to simplify controlling a Raspberry Pi camera.  
+
+> [!IMPORTANT]
+> PLEASE NOTE: An error with picamzero's picamera2 dependency required me to download the picamzero module and add a line of code to fix the error.
+> jyytfiyttdutydurtdytu
+
+
 ```
 sudo apt install python3-picamzero -y
 ```

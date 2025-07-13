@@ -246,13 +246,10 @@ sudo apt update && sudo apt -y full-upgrade
 • picamzero, is a Python library designed to simplify controlling a Raspberry Pi camera.  
 
 > [!IMPORTANT]
-> PLEASE NOTE: An error with picamzero's picamera2 dependency required me to download the picamzero module and add a line of code to fix the error.
-> jyytfiyttdutydurtdytu
-
-
-```
-sudo apt install python3-picamzero -y
-```
+> PLEASE NOTE: 2025-07-13 - On a recent test install, I encountered an error with picamzero's picamera2 dependency. This required me to download the picamzero module and add a line of code to fix the error as described in this thread: .  
+> 
+> For now, the picamzero module is in   
+> sudo apt install python3-picamzero -y
 
 ### Install Git  
 • OS Lite does not include Git, so you will need to install it for this project.

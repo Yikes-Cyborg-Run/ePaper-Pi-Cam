@@ -185,7 +185,7 @@ class Menu():
 				'Contrast':['0', '1', '5', '10', '15', '20', '25', '32'], 
 				'Exposure':['100', '5000', '20000', '100000', '250000', '500000', '1000000',], 
 				'Flash':['On', 'Off'], # - 'Auto' 
-				'Photo Resolution':['264 x 176', '425 x 319', '708 x 532', '1181 x 887', '1968 x 1478', '3280 x 2464'],
+				'Photo Resolution':['264 x 176', '424 x 318', '708 x 532', '1180 x 886', '1968 x 1478', '3280 x 2464'],
 				'Time-Lapse Duration':['1', '10', '30', '60', '300', '600', '1800', '3600'], 
 				'Photo Color':['Black and White', 'Color'], 
 				'White Balance':['Auto', 'Cloudy', 'Daylight', 'Fluorescent', 'Indoor', 'Tungsten'], 

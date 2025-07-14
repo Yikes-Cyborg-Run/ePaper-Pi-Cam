@@ -1,5 +1,7 @@
 import time, datetime, logging, os, re, time, zipfile
-from waveshare_epd import epd2in7_V2 # -- Using the 2.7inch GPIO HAT - See README for help with using a different display
+# -- Using the 2.7inch GPIO HAT
+# -- See README for help with using another display
+from waveshare_epd import epd2in7_V2 
 from PIL import Image, ImageDraw, ImageFont
 from gpiozero import LED, Button
 from picamzero import Camera

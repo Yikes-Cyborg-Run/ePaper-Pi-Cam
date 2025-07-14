@@ -342,22 +342,22 @@ The FileZilla application is a great resource for gaining access to your photos.
 Well, duh -- This is a black and white display! But in all candor, you CAN set the camera to take color photos if you wish. That way, when you download them they are in color. Toggle the Black & White Photos option to "Color" (Camera Menu). However, changing to color photography will increase the time it takes for them to render on the display.  
 <br>  
 ### My Pi won't connect to my computer ###  
-<img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/Pi_data_port.png' width='100' align='right'>
+<img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/Pi_data_port.png' width='100' align='right'>  
 The "Law of USB Cables" states: No matter how many USB cables you have, you only ever have ONE good one. 99% of the time when you can't connect it is because the cable is for power-only. You will need a data cable to connect successfully. Furthermore, you need to connect the micro USB to the proper port on the Pi (see image). The data port is the micro USB connection that is more toward the middle of the board. This port will also power the Pi. The port near the edge of the board is for power only and does not support data transfer.  
-<br>  
+<br>
+
 ### How do I restore the original camera defaults? ###  
 There is a file in the Resources directory titled "default_config.txt". Copy that file into the parent directory, delete your old config.txt file and rename the default to "config.txt".  
 <br>
-
 ### My camera is not working or is not recognized ###  
 Make sure that you have connected your camera properly to the Serial Interface port. Refer to the image under Connect the Camera in the [Hardware](https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam#hardware) section.  
-
+<br>  
 ### At what resolution/size are photos taken? ###  
 The default resolution is set to: 3280 x 2464 pixels You can set the resolution to be lower from the System Options Menu. If you have a camera that will accept a higher resolution, you can always edit the dimensions that are listed under the Menu class. Be sure to use the same syntax if you edit these.   
-
+<br>
 ### How do I change the splash screen? ###  
 There is a file in the Resources directory named "splash.jpg". To have your own splash screen, simply overwrite this file with your own image. The file must be titled "splash.jpg". Alternatively, you can choose to disable the splash screen altogether from the System Options menu.
-
+<br>
 ### Am I able to add my own fonts? ###  
 You sure can! You can upload your own fonts to the "Fonts" directory and select them from the Display Options menu. Fonts must be TrueType (.ttf).  
 

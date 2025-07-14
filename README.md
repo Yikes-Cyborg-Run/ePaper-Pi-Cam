@@ -335,29 +335,29 @@ sudo reboot
 ### How do I use a different ePaper display? ###  
 Right now, this code only supports [WaveShare ePaper displays](https://www.waveshare.com/epaper). It is written mostly for the [WaveShare HAT that includes GPIO buttons](https://www.waveshare.com/product/displays/e-paper/epaper-2/2.7inch-e-paper-hat.htm?___SID=U). The fact that the HAT has GPIO buttons built in makes it very convenient and easy to use. HOWEVER, you can use any of the displays listed in the [waveshare_epd](https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/tree/main/waveshare_epd) directory. You will need to edit a couple lines of code to use your specific display. First, open the file "eppc.py" and look for this code at the top: `from waveshare_epd import epd2in7_V2`. Edit this code to match your specific display. For example, if you are using the 4.2-inch version-2 display, you would change this to be `from waveshare_epd import epd4in2_V2`. Do NOT include the .py extension. Second, in the Display class of this file, change the code `self.epd=epd2in7_V2.EPD()` to match your display. For example, if you are using the 4.2-inch version-2 display, you would change this to be `self.epd=epd4in2_V2.EPD()`. Save the file, re-upload it to the ePaper-Pi-Cam directory, and restart your Pi.
 
-**How do I download photos from the camera?**  
+### How do I download photos from the camera? ###  
 The FileZilla application is a great resource for gaining access to your photos. It is a free and open-source platform that makes it easy for a user to connect to their Pi. You can [Download FileZilla here](https://filezilla-project.org/) Once you have installed and launched FileZilla, you will need to enter the host (IP address of your Pi), username (pi), and password (default is "raspberry"); then click "Quick Connect".  Navigate to the `home/pi/ePaper-Pi-Cam` directory and download the Photos directory. If you have archived photos, these will be saved in the "Archived_Photos" directory. Open that directory and download the .zip file(s).  
 
-**When I download from the Photos directory all of the photos are in Black & White**  
+### When I download from the Photos directory all of the photos are in Black & White ###  
 Well, duh -- This is a black and white display! But in all candor, you CAN set the camera to take color photos if you wish. That way, when you download them they are in color. Toggle the Black & White Photos option to "Color" (Camera Menu). However, changing to color photography will increase the time it takes for them to render on the display.  
   
-**My Pi won't connect to my computer**  
+### My Pi won't connect to my computer ###  
 <img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/Pi_data_port.png' width='100' align='right'>
 The "Law of USB Cables" states: No matter how many USB cables you have, you only ever have ONE good one. 99% of the time when you can't connect it is because the cable is for power-only. You will need a data cable to connect successfully. Furthermore, you need to connect the micro USB to the proper port on the Pi (see image). The data port is the micro USB connection that is more toward the middle of the board. This port will also power the Pi. The port near the edge of the board is for power only and does not support data transfer.  
 
-**How do I restore the original camera defaults?**  
+### How do I restore the original camera defaults? ###  
 There is a file in the Resources directory titled "default_config.txt". Copy that file into the parent directory, delete your old config.txt file and rename the default to "config.txt".  
 
-**My camera is not working or is not recognized**  
+### My camera is not working or is not recognized ###  
 Make sure that you have connected your camera properly to the Serial Interface port. Refer to the image under Connect the Camera in the [Hardware](https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam#hardware) section.  
 
-**At what resolution/size are photos taken?**  
+### At what resolution/size are photos taken? ###  
 The default resolution is set to: 3280 x 2464 pixels You can set the resolution to be lower from the System Options Menu. If you have a camera that will accept a higher resolution, you can always edit the dimensions that are listed under the Menu class. Be sure to use the same syntax if you edit these.   
 
-**How do I change the splash screen?**  
+### How do I change the splash screen? ###  
 There is a file in the Resources directory named "splash.jpg". To have your own splash screen, simply overwrite this file with your own image. The file must be titled "splash.jpg". Alternatively, you can choose to disable the splash screen altogether from the System Options menu.
 
-**Am I able to add my own fonts?**  
+### Am I able to add my own fonts? ###  
 You sure can! You can upload your own fonts to the "Fonts" directory and select them from the Display Options menu. Fonts must be TrueType (.ttf).  
 
 # Project Resources, Notes & To-Do #  

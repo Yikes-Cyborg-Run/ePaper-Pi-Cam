@@ -174,7 +174,7 @@ I hope you enjoy this project, I've had a lot of fun with it!
 <img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/edit_custom_settings.png' width='500'>  
 
 • Keep the username as "pi" and keep the default password as "raspberry" for now.  
-• You can change the password later, but the username **MUST** remain "pi".  
+• You can change the password later, but the username should remain "pi".  
 • Under "Configure Wireless LAN", enter your Wi-Fi SSID, Wi-Fi password and select your country.  
 
 <img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/general_settings.png' width='400'>  

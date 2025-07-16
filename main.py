@@ -179,7 +179,7 @@ class Menu():
 		self.font_size=int(self.config['fontsize'])
 		self.font_path=str(self.home_dir / 'Fonts' / self.config['font'])
 		self.menu_list={
-				'Main Menu':['Camera', 'Manual Scroll', 'Time-Lapse', 'Autoscroll',  'Camera Options', 'Display Options', 'System Options'],
+				'Main Menu':['Camera', 'Time-Lapse', 'Autoscroll', 'Manual Scroll', 'Camera Options', 'Display Options', 'System Options'],
 
 				'Camera Options':['Brightness', 'Contrast', 'Exposure', 'Flash', 'Photo Resolution', 'Time-Lapse Duration', 'White Balance', 'Photo Color'],
 

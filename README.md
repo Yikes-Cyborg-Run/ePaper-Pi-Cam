@@ -277,10 +277,10 @@ git clone https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam.git
 ```
 **Alternatively....**  
 An alternate method of installation is to download the zip file, extract it, and upload the ePaper-Pi-Cam directory to home/pi/.  
-
 # Enable SPI #
 • SPI (Serial Peripheral Interface) must be enabled to use the ePaper display.  
-• To enable this, access the Pi configuration menu:
+• To enable this, access the Pi configuration menu:  
+(menu item numbers)
 ```
 sudo raspi-config
 ```

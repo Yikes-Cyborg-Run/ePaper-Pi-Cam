@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!-- <meta http-equiv="refresh" content="10"> -->
+<title>ePaper-Pi-Cam Downloads</title>
+<style>
+body{background-color:#000; color:#fff; margin:0px; font-family: 'Trebuchet MS'; text-align: center; padding:0px 20px;}
+h1{color:#fff; margin-left: 5px;}
+img.photo{width:150px; border-radius:10px;}
+img.photo:hover{opacity: 50%;}
+a:link, a:visited{text-decoration:none;}
+a:hover, a:active{color:rgb(104, 255, 111)}
+div.container{display:inline-block; width:100%; text-align:left; margin:auto;}
+</style>
+</head>
+<body>
+<div class="container">
+
+<h1>Downloads</h1>
+<h2>Archives</h2>
+{% for archive in archives %}
+<a href="{{ url_for('download_archive', filename=archive) }}">{{archive}}</a><br>
+{% endfor %}
+<div style="width:100%; border-bottom: 1px dotted #ccc;">&nbsp;</div>
+<h2>Photos</h2>
+{% for file in files %}
+<div style="display:inline-block; width:160px; text-align:center;">
+<a href="{{ url_for('download_ind', filename=file) }}">
+<img src="{{ url_for('download_ind', filename=file) }}" class='photo'><br>
+<span style='font-size:12px'>{{file}}</span>
+</div>
+{% endfor %}
+
+</div>
+</body>
+</html>

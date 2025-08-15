@@ -310,6 +310,7 @@ sudo raspi-config
 # Optional Downloads Server #  
 <img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/Downloads_Server.jpg' width='400'>  
 • As an option, you can add a page for downloading photos and zip files from the camera.  
+• An extra line will need to be added to the cron tab (explained below).  
 • You can edit the downloads page here: /themes/index.html.  
 • An extra line will need to be added to the cron tab (explained below).  
 

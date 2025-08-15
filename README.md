@@ -308,8 +308,7 @@ sudo raspi-config
 
 
 # Optional Downloads Server #  
-• To get the link to clone this repo, click the green "Code" button at the top of this page.  
-• Click the Copy url to clipboard icon/button.  
+
 <img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/Downloads_Server.jpg' width='400'>  
 <br>
 • As an option, you can add a page for downloading photos and zip files from the camera.  

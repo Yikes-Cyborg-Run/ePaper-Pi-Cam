@@ -309,10 +309,9 @@ sudo raspi-config
 
 # Optional Downloads Server #  
 <img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/Downloads_Server.jpg' width='400'>  
-• There's an option to add a page for downloading photos and zip files from the camera.  
+• As an option, you can add a page for downloading photos and zip files from the camera.  
 • You can edit the downloads page here: /themes/index.html.  
 • An extra line will need to be added to the cron tab (explained below).  
-
 
 # Auto-Start/Boot-Time Execution #  
 • To make the camera automatically start when the Pi boots up, facilitating mobility, you'll need to do a couple things.  

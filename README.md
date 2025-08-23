@@ -349,7 +349,8 @@ sudo crontab -e
 ```
 @reboot sleep 60 && python3 /home/pi/ePaper-Pi-Cam/server.py &
 ```  
-• if you find that the Downloads Server isn't starting, you can modify the sleep variable in the block above. This will increase the wait before the server starts, to make sure the Pi OS has enough time to start.   
+• If you find that the Downloads Server isn't starting, you can modify the sleep variable in the block above.  
+• This will increase the wait before the server starts, to make sure the Pi OS has enough time to start.   
 <img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/crontab_setting.jpg' width='600'>  
 
 • Ctrl-X to exit, then Y to save, and Enter to confirm.  

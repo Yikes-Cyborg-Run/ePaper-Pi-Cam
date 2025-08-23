@@ -330,6 +330,8 @@ IPAddress='xxx.xxx.xxx.xxx'
 • An extra line will need to be added to the cron tab (explained below).  
 • You can edit the look and the style of the downloads page located here: e-Paper-Pi-Cam/themes/index.html.  
 • The code is pretty simple and easy to edit to your own preferences with a little CSS knowledge.  
+• To open the Downloads Server, open a web browser window and type the IP Address of your Pi Camera into the address bar.  
+• NOTE: You will need to wait for the Pi OS to start and the crontab operation to begin (explained below).  
   
 # Auto-Start/Boot-Time Execution #  
 • To make the camera automatically start when the Pi boots up, facilitating mobility, you'll need to do a couple things.  

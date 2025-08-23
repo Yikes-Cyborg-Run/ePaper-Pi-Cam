@@ -10,6 +10,7 @@
 • [Install Modules](https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam#install-modules)  
 • [Install ePaper-Pi-Cam](https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam#auto-startboot-time-execution)
 • [Enable SPI](https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam#enable-spi)
+• [Optional Downloads Server](https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam#optional-downloads-server)
 • [Auto-Start/Boot-Time Exectution](https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam#auto-startboot-time-execution)  
 • [Questions & Troubleshooting](https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam?#questions--troubleshooting)
 • [Resources & To-Do](https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam?#project-resources-notes--to-do)
@@ -308,13 +309,13 @@ sudo raspi-config
 > * To use a different WaveShare display, read "How do I use a different ePaper display?" under the [Questions & Troubleshooting](https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam?#questions--troubleshooting) section.  
 
 # Optional Downloads Server #  
-
 <img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/Downloads_Server.jpg' width='400'>  
-<br>
+<br>  
 • As an option, you can add a page for downloading photos and zip files from the camera.  
+• 
 • An extra line will need to be added to the cron tab (explained below).  
 • You can edit the downloads page here: /themes/index.html.  
-• An extra line will need to be added to the cron tab (explained below).  
+• The code .  
 
 # Auto-Start/Boot-Time Execution #  
 • To make the camera automatically start when the Pi boots up, facilitating mobility, you'll need to do a couple things.  

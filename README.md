@@ -328,7 +328,7 @@ IPAddress='xxx.xxx.xxx.xxx'
 
 • An extra line will need to be added to the cron tab (explained below).  
 • You can edit the downloads page here: /themes/index.html.  
-• The code  
+• The code is pretty simple and easy to edit to your own preferences with a little CSS knowledge.    
   
 # Auto-Start/Boot-Time Execution #  
 • To make the camera automatically start when the Pi boots up, facilitating mobility, you'll need to do a couple things.  

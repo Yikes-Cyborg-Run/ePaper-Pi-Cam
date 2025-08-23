@@ -311,8 +311,21 @@ sudo raspi-config
 # Optional Downloads Server #  
 <img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/Downloads_Server.jpg' width='400'>  
   
-  • As an option, you can add a page for downloading photos and zip files from the camera.  
-• 
+• As an option, you can add a page for downloading photos and zip files from the camera.  
+• The file server.py is pretty simple and straight forward.  
+• You'll need to edit this file to add your Pi IP Address to it.  
+
+In the terminal, (make sure you are in the /ePaper-Pi-Cam directory) type:  
+```
+sudo nano server.py
+```
+
+• Edit the line below to add your IP to it.  
+```
+IPAddress='xxx.xxx.xxx.xxx'
+```
+• Type "Ctrl+X" to Exit and stop editing. Then type "Y" to save and type the "Enter" key to save as the file name "server.py".  
+
 • An extra line will need to be added to the cron tab (explained below).  
 • You can edit the downloads page here: /themes/index.html.  
 • The code  
@@ -330,7 +343,13 @@ sudo crontab -e
 • Add the folowwing to the bottom of the file.  
 ```
 @reboot python3 /home/pi/ePaper-Pi-Cam/main.py &
+```  
+
+• If you want to use the optional Downloads Server, add the folowwing to the bottom of the file.  
 ```
+@reboot sleep 60 && python3 /home/pi/ePaper-Pi-Cam/server.py &
+```  
+• if you find that the Downloads Server isn't starting, you can modify the sleep variable in the block above. This will increase the wait before the server starts, to make sure the Pi OS has enough time to start.   
 <img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/crontab_setting.jpg' width='600'>  
 
 • Ctrl-X to exit, then Y to save, and Enter to confirm.  

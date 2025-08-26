@@ -310,9 +310,13 @@ sudo raspi-config
   
 # Optional Downloads Server #  
 <img src='https://github.com/Yikes-Cyborg-Run/ePaper-Pi-Cam/blob/main/Resources/README_images/Downloads_Server.jpg' width='400'>  
-  
+
 • As an option, you can add a page for downloading photos and zip files from the camera.  
 • This lets you simply open a browser window and click on Archive.zip files or individual photos to download them to your computer.  
+• Install the Flask module  
+```
+sudo apt install python3-flask
+```  
 • The file server.py is pretty simple and straight forward.  
 • But you'll need to edit this file to add your Pi IP Address to it.  
 

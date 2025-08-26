@@ -563,6 +563,10 @@ def main():
 	photo_dir=Path(home_dir / 'Photos')
 	photo_dir.mkdir(parents=True, exist_ok=True)
 
+	# Create Archived_Photos dir if it doesn't exist
+	archive_dir=Path(home_dir / 'Archived_Photos')
+	archive_dir.mkdir(parents=True, exist_ok=True)
+	
 	# Create the log file and print today's date at the header
 	# This file will be overwritten each time the script runs
 	now=datetime.datetime.now()
